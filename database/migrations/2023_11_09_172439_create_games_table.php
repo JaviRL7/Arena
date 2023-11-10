@@ -12,15 +12,17 @@ return new class extends Migration
     public function up()
 {
     Schema::create('games', function (Blueprint $table) {
-        $table->id();
+
         $table->unsignedBigInteger('team_blue_id');
         $table->unsignedBigInteger('team_red_id');
         $table->date('date');
+        $table->integer('number');
         //$table->unsignedBigInteger('competition');
         $table->timestamps();
         $table->foreign('team_blue_id')->references('id')->on('teams');
         $table->foreign('team_red_id')->references('id')->on('teams');
-        //$table->foreign('competition')->references('id')->on('competition');
+        $table->primary(['team_blue_id', 'team_red_id', 'date']);
+        //
     });
 }
 
