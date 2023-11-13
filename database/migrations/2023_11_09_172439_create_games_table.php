@@ -16,12 +16,13 @@ return new class extends Migration
         $table->unsignedBigInteger('team_blue_id');
         $table->unsignedBigInteger('team_red_id');
         $table->date('date');
+        $table->enum('type', ['bo1','bo3','bo5']);
         $table->integer('number');
         //$table->unsignedBigInteger('competition');
         $table->timestamps();
         $table->foreign('team_blue_id')->references('id')->on('teams');
         $table->foreign('team_red_id')->references('id')->on('teams');
-        $table->primary(['team_blue_id', 'team_red_id', 'date']);
+        $table->primary(['team_blue_id', 'team_red_id', 'date', 'number']);
         //
     });
 }
