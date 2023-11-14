@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competitions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('region');
-            $table->timestamps();
+        Schema::table('teams', function (Blueprint $table) {
+            $table->unsignedBigInteger('competition_id');
+            $table->foreign('competition_id')->references('id')->on('competitions');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competitions');
+        Schema::table('team', function (Blueprint $table) {
+            //
+        });
     }
 };
