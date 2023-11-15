@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista de jugadores</title>
 </head>
+
 <body>
     <h1>List of players</h1>
 
@@ -21,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($players as $player)
+            @foreach ($players as $player)
                 <tr>
                     <td>{{ $player->name }}</td>
                     <td>{{ $player->lastname1 }}</td>
@@ -31,6 +33,8 @@
                     <td>{{ $player->role_id }}</td>
                     <td>{{ $player->photo }}</td>
 
+                    <td><a href="{{ route('players.edit', $player->id) }}">Editar</a>
+                    </td>
                     <td>
                         <form action="{{ route('players.destroy', $player->id) }}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
@@ -44,4 +48,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
