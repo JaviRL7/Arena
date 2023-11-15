@@ -28,7 +28,7 @@ class TeamsTableSeeder extends Seeder
                 'league' => 'LEC',
                 'country' => 'Germany',
                 'competition_id' => 1,
-                'logo' => 'Logos/G2_logo',
+                'logo' => 'Logos/G2_logo.webp',
 
             ],
             [

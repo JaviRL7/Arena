@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/breeze.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <x-app-layout>
         <x-slot name="header">
@@ -21,16 +23,17 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Logo</th>
                                 <th>Name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($teams as $team)
-                            <tr>
-                                <td>{{ $team->id }}</td>
-                                <td>{{ $team->name }}</td>
-                            </tr>
+                            @foreach ($teams as $team)
+                                <tr>
+                                    <td> <img src="{{ $team->logo }}" alt="Logo del equipo" width="500px" height="500px">
+                                    </td>
+                                    <td><h1>{{ $team->name }}</h1></td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -39,4 +42,5 @@
         </div>
     </x-app-layout>
 </body>
+
 </html>

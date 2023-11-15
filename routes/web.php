@@ -31,3 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/teams', [AdminTeamsController::class, 'index']);
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
