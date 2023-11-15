@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminTeamsController;
-
+use App\Http\Controllers\PlayersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +35,12 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/players', [PlayersController::class, 'index'])->name('players.index');
+Route::get('/players/create', [PlayersController::class, 'create']);
+Route::post('/players', [PlayersController::class, 'store']);
+Route::get('/players/{player}', [PlayersController::class, 'show'])->name('players.show');
+Route::get('/players/{player}/edit', [PlayersController::class, 'edit'])->name('players.edit');
+Route::put('/players/{player}', [PlayersController::class, 'update'])->name('players.update');
+Route::delete('/players/{id}', [PlayersController::class, 'destroy'])->name('players.destroy');
