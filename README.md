@@ -1,6 +1,6 @@
-## Esports Manager Arena
-## Javier Rodriguez Lopez
-## Curso 2023/24
+# Esports Manager Arena
+# Javier Rodriguez Lopez
+# Curso 2023/24
 
 # Descripción general del proyecto
 
