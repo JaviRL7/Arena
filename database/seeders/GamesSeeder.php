@@ -13,7 +13,9 @@ class GamesSeeder extends Seeder
      */
     public function run(): void
     {
-        Game::create(['team_blue_id' => 1, 'team_red_id' => 2,'date' => Carbon::createFromFormat('d/m/Y', '19/11/2023'), 'type' => 'bo5', 'competition_id' => 2, 'number' => 1, 'team_blue_score' => 0, 'team_red_score' => 3]);
-        Game::create(['team_blue_id' => 1, 'team_red_id' => 2,'date' => Carbon::createFromFormat('d/m/Y', '19/11/2023'), 'type' => 'bo5', 'competition_id' => 2, 'number' => 2, 'team_blue_score' => 0, 'team_red_score' => 3]);
+        Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 1, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
+        Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 2, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
+        Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 3, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
+
     }
 }

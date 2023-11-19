@@ -15,13 +15,13 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('team_blue_id');
         $table->unsignedBigInteger('team_red_id');
-        $table->date('date');
-        $table->enum('type', ['bo1','bo3','bo5']);
+        $table->unsignedBigInteger('serie_id');
         $table->integer('number');
-        $table->unsignedBigInteger('competition_id');
+        $table->enum('team_blue_result', ['L', 'W']);
+        $table->enum('team_red_result', ['L', 'W']); 
         $table->foreign('team_blue_id')->references('id')->on('teams');
         $table->foreign('team_red_id')->references('id')->on('teams');
-        $table->unique(['team_blue_id', 'team_red_id', 'date', 'number']);
+        $table->unique(['team_blue_id', 'team_red_id', 'serie_id', 'number']);
         $table->timestamps();
         });
     }

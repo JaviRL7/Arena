@@ -4,18 +4,25 @@
 @section('content')
     <h1>Esto es el show de games</h1>
     
-    @foreach($games as $game)
-    <div class="flex items-center justify-between p-4 bg-white shadow rounded-lg">
-        <div class="flex items-center">
-            <img src="{{ asset($game->team_blue->logo) }}" alt="{{ $game->team_blue->name }}" class="w-10 h-10 rounded-full">            <span class="ml-4 text-lg font-bold">{{ $game->team_blue->name }}</span>
+    <div class="flex flex-wrap justify-center mx-4">
+        @foreach($games as $game)
+        <div class="flex items-start justify-between p-4 bg-gray-800 text-white shadow rounded-lg mb-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 2xl:w-1/5 min-w-[200px] mx-2">
+            <div class="flex flex-col items-center">
+                <img src="{{ asset($game->team_blue->logo) }}" alt="{{ $game->team_blue->name }}" class="w-auto h-10">
+                <span class="text-lg font-bold">{{ $game->team_blue->name }}</span>        
+            </div>
+            <div>
+                <span class="text-2xl font-bold">{{ $game->team_blue_result }} - {{ $game->team_red_result }}</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <img src="{{ asset($game->team_red->logo) }}" alt="{{ $game->team_red->name }}" class="w-auto h-10">
+                <span class="text-lg font-bold">{{ $game->team_red->name }}</span>    
+            </div>
         </div>
-        <div>
-            <span class="text-2xl font-bold">{{ $game->team_blue_score }} - {{ $game->team_red_score }}</span>
-        </div>
-        <div class="flex items-center">
-            <span class="mr-4 text-lg font-bold">{{ $game->team_red->name }}</span>
-            <img src="{{ asset($game->team_red->logo) }}" alt="{{ $game->team_red->name }}" class="w-10 h-10 rounded-full">
-        </div>
+        @endforeach
     </div>
-@endforeach
+    
+    </div>
+    
+    
 @endsection
