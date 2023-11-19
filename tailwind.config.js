@@ -10,12 +10,14 @@ export default {
     ],
 
     theme: {
+        container:{
+            center:true,
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-
     plugins: [forms],
 };

@@ -18,7 +18,7 @@ return new class extends Migration
         $table->date('date');
         $table->enum('type', ['bo1','bo3','bo5']);
         $table->integer('number');
-        $table->unsignedBigInteger('competition');
+        $table->unsignedBigInteger('competition_id');
         $table->foreign('team_blue_id')->references('id')->on('teams');
         $table->foreign('team_red_id')->references('id')->on('teams');
         $table->unique(['team_blue_id', 'team_red_id', 'date', 'number']);
