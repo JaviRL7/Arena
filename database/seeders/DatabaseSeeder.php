@@ -18,5 +18,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            ChampionsSeeder::class,
+            CompetitionsSeeder::class,
+            TeamsSeeder::class,
+            RolesSeeder::class,
+            SeriesSeeder::class,
+            GamesSeeder::class,
+            PlayersSeeder::class,
+            // Otros seeders si los tienes
+        ]);
     }
 }
