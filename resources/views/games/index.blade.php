@@ -19,8 +19,8 @@
                 <span class="text-lg font-bold">{{ $game->team_red->name }}</span>
             </div>
         </div>
-        @endforeach
         <a href="{{ route('games.result', $game) }}">Ver resultado</a>
+        @endforeach
 
     </div>
 

@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('histories', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('player_id');
             $table->unsignedBigInteger('team_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->foreign('player_id')->references('id')->on('players');
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->primary(['player_id', 'team_id', 'start_date']);
+            $table->unique(['player_id', 'team_id', 'start_date']);
             $table->timestamps();
         });
     }
