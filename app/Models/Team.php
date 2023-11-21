@@ -4,34 +4,58 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Team extends Model
 {
     use HasFactory;
+
+    public function players(){
+        return $this->belongsToMany(Player::class);
+    }
+
     public function histories()
     {
         return $this->hasMany(History::class);
     }
-    public function getToplaner()
-    {
-        // Obtenemos la colección de historias del equipo
-        $histories = $this->histories;
 
-        // Recorremos la colección de historias
-        foreach ($histories as $history) {
-
-            // Obtenemos el jugador asociado a la historia
-            $player = $history->player;
-
-            // Comprobamos si el id_role del jugador es igual a 1
-            if ($player->id_role == 1) {
-
-                // Devolvemos el jugador
-                return $player;
-            }
-        }
-
-        // Si no encontramos ningún jugador con id_role = 1, devolvemos null
-        return null;
+    public function getToplaner() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('role_id', 1)
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('start_date', 'desc');
+    }
+    public function getJungler() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('role_id', 2)
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('start_date', 'desc');
+    }
+    public function getMidlaner() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('role_id', 3)
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('start_date', 'desc');
+    }
+    public function getADC() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('role_id', 4)
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('start_date', 'desc');
+    }
+    public function getSupport() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('role_id', 5)
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('start_date', 'desc');
     }
 }

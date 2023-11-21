@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             SeriesSeeder::class,
             GamesSeeder::class,
             PlayersSeeder::class,
-            HistoriesSeeder::class,
             // Otros seeders si los tienes
         ]);
     }

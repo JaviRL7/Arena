@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('histories', function (Blueprint $table) {
-            $table->id();
+        Schema::create('player_team', function (Blueprint $table) {
             $table->unsignedBigInteger('player_id');
             $table->unsignedBigInteger('team_id');
             $table->date('start_date');
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('player_team');
     }
 };
