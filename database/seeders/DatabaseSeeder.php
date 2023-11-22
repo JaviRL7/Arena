@@ -24,8 +24,9 @@ class DatabaseSeeder extends Seeder
             TeamsSeeder::class,
             RolesSeeder::class,
             SeriesSeeder::class,
-            GamesSeeder::class,
+
             PlayersSeeder::class,
+            GamesSeeder::class,
             // Otros seeders si los tienes
         ]);
     }
