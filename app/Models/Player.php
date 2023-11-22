@@ -13,6 +13,7 @@ class Player extends Model
         return $this->belongsToMany(Team::class);
     }
     public function games(){
-        return $this->belongsToMany(Game::class, 'clasifications');
+        return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills' , 'deaths', 'assists', 'champion_id');
     }
+
 }

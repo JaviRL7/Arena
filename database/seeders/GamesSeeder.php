@@ -44,7 +44,7 @@ class GamesSeeder extends Seeder
         ];
         $resultados_red = [
             ['kills' => 5, 'deaths' => 2, 'assists' => 4, 'champion_name' => 'yone'],
-            ['kills' => 6, 'deaths' => 1, 'assists' => 5, 'champion_name' => 'oner'],
+            ['kills' => 6, 'deaths' => 1, 'assists' => 5, 'champion_name' => 'lee sin'],
             ['kills' => 1, 'deaths' => 2, 'assists' => 4, 'champion_name' => 'ahri'],
             ['kills' => 2, 'deaths' => 0, 'assists' => 4, 'champion_name' => 'kalista'],
             ['kills' => 0, 'deaths' => 0, 'assists' => 8, 'champion_name' => 'renata glasc']
@@ -65,7 +65,7 @@ class GamesSeeder extends Seeder
             // Eliminar el nombre del campeón del array de resultados
             unset($resultados_blue[$index]['champion_name']);
 
-            $player->games()->attach($game1->id, $resultados[$index]);
+            $player->games()->attach($game1->id, $resultados_blue[$index]);
         }
         foreach ($players_team_red as $index => $player) {
             // Convertir el nombre del campeón a minúsculas
@@ -82,9 +82,44 @@ class GamesSeeder extends Seeder
             // Eliminar el nombre del campeón del array de resultados
             unset($resultados_red[$index]['champion_name']);
 
-            $player->games()->attach($game1->id, $resultados[$index]);
+            $player->games()->attach($game1->id, $resultados_red[$index]);
         }
-        Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 2, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
+        $game2 = Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 2, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
+        $team_blue_id = $game2->team_blue_id;
+        $team_red_id = $game2->team_red_id;
+        $resultados_blue = [
+            ['kills' => 5, 'deaths' => 4, 'assists' => 1, 'champion_name' => 'aatrox'],
+            ['kills' => 5, 'deaths' => 3, 'assists' => 2, 'champion_name' => 'maokai'],
+            ['kills' => 5, 'deaths' => 2, 'assists' => 1, 'champion_name' => 'jayce'],
+            ['kills' => 5, 'deaths' => 3, 'assists' => 2, 'champion_name' => 'milio'],
+            ['kills' => 5, 'deaths' => 3, 'assists' => 1, 'champion_name' => 'tahm kench']
+        ];
+        $resultados_red = [
+            ['kills' => 5, 'deaths' => 2, 'assists' => 4, 'champion_name' => 'yone'],
+            ['kills' => 6, 'deaths' => 1, 'assists' => 5, 'champion_name' => 'lee sin'],
+            ['kills' => 1, 'deaths' => 2, 'assists' => 4, 'champion_name' => 'ahri'],
+            ['kills' => 2, 'deaths' => 0, 'assists' => 4, 'champion_name' => 'kalista'],
+            ['kills' => 0, 'deaths' => 0, 'assists' => 8, 'champion_name' => 'renata glasc']
+
+        ];
+        foreach ($players_team_blue as $index => $player) {
+            $champion_name = strtolower($resultados_blue[$index]['champion_name']);
+            $champion = Champion::whereRaw('lower(name) = ?', $champion_name)->first();
+            if ($champion) {
+                $resultados_blue[$index]['champion_id'] = $champion->id;
+            }
+            unset($resultados_blue[$index]['champion_name']);
+            $player->games()->attach($game2->id, $resultados_blue[$index]);
+        }
+        foreach ($players_team_red as $index => $player) {
+            $champion_name = strtolower($resultados_red[$index]['champion_name']);
+            $champion = Champion::whereRaw('lower(name) = ?', $champion_name)->first();
+            if ($champion) {
+                $resultados_red[$index]['champion_id'] = $champion->id;
+            }
+            unset($resultados_red[$index]['champion_name']);
+            $player->games()->attach($game2->id, $resultados_red[$index]);
+        }
         Game::create(['team_blue_id' => 1, 'team_red_id' => 2, 'serie_id' => 1, 'number' => 3, 'team_blue_result' => 'L', 'team_red_result' => 'W']);
 
     }

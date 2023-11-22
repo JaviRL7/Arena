@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Game extends Model
 {
@@ -22,5 +23,8 @@ class Game extends Model
 
     public function getPlayerStats(Player $player) {
         return $this->players()->where('player_id', $player->id)->first()->pivot->only(['kill', 'deaths', 'assists']);
+    }
+    public function champion(){
+        return $this->belongsTo(Champion::class, 'champion_id');
     }
 }
