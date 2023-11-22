@@ -15,6 +15,7 @@ class PlayersSeeder extends Seeder
     public function run(): void
     {
         $team_T1 = Team::where('name', 'T1')->first();
+        
         $team_Weibo = Team::where('name', 'Weibo Gaming')->first();
         $team_JDG = Team::where('name', 'JDG')->first();
         $team_GENG = Team::where('name', 'GENG')->first();

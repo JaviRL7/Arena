@@ -15,4 +15,12 @@ class Game extends Model
     public function team_red() {
         return $this->belongsTo(Team::class, 'team_red_id');
     }
+
+    public function players(){
+        return $this->belongsToMany(Player::class, 'clasifications');
+    }
+
+    public function getPlayerStats(Player $player) {
+        return $this->players()->where('player_id', $player->id)->first()->pivot->only(['kill', 'deaths', 'assists']);
+    }
 }
