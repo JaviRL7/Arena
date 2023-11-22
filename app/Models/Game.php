@@ -28,3 +28,4 @@ class Game extends Model
         return $this->belongsTo(Champion::class, 'champion_id');
     }
 }
+
