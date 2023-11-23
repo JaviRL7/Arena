@@ -11,7 +11,8 @@ class GamesController extends Controller
         return view('games.index', compact('games'));
     }
     public function result(Game $game){
-        
-        return view('games.results', compact('game'));
+        $team_blue = $game->team_blue;
+        $players = $team_blue->getplayers();
+        return view('games.results', compact('game', 'players'));
     }
 }

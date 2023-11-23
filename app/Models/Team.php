@@ -17,7 +17,13 @@ class Team extends Model
     {
         return $this->hasMany(History::class);
     }
-
+    public function getPlayers() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '>=', $today)
+                     ->orderBy('role', 'asc');
+    }
     public function getToplaner() {
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()

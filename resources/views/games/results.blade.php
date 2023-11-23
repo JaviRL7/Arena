@@ -6,148 +6,41 @@
         <div class="flex justify-between">
             <!-- Tabla 1 -->
             <table class="table-auto  mr-5">
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
+                @foreach ($players as $player)
                     <tr class="align-middle">
-                        <th>
-                            <div class="flex items-center">
-                                <img src="{{ asset('roles_icons/TOP.png') }}" alt="TOP" class="w-auto h-12">
-                                <img src="{{ asset($game->team_blue->getToplaner->first()->photo) }}"
-                                    alt="{{ $game->team_blue->getToplaner->first()->photo }}"
-                                    class="w-36 h-36 object-cover rounded-full">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="mx-4">{{ $game->team_blue->getToplaner->first()->nick }}<br><span
-                                    class="text-gray-500">{{ $game->team_blue->getToplaner->first()->name }}
-                                    {{ $game->team_blue->getToplaner->first()->lastname1 }}</span></div>
-                        </th>
-                        <th>
-                            <div class="mx-4"><img
-                                    src="{{ asset($game->team_blue->getToplaner->first()->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                    alt="" class="w-16 h-16 object-cover rounded-full"></div>
-                        </th>
                         <th>
                             <div class="mx-4">
-                                {{ $game->team_blue->getToplaner->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getToplaner->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getToplaner->first()->games->where('id', $game->id)->first()->pivot->assists }}
+                                {{ $player->games->where('id', $game->id)->first()->pivot->kills }}/
+                                {{ $player->games->where('id', $game->id)->first()->pivot->deaths }}/
+                                {{ $player->games->where('id', $game->id)->first()->pivot->assists }}
                             </div>
-                        </th>
-                    </tr>
-                    <tr class="align-middle">
-                        <th>
-                            <div class="flex items-center">
-                                <img src="{{ asset('roles_icons/Jungler.png') }}" alt="Jungler" class="w-auto h-12">
-                                <img src="{{ asset($game->team_blue->getJungler->first()->photo) }}"
-                                    alt="{{ $game->team_blue->getJungler->first()->photo }}"
-                                    class="w-36 h-36 object-cover rounded-full">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="mx-4">{{ $game->team_blue->getJungler->first()->nick }}<br><span
-                                    class="text-gray-500">{{ $game->team_blue->getJungler->first()->name }}
-                                    {{ $game->team_blue->getJungler->first()->lastname1 }}</span></div>
                         </th>
                         <th>
                             <div class="mx-4"><img
-                                    src="{{ asset($game->team_blue->getJungler->first()->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                    alt="" class="w-16 h-16 object-cover rounded-full"></div>
-                        </th>
-                        <th>
-                            <div class="mx-4">
-                                {{ $game->team_blue->getJungler->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getJungler->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getJungler->first()->games->where('id', $game->id)->first()->pivot->assists }}
-                            </div>
-                        </th>
-                    </tr>
-                    <tr class="align-middle">
-                        <th>
-                            <div class="flex items-center">
-                                <img src="{{ asset('roles_icons/MID.png') }}" alt="Jungler" class="w-auto h-12">
-                                <img src="{{ asset($game->team_blue->getMidlaner->first()->photo) }}"
-                                    alt="{{ $game->team_blue->getMidlaner->first()->photo }}"
-                                    class="w-36 h-36 object-cover rounded-full">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="mx-4">{{ $game->team_blue->getMidlaner->first()->nick }}<br><span
-                                    class="text-gray-500">{{ $game->team_blue->getMidlaner->first()->name }}
-                                    {{ $game->team_blue->getMidlaner->first()->lastname1 }}</span></div>
-                        </th>
-                        <th>
-                            <div class="mx-4"><img
-                                    src="{{ asset($game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                    alt="{{ $game->team_blue->getMidlaner->first()->games->first()->pivot->champion->name }}"
+                                    src="{{ asset($player->games->where('id', $game->id)->first()->pivot->champion->square) }}"
+                                    alt="{{ $player->games->first()->pivot->champion->name }}"
                                     class="w-16 h-16 object-cover rounded-full"></div>
                         </th>
                         <th>
-                            <div class="mx-4">
-                                {{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->assists }}
-                            </div>
+                            <div class="mx-4">{{ $player->nick }}<br><span
+                                    class="text-gray-500">{{ $player->name }}
+                                    {{ $player->lastname1 }}</span></div>
                         </th>
-                    </tr>
-                    <tr class="align-middle">
                         <th>
                             <div class="flex items-center">
-                                <img src="{{ asset('roles_icons/ADC.png') }}" alt="Jungler" class="w-auto h-12">
-                                <img src="{{ asset($game->team_blue->getADC->first()->photo) }}"
-                                    alt="{{ $game->team_blue->getADC->first()->photo }}"
+                                <img src="{{ asset($player->photo) }}"
+                                    alt="{{ $player->photo }}"
                                     class="w-36 h-36 object-cover rounded-full">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="mx-4">{{ $game->team_blue->getADC->first()->nick }}<br><span
-                                    class="text-gray-500">{{ $game->team_blue->getADC->first()->name }}
-                                    {{ $game->team_blue->getADC->first()->lastname1 }}</span></div>
-                        </th>
-                        <th>
-                            <div class="mx-4"><img
-                                    src="{{ asset($game->team_blue->getADC->first()->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                    alt="{{ $game->team_blue->getADC->first()->games->first()->pivot->champion->name }}"
-                                    class="w-16 h-16 object-cover rounded-full"></div>
-                        </th>
-                        <th>
-                            <div class="mx-4">
-                                {{ $game->team_blue->getADC->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getADC->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getADC->first()->games->where('id', $game->id)->first()->pivot->assists }}
+                                <img src="{{ asset('roles_icons/' . strtoupper($player->role) . '.png') }}" alt="{{ $player->role }}" class="w-auto h-12">
                             </div>
                         </th>
                     </tr>
-                    <tr class="align-middle">
-                        <th>
-                            <div class="flex items-center">
-                                <img src="{{ asset('roles_icons/Support.png') }}" alt="support" class="w-auto h-12">
-                                <img src="{{ asset($game->team_blue->getSupport->first()->photo) }}"
-                                    alt="{{ $game->team_blue->getSupport->first()->photo }}"
-                                    class="w-36 h-36 object-cover rounded-full">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="mx-4">{{ $game->team_blue->getSupport->first()->nick }}<br><span
-                                    class="text-gray-500">{{ $game->team_blue->getSupport->first()->name }}
-                                    {{ $game->team_blue->getSupport->first()->lastname1 }}</span></div>
-                        </th>
-                        <th>
-                            <div class="mx-4"><img
-                                    src="{{ asset($game->team_blue->getSupport->first()->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                    alt="{{ $game->team_blue->getSupport->first()->games->first()->pivot->champion->name }}"
-                                    class="w-16 h-16 object-cover rounded-full"></div>
-                        </th>
-                        <th>
-                            <div class="mx-4">
-                                {{ $game->team_blue->getSupport->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getSupport->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getSupport->first()->games->where('id', $game->id)->first()->pivot->assists }}
-                            </div>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
+                @endforeach
+            </tbody>
+        </table>
+        
 
             <!-- Tabla 2 -->
             <!-- Tabla 2 -->
