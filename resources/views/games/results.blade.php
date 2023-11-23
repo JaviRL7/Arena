@@ -157,7 +157,9 @@
                     <tr class="align-middle">
                         <th>
                             <div class="mx-4">
-                                {{ $game->team_red->getToplaner->first()->games->first()->pivot->kills }}/{{ $game->team_red->getToplaner->first()->games->first()->pivot->deaths }}/{{ $game->team_red->getToplaner->first()->games->first()->pivot->assists }}
+                                {{ $game->team_red->getToplaner->first()->games->where('id', $game->id)->first()->pivot->kills }}/
+                                {{ $game->team_red->getToplaner->first()->games->where('id', $game->id)->first()->pivot->deaths }}/
+                                {{ $game->team_red->getToplaner->first()->games->where('id', $game->id)->first()->pivot->assists }}
                             </div>
                         </th>
                         <th>
@@ -211,9 +213,9 @@
                     <tr class="align-middle">
                         <th>
                             <div class="mx-4">
-                                {{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->kills }}
-                                /{{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->deaths }}
-                                /{{ $game->team_blue->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->assists }}
+                                {{ $game->team_red->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->kills }}
+                                /{{ $game->team_red->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->deaths }}
+                                /{{ $game->team_red->getMidlaner->first()->games->where('id', $game->id)->first()->pivot->assists }}
                             </div>
                         </th>
                         <th>
