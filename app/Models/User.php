@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //Relacion muchos a muchos para la tabla scores
+    public function games(){
+        return $this->belongsToMany(Game::class, 'scores')->withPivot('player_id', 'nota');
+    }
 }

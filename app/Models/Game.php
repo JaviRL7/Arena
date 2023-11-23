@@ -59,5 +59,10 @@ class Game extends Model
             $player->games()->attach($this->id, $results_red[$index]);
         }
     }
+
+    //Relacion muchos a muchos para la tabla scores
+    public function users(){
+        return $this->belongsToMany(User::class, 'scores')->withPivot('player_id', 'nota');
+    }
 }
 

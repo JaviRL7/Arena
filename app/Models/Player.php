@@ -16,4 +16,8 @@ class Player extends Model
         return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills' , 'deaths', 'assists', 'champion_id');
     }
 
+    //Relacion muchos a muchos para la tabla scores
+    public function scoresGames(){
+        return $this->belongsToMany(Game::class, 'scores')->withPivot('user_id', 'note');
+    }
 }

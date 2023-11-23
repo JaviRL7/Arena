@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('games.result');
+Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
 
 require __DIR__.'/auth.php';
