@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
-
+use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\TeamsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,8 @@ Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('ga
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
 Route::post('/games/{game}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
+
+//
+Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.renkings');
 
 require __DIR__.'/auth.php';
