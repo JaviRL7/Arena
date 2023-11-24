@@ -11,7 +11,7 @@ use App\Models\Player;
 
 class Comment extends Model
 {
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'player_id', 'team_id'];
 
      public function game()
     {

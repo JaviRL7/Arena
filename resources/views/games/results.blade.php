@@ -194,7 +194,7 @@
         <div class="form-group">
             <label for="player_id" class="block text-sm font-medium text-gray-700">Jugador:</label>
             <select class="form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="player_id" id="player_id">
-                <option value="Null">Ninguno</option>
+                <option value="">Ninguno</option>
                 @foreach($players_red as $player)
                     <option value="{{ $player->id }}">{{ $player->nick }}</option>
                 @endforeach
@@ -206,7 +206,7 @@
         <div class="form-group">
             <label for="team_id" class="block text-sm font-medium text-gray-700">Equipo:</label>
             <select class="form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="team_id" id="team_id">
-                <option value="Null">Ninguno</option>
+                <option value="">Ninguno</option>
                 <option value="{{ $game->team_blue->id }}">{{ $game->team_blue->name}}</option>
                 <option value="{{ $game->team_red->id }}">{{ $game->team_red->name }}</option>
             </select>
