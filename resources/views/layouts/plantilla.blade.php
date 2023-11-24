@@ -8,6 +8,11 @@
 
 </head>
 <body>
-    @yield('content')
+
+    {{-- Navbar --}}
+    @include('layouts.navbar')
+    <main>
+        @yield('content')
+    </main>
 </body>
 </html>
