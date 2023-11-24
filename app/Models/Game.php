@@ -60,9 +60,19 @@ class Game extends Model
         }
     }
 
+
+
+
+
+
+
     //Relacion muchos a muchos para la tabla scores
     public function users(){
         return $this->belongsToMany(User::class, 'scores')->withPivot('player_id', 'nota');
     }
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
 }
 

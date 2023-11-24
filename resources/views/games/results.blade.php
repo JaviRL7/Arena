@@ -183,4 +183,53 @@
         </tbody>
     </table>
 </div>
+<div>
+    
+    <form action="{{ route('comments.store', $game) }}" method="POST" class="space-y-4">
+        @csrf
+        <div class="form-group">
+            <label for="body" class="block text-sm font-medium text-gray-700">Comentario:</label>
+            <textarea class="form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="body" id="body" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="player_id" class="block text-sm font-medium text-gray-700">Jugador:</label>
+            <select class="form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="player_id" id="player_id">
+                <option value="Null">Ninguno</option>
+                @foreach($players_red as $player)
+                    <option value="{{ $player->id }}">{{ $player->nick }}</option>
+                @endforeach
+                @foreach($players_blue as $player)
+                    <option value="{{ $player->id }}">{{ $player->nick }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="team_id" class="block text-sm font-medium text-gray-700">Equipo:</label>
+            <select class="form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="team_id" id="team_id">
+                <option value="Null">Ninguno</option>
+                <option value="{{ $game->team_blue->id }}">{{ $game->team_blue->name}}</option>
+                <option value="{{ $game->team_red->id }}">{{ $game->team_red->name }}</option>
+            </select>
+        </div>
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        <input type="hidden" name="game_id" value="{{ $game->id }}">
+        <button type="submit" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Enviar</button>
+    </form>
+
+</div>
+<div class="space-y-4">
+    @foreach($game->comments as $comment)
+        <div class="comment p-4 border border-gray-200 rounded">
+            <p class="font-bold">{{ $comment->user->name }}</p>
+            <p>{{ $comment->body }}</p>
+            <form action="{{ route('comments.like', $comment) }}" method="POST" class="mt-2">
+                @csrf
+                <button type="submit" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">Like</button>
+            </form>
+            <p class="mt-2">Likes: {{ $comment->likes }}</p>
+            <p class="mt-2">Equipo: {{ optional($comment->team)->name }}</p>
+            <p class="mt-2">Jugador: {{ optional($comment->player)->nick }}</p>
+        </div>
+    @endforeach
+</div>
 @endsection

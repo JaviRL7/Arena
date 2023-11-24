@@ -1,3 +1,4 @@
+    
 @extends('layouts.plantilla')
 @section('title', 'show games')
 
@@ -27,4 +28,4 @@
     </div>
 
 
-@endsection
+@endsection<!-- El resto de tu contenido aquí -->
