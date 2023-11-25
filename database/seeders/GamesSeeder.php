@@ -320,10 +320,10 @@ class GamesSeeder extends Seeder
         'team_red_result' => 'W']);
     $resultados_blue = [
         ['kills' => 2, 'deaths' => 3, 'assists' => 0, 'champion_name' => 'gwen'],
-        ['kills' => 0, 'deaths' => 4, 'assists' => 2, 'champion_name' => 'jarvan vi'],
+        ['kills' => 0, 'deaths' => 4, 'assists' => 2, 'champion_name' => 'jarvan iv'],
         ['kills' => 0, 'deaths' => 2, 'assists' => 0, 'champion_name' => 'azir'],
         ['kills' => 0, 'deaths' => 2, 'assists' => 0, 'champion_name' => 'kai\'sa'],
-        ['kills' => 0, 'deaths' => 2, 'assists' => 0, 'champion_name' => 'bliztcrank']
+        ['kills' => 0, 'deaths' => 2, 'assists' => 0, 'champion_name' => 'blitzcrank']
     ];
     $resultados_red = [
         ['kills' => 5, 'deaths' => 1, 'assists' => 4, 'champion_name' => 'aatrox'],
@@ -381,7 +381,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 0, 'assists' => 7, 'champion_name' => 'renata glasc']
     ];
 
-    $game14->attachPlayers($resultados_blue, $resultados_red);
+    $game15->attachPlayers($resultados_blue, $resultados_red);
     }
 
 }

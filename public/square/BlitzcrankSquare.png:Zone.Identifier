@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/8211fac2-bd9e-4396-a3e7-e5e8e69b9a90/BlitzcrankSquare.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20231125%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20231125T021409Z&X-Amz-Expires=86400&X-Amz-Signature=084fb10a02f0d5b943fba468b12fc927d4dec9326eb804ad965050c432c17bce&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22BlitzcrankSquare.png%22&response-content-type=image%2Fpng&x-id=GetObject
