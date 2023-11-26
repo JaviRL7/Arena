@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedBigInteger('favorite_player1')->nullable();
+            $table->unsignedBigInteger('favorite_player2')->nullable();
+            $table->unsignedBigInteger('favorite_player3')->nullable();
+            $table->unsignedBigInteger('favorite_player4')->nullable();
+            $table->unsignedBigInteger('favorite_player5')->nullable();
+            $table->unsignedBigInteger('favorite_team')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class PlayersController extends Controller
 {
     public function rankings(){
-        return view('players.rankings', ['players' => Player::getPlayersWithMostKills()->take(10)]);
-    }
+        $playersByKills = Player::getPlayersWithMostKills();
+        $playersByComments = Player::getPlayersWithMostComments();
+        $playersByKDA = Player::getPlayersWithBestKDA();
+        $playersByAssits = Player::getPlayersWithMostAssits();
+        $playersByChampionpool = Player::getPlayersWithMostChamionpool();
+        return view('players.rankings', [
+            'playersByKills' => $playersByKills,
+            'playersByComments' => $playersByComments,
+            'playersByKDA' => $playersByKDA,
+            'playersByAssits' => $playersByAssits,
+            'playersByChampionpool' => $playersByChampionpool,
+        ]);    }
 }

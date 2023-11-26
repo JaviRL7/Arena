@@ -151,14 +151,14 @@ class GamesSeeder extends Seeder
             'team_blue_result' => 'W',
             'team_red_result' => 'L']);
 
-        $resultados_blue = [
+        $resultados_red = [
             ['kills' => 1, 'deaths' => 4, 'assists' => 5, 'champion_name' => 'Renekton'],
             ['kills' => 2, 'deaths' => 4, 'assists' => 5, 'champion_name' => 'Wukong'],
             ['kills' => 2, 'deaths' => 2, 'assists' => 4, 'champion_name' => 'Taliyah'],
             ['kills' => 4, 'deaths' => 3, 'assists' => 1, 'champion_name' => 'varus'],
             ['kills' => 1, 'deaths' => 5, 'assists' => 5, 'champion_name' => 'ashe']
         ];
-        $resultados_red = [
+        $resultados_blue = [
             ['kills' => 6, 'deaths' => 4, 'assists' => 4, 'champion_name' => 'aatrox'],
             ['kills' => 2, 'deaths' => 3, 'assists' => 11, 'champion_name' => 'rell'],
             ['kills' => 3, 'deaths' => 1, 'assists' => 9, 'champion_name' => 'azir'],
