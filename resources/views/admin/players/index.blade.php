@@ -56,9 +56,14 @@
                                 </p>
                             </td>
                             <td>
-                                <p>
-                                    {{ $player->teams()->where('team_id', $current_team->id)->first()->pivot->end_date;}}
-                                </p>
+                                @php
+                                    $currentTeam = $player
+                                        ->teams()
+                                        ->where('start_date', '<=', $today)
+                                        ->where('end_date', '>=', $today)
+                                        ->first();
+                                @endphp
+                                {{ $currentTeam ? $currentTeam->name : 'No tiene equipo actual' }}
                             </td>
                         </tr>
                     @endforeach
