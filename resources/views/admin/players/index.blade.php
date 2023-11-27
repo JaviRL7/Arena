@@ -2,38 +2,68 @@
 @section('title', 'Players index')
 
 @section('content')
-<div class="container">
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Photo</th>
-                    <th>Nick</th>
-                    <th>Nombre</th>
-                    <th>Role</th>
-                    <th>Current team</th>
-                    <th>Birth date</th>
-                    <th>Contract expiration</th>
-                    <th>Country</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($players as $player)
-                <tr class="row-color">
-                    <td>
-                        <img src="{{ asset($player->photo) }}" alt="{{ $player_blue->photo }}"
-                        class="w-36 h-36 object-cover rounded-full">
-                    </td>
-                    <td>
-                        <p>{{ $player->nick }}</p>
-                            <span class="text-gray-500">{{ $player->name }}
-                                {{ $player->lastname1 }}
-                            </span>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table_crud_admin">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Nick</th>
+                        <th>Nombre</th>
+                        <th>Role</th>
+                        <th>Current team</th>
+                        <th>Historial teams</th>
+                        <th>Birth date</th>
+                        <th>Contract expiration</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($players as $player)
+                        <tr class="row-color">
+                            <td>
+                                <img src="{{ asset($player->photo) }}" alt="{{ $player->photo }}"
+                                    class="w-36 h-36 object-cover rounded-full">
+                            </td>
+                            <td>
+                                <p>{{ $player->nick }}</p>
+                            </td>
+                            <td>
+                                <span class="text-gray-500">{{ $player->name }}
+                                    {{ $player->lastname1 }}
+                                </span>
+                            </td>
+                            <td>
+                                <p>
+                                    {{ $player->role->name }}
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    {{ $player->teams()->where('start_date', '<=', $today)->where('end_date', '>=', $today)->first()->name }}
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @foreach ($player->teams as $team)
+                                        {{ $team->name }}
+                                    @endforeach
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    {{ $player->birth_date }}
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    {{ $player->teams()->where('team_id', $current_team->id)->first()->pivot->end_date;}}
+                                </p>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 @endsection

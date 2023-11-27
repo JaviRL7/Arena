@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PlayersController extends Controller
 {
@@ -25,13 +26,16 @@ class PlayersController extends Controller
     public function index()
     {
         $players = Player::orderBy('id')->get();
+        $today = Carbon::now()->format('Y-m-d');
+        $currenteam = $player->teams()->where('start_date', '<=', $today)->where('end_date', '>=', $today)->first();
+
 
         //Para poner que la ruta actual venia de admin, repasar esto
         //&& strpos(Player::current()->getName(), 'admin') === 0
 
         if (auth()->check() && auth()->user()->admin) {
             return view('admin.players.index', [
-                'players' => $players,
+                'players' => $players, 'today' => $today, 'currenteam' => $currenteam,
 
             ]);
         } else {

@@ -20,10 +20,11 @@ class Team extends Model
     public function getPlayers() {
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()
-                     ->where('start_date', '<=', $today)
+                    ->where('start_date', '<=', $today)
                      ->where('end_date', '>=', $today)
                      ->orderBy('role_id', 'asc')
                      ->get();
+
     }
     public function getToplaner() {
         $today = Carbon::now()->format('Y-m-d');

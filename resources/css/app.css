@@ -27,7 +27,32 @@
         max-height: 50px;
     }
 }
-/* Css para la tabla de colores de admin*/
+/* Css para la tabla de colores de admin (retocar)*/
 
-.row-color:nth-child(even) {background: red}
-.row-color:nth-child(odd) {background: blue}
+.table_crud_admin th,
+.table_crud_admin td {
+    padding: 0.75rem;
+    vertical-align: top;
+}
+
+.table_crud_admin thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table_crud_admin tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Estilos personalizados para las celdas */
+.table_crud_admin .row-color:nth-child(even) td {
+    background-color: #f8f9fa; /* Un blanco más oscuro */
+    border-top: 1px solid blue;
+    border-bottom: 1px solid red;
+}
+
+.table_crud_admin .row-color:nth-child(odd) td {
+    background-color: #ffffff; /* Blanco */
+    border-top: 1px solid red;
+    border-bottom: 1px solid blue;
+}

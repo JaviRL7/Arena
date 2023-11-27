@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Score;
 use App\Models\Comment;
+use App\Models\Player;
+use App\Models\Team;
 
 class GamesController extends Controller
 {

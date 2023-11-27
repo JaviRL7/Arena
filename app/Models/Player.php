@@ -10,7 +10,7 @@ class Player extends Model
 {
     use HasFactory;
 
-    
+
     public function games(){
         return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills' , 'deaths', 'assists', 'champion_id');
     }
@@ -43,7 +43,7 @@ class Player extends Model
         ->orderBy('total_kills', 'desc')
         ->take(10)
         ->get();
-    
+
         return $players;
     }
     public static function getPlayersWithMostAssits() {
@@ -53,7 +53,7 @@ class Player extends Model
         ->orderBy('total_assits', 'desc')
         ->take(10)
         ->get();
-    
+
         return $players;
     }
     public static function getPlayersWithMostChamionpool() {
@@ -64,9 +64,15 @@ class Player extends Model
         ->orderBy('total_championpool', 'desc')
         ->take(10)
         ->get();
-    
+
         return $players;
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
 
     public static function getPlayersWithBestKDA() {
         $players = Player::select('players.*', DB::raw('((SUM(clasifications.kills) + SUM(clasifications.assists)) / SUM(clasifications.deaths)) as kda'))
@@ -75,16 +81,16 @@ class Player extends Model
             ->orderBy('kda', 'desc')
             ->take(10)
             ->get();
-    
+
         return $players;
     }
-    
+
     public static function getPlayersWithMostComments() {
         $players = Player::withCount('comments')
             ->orderBy('comments_count', 'desc')
             ->take(10)
             ->get();
-    
+
         return $players;
     }
 
