@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'Javier',
                 'email' => 'javier@javier.com',
+                'admin' => true,
                 'password' => Hash::make('06011997'),
             ],
             [
@@ -29,15 +30,35 @@ class UsersSeeder extends Seeder
             ],
             [
                 'name' => 'Oscar',
-                'email' => 'Oscar@oscar.com',
+                'email' => 'oscar@oscar.com',
                 'password' => Hash::make('12345678'),
             ],
             [
                 'name' => 'Laura',
-                'email' => 'Laura@laura.com',
+                'email' => 'laura@laura.com',
                 'password' => Hash::make('12345678'),
             ],
-            
+            [
+                'name' => 'Jesus',
+                'email' => 'jesus@jesus.com',
+                'password' => Hash::make('12345678'),
+            ],
+            [
+                'name' => 'Anabel',
+                'email' => 'anabel@anabel.com',
+                'password' => Hash::make('12345678'),
+            ],
+            [
+                'name' => 'Celia',
+                'email' => 'celia@celia.com',
+                'password' => Hash::make('12345678'),
+            ],
+            [
+                'name' => 'Andres',
+                'email' => 'andres@andres.com',
+                'password' => Hash::make('12345678'),
+            ],
+
         ];
 
         foreach ($users as $user) {

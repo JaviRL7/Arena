@@ -27,3 +27,7 @@
         max-height: 50px;
     }
 }
+/* Css para la tabla de colores de admin*/
+
+.row-color:nth-child(even) {background: red}
+.row-color:nth-child(odd) {background: blue}

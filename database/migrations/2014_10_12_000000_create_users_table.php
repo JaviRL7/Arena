@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->boolean('admin')->default(false);
+            $table->boolean('validated')->default(false);
+            $table->timestamp('birth_date')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('discord')->nullable();
+            $table->string('user_photo')->nullable();
+            $table->string('user_header_photo')->nullable();
             $table->unsignedBigInteger('favorite_player1')->nullable();
             $table->unsignedBigInteger('favorite_player2')->nullable();
             $table->unsignedBigInteger('favorite_player3')->nullable();

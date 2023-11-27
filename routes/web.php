@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\TeamsController;
@@ -41,5 +42,24 @@ Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->na
 
 //
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.renkings');
+
+
+
+/************* Admin *************/
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+
+
+    /************* Players *************/
+    Route::get('/players', [PlayersController::class, 'index'])->name('admin.players.index');
+    Route::get('/players/create', [PlayersController::class, 'create'])->name('admin.players.create');
+    Route::post('/players/create', [PlayersController::class, 'store'])->name('admin.players.store');
+    Route::get('/players/{player}/edit', [PlayersController::class, 'edit'])->name('admin.players.edit');
+    Route::put('/players/{player}/edit', [PlayersController::class, 'update'])->name('admin.players.update');
+    Route::delete('/players/{player}/delete', [PlayersController::class, 'destroy'])->name('admin.players.destroy');
+
+});
+
+
 
 require __DIR__.'/auth.php';

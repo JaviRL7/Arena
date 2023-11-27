@@ -19,5 +19,26 @@ class PlayersController extends Controller
             'playersByKDA' => $playersByKDA,
             'playersByAssits' => $playersByAssits,
             'playersByChampionpool' => $playersByChampionpool,
-        ]);    }
+        ]);
+    }
+
+    public function index()
+    {
+        $players = Player::orderBy('id')->get();
+
+        //Para poner que la ruta actual venia de admin, repasar esto
+        //&& strpos(Player::current()->getName(), 'admin') === 0
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('admin.players.index', [
+                'players' => $players,
+
+            ]);
+        } else {
+            return view('pages.grupos', [
+                'players' => $players,
+            ]);
+        }
+    }
+
 }
