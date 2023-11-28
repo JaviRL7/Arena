@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Css para la tabla de la vista Games/results */
 .table-striped th {
     text-align: center;
 }

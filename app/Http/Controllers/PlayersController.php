@@ -5,6 +5,12 @@ use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Schema;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
+
+//corregir esto
 
 class PlayersController extends Controller
 {
@@ -36,11 +42,13 @@ class PlayersController extends Controller
 
             ]);
         } else {
-            return view('pages.grupos', [
+            return view('pages.players', [
                 'players' => $players,
             ]);
         }
     }
+
+
     public function edit(Player $player)
     {
         $table = 'players';
@@ -48,7 +56,7 @@ class PlayersController extends Controller
 
         return view('admin.players.edit', [
             'table' => $table,
-            'player' => $player
+            'row' => $player
         ]);
     }
 

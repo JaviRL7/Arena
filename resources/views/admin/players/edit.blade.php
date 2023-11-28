@@ -3,6 +3,6 @@
 @section('content')
     <h1>Modificar Players</h1>
     @include('admin.form.edit', [
-        'columns' => ['name', 'lastname1', 'nick', 'photo', 'country', 'birth_date'],
+        'columns' => ['name', 'lastname1', 'nick', 'photo', 'country'],
     ])
 @endsection
