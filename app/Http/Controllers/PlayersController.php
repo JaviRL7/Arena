@@ -27,15 +27,12 @@ class PlayersController extends Controller
     {
         $players = Player::orderBy('id')->get();
         $today = Carbon::now()->format('Y-m-d');
-        $currenteam = $player->teams()->where('start_date', '<=', $today)->where('end_date', '>=', $today)->first();
-
-
         //Para poner que la ruta actual venia de admin, repasar esto
         //&& strpos(Player::current()->getName(), 'admin') === 0
 
         if (auth()->check() && auth()->user()->admin) {
             return view('admin.players.index', [
-                'players' => $players, 'today' => $today, 'currenteam' => $currenteam,
+                'players' => $players, 'today' => $today,
 
             ]);
         } else {
@@ -43,6 +40,16 @@ class PlayersController extends Controller
                 'players' => $players,
             ]);
         }
+    }
+    public function edit(Player $player)
+    {
+        $table = 'players';
+        //faltan fks
+
+        return view('admin.players.edit', [
+            'table' => $table,
+            'player' => $player
+        ]);
     }
 
 }

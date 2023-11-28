@@ -537,5 +537,75 @@ class PlayersSeeder extends Seeder
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
             'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
+        $player36 = Player::create([
+            'name' => 'Kim',
+            'lastname1'=>'Gi-in',
+            'nick'=>'Kiin',
+            'lastname2' => null,
+            'role_id' => 1,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '28/05/1999'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Kiin.webp']);
+
+        $player36->teams()->attach($team_KT->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+        ]);
+        $player37 = Player::create([
+            'name' => 'Moon',
+            'lastname1'=>'Woo-chan',
+            'nick'=>'Cuzz',
+            'lastname2' => null,
+            'role_id' => 2,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '30/10/1999'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Cuzz.webp']);
+
+        $player37->teams()->attach($team_KT->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+        ]);
+        $player38 = Player::create([
+            'name' => 'Gwak',
+            'lastname1'=>'Bo-seong',
+            'nick'=>'Bdd',
+            'lastname2' => null,
+            'role_id' => 2,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '01/03/1999'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Bdd.webp']);
+
+        $player38->teams()->attach($team_KT->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+        ]);
+        $player39 = Player::create([
+            'name' => 'Kimk',
+            'lastname1'=>'Ha-ram',
+            'nick'=>'Aiming',
+            'lastname2' => null,
+            'role_id' => 2,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '20/07/2000'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Aiming.webp']);
+
+        $player39->teams()->attach($team_KT->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+        ]);
+        $player40 = Player::create([
+            'name' => 'Son',
+            'lastname1'=>'Si-woo',
+            'nick'=>'Lehends',
+            'lastname2' => null,
+            'role_id' => 2,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '24/12/1998'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Aiming.webp']);
+
+        $player40->teams()->attach($team_KT->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+        ]);
 }
 }

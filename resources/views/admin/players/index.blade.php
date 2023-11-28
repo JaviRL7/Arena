@@ -16,6 +16,7 @@
                         <th>Birth date</th>
                         <th>Contract expiration</th>
                         <th>Country</th>
+                        <th>acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,14 +57,17 @@
                                 </p>
                             </td>
                             <td>
-                                @php
-                                    $currentTeam = $player
-                                        ->teams()
-                                        ->where('start_date', '<=', $today)
-                                        ->where('end_date', '>=', $today)
-                                        ->first();
-                                @endphp
-                                {{ $currentTeam ? $currentTeam->name : 'No tiene equipo actual' }}
+                                <p>
+                                    {{$player->currentTeam()->pivot->end_date;}}
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    {{$player->country;}}
+                                </p>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificar</a>
                             </td>
                         </tr>
                     @endforeach

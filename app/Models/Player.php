@@ -96,8 +96,18 @@ class Player extends Model
 
 
 
+
     //otros metodos
     public function teams(){
         return $this->belongsToMany(Team::class, 'player_team')->withPivot('player_id', 'team_id', 'end_date', 'start_date');
     }
+    public function currentTeam()
+{
+    $now = \Carbon\Carbon::now();
+    return $this->belongsToMany(Team::class, 'player_team')
+                ->wherePivot('start_date', '<=', $now)
+                ->wherePivot('end_date', '>=', $now)
+                ->withPivot('start_date', 'end_date')
+                ->first();
+}
 }
