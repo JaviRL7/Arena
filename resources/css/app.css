@@ -30,7 +30,7 @@
 
 .table_crud_admin th,
 .table_crud_admin td {
-    padding: 0.75rem;
+    padding: 2rem 3rem; /* cambiar esto para que no tenga tanto espacio*/
     vertical-align: top;
 }
 
@@ -55,3 +55,47 @@
     border-top: 1px solid red;
     border-bottom: 1px solid blue;
 }
+
+/*Formulario de crud*/
+.input-crud {
+    border-radius: 26px; /* Ajusta este valor para cambiar el grado de redondeo */
+    padding: 18px 22px; /* Ajusta estos valores para cambiar el tamaño del input */
+    font-size: 22px; /* Ajusta este valor para cambiar el tamaño del texto */
+
+    padding: 10px;
+  }
+.input-crud.rounded-lg {
+    border-radius: 15px;
+}
+.label-crud {
+    font-size: 1.5em;
+
+}
+/*navbar*/
+.navbar {
+    background: blue;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}

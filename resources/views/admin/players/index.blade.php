@@ -3,7 +3,7 @@
 @section('title', 'Players index')
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="table-responsive">
             <table class="table_crud_admin">
                 <thead>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Player;
 use App\Models\Team;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
@@ -51,13 +51,54 @@ class PlayersController extends Controller
 
     public function edit(Player $player)
     {
-        $table = 'players';
-        //faltan fks
-
+        $today = Carbon::now()->format('Y-m-d');
+        $roles = Role::all();
+        $teams = Team::all();
         return view('admin.players.edit', [
-            'table' => $table,
-            'row' => $player
+            'today' => $today,
+            'player' => $player,
+            'roles' =>$roles,
+            'teams' =>$teams
         ]);
     }
+
+
+
+    public function update(Request $request, Player $player)
+{
+        $request->validate([
+        'name' => ['required', 'string'],
+        'lastname1' => ['required', 'string'],
+        'lastname2' => ['nullable','string'],
+        'country' => ['required', 'string'],
+        'birth_date' => ['nullable', 'date_format:"Y-m-d"'],
+        'nick' => ['required', 'string', Rule::unique('players')->ignore($player->id)],
+        'photo' => ['nullable', 'image', 'max:3000'],
+    ]);
+
+    $photo = $player->photo;
+
+    // Aquí es donde se reemplazan los valores nulos del request con los valores actuales del modelo
+
+
+    $player->update($request->all());
+
+    if ($request->hasFile('photo')) {
+        $photo = 'img-' . $player->name . '.' . $request->file('photo')
+        ->getClientOriginalExtension();
+
+        $player->photo = str_replace(
+            'public',
+            'storage',
+            $request->file('photo')->storeAs('public/player', $photo)
+        );
+    } else {
+        $player->photo = $photo;
+    }
+
+    $player->save();
+
+    return redirect()->route('admin.players.index')->with('success', 'Se ha modificado el player con éxito.');
+}
 
 }

@@ -10,7 +10,17 @@ class Player extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = [
+        'name',
+        'lastname1',
+        'lastname2',
+        'nick',
+        'country',
+        'photo',
+        'birth_date',
+        'role_id',
+        // cualquier otro campo que quieras que sea asignable en masa
+    ];
     public function games(){
         return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills' , 'deaths', 'assists', 'champion_id');
     }

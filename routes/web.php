@@ -41,7 +41,7 @@ Route::post('/games/{game}/comments', [CommentsController::class, 'store'])->nam
 Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
 
 //
-Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.renkings');
+Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');
 
 
 
