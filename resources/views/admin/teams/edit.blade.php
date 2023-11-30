@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <form action="{{ route('admin.teams.update', $team) }}" method="POST" enctype="">
+        <form action="{{ route('admin.teams.update', $team) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-crud">
@@ -25,7 +25,7 @@
                     <br>
                     <label for="loog" class="label-crud"><br>Team logo</label>
                     <div class="col-sm-10">
-                        <input type="file" name="photo" accept="image/*" class="input-crud rounded-lg">
+                        <input type="file" name="logo" accept="image/*" class="input-crud rounded-lg">
                     </div>
                 </div>
                 <hr style="border-top: 1px solid gray;">

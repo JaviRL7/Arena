@@ -54,8 +54,10 @@ class TeamsController extends Controller
     $team->update($request->except('logo'));
 
     if ($request->hasFile('logo')) {
-        $logo = $team->name . '_' . 'logo' . '.' . $request->file('logo')->getClientOriginalExtension();
-        $team->logo = str_replace('public', 'storage', $request->file('logo')->storeAs('public/teams_logo', $logo));
+        $teamName = str_replace(' ', '_', $team->name); // Reemplaza los espacios en blanco con un guión bajo
+        $logo = $teamName . '_logo' . '.' . $request->file('logo')->getClientOriginalExtension();
+        $request->file('logo')->move(public_path('teams_logo'), $logo);
+        $team->logo = 'teams_logo/' . $logo;
     }
 
     foreach ($team->getPlayers() as $player) {
