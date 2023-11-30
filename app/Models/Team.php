@@ -23,6 +23,10 @@ class Team extends Model
     {
         return $this->hasMany(History::class);
     }
+    public function competition()
+    {
+        return $this->belongsTo(Competition::class, 'league_id');
+    }
     public function getPlayers() {
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()

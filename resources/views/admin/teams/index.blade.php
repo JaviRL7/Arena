@@ -27,7 +27,7 @@
                         </td>
                         <td>
                             <p>
-                                {{ $team->league }}
+                                {{ $team->competition->name }}
                             </p>
                         </td>
                         <td>

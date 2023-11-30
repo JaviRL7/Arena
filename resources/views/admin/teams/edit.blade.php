@@ -14,9 +14,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="league" class="label-crud">League</label>
+                    <label for="league_id" class="label-crud">League</label>
                     <div class="col-sm-10">
-                        <input type="text" name="league" class="input-crud" value="{{ $team->league }}">
+
+                        <select name="league_id" class="input-crud rounded-lg">
+                            @foreach ($competitions as $competition)
+                                <option value="{{ $competition->id }}" {{ $team->league_id == $competition->id ? 'selected' : '' }}>
+                                    {{ $competition->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -26,6 +33,11 @@
                     <label for="loog" class="label-crud"><br>Team logo</label>
                     <div class="col-sm-10">
                         <input type="file" name="logo" accept="image/*" class="input-crud rounded-lg">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <a href="{{ route('admin.teams.add', ['team' => $team]) }}" class="btn btn-primary">Add a new player</a>
                     </div>
                 </div>
                 <hr style="border-top: 1px solid gray;">

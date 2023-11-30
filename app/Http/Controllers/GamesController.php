@@ -16,9 +16,15 @@ class GamesController extends Controller
     }
     public function result(Game $game){
         $team_blue = $game->team_blue;
-        $players_blue = $team_blue->getplayers();
+        $players_blue = $team_blue->getplayers()->filter(function($player) {
+            return $player->substitute == false;
+        });
+
         $team_red = $game->team_red;
-        $players_red = $team_red->getplayers();
+        $players_red = $team_red->getplayers()->filter(function($player) {
+            return $player->substitute == false;
+        });
+
         return view('games.results', compact('game', 'players_blue', 'players_red'));
     }
     public function store(Request $request)

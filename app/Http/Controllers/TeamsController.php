@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Role;
+use App\Models\Competition;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class TeamsController extends Controller
 {
@@ -31,11 +33,13 @@ class TeamsController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $roles = Role::all();
+        $competitions = Competition::all();
         $players = Player::all();
         return view('admin.teams.edit', [
             'today' => $today,
             'players' => $players,
             'roles' => $roles,
+            'competitions' => $competitions,
             'team' => $team
         ]);
     }
@@ -72,5 +76,43 @@ class TeamsController extends Controller
     $team->save();
     return redirect()->route('admin.teams.index');
 }
+public function add(Team $team)
+{
+    $today = Carbon::now()->format('Y-m-d');
+    $roles = Role::all();
+    $players = Player::all();
+    return view('admin.teams.add', [
+        'today' => $today,
+        'players' => $players,
+        'roles' => $roles,
+        'team' => $team
+    ]);
+}
+public function add_player(Request $request, Team $team)
+{
+    $player = Player::find($request->player_id);
 
+    DB::transaction(function () use ($player, $team, $request) {
+
+        $previousPlayer = $team->Players()->where('role_id', $player->role_id)->first();
+        if ($previousPlayer) {
+            $previousPlayer->substitute = true;
+            $previousPlayer->save();
+        }
+        $previousTeam = $player->currentTeam();
+
+        if ($previousTeam) {
+            $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
+        }
+
+        $team->Players()->attach($player->id, [
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ]);
+
+        $player->save();
+    });
+
+    return redirect()->route('admin.teams.index');
+}
 }

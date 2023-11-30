@@ -40,7 +40,7 @@ Route::post('/games/result/store', [GamesController::class, 'store'])->name('gam
 Route::post('/games/{game}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
 
-//
+
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');
 
 
@@ -63,6 +63,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
     Route::post('/teams/create', [TeamsController::class, 'store'])->name('admin.teams.store');
     Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])->name('admin.teams.edit');
+
+    Route::get('/teams/{team}/add', [TeamsController::class, 'add'])->name('admin.teams.add');
+    Route::post('/teams/{team}/add_player', [TeamsController::class, 'add_player'])->name('admin.teams.add_player');
     Route::put('/teams/{team}/edit', [TeamsController::class, 'update'])->name('admin.teams.update');
     Route::delete('/teams/{player}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.destroy');
 });
