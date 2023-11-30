@@ -58,6 +58,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/players/{player}/edit', [PlayersController::class, 'update'])->name('admin.players.update');
     Route::delete('/players/{player}/delete', [PlayersController::class, 'destroy'])->name('admin.players.destroy');
 
+    /************* Teams *************/
+    Route::get('/teams', [TeamsController::class, 'index'])->name('admin.teams.index');
+    Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
+    Route::post('/teams/create', [TeamsController::class, 'store'])->name('admin.teams.store');
+    Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])->name('admin.teams.edit');
+    Route::put('/teams/{team}/edit', [TeamsController::class, 'update'])->name('admin.teams.update');
+    Route::delete('/teams/{player}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.destroy');
 });
 
 

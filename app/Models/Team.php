@@ -8,7 +8,13 @@ use Carbon\Carbon;
 class Team extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'league',
+        'country',
+        'logo',
+        // cualquier otro campo que quieras que sea asignable en masa
+    ];
     public function players(){
         return $this->belongsToMany(Player::class);
     }

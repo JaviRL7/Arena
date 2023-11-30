@@ -78,7 +78,6 @@ class PlayersController extends Controller
 
     $photo = $player->photo;
 
-    // Aquí es donde se reemplazan los valores nulos del request con los valores actuales del modelo
 
 
     $player->update($request->all());

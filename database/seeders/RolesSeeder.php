@@ -17,5 +17,6 @@ class RolesSeeder extends Seeder
         Role::create(['name' => 'Mid', 'icono' => 'icons/Mid_logo.png']);
         Role::create(['name' => 'ADC', 'icono' => 'icons/ADC_logo.png']);
         Role::create(['name' => 'Support', 'icono' => 'icons/Support_logo.png']);
+        Role::create(['name' => 'Substitute', 'icono' => 'icons/Support_logo.png']);
     }
 }
