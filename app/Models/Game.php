@@ -10,6 +10,9 @@ class Game extends Model
 {
     use HasFactory;
 
+    public function serie() {
+        return $this->belongsTo(Serie::class, 'serie_id');
+    }
     public function team_blue() {
         return $this->belongsTo(Team::class, 'team_blue_id');
     }

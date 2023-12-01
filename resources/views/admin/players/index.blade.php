@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             <p>
-                                {{ $player->teams()->where('start_date', '<=', $today)->where('end_date', '>=', $today)->first()->name }}
+                                {{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name }}
                             </p>
                         </td>
                         <td>
@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <p>
-                                {{$player->currentTeam()->pivot->end_date;}}
+                                {{$player->currentTeam()->pivot->contract_expiration_date;}}
                             </p>
                         </td>
                         <td>

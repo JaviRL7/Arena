@@ -18,6 +18,10 @@ class TeamsController extends Controller
         $teams = Team::orderBy('id')->get();
         $today = Carbon::now()->format('Y-m-d');
 
+        foreach ($teams as $team) {
+            $team->checkSubstitute($today);
+        }
+
         if (auth()->check() && auth()->user()->admin) {
             return view('admin.teams.index', [
                 'teams' => $teams, 'today' => $today,
@@ -45,74 +49,75 @@ class TeamsController extends Controller
     }
 
     public function update(Request $request, Team $team)
-{
-    $request->validate([
-        'name' => ['required', 'string', Rule::unique('teams')->ignore($team->id)],
-        'league' => ['nullable', 'string'],
-        'country' => ['nullable', 'string'],
-        'logo' => ['nullable', 'image', 'max:3000'],
-    ]);
-
-    $logo = $team->logo;
-
-    $team->update($request->except('logo'));
-
-    if ($request->hasFile('logo')) {
-        $teamName = str_replace(' ', '_', $team->name); // Reemplaza los espacios en blanco con un guión bajo
-        $logo = $teamName . '_logo' . '.' . $request->file('logo')->getClientOriginalExtension();
-        $request->file('logo')->move(public_path('teams_logo'), $logo);
-        $team->logo = 'teams_logo/' . $logo;
-    }
-
-    foreach ($team->getPlayers() as $player) {
-        $pivot = $player->teams()->where('team_id', $team->id)->first()->pivot;
-        if ($pivot) {
-            $pivot->start_date = $request->input("start_date_{$player->id}") ?? $pivot->start_date;
-            $pivot->end_date = $request->input("end_date_{$player->id}") ?? $pivot->end_date;
-            $pivot->save();
-        }
-    }
-
-    $team->save();
-    return redirect()->route('admin.teams.index');
-}
-public function add(Team $team)
-{
-    $today = Carbon::now()->format('Y-m-d');
-    $roles = Role::all();
-    $players = Player::all();
-    return view('admin.teams.add', [
-        'today' => $today,
-        'players' => $players,
-        'roles' => $roles,
-        'team' => $team
-    ]);
-}
-public function add_player(Request $request, Team $team)
-{
-    $player = Player::find($request->player_id);
-
-    DB::transaction(function () use ($player, $team, $request) {
-
-        $previousPlayer = $team->Players()->where('role_id', $player->role_id)->first();
-        if ($previousPlayer) {
-            $previousPlayer->substitute = true;
-            $previousPlayer->save();
-        }
-        $previousTeam = $player->currentTeam();
-
-        if ($previousTeam) {
-            $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
-        }
-
-        $team->Players()->attach($player->id, [
-            'start_date' => $request->start_date,
-            'contract_expiration_date' => $request->contract_expiration_date
+    {
+        $request->validate([
+            'name' => ['required', 'string', Rule::unique('teams')->ignore($team->id)],
+            'league' => ['nullable', 'string'],
+            'country' => ['nullable', 'string'],
+            'logo' => ['nullable', 'image', 'max:3000'],
         ]);
 
-        $player->save();
-    });
+        $logo = $team->logo;
 
-    return redirect()->route('admin.teams.index');
-}
+        $team->update($request->except('logo'));
+
+        if ($request->hasFile('logo')) {
+            $teamName = str_replace(' ', '_', $team->name); // Reemplaza los espacios en blanco con un guión bajo
+            $logo = $teamName . '_logo' . '.' . $request->file('logo')->getClientOriginalExtension();
+            $request->file('logo')->move(public_path('teams_logo'), $logo);
+            $team->logo = 'teams_logo/' . $logo;
+        }
+
+        foreach ($team->getPlayers() as $player) {
+            $pivot = $player->teams()->where('team_id', $team->id)->first()->pivot;
+            if ($pivot) {
+                $pivot->start_date = $request->input("start_date_{$player->id}") ?? $pivot->start_date;
+                $pivot->end_date = $request->input("end_date_{$player->id}") ?? $pivot->end_date;
+                $pivot->save();
+            }
+        }
+
+        $team->save();
+        return redirect()->route('admin.teams.index');
+    }
+    public function add(Team $team)
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        $roles = Role::all();
+        $players = Player::all();
+        return view('admin.teams.add', [
+            'today' => $today,
+            'players' => $players,
+            'roles' => $roles,
+            'team' => $team
+        ]);
+    }
+    public function add_player(Request $request, Team $team)
+    {
+        $player = Player::find($request->player_id);
+
+        DB::transaction(function () use ($player, $team, $request) {
+
+            $previousPlayer = $team->Players()->where('role_id', $player->role_id)->first();
+            if ($previousPlayer) {
+                $previousPlayer->substitute = true;
+                $previousPlayer->save();
+            }
+            $previousTeam = $player->currentTeam();
+
+            if ($previousTeam) {
+                $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
+            }
+
+            $team->Players()->attach($player->id, [
+                'start_date' => $request->start_date,
+                'contract_expiration_date' => $request->contract_expiration_date,
+
+            ]);
+            $player->substitute = false;
+            $player->save();
+        });
+
+        return redirect()->route('admin.teams.index');
+    }
 }

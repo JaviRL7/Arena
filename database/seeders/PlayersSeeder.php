@@ -601,7 +601,7 @@ class PlayersSeeder extends Seeder
             'role_id' => 5,
             'birth_date' => Carbon::createFromFormat('d/m/Y', '24/12/1998'),
             'country' => 'Korea',
-            'photo' => '/players_photos/Aiming.webp']);
+            'photo' => '/players_photos/Lehends.webp']);
 
         $player40->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
