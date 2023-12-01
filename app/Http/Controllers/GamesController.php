@@ -15,13 +15,17 @@ class GamesController extends Controller
         return view('games.index', compact('games'));
     }
     public function result(Game $game){
+        $today = date('Y-m-d'); // o cualquier fecha que necesites
+
         $team_blue = $game->team_blue;
-        $players_blue = $team_blue->getplayers()->filter(function($player) {
+        $players_blue = $team_blue->getplayers()->filter(function($player) use ($today) {
+            $player->checkForSubstitute($player->role_id, $today);
             return $player->substitute == false;
         });
 
         $team_red = $game->team_red;
-        $players_red = $team_red->getplayers()->filter(function($player) {
+        $players_red = $team_red->getplayers()->filter(function($player) use ($today) {
+            $player->checkForSubstitute($player->role_id, $today);
             return $player->substitute == false;
         });
 

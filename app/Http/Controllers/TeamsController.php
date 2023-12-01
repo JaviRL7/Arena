@@ -107,7 +107,7 @@ public function add_player(Request $request, Team $team)
 
         $team->Players()->attach($player->id, [
             'start_date' => $request->start_date,
-            'end_date' => $request->end_date
+            'contract_expiration_date' => $request->contract_expiration_date
         ]);
 
         $player->save();

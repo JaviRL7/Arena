@@ -31,7 +31,18 @@ class Team extends Model
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()
                     ->where('start_date', '<=', $today)
+                     ->where('end_date', '=', null)
+                     ->where('substitute', '=', false)
+                     ->orderBy('role_id', 'asc')
+                     ->get();
+
+    }
+    public function getPlayersSubstitute() {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+                    ->where('start_date', '<=', $today)
                      ->where('end_date', '>=', $today)
+                     ->where('substitute', '=', true)
                      ->orderBy('role_id', 'asc')
                      ->get();
 
@@ -76,4 +87,26 @@ class Team extends Model
                      ->where('end_date', '>=', $today)
                      ->orderBy('start_date', 'desc');
     }
+    public function checkForSubstitute($role_id, $today)
+{
+    $players = $this->players()->where('role_id', $role_id)
+                               ->where('start_date', '<=', $today)
+                               ->where(function ($query) use ($today) {
+                                   $query->where('end_date', '>=', $today)
+                                         ->orWhereNull('end_date');
+                               })
+                               ->orderBy('start_date', 'asc')
+                               ->get();
+
+    if ($players->count() > 1) {
+        foreach ($players as $player) {
+            $player->substitute = true;
+            $player->save();
+        }
+
+        $latestPlayer = $players->last();
+        $latestPlayer->substitute = false;
+        $latestPlayer->save();
+    }
+}
 }

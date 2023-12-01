@@ -17,8 +17,8 @@
         <input type="date" class="form-control" id="start_date" name="start_date">
     </div>
     <div class="form-group">
-        <label for="end_date">Fecha de fin</label>
-        <input type="date" class="form-control" id="end_date" name="end_date">
+        <label for="contract_expiration_date">Fecha de fin de contrato</label>
+        <input type="date" class="form-control" id="contract_expiration_date" name="contract_expiration_date">
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

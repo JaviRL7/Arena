@@ -36,7 +36,7 @@ class PlayersSeeder extends Seeder
         ]);
         $player1->teams()->attach($team_T1->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         //Player::create(['name' => 'Mun', 'lastname1'=>'Hyeon-jun', 'nick'=>'Oner', 'lastname2' => null, 'role_id' => 2, 'birth_date' => Carbon::createFromFormat('d/m/Y', '24/12/2002'), 'country' => 'Korea', 'photo' => '/players_photos/Oner.webp' ]);
@@ -56,7 +56,7 @@ class PlayersSeeder extends Seeder
 
         $player2->teams()->attach($team_T1->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2021'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player3 = Player::create([
@@ -70,7 +70,7 @@ class PlayersSeeder extends Seeder
 
         $player3->teams()->attach($team_T1->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2013'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
 
         $player4 = Player::create([
@@ -85,7 +85,7 @@ class PlayersSeeder extends Seeder
 
         $player4->teams()->attach($team_T1->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2021'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player5 = Player::create([
@@ -101,7 +101,7 @@ class PlayersSeeder extends Seeder
 
             $player5->teams()->attach($team_T1->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2021'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         //Player::create(['name' => 'Kang', 'lastname1'=>'Seung-lok', 'nick'=>'Theshy', 'lastname2' => null, 'role_id' => 1, 'birth_date' => Carbon::createFromFormat('d/m/Y', '11/11/1999'), 'country' => 'Korea', 'photo' => '/players_photos/Theshy.webp' ]);
@@ -121,7 +121,7 @@ class PlayersSeeder extends Seeder
 
         $player6->teams()->attach($team_Weibo->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player7 = Player::create([
@@ -135,7 +135,7 @@ class PlayersSeeder extends Seeder
 
         $player7->teams()->attach($team_Weibo->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player8 = Player::create([
@@ -150,7 +150,7 @@ class PlayersSeeder extends Seeder
 
         $player8->teams()->attach($team_Weibo->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player9 = Player::create([
@@ -165,7 +165,7 @@ class PlayersSeeder extends Seeder
 
         $player9->teams()->attach($team_Weibo->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player10 = Player::create([
@@ -180,7 +180,7 @@ class PlayersSeeder extends Seeder
 
         $player10->teams()->attach($team_Weibo->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         //JDG
@@ -197,7 +197,7 @@ class PlayersSeeder extends Seeder
 
         $player11->teams()->attach($team_JDG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player12 = Player::create([
@@ -212,7 +212,7 @@ class PlayersSeeder extends Seeder
 
         $player12->teams()->attach($team_JDG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2019'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 
         $player13 = Player::create([
@@ -227,7 +227,7 @@ class PlayersSeeder extends Seeder
 
         $player13->teams()->attach($team_JDG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player14 = Player::create([
             'name' => 'Park',
@@ -241,7 +241,7 @@ class PlayersSeeder extends Seeder
 
         $player14->teams()->attach($team_JDG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player15 = Player::create([
             'name' => 'Lou',
@@ -255,7 +255,7 @@ class PlayersSeeder extends Seeder
 
         $player15->teams()->attach($team_JDG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player16 = Player::create([
             'name' => 'LChoi',
@@ -269,7 +269,7 @@ class PlayersSeeder extends Seeder
 
         $player16->teams()->attach($team_GENG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player17 = Player::create([
             'name' => 'Han',
@@ -283,7 +283,7 @@ class PlayersSeeder extends Seeder
 
         $player17->teams()->attach($team_GENG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player18 = Player::create([
             'name' => 'Jeong',
@@ -297,7 +297,7 @@ class PlayersSeeder extends Seeder
 
         $player18->teams()->attach($team_GENG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player19 = Player::create([
             'name' => 'Kim',
@@ -311,7 +311,7 @@ class PlayersSeeder extends Seeder
 
         $player19->teams()->attach($team_GENG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player20 = Player::create([
             'name' => 'Yoo',
@@ -325,7 +325,7 @@ class PlayersSeeder extends Seeder
 
         $player20->teams()->attach($team_GENG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player21 = Player::create([
             'name' => 'Chen',
@@ -339,7 +339,7 @@ class PlayersSeeder extends Seeder
 
         $player21->teams()->attach($team_BLG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/06/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player22 = Player::create([
             'name' => 'Peng',
@@ -353,7 +353,7 @@ class PlayersSeeder extends Seeder
 
         $player22->teams()->attach($team_BLG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player23 = Player::create([
             'name' => 'Zeng',
@@ -367,7 +367,7 @@ class PlayersSeeder extends Seeder
 
         $player23->teams()->attach($team_BLG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player24 = Player::create([
             'name' => 'Zhao',
@@ -381,7 +381,7 @@ class PlayersSeeder extends Seeder
 
         $player24->teams()->attach($team_BLG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player25 = Player::create([
             'name' => 'Luo',
@@ -395,7 +395,7 @@ class PlayersSeeder extends Seeder
 
         $player25->teams()->attach($team_BLG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player26 = Player::create([
             'name' => 'Tang',
@@ -409,7 +409,7 @@ class PlayersSeeder extends Seeder
 
         $player26->teams()->attach($team_LNG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2025')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2025')
         ]);
         $player27 = Player::create([
             'name' => 'Lee',
@@ -423,7 +423,7 @@ class PlayersSeeder extends Seeder
 
         $player27->teams()->attach($team_LNG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2021'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player28 = Player::create([
             'name' => 'Lee',
@@ -437,7 +437,7 @@ class PlayersSeeder extends Seeder
 
         $player28->teams()->attach($team_LNG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player29 = Player::create([
             'name' => 'Chen',
@@ -451,7 +451,7 @@ class PlayersSeeder extends Seeder
 
         $player29->teams()->attach($team_LNG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/05/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player30 = Player::create([
             'name' => 'Fu',
@@ -465,7 +465,7 @@ class PlayersSeeder extends Seeder
 
         $player30->teams()->attach($team_LNG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player31 = Player::create([
             'name' => 'Niship',
@@ -479,7 +479,7 @@ class PlayersSeeder extends Seeder
 
         $player31->teams()->attach($team_NRG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player32 = Player::create([
             'name' => 'JuanArturo',
@@ -493,7 +493,7 @@ class PlayersSeeder extends Seeder
 
         $player32->teams()->attach($team_NRG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player33 = Player::create([
             'name' => 'Cristian',
@@ -507,7 +507,7 @@ class PlayersSeeder extends Seeder
 
         $player33->teams()->attach($team_NRG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player34 = Player::create([
             'name' => 'IanVictor',
@@ -521,7 +521,7 @@ class PlayersSeeder extends Seeder
 
         $player34->teams()->attach($team_NRG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player35 = Player::create([
             'name' => 'Lee',
@@ -535,7 +535,7 @@ class PlayersSeeder extends Seeder
 
         $player35->teams()->attach($team_NRG->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player36 = Player::create([
             'name' => 'Kim',
@@ -549,7 +549,7 @@ class PlayersSeeder extends Seeder
 
         $player36->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player37 = Player::create([
             'name' => 'Moon',
@@ -563,49 +563,49 @@ class PlayersSeeder extends Seeder
 
         $player37->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player38 = Player::create([
             'name' => 'Gwak',
             'lastname1'=>'Bo-seong',
             'nick'=>'Bdd',
             'lastname2' => null,
-            'role_id' => 2,
+            'role_id' => 3,
             'birth_date' => Carbon::createFromFormat('d/m/Y', '01/03/1999'),
             'country' => 'Korea',
             'photo' => '/players_photos/Bdd.webp']);
 
         $player38->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2024')
         ]);
         $player39 = Player::create([
             'name' => 'Kimk',
             'lastname1'=>'Ha-ram',
             'nick'=>'Aiming',
             'lastname2' => null,
-            'role_id' => 2,
+            'role_id' => 4,
             'birth_date' => Carbon::createFromFormat('d/m/Y', '20/07/2000'),
             'country' => 'Korea',
             'photo' => '/players_photos/Aiming.webp']);
 
         $player39->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
         $player40 = Player::create([
             'name' => 'Son',
             'lastname1'=>'Si-woo',
             'nick'=>'Lehends',
             'lastname2' => null,
-            'role_id' => 2,
+            'role_id' => 5,
             'birth_date' => Carbon::createFromFormat('d/m/Y', '24/12/1998'),
             'country' => 'Korea',
             'photo' => '/players_photos/Aiming.webp']);
 
         $player40->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
-            'end_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
         ]);
 }
 }

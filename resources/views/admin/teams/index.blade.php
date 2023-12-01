@@ -21,21 +21,26 @@
                                 class="w-36 h-36">
                         </td>
                         <td>
-                            <p>
+                            <h5>
                                 {{ $team->name }}
-                            </p>
+                            </h5>
                         </td>
                         <td>
-                            <p>
+                            <h5>
                                 {{ $team->competition->name }}
-                            </p>
+                            </h5>
                         </td>
                         <td>
-                            <p>
+                            <h5>
                                 @foreach ($team->getPlayers() as $player)
                                 {{ $player->role->name }} : {{ $player->nick }} <br>
                                 @endforeach
-                            </p>
+                            </h5>
+                            <h5>
+                                @foreach ($team->getPlayersSubstitute() as $player)
+                                Substitutes : {{ $player->nick }} <br>
+                                @endforeach
+                            </h5>
                         </td>
                         <td>
                             <a href="{{ route('admin.teams.edit', ['team' => $team]) }}" class="text-blue">Modificate</a>
