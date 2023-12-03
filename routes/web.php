@@ -58,12 +58,23 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/players/{player}/edit', [PlayersController::class, 'update'])->name('admin.players.update');
     Route::delete('/players/{player}/delete', [PlayersController::class, 'destroy'])->name('admin.players.destroy');
 
+    /************* Games *************/
+    Route::get('/games', [GamesController::class, 'indexadmin'])->name('admin.games.index');
+    Route::get('/games/{game}/show', [GamesController::class, 'show'])->name('admin.games.show');
+    //hacer con modal
+    Route::get('/games/{game}/edit_result', [GamesController::class, 'edit_result'])->name('admin.games.edit_result');
+
+    Route::get('/games/create', [GamesController::class, 'create'])->name('admin.games.create');
+    Route::post('/games/create', [GamesController::class, 'store'])->name('admin.games.store');
+    //Cambiar el otro store que deberia ser vote
+
     /************* Teams *************/
     Route::get('/teams', [TeamsController::class, 'index'])->name('admin.teams.index');
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
     Route::post('/teams/create', [TeamsController::class, 'store'])->name('admin.teams.store');
     Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])->name('admin.teams.edit');
-
+    Route::get('/teams/{team}/substitute', [TeamsController::class, 'substitute'])->name('admin.teams.substitute');
+    Route::put('/admin/players/{player}/update-substitute', [TeamsController::class, 'updateSubstitute'])->name('admin.players.updateSubstitute');
     Route::get('/teams/{team}/add', [TeamsController::class, 'add'])->name('admin.teams.add');
     Route::post('/teams/{team}/add_player', [TeamsController::class, 'add_player'])->name('admin.teams.add_player');
     Route::put('/teams/{team}/edit', [TeamsController::class, 'update'])->name('admin.teams.update');

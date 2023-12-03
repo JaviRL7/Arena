@@ -18,7 +18,7 @@ return new class extends Migration
         $table->unsignedBigInteger('serie_id');
         $table->integer('number');
         $table->enum('team_blue_result', ['L', 'W']);
-        $table->enum('team_red_result', ['L', 'W']); 
+        $table->enum('team_red_result', ['L', 'W']);
         $table->foreign('team_blue_id')->references('id')->on('teams');
         $table->foreign('team_red_id')->references('id')->on('teams');
         $table->unique(['team_blue_id', 'team_red_id', 'serie_id', 'number']);

@@ -92,6 +92,25 @@ class TeamsController extends Controller
             'team' => $team
         ]);
     }
+    public function substitute(Team $team)
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        $roles = Role::all();
+        $players = $team->getPlayersWithSameRole();
+        return view('admin.teams.substitute', [
+            'today' => $today,
+            'players' => $players,
+            'roles' => $roles,
+            'team' => $team
+        ]);
+    }
+    public function updateSubstitute(Player $player)
+    {
+        // Cambiar el valor de substitute
+        $player->update(['substitute' => !$player->substitute]);
+
+        return redirect()->back()->with('success', 'Substitute status updated successfully.');
+    }
     public function add_player(Request $request, Team $team)
     {
         $player = Player::find($request->player_id);

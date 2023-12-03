@@ -56,10 +56,26 @@ class Team extends Model
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()
             ->where(function ($query) use ($today) {
-                $query->where('end_date', '<=', $today)
+                $query->where('end_date', '>=', $today)
                     ->orWhereNull('end_date');
             })
             ->where('substitute', true)
+            ->orderBy('role_id', 'asc')
+            ->get();
+    }
+    public function getPlayersWithSameRole()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        $roleIds = $this->players()
+            ->where(function ($query) use ($today) {
+                $query->where('end_date', '>=', $today)
+                    ->orWhereNull('end_date');
+            })
+            ->pluck('role_id')
+            ->duplicates();
+
+        return $this->players()
+            ->whereIn('role_id', $roleIds)
             ->orderBy('role_id', 'asc')
             ->get();
     }

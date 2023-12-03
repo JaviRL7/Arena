@@ -40,6 +40,7 @@
                                 @foreach ($team->getPlayersSubstitute() as $player)
                                 Substitutes : {{ $player->nick }} <br>
                                 @endforeach
+                                <a href="{{ route('admin.teams.substitute', ['team' => $team]) }}" class="text-blue">Modificate Sustitute</a>
                             </h5>
                         </td>
                         <td>

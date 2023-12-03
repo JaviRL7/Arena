@@ -21,7 +21,6 @@ class GamesController extends Controller
 
     public function result(Game $game)
     {
-        $date = date('Y-m-d');
 
         $team_blue = $game->team_blue;
         $players_blue = $team_blue->getplayersDate($game->serie->date);
@@ -62,4 +61,33 @@ class GamesController extends Controller
 
         return redirect()->back();
     }
+
+///Los de admin
+
+public function indexadmin()
+    {
+        $games = Game::orderBy('id')->get();
+        if (auth()->check() && auth()->user()->admin) {
+            return view('admin.games.index', [
+                'games' => $games,
+
+            ]);
+        } else {
+            return view('pages.players', [
+                'games' => $games,
+            ]);
+        }
+    }
+    public function show(Game $game)
+    {
+        $team_blue = $game->team_blue;
+        $players_blue = $team_blue->getplayersDate($game->serie->date);
+
+        $team_red = $game->team_red;
+        $players_red = $team_red->getplayersDate($game->serie->date);
+
+        return view('admin.games.show', compact('game', 'players_blue', 'players_red'));
+
+    }
+
 }
