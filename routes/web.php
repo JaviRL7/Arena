@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -71,7 +72,14 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/games/create', [GamesController::class, 'create'])->name('admin.games.create');
     Route::post('/games/create', [GamesController::class, 'store'])->name('admin.games.store');
     //Cambiar el otro store que deberia ser vote
+ // Ruta para obtener los jugadores basado en los equipos seleccionados
 
+
+
+
+
+
+    Route::post('/games/create/getPlayers', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
     /************* Teams *************/
     Route::get('/teams', [TeamsController::class, 'index'])->name('admin.teams.index');
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');

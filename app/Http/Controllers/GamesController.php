@@ -141,6 +141,20 @@ public function create()
 
     return view('admin.games.create', compact('teams', 'players', 'champions'));
 }
+public function getPlayers(Request $request)
+{
+    $teamBlueId = $request->input('team_blue_id');
+  // Asegúrate de enviar la fecha de la partida en la solicitud AJAX
+
+
+    $playersBlue = DB::table('players')
+        ->where('players.nick', 'Zeus')
+        ->select('players.*')
+        ->get();
+
+    return response(json_encode($playersBlue,200)->header('content-type', 'text/plain'));
+
+}
 
 
 }

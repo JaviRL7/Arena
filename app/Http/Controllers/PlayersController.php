@@ -28,6 +28,11 @@ class PlayersController extends Controller
             'playersByChampionpool' => $playersByChampionpool,
         ]);
     }
+    public function show($id)
+{
+    $player = Player::find($id);
+    return response()->json($player);
+}
 
     public function index()
     {
