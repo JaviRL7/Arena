@@ -8,6 +8,7 @@ use App\Models\Score;
 use App\Models\Comment;
 use App\Models\Player;
 use App\Models\Team;
+use App\Models\Champion;
 
 class GamesController extends Controller
 {
@@ -79,15 +80,67 @@ public function indexadmin()
         }
     }
     public function show(Game $game)
+
     {
+        $champions = Champion::all();
+        $teams = Team::all();
+
         $team_blue = $game->team_blue;
         $players_blue = $team_blue->getplayersDate($game->serie->date);
 
         $team_red = $game->team_red;
         $players_red = $team_red->getplayersDate($game->serie->date);
 
-        return view('admin.games.show', compact('game', 'players_blue', 'players_red'));
+        return view('admin.games.show', compact('game', 'players_blue', 'players_red', 'champions', 'teams'));
 
     }
+    public function edit_result(Game $game, Player $player)
+    {
+        return view('admin.games.edit_result', compact('game', 'player'));
+    }
+
+    public function edit($id)
+{
+    $game = Game::find($id);
+    $champions = Champion::all(); // Asegúrate de tener todos los campeones disponibles para la selección
+    return view('admin.game.edit', compact('game', 'champions'));
+}
+
+public function update(Request $request, $id)
+{
+    $game = Game::find($id);
+
+    // Actualizar equipos y resultados
+    $game->team_blue_id = $request->team_blue_id;
+    $game->team_red_id = $request->team_red_id;
+    $game->team_blue_result = $request->team_blue_result;
+    $game->team_red_result = $request->team_red_result;
+    $game->save();
+
+
+    foreach ($request->players as $player_id => $player_data) {
+        $player = Player::find($player_id);
+
+        $player->games()->syncWithoutDetaching([
+            $game->id => [
+                'champion_id' => $player_data['champion'],
+                'kills' => $player_data['kills'],
+                'deaths' => $player_data['deaths'],
+                'assists' => $player_data['assists']
+            ]
+        ]);
+    }
+
+    return redirect()->route('admin.games.show', $game->id);
+}
+public function create()
+{
+    $teams = Team::all();
+    $players = Player::all();
+    $champions = Champion::all();
+
+    return view('admin.games.create', compact('teams', 'players', 'champions'));
+}
+
 
 }
