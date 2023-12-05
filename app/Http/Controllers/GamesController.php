@@ -63,9 +63,9 @@ class GamesController extends Controller
         return redirect()->back();
     }
 
-///Los de admin
+    ///Los de admin
 
-public function indexadmin()
+    public function indexadmin()
     {
         $games = Game::orderBy('id')->get();
         if (auth()->check() && auth()->user()->admin) {
@@ -92,7 +92,6 @@ public function indexadmin()
         $players_red = $team_red->getplayersDate($game->serie->date);
 
         return view('admin.games.show', compact('game', 'players_blue', 'players_red', 'champions', 'teams'));
-
     }
     public function edit_result(Game $game, Player $player)
     {
@@ -100,61 +99,57 @@ public function indexadmin()
     }
 
     public function edit($id)
-{
-    $game = Game::find($id);
-    $champions = Champion::all(); // Asegúrate de tener todos los campeones disponibles para la selección
-    return view('admin.game.edit', compact('game', 'champions'));
-}
-
-public function update(Request $request, $id)
-{
-    $game = Game::find($id);
-
-    // Actualizar equipos y resultados
-    $game->team_blue_id = $request->team_blue_id;
-    $game->team_red_id = $request->team_red_id;
-    $game->team_blue_result = $request->team_blue_result;
-    $game->team_red_result = $request->team_red_result;
-    $game->save();
-
-
-    foreach ($request->players as $player_id => $player_data) {
-        $player = Player::find($player_id);
-
-        $player->games()->syncWithoutDetaching([
-            $game->id => [
-                'champion_id' => $player_data['champion'],
-                'kills' => $player_data['kills'],
-                'deaths' => $player_data['deaths'],
-                'assists' => $player_data['assists']
-            ]
-        ]);
+    {
+        $game = Game::find($id);
+        $champions = Champion::all(); // Asegúrate de tener todos los campeones disponibles para la selección
+        return view('admin.game.edit', compact('game', 'champions'));
     }
 
-    return redirect()->route('admin.games.show', $game->id);
-}
-public function create()
-{
-    $teams = Team::all();
-    $players = Player::all();
-    $champions = Champion::all();
+    public function update(Request $request, $id)
+    {
+        $game = Game::find($id);
 
-    return view('admin.games.create', compact('teams', 'players', 'champions'));
-}
-public function getPlayers(Request $request)
-{
-    $teamBlueId = $request->input('team_blue_id');
-  // Asegúrate de enviar la fecha de la partida en la solicitud AJAX
+        // Actualizar equipos y resultados
+        $game->team_blue_id = $request->team_blue_id;
+        $game->team_red_id = $request->team_red_id;
+        $game->team_blue_result = $request->team_blue_result;
+        $game->team_red_result = $request->team_red_result;
+        $game->save();
 
 
-    $playersBlue = DB::table('players')
-        ->where('players.nick', 'Zeus')
-        ->select('players.*')
-        ->get();
+        foreach ($request->players as $player_id => $player_data) {
+            $player = Player::find($player_id);
 
-    return response(json_encode($playersBlue,200)->header('content-type', 'text/plain'));
+            $player->games()->syncWithoutDetaching([
+                $game->id => [
+                    'champion_id' => $player_data['champion'],
+                    'kills' => $player_data['kills'],
+                    'deaths' => $player_data['deaths'],
+                    'assists' => $player_data['assists']
+                ]
+            ]);
+        }
 
-}
+        return redirect()->route('admin.games.show', $game->id);
+    }
+    public function create()
+    {
+        $teams = Team::all();
+        $players = Player::all();
+        $champions = Champion::all();
 
+        return view('admin.games.create', compact('teams', 'players', 'champions'));
+    }
+    public function getPlayers($team1Id, $team2Id)
+    {
+        $team1Players = Team::find($team1Id)->getPlayers();
+        $team2Players = Team::find($team2Id)->getPlayers();
+        $champions = Champion::all();
 
+        return response()->json([
+            'team1Players' => $team1Players,
+            'team2Players' => $team2Players,
+            'champions' => $champions
+        ]);
+    }
 }

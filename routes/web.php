@@ -72,7 +72,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/games/{game}/edit', [GamesController::class, 'update'])->name('admin.games.update');
 
     Route::get('/games/create', [GamesController::class, 'create'])->name('admin.games.create');
-    Route::post('/games/create', [GamesController::class, 'store'])->name('admin.games.store');
+    Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
     //Cambiar el otro store que deberia ser vote
  // Ruta para obtener los jugadores basado en los equipos seleccionados
 

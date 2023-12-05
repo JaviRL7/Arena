@@ -1,50 +1,104 @@
-@extends('layouts.plantilla')
-@section('title','Teamsindex')
-@section('content')
+<!DOCTYPE html>
+<html>
 
-<form action="/admin/games/create/getPlayers" method="POST" action="POST">
-
-@csrf
-
-<label for="team_blue_id">Equipo Azul:</label>
-<select name="team_blue_id" id="team_blue_id">
-@foreach($teams as $team)
-<option value="{{$team->id}}">{{$team->name}}</option>
-@endforeach
-</select>
-
-<!-- Aquí se agregarán los jugadores dinámicamente -->
-
-
-</form>
-<div id="players-container">
-    <h2>Jugadores</h2>
-    </div>
-<script>
-    $(document).ready(function(){
-        // Cuando se selecciona un equipo, se realiza la solicitud AJAX
-        $('#team_blue_id').change(function(){
-            var teamBlueId = $('#team_blue_id').val();
-
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
-                },
-                url: '/admin/games/create/getPlayers',
-                method: 'POST',
-                data:{
-                    team_blue_id: teamBlueId,
-                }
-            }).done(function(res){
-                // Vacía el contenedor de jugadores
-                $('#players-container').empty();
-
-                // Agrega los jugadores al contenedor
-                $.each(res.players, function(index, players){
-                    $('#players-container').append('<p>' + players.name + '</p>');
+<head>
+    <title>Tu Título Aquí</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#teamId").submit(function(e) {
+                e.preventDefault();
+                // Borra los formularios existentes
+                $("form[id^='playerForm']").remove();
+                var team1Id = $("#teamBlueid").val();
+                var team2Id = $("#teamRedid").val();
+                $.ajax({
+                    url: '/admin/games/create/' + team1Id + '/' + team2Id,
+                    type: 'GET',
+                    success: function(data) {
+                        data.team1Players.forEach(function(player) {
+                            var form = $('<form>').attr('id', 'playerForm' + player.id);
+                            var labelKills = $('<label>').text('Introduce kills para ' +
+                                player.nick);
+                            var inputKills = $('<input>').attr('type', 'number').attr(
+                                'name', 'kills');
+                            var labelDeaths = $('<label>').text(
+                                'Introduce deaths para ' + player.nick);
+                            var inputDeaths = $('<input>').attr('type', 'number').attr(
+                                'name', 'deaths');
+                            var labelAssists = $('<label>').text(
+                                'Introduce assists para ' + player.nick);
+                            var inputAssists = $('<input>').attr('type', 'number').attr(
+                                'name', 'assists');
+                            var labelChampion = $('<label>').text(
+                                'Selecciona el campeón para ' + player.nick);
+                            var selectChampion = $('<select>').attr('name',
+                                'championId');
+                            data.champions.forEach(function(champion) {
+                                var option = $('<option>').attr('value',
+                                    champion.id).text(champion.name);
+                                selectChampion.append(option);
+                            });
+                            form.append(labelKills, inputKills, labelDeaths,
+                                inputDeaths, labelAssists, inputAssists,
+                                labelChampion, selectChampion);
+                            $('body').append(form);
+                        });
+                        data.team2Players.forEach(function(player) {
+                            var form = $('<form>').attr('id', 'playerForm' + player.id);
+                            var labelKills = $('<label>').text('Introduce kills para ' +
+                                player.nick);
+                            var inputKills = $('<input>').attr('type', 'number').attr(
+                                'name', 'kills');
+                            var labelDeaths = $('<label>').text(
+                                'Introduce deaths para ' + player.nick);
+                            var inputDeaths = $('<input>').attr('type', 'number').attr(
+                                'name', 'deaths');
+                            var labelAssists = $('<label>').text(
+                                'Introduce assists para ' + player.nick);
+                            var inputAssists = $('<input>').attr('type', 'number').attr(
+                                'name', 'assists');
+                            var labelChampion = $('<label>').text(
+                                'Selecciona el campeón para ' + player.nick);
+                            var selectChampion = $('<select>').attr('name',
+                                'championId');
+                                data.champions.forEach(function(champion) {
+                                var option = $('<option>').attr('value',
+                                    champion.id).text(champion.name);
+                                selectChampion.append(option);
+                            });
+                            // Añade las opciones al select de campeones aquí
+                            form.append(labelKills, inputKills, labelDeaths,
+                                inputDeaths, labelAssists, inputAssists,
+                                labelChampion, selectChampion);
+                            $('body').append(form);
+                        });
+                    }
                 });
-            })
+            });
         });
-    });
     </script>
-@endsection
+</head>
+
+<body>
+    <h1>Formulario teams</h1>
+    <form id="teamId">
+        <label for="teamBlueid">Elige el equipo azul:</label><br>
+        <select id="teamBlueid" name="teamBlueid">
+            <option value="" selected>Elige el equipo azul</option>
+            @foreach ($teams as $team)
+                <option value="{{ $team->id }}">{{ $team->name }}</option>
+            @endforeach
+        </select><br>
+        <label for="teamRedid">Elige el equipo rojo:</label><br>
+        <select id="teamRedid" name="teamRedid">
+            <option value="" selected>Elige el equipo rojo</option>
+            @foreach ($teams as $team)
+                <option value="{{ $team->id }}">{{ $team->name }}</option>
+            @endforeach
+        </select><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+
+</html>
