@@ -43,6 +43,8 @@ Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->na
 
 
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');
+Route::get('/show/{id}', [PlayersController::class, 'show'])->name('players.show');
+Route::get('/player', [PlayersController::class, 'player'])->name('players.player');
 
 
 

@@ -29,9 +29,14 @@ class PlayersController extends Controller
         ]);
     }
     public function show($id)
+    {
+        $player = Player::find($id);
+        return response()->json($player);
+    }
+public function player()
 {
-    $player = Player::find($id);
-    return response()->json($player);
+
+    return view('players.player');
 }
 
     public function index()
