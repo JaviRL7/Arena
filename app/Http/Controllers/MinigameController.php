@@ -9,6 +9,7 @@ class MinigameController extends Controller
     public function index() {
         $player = Player::inRandomOrder()->first();
         session(['id' => $player->id]);
+        session(['clue_number' => 1]); // Reiniciamos el contador de pistas aquí
         return view('minigame.index', compact('player'));
     }
 
@@ -28,7 +29,7 @@ class MinigameController extends Controller
                 $clue = $player->country ?? 'País no encontrado';
                 break;
             case 4:
-                $clue = $player->getCurrentTeam(); // Asegúrate de que este método esté definido
+                $clue = $player->currentTeam()->name; // Asegúrate de que este método esté definido
                 break;
             case 5:
                 $clue = $player->getKDA(); // Asegúrate de que este método esté definido
@@ -36,6 +37,7 @@ class MinigameController extends Controller
             default:
                 $clue = 'No hay más pistas';
                 break;
+
         }
 
         // Incrementamos el número de la pista para la próxima vez

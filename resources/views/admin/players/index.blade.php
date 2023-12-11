@@ -40,6 +40,11 @@
                         </td>
                         <td>
                             <p>
+                                {{ $player->getMostPlayedChamp()}}
+                            </p>
+                        </td>
+                        <td>
+                            <p>
                                 {{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name }}
                             </p>
                         </td>

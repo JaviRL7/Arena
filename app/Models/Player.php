@@ -98,18 +98,19 @@ class Player extends Model
     }
 
     public function champions() {
-        return $this->belongsToMany(Champion::class, 'classifications', 'player_id', 'champion_id');
+        return $this->belongsToMany(Champion::class, 'clasifications', 'player_id', 'champion_id');
     }
 
     public function getMostPlayedChamp() {
         // Asumimos que existe una relación 'champions' en el modelo Player
-        return $this->champions()
-                    ->selectRaw('champions.name, count(*) as played_count')
-                    ->join('classifications', 'champions.id', '=', 'classifications.champion_id')
+        $mostPlayedChamp = $this->champions()
+                    ->select('champions.name', DB::raw('COUNT(clasifications.champion_id) as played_count'))
+                    ->join('clasifications', 'champions.id', '=', 'clasifications.champion_id')
                     ->groupBy('champions.name')
                     ->orderBy('played_count', 'DESC')
-                    ->first()
-                    ->name;
+                    ->first();
+
+        return $mostPlayedChamp ? $mostPlayedChamp->name : null;
     }
 
     public function teams()
