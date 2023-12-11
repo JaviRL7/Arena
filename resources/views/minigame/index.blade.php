@@ -6,7 +6,8 @@
 <form id="form-suposicion" method="POST" action="/minigame/check-response">
     @csrf <!-- Incluye el token CSRF aquí -->
     <div id="clues"></div>
-    <input type="text" id="suposicion" name="try_id" placeholder="Adivina el jugador">
+    <input type="text" id="suposicion" name="try_nick" placeholder="Adivina el jugador">
+
     <button type="button" id="get-clue">Obtener pista</button>
     <button type="submit" id="check">Verificar</button>
 </form>

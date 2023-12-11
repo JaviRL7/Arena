@@ -13,18 +13,43 @@ class MinigameController extends Controller
     }
 
     public function getClue(Request $request) {
-        // Usamos 'with' para cargar la relación 'role' junto con el jugador
         $player = Player::with('role')->find(session('id'));
+        $clueNumber = session('clue_number', 1); // Iniciamos en 1 si no existe la sesión
 
-        // Accedemos directamente a la propiedad 'name' del rol asociado
-        $roleName = $player->role->name ?? 'Rol no encontrado';
+        $clue = '';
+        switch ($clueNumber) {
+            case 1:
+                $clue = $player->role->name ?? 'Rol no encontrado';
+                break;
+            case 2:
+                $clue = $player->getMostPlayedChamp(); // Asegúrate de que este método esté definido
+                break;
+            case 3:
+                $clue = $player->country ?? 'País no encontrado';
+                break;
+            case 4:
+                $clue = $player->getCurrentTeam(); // Asegúrate de que este método esté definido
+                break;
+            case 5:
+                $clue = $player->getKDA(); // Asegúrate de que este método esté definido
+                break;
+            default:
+                $clue = 'No hay más pistas';
+                break;
+        }
 
-        return response()->json(['clue' => $roleName]);
+        // Incrementamos el número de la pista para la próxima vez
+        session(['clue_number' => $clueNumber < 5 ? $clueNumber + 1 : 1]);
+
+        return response()->json(['clue' => $clue]);
     }
 
+
     public function checkresponse(Request $request) {
-        $tryId = $request->input('try_id');
-        if (session('id') == $tryId) {
+        $tryNick = strtolower($request->input('try_nick'));
+        $player = Player::whereRaw('lower(nick) = ?', [$tryNick])->first();
+
+        if ($player && session('id') == $player->id) {
             return response()->json(['result' => 'correct']);
         } else {
             return response()->json(['result' => 'incorrect']);

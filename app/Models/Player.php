@@ -30,8 +30,6 @@ class Player extends Model
     {
         return $this->hasMany('App\Models\Comment', 'player_id');
     }
-
-
     public function scoresGames()
     {
         return $this->belongsToMany(Game::class, 'scores')->withPivot('user_id', 'note');
@@ -77,11 +75,6 @@ class Player extends Model
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
-    public function getRoleName()
-    {
-        return $this->role ? $this->role->name : null;
-    }
-
     public static function getPlayersWithBestKDA()
     {
         $players = Player::select('players.*', DB::raw('((SUM(clasifications.kills) + SUM(clasifications.assists)) / SUM(clasifications.deaths)) as kda'))
@@ -104,7 +97,20 @@ class Player extends Model
         return $players;
     }
 
+    public function champions() {
+        return $this->belongsToMany(Champion::class, 'classifications', 'player_id', 'champion_id');
+    }
 
+    public function getMostPlayedChamp() {
+        // Asumimos que existe una relación 'champions' en el modelo Player
+        return $this->champions()
+                    ->selectRaw('champions.name, count(*) as played_count')
+                    ->join('classifications', 'champions.id', '=', 'classifications.champion_id')
+                    ->groupBy('champions.name')
+                    ->orderBy('played_count', 'DESC')
+                    ->first()
+                    ->name;
+    }
 
     public function teams()
     {
