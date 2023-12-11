@@ -77,7 +77,10 @@ class Player extends Model
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
-
+    public function getRoleName()
+    {
+        return $this->role ? $this->role->name : null;
+    }
 
     public static function getPlayersWithBestKDA()
     {

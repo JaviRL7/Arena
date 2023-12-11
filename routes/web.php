@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\MinigameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,8 +47,9 @@ Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.r
 Route::get('/show/{team1Id}/{team2Id}', [PlayersController::class, 'show'])->name('players.show');
 Route::get('/player', [PlayersController::class, 'player'])->name('players.player');
 
-
-
+Route::post('/minigame/check-response', [MinigameController::class, 'checkresponse'])->name('minigame.check_response');
+Route::get('/minigame', [MinigameController::class, 'index'])->name('minigame.index');
+Route::get('/minigame/get-clue', [MinigameController::class, 'getClue'])->name('minigame.get_clue');
 /************* Admin *************/
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
