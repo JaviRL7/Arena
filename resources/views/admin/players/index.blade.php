@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             <p>
-                                {{ $player->getMostPlayedChamp()}}
+                                {{ $player->mostPlayedChampion()->name}}
                             </p>
                         </td>
                         <td>
