@@ -23,7 +23,7 @@ class MinigameController extends Controller
                 $clue = $player->role->name ?? 'Rol no encontrado';
                 break;
             case 2:
-                $clue = $player->getMostPlayedChamp(); // Asegúrate de que este método esté definido
+                $clue = $player->mostPlayedChampion()->name; // Asegúrate de que este método esté definido
                 break;
             case 3:
                 $clue = $player->country ?? 'País no encontrado';
@@ -32,7 +32,7 @@ class MinigameController extends Controller
                 $clue = $player->currentTeam()->name; // Asegúrate de que este método esté definido
                 break;
             case 5:
-                $clue = $player->getKDA(); // Asegúrate de que este método esté definido
+                $clue = $player->randomTeammate()->nick; // Asegúrate de que este método esté definido
                 break;
             default:
                 $clue = 'No hay más pistas';

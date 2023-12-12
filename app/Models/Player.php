@@ -25,17 +25,29 @@ class Player extends Model
     {
         return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills', 'deaths', 'assists', 'champion_id');
     }
+    public function randomTeammate()
+    {
+        $teams = $this->teams()->pluck('team_id');
+
+        $teammates = Player::whereHas('teams', function ($query) use ($teams) {
+            $query->whereIn('team_id', $teams);
+        })->where('id', '!=', $this->id)
+            ->get();
+
+
+        return $teammates->random();
+    }
     public function mostPlayedChampion()
-{
-    return DB::table('games')
-             ->join('clasifications', 'games.id', '=', 'clasifications.game_id')
-             ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
-             ->select('champions.id', 'champions.name', DB::raw('count(*) as total'))
-             ->where('clasifications.player_id', $this->id)
-             ->groupBy('champions.id', 'champions.name')
-             ->orderBy('total', 'desc')
-             ->first();
-}
+    {
+        return DB::table('games')
+            ->join('clasifications', 'games.id', '=', 'clasifications.game_id')
+            ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
+            ->select('champions.id', 'champions.name', DB::raw('count(*) as total'))
+            ->where('clasifications.player_id', $this->id)
+            ->groupBy('champions.id', 'champions.name')
+            ->orderBy('total', 'desc')
+            ->first();
+    }
 
     public function comments()
     {
@@ -108,18 +120,20 @@ class Player extends Model
         return $players;
     }
 
-    public function champions() {
+    public function champions()
+    {
         return $this->belongsToMany(Champion::class, 'clasifications', 'player_id', 'champion_id');
     }
 
-    public function getMostPlayedChamp() {
+    public function getMostPlayedChamp()
+    {
         // Asumimos que existe una relación 'champions' en el modelo Player
         $mostPlayedChamp = $this->champions()
-                    ->select('champions.name', DB::raw('COUNT(clasifications.champion_id) as played_count'))
-                    ->join('clasifications', 'champions.id', '=', 'clasifications.champion_id')
-                    ->groupBy('champions.name')
-                    ->orderBy('played_count', 'DESC')
-                    ->first();
+            ->select('champions.name', DB::raw('COUNT(clasifications.champion_id) as played_count'))
+            ->join('clasifications', 'champions.id', '=', 'clasifications.champion_id')
+            ->groupBy('champions.name')
+            ->orderBy('played_count', 'DESC')
+            ->first();
 
         return $mostPlayedChamp ? $mostPlayedChamp->name : null;
     }

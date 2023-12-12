@@ -11,7 +11,9 @@
                     <th>Nick</th>
                     <th>Nombre</th>
                     <th>Role</th>
+                    <th>Most played champion</th>
                     <th>Current team</th>
+
                     <th>Historial teams</th>
                     <th>Birth date</th>
                     <th>Conthact expiration</th>
