@@ -2,7 +2,7 @@
 @section('title', 'MINIGAME')
 
 @section('content')
-<!-- Vista Blade (cambiarr)-->
+
 <div>
 
     <form id="form-suposicion" method="POST" action="/minigame/check-response">
