@@ -1,5 +1,7 @@
 @extends('layouts.plantilla_result')
-@section('title', 'result games')
+@section('title', 'result GAMES')
+
+
 
 @section('content_table')
     <div class="table-responsive">

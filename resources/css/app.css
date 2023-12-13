@@ -2,4 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+    margin-top: 60px; /* Ajusta este valor según la altura de tu navbar */
+}
 
+.d-flex.flex-column.flex-shrink-0.p-3.bg-light {
+    height: 100%;
+}
+.table-striped th {
+    text-align: center;
+}
+.mx-4 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.w-36, .w-16 {
+    max-width: 100px; /* Ajusta este valor según tus necesidades */
+    height: auto;
+}
+.h-36, .h-16 {
+    max-height: 100px; /* Ajusta este valor según tus necesidades */
+}
+@media (max-width: 640px) {
+    .w-36, .w-16 {
+        max-width: 50px;
+    }
+    .h-36, .h-16 {
+        max-height: 50px;
+    }
+}
+/* Css para la tabla de colores de admin (retocar)*/
+
+.table_crud_admin th,
+.table_crud_admin td {
+    padding: 2rem 3rem; /* cambiar esto para que no tenga tanto espacio*/
+    vertical-align: top;
+}
+
+.table_crud_admin thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table_crud_admin tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Estilos personalizados para las celdas */
+.table_crud_admin .row-color:nth-child(even) td {
+    background-color: #f8f9fa; /* Un blanco más oscuro */
+    border-top: 1px solid blue;
+    border-bottom: 1px solid red;
+}
+
+.table_crud_admin .row-color:nth-child(odd) td {
+    background-color: #ffffff; /* Blanco */
+    border-top: 1px solid red;
+    border-bottom: 1px solid blue;
+}
+
+/*Formulario de crud*/
+.input-crud {
+    border-radius: 26px; /* Ajusta este valor para cambiar el grado de redondeo */
+    padding: 18px 22px; /* Ajusta estos valores para cambiar el tamaño del input */
+    font-size: 22px; /* Ajusta este valor para cambiar el tamaño del texto */
+
+    padding: 10px;
+  }
+.input-crud.rounded-lg {
+    border-radius: 15px;
+}
+.label-crud {
+    font-size: 1.5em;
+
+}
