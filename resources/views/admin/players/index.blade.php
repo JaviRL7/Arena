@@ -13,13 +13,12 @@
                 <th>Nick</th>
                 <th>Nombre</th>
                 <th>Role</th>
-                <th>Most played champion</th>
+
                 <th>Current team</th>
 
-                <th>Historial teams</th>
-                <th>Birth date</th>
+
                 <th>Conthact expiration</th>
-                <th>Counthy</th>
+
                 <th>actions</tr>
             </thead>
             <tbody>
@@ -42,38 +41,20 @@
                             {{ $player->role->name }}
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            {{ $player->mostPlayedChampion()->name}}
-                        </p>
-                    </td>
+
                     <td>
                         <p>
                             {{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name }}
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            @foreach ($player->teams as $team)
-                                {{ $team->name }}
-                            @endforeach
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            {{ $player->birth_date }}
-                        </p>
-                    </td>
+
+
                     <td>
                         <p>
                             {{$player->currentTeam()->pivot->contract_expiration_date;}}
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            {{$player->country;}}
-                        </p>
-                    </td>
+
                     <td>
                         <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificar</a>
                     </td>
@@ -82,6 +63,8 @@
             </tbody>
         </table>
     </div>
+    <!-- Paginación -->
+    {{ $players->links() }}
 </div>
 
 

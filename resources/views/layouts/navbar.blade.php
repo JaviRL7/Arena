@@ -46,6 +46,11 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">Perfil</a></li>
+                                @if(auth()->user()->admin)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin panel</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

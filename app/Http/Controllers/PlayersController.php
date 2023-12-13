@@ -46,7 +46,7 @@ public function player()
 
     public function index()
     {
-        $players = Player::orderBy('id')->get();
+        $players = Player::orderBy('id')->paginate(5);
         $today = Carbon::now()->format('Y-m-d');
         //Para poner que la ruta actual venia de admin, repasar esto
         //&& strpos(Player::current()->getName(), 'admin') === 0
