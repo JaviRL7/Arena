@@ -1,6 +1,7 @@
 
-@extends('layouts.plantilla')
-@section('title', 'Teams index')
+@extends('layouts.plantilla_admin')
+@section('title', 'Players index')
+
 @section('content')
 
     <div class="container-fluid">

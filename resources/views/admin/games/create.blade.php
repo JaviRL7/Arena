@@ -1,4 +1,4 @@
-@extends('layouts.plantilla_admin')
+@extends('layouts.plantilla_create_game')
 @section('title', 'Teams index')
 @section('script')
   <script>
