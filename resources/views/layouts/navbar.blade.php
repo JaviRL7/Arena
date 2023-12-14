@@ -45,7 +45,7 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Perfil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.index') }}">Perfil</a></li>
                                 @if(auth()->user()->admin)
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin panel</a>

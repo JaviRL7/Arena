@@ -32,7 +32,8 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -89,7 +90,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 
 
-    Route::post('/games/create/getPlayers', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
     /************* Teams *************/
     Route::get('/teams', [TeamsController::class, 'index'])->name('admin.teams.index');
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
