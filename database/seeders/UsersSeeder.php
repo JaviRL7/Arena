@@ -19,9 +19,11 @@ class UsersSeeder extends Seeder
         $users = [
             [
                 'name' => 'Javier',
+                'nick' => 'Yoh_R0',
                 'email' => 'javier@javier.com',
                 'admin' => true,
                 'password' => Hash::make('06011997'),
+                'user_photo' => 'Profile_photos/Javier.jpg'
             ],
             [
                 'name' => 'Alvaro',

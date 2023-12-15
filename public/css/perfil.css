@@ -1,0 +1,42 @@
+.container-fluid, .row, .col-md-12 {
+    padding: 0;
+    margin: 0;
+}
+
+.profile-header {
+    position: relative;
+    height: 400px;
+    color: white;
+}
+.profile-icon {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 100%;
+    left: 170px;
+    transform: translateY(-50%);
+}
+
+
+.profile-info {
+    position: absolute;
+    left: 430px;
+    top: 90%;
+    transform: translateY(-50%);
+ }
+
+/* Añade esto a tu archivo perfil.css */
+/* Añade esto a tu archivo perfil.css */
+.profile-links {
+    position: absolute;
+    left: 450px; /* Ajusta este valor según sea necesario */
+    top: 45%; /* Ajusta este valor según sea necesario */
+    display: flex;
+    font-size: 20px; /* Ajusta el tamaño de la fuente de los enlaces */
+}
+
+.profile-links a {
+    margin-right: 20px; /* Esto añade un margen a la derecha de cada enlace */
+}
