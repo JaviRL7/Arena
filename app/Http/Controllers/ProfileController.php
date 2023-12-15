@@ -21,7 +21,11 @@ class ProfileController extends Controller
 
         ]);
     }
-
+    public function comments()
+    {
+        $comments = Auth::user()->comments;
+        return response()->json($comments);
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [
