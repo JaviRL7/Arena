@@ -120,15 +120,47 @@
 }
 
 /*comentarios*/
+.profile-comments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea los elementos al inicio del eje principal */
+    min-height: 100vh;
+    width: 80%; /* Ajusta el ancho del contenedor según tus necesidades */
+    margin: 0 auto; /* Centra horizontalmente el contenedor */
+}
 
 
+.profile-comments-container h1 {
+    color:#e44445;
+    font-family: 'important';
+}
 .comment {
-    border: 1px solid #ccc;
+    border: 2px solid #e44445; /* Borde rojo */
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 10px; /* Borde más redondeado */
     max-width: 600px; /* Ancho máximo del comentario */
+    min-width: 450px;
 }
+.comment-likes {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: flex-end;
+    color: #333;
+    font-size: 1,5em;
+}
+
+.comment-likes img {
+    max-width: 15px;
+    vertical-align: middle; /* Alinea verticalmente la imagen con el texto */
+    margin-right: 5px;
+}
+
+.comment-likes p {
+    margin: 0; /* Asegura que no haya margen en el párrafo */
+}
+
 
 .comment-header {
     display: flex;
