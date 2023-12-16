@@ -35,11 +35,23 @@ $(document).ready(function() {
             url: '/profile/comments',
             type: 'GET',
             success: function(data) {
-                var commentsDiv = $('<div/>');
                 $.each(data, function(i, comment) {
-                    commentsDiv.append('<p>' + comment.body + '</p>');
+                    var commentDiv = $('<div/>', { "class": "comment" });
+                    var commentHeader = $('<div/>', { "class": "comment-header" });
+                    var userPhoto = $('<img/>', { "src": comment.user.user_photo, "class": "user-photo" });
+                    var userInfo = $('<div/>', { "class": "user-info" });
+                    var userName = $('<p/>', { "class": "user-name" }).html('<strong>' + comment.user.name + '</strong>');
+                    var userNick = $('<p/>', { "class": "user-nick" }).text('@' + comment.user.nick);
+                    var commentDate = $('<span/>', { "class": "comment-date" }).text(comment.date);
+                    var commentBody = $('<p/>', { "class": "comment-body" }).text(comment.body);
+                    var commentLikes = $('<p/>', { "class": "comment-likes" }).text(comment.likes);
+
+                    userInfo.append(userName, userNick);
+                    commentHeader.append(userPhoto, userInfo, commentDate);
+                    commentDiv.append(commentHeader, commentBody, commentLikes);
+
+                    $('.profile-links-container').after(commentDiv);
                 });
-                $('.profile-links-container').after(commentsDiv);
             }
         });
     });

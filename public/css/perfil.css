@@ -119,3 +119,54 @@
     src: url('/Fuentes/salih/Salih_Regular.ttf');
 }
 
+/*comentarios*/
+
+
+.comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 600px; /* Ancho máximo del comentario */
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-name {
+    margin: 0;
+    font-weight: bold;
+}
+
+.user-nick {
+    margin: 0;
+    color: #888;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.comment-body {
+    margin: 0;
+}
+
+.comment-likes {
+    text-align: right; /* Alineación de los likes a la derecha */
+}
+
