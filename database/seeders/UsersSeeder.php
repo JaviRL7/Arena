@@ -23,7 +23,8 @@ class UsersSeeder extends Seeder
                 'email' => 'javier@javier.com',
                 'admin' => true,
                 'password' => Hash::make('06011997'),
-                'user_photo' => 'Profile_photos/Javier.jpg'
+                'user_photo' => 'Profile_photos/Javier.jpg',
+                'user_header_photo' => 'Profile_photos/Javier_header.jpg'
             ],
             [
                 'name' => 'Alvaro',

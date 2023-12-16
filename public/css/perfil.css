@@ -6,19 +6,18 @@
 .profile-header {
     position: relative;
     height: 500px;
-
     color: white;
-    background: url('/players_extra/keria.jpg')
-    no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
+    background-position: center;
     background-color: grey;
 }
+
+
 .profile-header h1 {
     font-family: 'important'; /* Reemplaza 'NombreDeLaFuente1' con el nombre de la fuente que deseas usar */
     font-size: 5em; /* Ajusta el tamaño según tus necesidades */
+
+    color: white; /* Color del texto */
 }
 
 .profile-header p {
@@ -201,4 +200,5 @@
 .comment-likes {
     text-align: right; /* Alineación de los likes a la derecha */
 }
+/*Modales*/
 
