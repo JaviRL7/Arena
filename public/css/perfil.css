@@ -1,258 +1,41 @@
-.container-fluid, .row, .col-12 {
-    padding: 0;
-    margin: 0;
-}
-
-.profile-header {
-    position: relative;
-    height: 500px;
-    color: white;
-    background-size: cover;
-    background-position: center;
-    background-color: grey;
-}
-
-
-.profile-header h1 {
-    font-family: 'important'; /* Reemplaza 'NombreDeLaFuente1' con el nombre de la fuente que deseas usar */
-    font-size: 5em; /* Ajusta el tamaño según tus necesidades */
-
-    color: white; /* Color del texto */
-}
-
-.profile-header p {
-    font-family: 'Pixel2_5'; /* Reemplaza 'NombreDeLaFuente2' con el nombre de la fuente que deseas usar */
-    font-size: 1.5em; /* Ajusta el tamaño según tus necesidades */
-}
-.profile-icon {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: absolute;
-    top: 70%;
-    left: 100px;
-    transform: translateY(-50%);
-}
-
-.profile-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-info {
-    position: absolute;
-    left: 400px; /* Aumenta este valor para agregar más margen */
-    top: 80%;
-    transform: translateY(-50%);
-}
-
-.profile-links-container {
-    background-color: #fffcdc;
-    height: 100px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: left;
-    padding-top: 400px; /* Ajusta este valor para alinear verticalmente */
-}
-
-.profile-links {
-    display: flex;
-    font-size: 20px;
-    gap: 50px;
-    margin-left: 400px;
-    margin-top: 20px;
-    /* Añade este valor para alinear con el nombre y el nick */
-}
-
-.profile-links img {
-    width: 40px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
-    height: 40px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
-}
-
-.profile-links a {
-    color: #333;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-family: 'Pixel2_5';
-}
-
-@media (max-width: 600px) {
-    .profile-icon, .profile-info {
-        position: static;
-        transform: none;
-        margin: 10px;
-    }
-
-    .profile-info {
-        font-size: 20px;
-    }
-
-    .profile-links {
-        flex-direction: column;
-        font-size: 14px;
-    }
-}
-
-@font-face {
-    font-family: 'Pixel';
-    src: url('/Fuentes/pixel/pixel.otf') format('opentype');
-}
-@font-face {
-    font-family: 'Pixel2_5';
-    src: url('/Fuentes/pixel2/Fonts/5.otf') format('opentype');
-}
-@font-face {
-    font-family: 'important';
-    src: url('/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf');
-}
-@font-face {
-    font-family: 'Russian';
-    src: url('/Fuentes/Russian/Russian.otf') format('opentype');
-}
-@font-face {
-    font-family: 'salih';
-    src: url('/Fuentes/salih/Salih_Regular.ttf');
-}
-
-/*comentarios*/
-.profile-comments-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Alinea los elementos al inicio del eje principal */
-    min-height: 100vh;
-    width: 80%; /* Ajusta el ancho del contenedor según tus necesidades */
-    margin: 0 auto; /* Centra horizontalmente el contenedor */
-}
-
-
-.profile-comments-container h1 {
-    color:#e44445;
-    font-family: 'important';
-}
-.comment {
-    border: 2px solid #e44445; /* Borde rojo */
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px; /* Borde más redondeado */
-    max-width: 600px; /* Ancho máximo del comentario */
-    min-width: 450px;
-}
-.comment-likes {
-    display: flex;
-    align-items: center; /* Alinea verticalmente los elementos */
-    justify-content: flex-end;
-    color: #333;
-    font-size: 1,5em;
-}
-
-.comment-likes img {
-    max-width: 15px;
-    vertical-align: middle; /* Alinea verticalmente la imagen con el texto */
-    margin-right: 5px;
-}
-
-.comment-likes p {
-    margin: 0; /* Asegura que no haya margen en el párrafo */
-}
-
-
-.comment-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.user-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.user-info {
-    flex-grow: 1;
-}
-
-.user-name {
-    margin: 0;
-    font-weight: bold;
-}
-
-.user-nick {
-    margin: 0;
-    color: #888;
-}
-
-.comment-date {
-    font-size: 0.8em;
-    color: #888;
-}
-
-.comment-body {
-    margin: 0;
-}
-
-.comment-likes {
-    text-align: right; /* Alineación de los likes a la derecha */
-}
-/*Modales*/
-
-
-.modal_user_photo > div {
-    position: relative;
-    display: inline-block;
-}
-
-.modal-user-photo {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    position: relative;
-
-
-}
-
-.add-photo-icon {
-    width: 35px;
-    height: 35px;
-    background-color: rgba(255, 255, 255, 0.7);
-    filter: invert(1);
-    position: relative;
-    padding: 4px;
-    border-radius: 30%;
-
-}
-
-.form-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 1;
-}
-.name-label{
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    font-size: 20px;
-    font-weight: bold;
-}
-.form-control{
-    border: 1px solid #808080; /* Ajusta esto al color de borde que prefieras */
-    padding: 20px; /* Ajusta esto según sea necesario */
-    position: relative;
-    font-size: 20px;
-}
-#user_photo {
-    z-index: 0;
-}
-.modal-body {
-    height: 80vh;  /* Ajusta esto a la altura que prefieras */
-    overflow-y: auto;
-  }
+.container-fluid, .row, .col-12{padding:0;margin:0;}
+.profile-header{position:relative;height:500px;color:white;background-size:cover;background-position:center;background-color:grey;}
+.profile-header h1{font-family:'important';font-size:5em;color:white;}
+.profile-header p{font-family:'Pixel2_5';font-size:1.5em;}
+.profile-icon{width:250px;height:250px;border-radius:50%;overflow:hidden;position:relative;top:70%;left:calc(50% - 125px);transform:translateY(-50%);}
+.profile-icon img{width:100%;height:100%;object-fit:cover;}
+.profile-info{position:relative;left:calc(50% - 125px);top:80%;transform:translateY(-50%);}
+.profile-links-container{background-color:#fffcdc;height:100px;display:flex;align-items:center;justify-content:center;padding-top:400px;}
+.profile-links{display:flex;font-size:20px;gap:50px;margin-top:20px;}
+.profile-links img{width:40px;height:40px;}
+.profile-links a{color:#333;text-decoration:none;display:flex;align-items:center;gap:20px;font-family:'Pixel2_5';}
+@media (max-width:600px){.profile-icon, .profile-info{position:static;transform:none;margin:10px;}
+.profile-info{font-size:20px;}
+.profile-links{flex-direction:column;font-size:14px;}}
+@font-face{font-family:'Pixel';src:url('/Fuentes/pixel/pixel.otf')format('opentype');}
+@font-face{font-family:'Pixel2_5';src:url('/Fuentes/pixel2/Fonts/5.otf')format('opentype');}
+@font-face{font-family:'important';src:url('/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf');}
+@font-face{font-family:'Russian';src:url('/Fuentes/Russian/Russian.otf')format('opentype');}
+@font-face{font-family:'salih';src:url('/Fuentes/salih/Salih_Regular.ttf');}
+.profile-comments-container{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;width:80%;margin:0 auto;}
+.profile-comments-container h1{color:#e44445;font-family:'important';}
+.comment{border:2px solid #e44445;padding:10px;margin-bottom:10px;border-radius:10px;max-width:600px;min-width:450px;}
+.comment-likes{display:flex;align-items:center;justify-content:flex-end;color:#333;font-size:1,5em;}
+.comment-likes img{max-width:15px;vertical-align:middle;margin-right:5px;}
+.comment-likes p{margin:0;}
+.comment-header{display:flex;align-items:center;margin-bottom:10px;}
+.user-photo{width:50px;height:50px;border-radius:50%;margin-right:10px;}
+.user-info{flex-grow:1;}
+.user-name{margin:0;font-weight:bold;}
+.user-nick{margin:0;color:#888;}
+.comment-date{font-size:0.8em;color:#888;}
+.comment-body{margin:0;}
+.comment-likes{text-align:right;}
+.modal_user_photo > div{position:relative;display:inline-block;}
+.modal-user-photo{border-radius:50%;width:100px;height:100px;position:relative;}
+.add-photo-icon{width:35px;height:35px;background-color:rgba(255,255,255,0.7);filter:invert(1);position:relative;padding:4px;border-radius:30%;}
+.form-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:1;}
+.name-label{display:block;margin-bottom:5px;color:#333;font-size:20px;font-weight:bold;}
+.form-control{border:1px solid #808080;padding:20px;position:relative;font-size:20px;}
+#user_photo{z-index:0;}
+.modal-body{height:80vh;overflow-y:auto;}

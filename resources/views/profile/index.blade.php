@@ -12,6 +12,10 @@
         <div class="row m-0">
             <div class="col-12 p-0 profile-header"
                 style="background: url('{{ asset(auth()->user()->user_header_photo) }}') no-repeat center center / cover;">
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-md-12 p-0">
                 <img src="{{ asset(Auth::user()->user_photo) }}" alt="Icono del usuario" class="profile-icon">
                 <div class="profile-info">
                     <h1> {{ Auth::user()->name }}</h1>
@@ -19,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="row m-0">
+        <div class="row m-0 justify-content-center">
             <div class="col-12 p-0 profile-links-container">
                 <div class="profile-links">
                     <a href="#" id="comments-link"><img src="icons/comments.png" alt="Descripción de la imagen" />
