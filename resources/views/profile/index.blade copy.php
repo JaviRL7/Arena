@@ -56,19 +56,15 @@
                         style="width: 100%; height: 200px; background-image: url('{{ asset(Auth::user()->user_header_photo) }}'); background-size: cover; background-position:center;">
                     </div>
 
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-
+                    <form action="{{ asset('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
 
                         <!--Imagen de user_photo-->
-                        <br>
-                        <br>
                         <div class="mb-3 modal_user_photo">
                             <!-- Contenedor de la foto de perfil -->
                             <div>
-                                <img src="{{ asset(Auth::user()->user_photo) }}" alt="Foto de perfil"
-                                    class="modal-user-photo">
+                                <img src="{{ asset(Auth::user()->user_photo) }}" alt="Foto de perfil" class="modal-user-photo">
                                 <!-- Nueva imagen de add_photo.png -->
                                 <label for="user_photo" class="form-label">
                                     <img src="{{ asset('icons/add_photo.png') }}" alt="Agregar foto" class="add-photo-icon">
@@ -89,35 +85,11 @@
                             </label>
                         </div>
 
-                        <!-- Nuevos campos de entrada -->
-                        <div class="mb-3">
-                            <label for="name" class="name-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                value="{{ Auth::user()->name }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="nick" class="name-label">Nick</label>
-                            <input type="text" class="form-control" id="nick" name="nick"
-                                value="{{ Auth::user()->nick }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="birth_date" class="name-label">Birth Date</label>
-                            <input type="date" class="form-control" id="birth_date" name="birth_date"
-                                value="{{ Auth::user()->birth_date }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="discord" class="name-label">Discord Account</label>
-                            <input type="text" class="form-control" id="discord" name="discord"
-                                value="{{ Auth::user()->discord }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="twitter" class="name-label">Twitter Account</label>
-                            <input type="text" class="form-control" id="twitter" name="twitter"
-                                value="{{ Auth::user()->twitter}}">
-                        </div>
+
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
                         </div>
                     </form>
                 </div>

@@ -18,18 +18,22 @@ main {
     justify-content: center;
     align-items: center;
 }
-.w-36, .w-16 {
+.w-36,
+.w-16 {
     max-width: 100px; /* Ajusta este valor según tus necesidades */
     height: auto;
 }
-.h-36, .h-16 {
+.h-36,
+.h-16 {
     max-height: 100px; /* Ajusta este valor según tus necesidades */
 }
 @media (max-width: 640px) {
-    .w-36, .w-16 {
+    .w-36,
+    .w-16 {
         max-width: 50px;
     }
-    .h-36, .h-16 {
+    .h-36,
+    .h-16 {
         max-height: 50px;
     }
 }
@@ -70,16 +74,31 @@ main {
     font-size: 22px; /* Ajusta este valor para cambiar el tamaño del texto */
 
     padding: 10px;
-  }
+}
 .input-crud.rounded-lg {
     border-radius: 15px;
 }
 .label-crud {
     font-size: 1.5em;
-
+}
+.navbar {
+    height: 120px; /* Ajusta esto a la altura que desees */
+}
+@font-face {
+    font-family: "Pixel2_5";
+    src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
 }
 
-
+.navbar {
+    background-color: #fffcdc!important; /* Establece el color de fondo del navbar */
+}
+.navbar a {
+    font-family: "Pixel2_5"; /* Aplica la fuente a los enlaces del navbar */
+    font-size: 20px; /* Ajusta esto al tamaño que desees */
+}
+body {
+    padding-top: 60px; /* Esto debe ser igual a la altura del navbar */
+}
 
 /*para el login*/
 /* Cambiar el color de fondo del formulario */

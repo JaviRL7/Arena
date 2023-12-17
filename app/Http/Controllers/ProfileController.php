@@ -33,20 +33,50 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+    public function update(Request $request)
+    {
+
+        $user = Auth::user();
+
+        // Validar los datos del formulario
+        $data = $request->only([
+            'name', 'nick', 'email', 'admin', 'validated', 'birth_date', 'twitter', 'discord',
+            'user_photo', 'user_header_photo', 'favorite_player1', 'favorite_player2',
+            'favorite_player3', 'favorite_player4', 'favorite_player5', 'favorite_team'
+        ]);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'nick' => 'nullable',
+
+
+            'birth_date' => 'nullable|date',
+            'twitter' => 'nullable',
+            'discord' => 'nullable',
+
+            'favorite_player1' => 'nullable',
+            'favorite_player2' => 'nullable',
+            'favorite_player3' => 'nullable',
+            'favorite_player4' => 'nullable',
+            'favorite_player5' => 'nullable',
+            'favorite_team' => 'nullable',
+        ]);
+
+        // Si se subió una nueva foto de perfil, guardarla en el servidor y actualizar el campo correspondiente
+        if ($request->hasFile('user_photo')) {
+            $validatedData['user_photo'] = $request->file('user_photo')->store('public/user_photos');
         }
 
-        $request->user()->save();
+        // Si se subió una nueva foto de portada, guardarla en el servidor y actualizar el campo correspondiente
+        if ($request->hasFile('user_header_photo')) {
+            $validatedData['user_header_photo'] = $request->file('user_header_photo')->store('public/user_header_photos');
+        }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // Actualizar los campos del usuario
+        $user->update($validatedData);
+
+        // Redirigir al usuario a su perfil con un mensaje de éxito
+        return redirect()->route('profile.index', $user)->with('status', 'Perfil actualizado con éxito!');
     }
 
     /**

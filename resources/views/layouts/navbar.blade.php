@@ -1,8 +1,12 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fffcdc;">
     <div class="container">
         <!--logo-->
-        <a class="navbar-brand fs-4" href="#">Gunlim</a>
+        <a class="navbar-brand fs-4 d-flex align-items-center" href="#">
+            <img src="/icons/logof.png" alt="Logo" style="height: 50px;">
+            <span class="ms-2">Gunlim</span>
+        </a>
+
         <!--Button-->
         <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -13,7 +17,7 @@
             aria-labelledby="offcanvasNavbarLabel">
             <!--side bar header-->
             <div class="offcanvas-header border-bottom">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlim</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlin</h5>
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
@@ -40,21 +44,22 @@
                 @if (auth()->check())
                     <div class="d-flex justify-content-center align-items-center gap-3 flex-column flex-lg-row">
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ auth()->user()->name }}
+                                <span style="margin-top: 5px;">{{ auth()->user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('profile.index') }}">Perfil</a></li>
-                                @if(auth()->user()->admin)
+                                @if (auth()->user()->admin)
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin panel</a>
+                                        <a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin
+                                            panel</a>
                                     </li>
                                 @endif
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button class="dropdown-item" type="submit">Cerrar sesión</button>
+                                        <button class="dropdown-item" type="submit"><a>Log out</a></button>
                                     </form>
                                 </li>
                             </ul>
