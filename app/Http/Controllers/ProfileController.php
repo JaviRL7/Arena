@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Player;
 
 class ProfileController extends Controller
 {
@@ -16,9 +17,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request): View
     {
+        $players = Player::paginate(5);
         return view('profile.index', [
             'user' => $request->user(),
-
+            'players' => $players,
         ]);
     }
     public function comments()
