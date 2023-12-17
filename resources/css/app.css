@@ -85,10 +85,25 @@ main {
     height: 120px; /* Ajusta esto a la altura que desees */
 }
 @font-face {
+    font-family: "Pixel";
+    src: url("/Fuentes/pixel/pixel.otf") format("opentype");
+}
+@font-face {
     font-family: "Pixel2_5";
     src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
 }
-
+@font-face {
+    font-family: "important";
+    src: url("/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf");
+}
+@font-face {
+    font-family: "Russian";
+    src: url("/Fuentes/Russian/Russian.otf") format("opentype");
+}
+@font-face {
+    font-family: "salih";
+    src: url("/Fuentes/salih/Salih_Regular.ttf");
+}
 .navbar {
     background-color: #fffcdc!important; /* Establece el color de fondo del navbar */
 }
@@ -102,3 +117,29 @@ body {
 
 /*para el login*/
 /* Cambiar el color de fondo del formulario */
+
+/*footer*/
+.footer {
+    background-color: #e44445;
+    color: white;
+    padding: 20px 0;
+}
+.footer-title {
+    font-size: 60px;
+    font-family: "important";
+}
+.footer p, .footer ul, .footer li {
+    font-size: 18px;
+}
+
+.footer .links ul {
+    list-style-type: none;
+}
+
+.footer .links li {
+   margin-bottom: 10px;
+}
+
+.legal-links {
+   text-align: right;
+}

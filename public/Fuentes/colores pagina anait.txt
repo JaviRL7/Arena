@@ -16,3 +16,20 @@ C8B8A9
 
 
 #f2e6b1
+
+gama
+#fffcdc
+#f9b8b2
+#f37478
+#ed303e
+#e44445
+
+nueva
+
+e34444,633434,f8caca,2d2c2c,933c3c,ec8c8c,e45c5c,ec7474,b43c3c
+
+
+#3b5998: Este es un tono de azul oscuro que puede contrastar bien con el rojo brillante y el blanco.
+#8b9dc3: Este es un tono de azul claro que puede suavizar la paleta de colores y funcionar bien con el rojo y el blanco.
+#000000: El negro siempre es una opción segura para combinar con cualquier color, y puede dar un aspecto elegante y moderno a tu proyecto.
+#dfdfdf: Este es un tono de gris claro que puede funcionar bien con el rojo y el blanco, especialmente si buscas un diseño más suave y menos contrastado.

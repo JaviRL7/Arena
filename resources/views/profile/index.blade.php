@@ -15,14 +15,25 @@
             </div>
         </div>
         <div class="row m-0">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12 p-0 profile-info">
                 <img src="{{ asset(Auth::user()->user_photo) }}" alt="Icono del usuario" class="profile-icon">
-                <div class="profile-info">
-                    <h1> {{ Auth::user()->name }}</h1>
-                    <p>{{ '@' . Auth::user()->nick }}</p>
+                <div class="profile-text">
+                    <h1>{{ Auth::user()->name }}</h1>
+                    <div class="profile-accounts">
+                        <p>{{ '@' . Auth::user()->nick }}</p>
+                        <div class="account">
+                            <img src="{{ asset('icons/discord.png') }}" alt="discord" style="width: 30px; height: 30px;">
+                            <p>{{ Auth::user()->discord }}</p>
+                        </div>
+                        <div class="account">
+                            <img src="{{ asset('icons/twitter.png') }}" alt="twitter" style="width: 30px; height: 30px;">
+                            <p>{{ Auth::user()->twitter }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="row m-0 justify-content-center">
             <div class="col-12 p-0 profile-links-container">
                 <div class="profile-links">
