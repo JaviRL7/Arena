@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('game_id');
             $table->unsignedBigInteger('player_id')->nullable();
             $table->unsignedBigInteger('team_id')->nullable();
-            $table->foreign('player_id')->references('id')->on('users');
+            $table->foreign('player_id')->references('id')->on('players');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');

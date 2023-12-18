@@ -21,6 +21,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nick',
+        'admin',
+        'validated',
+        'birth_date',
+        'twitter',
+        'discord',
+        'user_photo',
+        'user_header_photo',
+        'favorite_player1',
+        'favorite_player2',
+        'favorite_player3',
+        'favorite_player4',
+        'favorite_player5',
+        'favorite_team'
     ];
 
     /**

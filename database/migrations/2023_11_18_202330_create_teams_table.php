@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('league')->nullable();
+            $table->unsignedBigInteger('league_id')->nullable();
             $table->string('country')->nullable();
+            $table->foreign('league_id')->references('id')->on('competitions');
             $table->timestamps();
         });
     }
