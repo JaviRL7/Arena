@@ -11,7 +11,11 @@
     <div class="container-fluid m-0 p-0">
         <div class="row m-0">
             <div class="col-12 p-0 profile-header"
-                style="background: url('{{ asset(auth()->user()->user_header_photo) }}') no-repeat center center / cover;">
+                @if (Auth::user()->user_header_photo)
+                    style="background: url('{{ asset(auth()->user()->user_header_photo) }}') no-repeat center center / cover;"
+                @else
+                    style="background-color: #333333;">
+                @endif
             </div>
         </div>
         <div class="row m-0">
@@ -20,15 +24,26 @@
                 <div class="profile-text">
                     <h1>{{ Auth::user()->name }}</h1>
                     <div class="profile-accounts">
-                        <p>{{ '@' . Auth::user()->nick }}</p>
-                        <div class="account">
-                            <img src="{{ asset('icons/discord.png') }}" alt="discord" style="width: 30px; height: 30px;">
-                            <p>{{ Auth::user()->discord }}</p>
-                        </div>
-                        <div class="account">
-                            <img src="{{ asset('icons/twitter.png') }}" alt="twitter" style="width: 30px; height: 30px;">
-                            <p>{{ Auth::user()->twitter }}</p>
-                        </div>
+                        @if (Auth::user()->nick)
+                            <p>{{ '@' . Auth::user()->nick }}</p>
+                        @endif
+                        @if (Auth::user()->discord)
+                            <div class="account">
+                                <img src="{{ asset('icons/discord.png') }}" alt="discord" style="width: 30px; height: 30px;">
+                                <p>{{ Auth::user()->discord }}</p>
+                            </div>
+                        @endif
+                        @if (Auth::user()->twitter)
+                            <div class="account">
+                                <img src="{{ asset('icons/twitter.png') }}" alt="twitter" style="width: 30px; height: 30px;">
+                                <p>{{ Auth::user()->twitter }}</p>
+                            </div>
+                        @endif
+                        @if (Auth::user()->birth_date)
+                            <div class="account">
+                                <p>{{ date('F jS', strtotime(Auth::user()->birth_date)) }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
