@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use Yajra\DataTables\Facades\DataTables;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,15 +27,29 @@ class ProfileController extends Controller
 }
 public function getPlayers(Request $request)
 {
-    $players = Player::paginate(5);
     if ($request->ajax()) {
-        return view('partials.players', ['players' => $players]);
+        $players = Player::query();
+        return DataTables::of($players)
+            ->addColumn('photo', function ($player) {
+                // Con la ruta 'public'
+                return '<img src="'.asset($player->photo).'">';
+                // Sin ninguna ruta
+                // return '<img src="'.asset($player->photo).'">';
+            })
+            ->rawColumns(['photo'])
+            ->make(true);
     }
+
+    $players = Player::paginate(5);
     return view('profile.index', [
         'user' => $request->user(),
         'players' => $players,
     ]);
 }
+
+
+
+
 
 
 

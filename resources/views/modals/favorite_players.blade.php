@@ -6,20 +6,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    @foreach ($players as $player)
-                        <div class="col-md-4">
-                            <img src="{{ asset($player->photo) }}" class="rounded-circle"
-                                style="object-fit: cover; width: 200px; height: 200px;" alt="Foto del jugador">
-                            <div class="card-body">
-                                <h2 class="card-title">{{ $player->nick }}</h2>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                <table id="playersTable" class="display">
+                    <tbody>
+                        @foreach ($players as $player)
+                            <tr>
+                                <td><img src={{ asset($player->photo)}}></td>
+                                <td>{{ $player->nick }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <div class="modal-footer" id="pagination-container">
-                {{ $players->links() }}
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>

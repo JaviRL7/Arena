@@ -1,4 +1,5 @@
 <!-- resources/views/partials/players.blade.php -->
+<!--esto ya no sirve-->
 <div class="row">
     @foreach ($players as $player)
         <div class="col-md-4">

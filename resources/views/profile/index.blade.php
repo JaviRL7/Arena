@@ -72,5 +72,5 @@
         </div>
     </div>
     @include('modals.edit_profile')
-    @include('modals.favorite_players', ['players' => $players])
+    @include('modals.favorite_players')
     @endsection

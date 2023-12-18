@@ -268,3 +268,26 @@
     height: 80vh;
     overflow-y: auto;
 }
+#playersTable {
+    width: 100%;
+}
+#playersTable img {
+    width: 300px !important;
+    height: 300px;
+    object-fit: cover;
+}
+th, td {
+    width: 100px;
+    word-wrap: break-word;
+}
+table.dataTable {
+    width: auto !important;
+}
+#playersTable td {
+    width: 300px;
+    height: 300px;
+}
+#playersTable img {
+    max-width: 100%;
+    height: auto;
+}
