@@ -16,13 +16,27 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function index(Request $request): View
-    {
-        $players = Player::paginate(5);
-        return view('profile.index', [
-            'user' => $request->user(),
-            'players' => $players,
-        ]);
+{
+    $players = Player::paginate(5);
+    return view('profile.index', [
+        'user' => $request->user(),
+        'players' => $players,
+    ]);
+}
+public function getPlayers(Request $request)
+{
+    $players = Player::paginate(5);
+    if ($request->ajax()) {
+        return view('partials.players', ['players' => $players]);
     }
+    return view('profile.index', [
+        'user' => $request->user(),
+        'players' => $players,
+    ]);
+}
+
+
+
     public function comments()
     {
         $comments = Auth::user()->comments()->with('user')->get();
