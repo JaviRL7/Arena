@@ -10,8 +10,12 @@
                     <tbody>
                         @foreach ($players as $player)
                             <tr>
-                                <td><img src={{ asset($player->photo)}}></td>
-                                <td>{{ $player->nick }}</td>
+                                <td>
+                                    <img src={{ asset($player->photo)}}>
+                                    <img src={{ asset($player->currentTeam()->logo)}}>
+                                </td>
+
+                                <td><h1>{{ $player->nick }}</h1></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -19,6 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button id="addButton" type="button">Añadir</button>
             </div>
         </div>
     </div>

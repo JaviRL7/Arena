@@ -268,26 +268,56 @@
     height: 80vh;
     overflow-y: auto;
 }
+
+/*EL FALLO ESTA AQUIIIII!!!!*/
+/* Estilos generales de la tabla */
 #playersTable {
     width: 100%;
+    border: none !important;
 }
-#playersTable img {
-    width: 300px !important;
-    height: 300px;
-    object-fit: cover;
-}
-th, td {
-    width: 100px;
-    word-wrap: break-word;
-}
-table.dataTable {
-    width: auto !important;
-}
+
+/* Estilos para las celdas de la tabla */
 #playersTable td {
+    width: 100%;
+    height: auto;
+    text-align: left !important;
+    border: none !important;
+}
+
+/* Estilos para las imágenes de los jugadores */
+#playersTable .player-photo {
     width: 300px;
     height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
 }
-#playersTable img {
-    max-width: 100%;
+
+/* Estilos para los logos de los equipos */
+#playersTable .team-logo {
+    width: 70px;
     height: auto;
+    position: absolute;
+    bottom: 30px;
+    right: 530px;
+    border-radius: 0;
+
+}
+#playersTable .role-logo {
+    width: 70px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 530px;
+    border-radius: 0;
+}
+
+/* Estilos para los nombres de los jugadores */
+#playersTable .player-name {
+    font-size: 2em;
+    text-align: left;
+}
+
+/* Estilos para DataTables */
+table.dataTable {
+    width: auto !important;
 }

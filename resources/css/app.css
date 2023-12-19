@@ -6,37 +6,7 @@ main {
     margin-top: 60px; /* Ajusta este valor según la altura de tu navbar */
 }
 
-.d-flex.flex-column.flex-shrink-0.p-3.bg-light {
-    height: 100%;
-}
-.table-striped th {
-    text-align: center;
-}
-.mx-4 {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.w-36,
-.w-16 {
-    max-width: 100px; /* Ajusta este valor según tus necesidades */
-    height: auto;
-}
-.h-36,
-.h-16 {
-    max-height: 100px; /* Ajusta este valor según tus necesidades */
-}
-@media (max-width: 640px) {
-    .w-36,
-    .w-16 {
-        max-width: 50px;
-    }
-    .h-36,
-    .h-16 {
-        max-height: 50px;
-    }
-}
+
 /* Css para la tabla de colores de admin (retocar)*/
 
 .table_crud_admin th,

@@ -30,13 +30,13 @@ public function getPlayers(Request $request)
     if ($request->ajax()) {
         $players = Player::query();
         return DataTables::of($players)
-            ->addColumn('photo', function ($player) {
-                // Con la ruta 'public'
-                return '<img src="'.asset($player->photo).'">';
-                // Sin ninguna ruta
-                // return '<img src="'.asset($player->photo).'">';
-            })
-            ->rawColumns(['photo'])
+        ->addColumn('photo', function ($player) {
+            return '<div style="position:relative;"><img class="player-photo" src="'.asset($player->photo).'"><img class="team-logo" src="'.asset($player->currentTeam()->logo).'"><img class="role-logo" src="'.asset($player->role->icono).'"></div>';
+        })
+        ->addColumn('nick', function ($player) {
+            return '<div class="player-name"><h1>'.$player->nick.'</h1><p style="font-size: 0.8em; color: gray;">'.$player->name.' '.$player->lastname1.'</p></div>';
+        })
+            ->rawColumns(['photo', 'nick'])
             ->make(true);
     }
 
@@ -127,10 +127,6 @@ public function getPlayers(Request $request)
     // Redirigir al usuario a su perfil con un mensaje de éxito
     return redirect()->route('profile.index', $user)->with('status', 'Perfil actualizado con éxito!');
 }
-
-
-
-
     /**
      * Delete the user's account.
      */
