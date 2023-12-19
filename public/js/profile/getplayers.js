@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var selectedPlayers = JSON.parse(localStorage.getItem('selectedPlayers')) || []; // Array para almacenar los IDs de los jugadores seleccionados
+    var selectedPlayers = JSON.parse(localStorage.getItem('selectedPlayers')) || [];
 
     var table = $('#playersTable').DataTable({
         processing: true,
@@ -17,6 +17,17 @@ $(document).ready(function() {
             { data: 'photo', name: 'photo' },
             { data: 'nick', name: 'nick' }
         ],
+        drawCallback: function() {
+            var data = this.api().rows().data();
+            data.each(function(rowData, index) {
+                var row = this.api().row(index).node();
+                if (selectedPlayers.includes(rowData.id)) {
+                    $(row).css('background-color', 'red');
+                } else {
+                    $(row).css('background-color', '');
+                }
+            }.bind(this));
+        },
         rowCallback: function(row, data) {
             if (selectedPlayers.includes(data.id)) {
                 $(row).css('background-color', 'red');
@@ -24,7 +35,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#playersTable tbody').on('click', 'td', function() {
+    $('#playersTable tbody').on('click', 'tr', function() {
         var data = table.row(this).data();
         var index = selectedPlayers.indexOf(data.id);
 
@@ -47,19 +58,19 @@ $(document).ready(function() {
     $('#addButton').click(function() {
         if (selectedPlayers.length == 5) {
             $.ajax({
-                url: '/profile', // URL de la ruta que maneja el método update
-                method: 'PATCH', // Método HTTP para actualizar recursos
+                url: '/profile',
+                method: 'PATCH',
                 data: {
                     favorite_player1: selectedPlayers[0],
                     favorite_player2: selectedPlayers[1],
                     favorite_player3: selectedPlayers[2],
                     favorite_player4: selectedPlayers[3],
                     favorite_player5: selectedPlayers[4],
-                    _token: '{{ csrf_token() }}' // Token CSRF para proteger contra ataques de falsificación de solicitudes entre sitios
+                    _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
                     alert('Jugadores favoritos actualizados con éxito.');
-                    $('#playersModal').modal('hide'); // Cierra la modal
+                    $('#playersModal').modal('hide');
                 }
             });
         } else {
