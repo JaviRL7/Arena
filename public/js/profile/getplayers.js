@@ -1,3 +1,7 @@
+// En desuso usar la manera buena con $(function() {
+    // Tu código aquí
+//});
+
 $(document).ready(function() {
     var selectedPlayers = JSON.parse(localStorage.getItem('selectedPlayers')) || [];
 
@@ -22,7 +26,7 @@ $(document).ready(function() {
             data.each(function(rowData, index) {
                 var row = this.api().row(index).node();
                 if (selectedPlayers.includes(rowData.id)) {
-                    $(row).css('background-color', 'red');
+                    $(row).css('background-color', '#e44445');
                 } else {
                     $(row).css('background-color', '');
                 }
@@ -30,7 +34,7 @@ $(document).ready(function() {
         },
         rowCallback: function(row, data) {
             if (selectedPlayers.includes(data.id)) {
-                $(row).css('background-color', 'red');
+                $(row).css('background-color', '#e44445');
             }
         }
     });
@@ -49,32 +53,30 @@ $(document).ready(function() {
             }
 
             selectedPlayers.push(data.id);
-            $(this).css('background-color', 'red');
+            $(this).css('background-color', '#e44445');
         }
 
         localStorage.setItem('selectedPlayers', JSON.stringify(selectedPlayers));
     });
 
-    $('#addButton').click(function() {
-        if (selectedPlayers.length == 5) {
-            $.ajax({
-                url: '/profile',
-                method: 'PATCH',
-                data: {
-                    favorite_player1: selectedPlayers[0],
-                    favorite_player2: selectedPlayers[1],
-                    favorite_player3: selectedPlayers[2],
-                    favorite_player4: selectedPlayers[3],
-                    favorite_player5: selectedPlayers[4],
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    alert('Jugadores favoritos actualizados con éxito.');
-                    $('#playersModal').modal('hide');
-                }
-            });
-        } else {
-            alert('Por favor, selecciona 5 jugadores antes de añadir.');
-        }
+    $('#addButton').on('click', function() {
+        console.log(csrfToken);  // Imprime el valor del token CSRF
+
+        $.ajax({
+            url: '/profile/favorite',
+            method: 'POST',
+            data: {
+                favorite_player1: selectedPlayers[0],
+                favorite_player2: selectedPlayers[1],
+                favorite_player3: selectedPlayers[2],
+                favorite_player4: selectedPlayers[3],
+                favorite_player5: selectedPlayers[4],
+                _token: csrfToken  // Usa la variable csrfToken
+            },
+            success: function() {
+                alert('Jugadores favoritos actualizados con éxito!');
+                $('#playersModal').modal('hide');
+            }
+        });
     });
 });

@@ -6,6 +6,7 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/profile/comments.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/profile/showplayers.js') }}"></script>
 
 @endsection
 @section('content')
@@ -60,8 +61,8 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#playersModal"><img src="icons/favorite.png" alt="Descripción de la imagen" /> Favorites</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal"><img src="icons/edit.png"
                             alt="Descripción de la imagen" /> Edit profile</a>
-                    <a href="#"><img src="icons/gear.svg" alt="Descripción de la imagen" /> Configuracion</a>
-                    <a href="#"><img src="icons/like.png" alt="Descripción de la imagen" /> Configuracion</a>
+                    <a href="#"><img src="icons/gear.svg" alt="Descripción de la imagen" /> Settings</a>
+                    <a href="#"><img src="icons/like.png" alt="Descripción de la imagen" /> Your likes</a>
                 </div>
             </div>
         </div>

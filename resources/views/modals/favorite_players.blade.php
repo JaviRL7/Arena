@@ -9,14 +9,7 @@
                 <table id="playersTable" class="display">
                     <tbody>
                         @foreach ($players as $player)
-                            <tr>
-                                <td>
-                                    <img src={{ asset($player->photo)}}>
-                                    <img src={{ asset($player->currentTeam()->logo)}}>
-                                </td>
 
-                                <td><h1>{{ $player->nick }}</h1></td>
-                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -28,3 +21,6 @@
         </div>
     </div>
 </div>
+<script>
+    var csrfToken = '{{ csrf_token() }}';
+</script>
