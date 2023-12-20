@@ -321,3 +321,53 @@
 table.dataTable {
     width: auto !important;
 }
+
+
+/*Estilos para el div de jugadores favoritos*/
+.profile-comments-container {
+    gap: 10px; /* Esto añade un espacio entre los divs de los jugadores */
+    margin-bottom: 10px;
+}
+
+.player {
+    max-width: 100%; /* Esto hace que el div sea responsive */
+    width: 500px; /* Esto establece el ancho máximo del div */
+    border-radius: 10px; /* Esto redondea los bordes del div */
+    background-color: #e44445; /* Esto establece el color de fondo del div */
+    display: flex; /* Esto permite alinear los elementos dentro del div */
+    align-items: center; /* Esto centra verticalmente los elementos dentro del div */
+}
+
+.player .getFavorites-div {
+    order: 2; /* Esto coloca el div después de la imagen */
+}
+
+.player .getFavorites-name {
+    color: white;
+    margin-left: auto; /* Esto mueve el nombre a la derecha del div */
+}
+
+.player .getFavorites-photo {
+    order: 1; /* Esto coloca la imagen antes del div */
+    max-width: 100%; /* Esto hace que el div sea responsive */
+    width: 250px;
+}
+
+.player .getFavorites-link {
+    position: absolute;
+    top: 0;
+    color: rgb(134, 134, 187); /* Esto hace que el texto del enlace sea azul */
+    text-decoration: none; /* Esto elimina el subrayado del enlace */
+    background-color: blue; /* Esto hace que el fondo del enlace sea azul */
+    color: white; /* Esto hace que el texto del enlace sea blanco */
+    padding: 10px 20px; /* Esto añade un poco de relleno alrededor del texto del enlace para que parezca un botón */
+    border-radius: 5px; /* Esto redondea los bordes del enlace para que parezca un botón */
+
+}
+.getFavorites-text-button {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
