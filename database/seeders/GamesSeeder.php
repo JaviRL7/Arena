@@ -120,7 +120,7 @@ class GamesSeeder extends Seeder
         $game5 = Game::create([
             'team_blue_id' => 4,
             'team_red_id' => 2,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 2,
             'team_blue_result' => 'W',
             'team_red_result' => 'L']);
@@ -146,7 +146,7 @@ class GamesSeeder extends Seeder
         $game6 = Game::create([
             'team_blue_id' => 2,
             'team_red_id' => 4,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 3,
             'team_blue_result' => 'W',
             'team_red_result' => 'L']);
@@ -172,7 +172,7 @@ class GamesSeeder extends Seeder
         $game7 = Game::create([
             'team_blue_id' => 4,
             'team_red_id' => 2,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 4,
             'team_blue_result' => 'L',
             'team_red_result' => 'W']);

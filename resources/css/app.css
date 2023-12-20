@@ -81,6 +81,10 @@ main {
     font-family: "Pixel2_5"; /* Aplica la fuente a los enlaces del navbar */
     font-size: 20px; /* Ajusta esto al tamaño que desees */
 }
+.nav-link{
+    font-family: "Pixel2_5" !important; /* Aplica la fuente a los enlaces del navbar */
+    font-size: 20px !important;
+}
 body {
     padding-top: 60px; /* Esto debe ser igual a la altura del navbar */
 }

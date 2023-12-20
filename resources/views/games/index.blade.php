@@ -1,7 +1,9 @@
 
 @extends('layouts.plantilla')
 @section('title', 'show games')
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
+@endsection
 @section('content')
     <h1>Esto es el show de games</h1>
 

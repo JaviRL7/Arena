@@ -7,6 +7,7 @@ use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\MinigameController;
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +47,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
-//hacer un middleware para games
+//modificar para usar con series
+Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
+
+
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('games.result');
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');

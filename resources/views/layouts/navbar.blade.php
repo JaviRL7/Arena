@@ -17,7 +17,7 @@
             aria-labelledby="offcanvasNavbarLabel">
             <!--side bar header-->
             <div class="offcanvas-header border-bottom">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlin</h5>
+                <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlin</h4>
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
