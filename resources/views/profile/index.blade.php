@@ -5,9 +5,9 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/profile/comments.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/showplayers.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
 @endsection
 @section('content')
 

@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/profile/favorite', [ProfileController::class, 'favorite'])->name('profile.favorite');
+    Route::get('/profile/favorite', [ProfileController::class, 'getFavorite'])->name('profile.getFavorite');
 });
 
 

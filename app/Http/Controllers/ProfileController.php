@@ -46,6 +46,23 @@ class ProfileController extends Controller
             'players' => $players,
         ]);
     }
+    public function getFavorite()
+{
+    // Obtén el usuario actualmente autenticado
+    $user = Auth::user();
+
+    // Obtén los jugadores favoritos del usuario
+    $favoritePlayers = [
+        'favorite_player1' => $user->favorite_player1,
+        'favorite_player2' => $user->favorite_player2,
+        'favorite_player3' => $user->favorite_player3,
+        'favorite_player4' => $user->favorite_player4,
+        'favorite_player5' => $user->favorite_player5,
+    ];
+
+    // Devuelve los jugadores favoritos como una respuesta JSON
+    return response()->json($favoritePlayers);
+}
     public function favorite(Request $request)
     {
         // Obtén el usuario actualmente autenticado

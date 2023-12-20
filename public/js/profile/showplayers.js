@@ -1,5 +1,7 @@
+console.log('Ejecutando showplayers.js');
 $('a[data-bs-target="#playersModal"]').on('click', function(e) {
-    e.preventDefault();  // Evita que se muestre la modal inmediatamente
+    console.log('se esta ejecutando show.js');
+    e.preventDefault(); // Evita que se muestre la modal inmediatamente
 
     $.ajax({
         url: '/profile/favorite',
