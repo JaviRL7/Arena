@@ -439,3 +439,12 @@ body{
     width: 50%; /* Ajusta este valor para cambiar el tamaño de las imágenes */
     height: auto; /* Asegura que la altura de las imágenes sea automática */
 }
+
+
+/*Portada*/
+.right-top-div img {
+    margin: 0 auto;
+}
+.right-top-div {
+    border-radius: 5px;
+}
