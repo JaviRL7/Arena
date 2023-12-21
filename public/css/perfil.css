@@ -371,4 +371,32 @@ table.dataTable {
 }
 
 /*CARRUSEL DE SERIES*/
+.my-carousel .carousel-inner {
+    width: 50%; /* Ajusta este valor para cambiar el tamaño del carrusel */
+    margin: auto;
+}
 
+.my-carousel .carousel-item > div > img {
+    object-fit: cover; /* Esto hará que las imágenes se recorten en lugar de deformarse */
+    height: 100%;
+    width: 100%;
+}
+.my-carousel .carousel-control-prev,
+.my-carousel .carousel-control-next {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    background: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.my-carousel .carousel-control-prev {
+    left: 500px; /* Ajusta este valor para mover la flecha a la izquierda */
+}
+
+.my-carousel .carousel-control-next {
+    right: 500px; /* Ajusta este valor para mover la flecha a la derecha */
+}
