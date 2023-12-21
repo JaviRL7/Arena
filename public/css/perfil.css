@@ -404,7 +404,7 @@ table.dataTable {
 .final-image-container {
     width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
     margin: auto;
-    object-fit: cover;
+
 }
 
 .final-image {
@@ -427,4 +427,15 @@ body{
     font-family: 'Your Desired Font', sans-serif !important;
     white-space: nowrap; /* Esto evitará que el resultado se divida en varias líneas */
     margin-bottom: 20px;
+}
+.final-image-container {
+    display: flex; /* Añade esta línea */
+    justify-content: center; /* Añade esta línea */
+    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+    margin: auto;
+}
+
+.final-image-container img {
+    width: 50%; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+    height: auto; /* Asegura que la altura de las imágenes sea automática */
 }
