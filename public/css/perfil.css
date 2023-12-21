@@ -394,9 +394,37 @@ table.dataTable {
 }
 
 .my-carousel .carousel-control-prev {
-    left: 500px; /* Ajusta este valor para mover la flecha a la izquierda */
+    left: 25%; /* Ajusta este valor para mover la flecha a la izquierda */
 }
 
 .my-carousel .carousel-control-next {
-    right: 500px; /* Ajusta este valor para mover la flecha a la derecha */
+    right: 25%; /* Ajusta este valor para mover la flecha a la derecha */
+}
+
+.final-image-container {
+    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+    margin: auto;
+    object-fit: cover;
+}
+
+.final-image {
+    width: 100%;
+}
+body{
+    background-color: #fffcdc;
+}
+#titulo{
+    font-family: important;
+    color: #e44445;
+    margin-left: 25%;
+}
+.team-logo {
+    max-height: 60px; /* Esto hará que los logos sean de 60px de alto como máximo */
+}
+
+.result {
+    font-size: 1.75rem; /* Esto hará que el resultado sea del tamaño de un h3 */
+    font-family: 'Your Desired Font', sans-serif !important;
+    white-space: nowrap; /* Esto evitará que el resultado se divida en varias líneas */
+    margin-bottom: 20px;
 }
