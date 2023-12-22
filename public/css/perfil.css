@@ -119,7 +119,14 @@
     font-family: "salih";
     src: url("/Fuentes/salih/Salih_Regular.ttf");
 }
-
+@font-face {
+    font-family: "mol";
+    src: url("/Fuentes/mollen/Mollen Personal Use/Mollen-BoldPersonalUse.otf") format("opentype");
+}
+@font-face {
+    font-family: "digital";
+    src: url("/Fuentes/digital/DS-DIGI.TTF");
+}
 
 /*Modales*/
 .overlay{
@@ -457,8 +464,7 @@ body{
     background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
     color: white;
     text-align: center;
-    /*border-bottom-left-radius: 5px; /* Añade borde redondeado en la esquina inferior izquierda */
-    /*border-bottom-right-radius: 5px; /* Añade borde redondeado en la esquina inferior derecha */
+    font-family: important;
 }
 
 .image-container img {
@@ -475,4 +481,21 @@ body{
     border-bottom: 1px solid gray; /* Crea una línea gris */
     text-align: left;
     margin-bottom: 20px; /* Añade espacio debajo de la línea */
+    font-family: important;
+    color: #e44445;
   }
+  .title-secundary{
+
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: mol;
+    color: #333;
+  }
+.informacion{
+    font-family: mol;
+    color: #333;
+}
+.informacion a {
+    color: #333;
+    text-decoration: none;
+}
