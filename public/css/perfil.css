@@ -442,9 +442,37 @@ body{
 
 
 /*Portada*/
-.right-top-div img {
-    margin: 0 auto;
+.image-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
 }
-.right-top-div {
-    border-radius: 5px;
+
+.image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
+    color: white;
+    text-align: center;
+    /*border-bottom-left-radius: 5px; /* Añade borde redondeado en la esquina inferior izquierda */
+    /*border-bottom-right-radius: 5px; /* Añade borde redondeado en la esquina inferior derecha */
 }
+
+.image-container img {
+    /*border-radius: 5px;*/
+    transform-origin: center center;
+    transition: all .2s;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+}
+
+.image-container:hover img {
+    transform: scale(1.03); /* Aumenta el tamaño de la imagen al pasar el ratón */
+}
+.title-line {
+    border-bottom: 1px solid gray; /* Crea una línea gris */
+    text-align: left;
+    margin-bottom: 20px; /* Añade espacio debajo de la línea */
+  }
