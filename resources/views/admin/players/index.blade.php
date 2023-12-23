@@ -4,28 +4,23 @@
 
 @section('content')
 
-
 <div class="container-fluid">
     <div class="table-responsive">
         <table class="table_crud_admin">
             <thead>
                 <th>Photo</th>
                 <th>Nick</th>
-                <th>Nombre</th>
+                <th>Name</th>
                 <th>Role</th>
-
                 <th>Current team</th>
-
-
-                <th>Conthact expiration</th>
-
-                <th>actions</tr>
+                <th>Contract expiration</th>
+                <th>Actions</tr>
             </thead>
             <tbody>
                 @foreach ($players as $player)
                 <tr class="row-color">
                     <td>
-                        <img src="{{ asset($player->photo) }}" alt="{{ $player->photo }}"
+                        <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}"
                             class="w-36 h-36 object-cover rounded-full">
                     </td>
                     <td>
@@ -47,8 +42,6 @@
                             {{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name }}
                         </p>
                     </td>
-
-
                     <td>
                         <p>
                             {{$player->currentTeam()->pivot->contract_expiration_date;}}
@@ -56,7 +49,8 @@
                     </td>
 
                     <td>
-                        <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificar</a>
+                        <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificate</a> <br>
+                        <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Delete</a>
                     </td>
                 </tr>
             @endforeach
@@ -66,6 +60,4 @@
     <!-- Paginación -->
     {{ $players->links() }}
 </div>
-
-
 @endsection

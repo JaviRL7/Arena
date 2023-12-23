@@ -6,9 +6,6 @@ main {
     margin-top: 60px; /* Ajusta este valor según la altura de tu navbar */
 }
 
-
-/* Css para la tabla de colores de admin (retocar)*/
-
 .table_crud_admin th,
 .table_crud_admin td {
     padding: 2rem 3rem; /* cambiar esto para que no tenga tanto espacio*/
@@ -24,64 +21,20 @@ main {
     border-top: 2px solid #dee2e6;
 }
 
-/* Estilos personalizados para las celdas */
-.table_crud_admin .row-color:nth-child(even) td {
-    background-color: #f8f9fa; /* Un blanco más oscuro */
-    border-top: 1px solid blue;
-    border-bottom: 1px solid red;
-}
 
-.table_crud_admin .row-color:nth-child(odd) td {
-    background-color: #ffffff; /* Blanco */
-    border-top: 1px solid red;
-    border-bottom: 1px solid blue;
-}
 
-/*Formulario de crud*/
-.input-crud {
-    border-radius: 26px; /* Ajusta este valor para cambiar el grado de redondeo */
-    padding: 18px 22px; /* Ajusta estos valores para cambiar el tamaño del input */
-    font-size: 22px; /* Ajusta este valor para cambiar el tamaño del texto */
 
-    padding: 10px;
-}
-.input-crud.rounded-lg {
-    border-radius: 15px;
-}
 .label-crud {
     font-size: 1.5em;
 }
 .navbar {
     height: 120px; /* Ajusta esto a la altura que desees */
 }
-@font-face {
-    font-family: "Pixel";
-    src: url("/Fuentes/pixel/pixel.otf") format("opentype");
-}
-@font-face {
-    font-family: "Pixel2_5";
-    src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
-}
-@font-face {
-    font-family: "important";
-    src: url("/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf");
-}
-@font-face {
-    font-family: "Russian";
-    src: url("/Fuentes/Russian/Russian.otf") format("opentype");
-}
-@font-face {
-    font-family: "salih";
-    src: url("/Fuentes/salih/Salih_Regular.ttf");
-}
+
 .navbar {
     background-color: #fffcdc!important; /* Establece el color de fondo del navbar */
 }
-.navbar a {
-    font-family: "Pixel2_5"; /* Aplica la fuente a los enlaces del navbar */
-    font-size: 25px; /* Ajusta esto al tamaño que desees */
-    color: #e44445;
-}
+
 .nav-link{
     font-family: "Pixel2_5" !important; /* Aplica la fuente a los enlaces del navbar */
     font-size: 25px !important;
@@ -93,28 +46,9 @@ body {
 /*para el login*/
 /* Cambiar el color de fondo del formulario */
 
-/*footer*/
-.footer {
-    background-color: #e44445;
-    color: white;
-    padding: 20px 0;
-}
-.footer-title {
-    font-size: 60px;
-    font-family: "important";
-}
-.footer p, .footer ul, .footer li {
-    font-size: 18px;
-}
-
-.footer .links ul {
-    list-style-type: none;
-}
-
-.footer .links li {
-   margin-bottom: 10px;
-}
-
-.legal-links {
-   text-align: right;
+.input-crud {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e44445;
+    border-radius: 15px;
 }

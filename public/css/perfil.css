@@ -592,3 +592,33 @@ input.search-minigame {
     color: white; /* Cambia el color del texto a blanco */
     font-size: 30px; /* Aumenta el tamaño del texto */
 }
+/*footer*/
+.footer {
+    background-color: #e44445;
+    color: white;
+    padding: 20px 0;
+}
+.footer-title {
+    font-size: 60px;
+    font-family: "important";
+}
+.footer p, .footer ul, .footer li {
+    font-size: 18px;
+}
+
+.footer .links ul {
+    list-style-type: none;
+}
+
+.footer .links li {
+   margin-bottom: 10px;
+}
+
+.legal-links {
+   text-align: right;
+}
+/*ADMIN PANEL*/
+.edit-player-container{
+    min-height: 80vh;
+}
+

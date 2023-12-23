@@ -1,0 +1,150 @@
+/* Estilos Generales y Fuentes */
+body {
+    background-color: #fffcdc;
+    padding-top: 60px; /* Altura del navbar */
+}
+
+@font-face {
+    font-family: "Pixel";
+    src: url("/Fuentes/pixel/pixel.otf") format("opentype");
+}
+@font-face {
+    font-family: "Pixel2_5";
+    src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
+}
+/* Continuar con las demás declaraciones @font-face aquí, evitando duplicados */
+
+/* Layouts sin bordes */
+.container-fluid, .row, .col-12, main {
+    padding: 0;
+    margin: 0;
+}
+
+/* Header de Profile */
+.profile-header {
+    position: relative;
+    height: 500px;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-color: grey;
+}
+
+/* Información de Profile */
+.profile-info {
+    display: flex;
+    align-items: center;
+    background-color: #e44445;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+.profile-comments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    gap: 10px; /* Espacio entre los divs de los jugadores */
+}
+
+/* Icono de Profile y otros elementos relacionados */
+.profile-icon, .user-photo, .modal-user-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 200px;
+    margin-top: -125px;
+    position: relative;
+    z-index: 2;
+    object-fit: cover;
+}
+
+/* Texto de Profile y elementos relacionados */
+.profile-text h1, .profile-comments-container h1, .footer-title {
+    font-family: important;
+    font-size: 50px;
+    color: #ffff;
+}
+.profile-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Enlaces */
+.profile-links a, .navbar a, .nav-link {
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: "Pixel2_5";
+    font-size: 25px;
+}
+
+/* Modales y Comentarios */
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+}
+
+/* Tabla y DataTables */
+#playersTable, table.dataTable {
+    width: 100%;
+    border: none !important;
+}
+#playersTable td {
+    text-align: left !important;
+}
+
+/* Estilos de CRUD y Formulario */
+.table_crud_admin th, .table_crud_admin td {
+    padding: 2rem 3rem; /* ajustar espacio */
+    vertical-align: top;
+}
+.table_crud_admin .row-color:nth-child(even) td {
+    background-color: #f8f9fa; /* Un blanco más oscuro */
+}
+
+
+.navbar {
+    background-color: #fffcdc;
+    height: 120px; /* Altura del navbar */
+}
+.footer {
+    background-color: #e44445;
+    color: white;
+    padding: 20px 0;
+}
+.footer-title {
+    font-size: 60px;
+    font-family: "important";
+}
+.footer p, .footer ul, .footer li {
+    font-size: 18px;
+}
+
+.footer .links ul {
+    list-style-type: none;
+}
+
+.footer .links li {
+   margin-bottom: 10px;
+}
+
+.legal-links {
+   text-align: right;
+}
+
+/* Estilos Específicos */
+/* Agrega aquí otros estilos específicos que no entran en las categorías anteriores */
+
+/* ... Continúa con otros estilos específicos ... */
