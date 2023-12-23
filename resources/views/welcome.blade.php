@@ -59,7 +59,7 @@
             <div class="col-12" style="height: 300px;">
                 <div class="image-container">
                     <a href="ruta-de-la-imagen-3">
-                        <img src="material/faker.jpg" class="img-fluid h-100 w-100 object-fit-cover" alt="Imagen 3">
+                        <img src="material/faker.png" class="img-fluid h-100 w-100 object-fit-cover" alt="Imagen 3">
                     </a>
                     <div class="image-title">
                         <h1> Who is the player with the best KDA?</h1>

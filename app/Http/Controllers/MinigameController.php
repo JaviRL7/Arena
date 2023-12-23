@@ -20,19 +20,19 @@ class MinigameController extends Controller
         $clue = '';
         switch ($clueNumber) {
             case 1:
-                $clue = $player->role->name ?? 'Rol no encontrado';
+                $clue = $player->role->icono;
                 break;
             case 2:
-                $clue = $player->mostPlayedChampion()->name; // Asegúrate de que este método esté definido
+                $clue = $player->mostPlayedChampion()->square; // Asegúrate de que este método esté definido
                 break;
             case 3:
-                $clue = $player->country ?? 'País no encontrado';
+                $clue = $player->country;
                 break;
             case 4:
-                $clue = $player->currentTeam()->name; // Asegúrate de que este método esté definido
+                $clue = $player->currentTeam()->logo; // Asegúrate de que este método esté definido
                 break;
             case 5:
-                $clue = $player->randomTeammate()->nick; // Asegúrate de que este método esté definido
+                $clue = $player->randomTeammate()->photo; // Asegúrate de que este método esté definido
                 break;
             default:
                 $clue = 'No hay más pistas';

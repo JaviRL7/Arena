@@ -499,3 +499,96 @@ body{
     color: #333;
     text-decoration: none;
 }
+
+/*minigame*/
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.card {
+    width: 150px; /* Tamaño fijo para ancho */
+    height: 150px; /* Tamaño fijo para alto */
+    /* Resto de las propiedades */
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.front {
+    background-color: #e44445;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+}
+
+.back {
+    transform: rotateY(180deg);
+    height: 200px;
+    width: 200px;
+    background-color: #e44445;
+    border-radius: 15px;
+}
+
+.card.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.card.flipped .back {
+    transform: rotateY(0deg);
+}
+.card-wrapper {
+    width: 150px;
+    height: 150px;
+    gap: 20px;
+    margin: 50px;
+}
+.minigame-container{
+    min-height: 80vh;
+}
+
+input.search-minigame {
+    width: 100% ; /* Hace que el buscador sea más grande */
+    border: 2px solid red ; /* Añade bordes rojos */
+    border-radius: 25px ; /* Redondea los bordes */
+    padding: 10px ; /* Añade un poco de espacio interior para que el texto no esté pegado a los bordes */
+}
+
+.card {
+    border: none !important;
+}
+
+
+.btn-danger, .btn-outline-danger {
+    margin-top: 20px;
+    color: #e44445 !important;
+    border-color: #e44445 !important;
+
+}
+
+.btn-danger {
+    background-color: #e44445 !important;
+    margin-right: 30px;
+}
+.card-face p{
+    color: white;
+    font-size: 30px;
+}
+.card-face.back {
+    color: white; /* Cambia el color del texto a blanco */
+    font-size: 30px; /* Aumenta el tamaño del texto */
+}

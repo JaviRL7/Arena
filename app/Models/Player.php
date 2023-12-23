@@ -38,16 +38,17 @@ class Player extends Model
         return $teammates->random();
     }
     public function mostPlayedChampion()
-    {
-        return DB::table('games')
-            ->join('clasifications', 'games.id', '=', 'clasifications.game_id')
-            ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
-            ->select('champions.id', 'champions.name', DB::raw('count(*) as total'))
-            ->where('clasifications.player_id', $this->id)
-            ->groupBy('champions.id', 'champions.name')
-            ->orderBy('total', 'desc')
-            ->first();
-    }
+{
+    return DB::table('games')
+        ->join('clasifications', 'games.id', '=', 'clasifications.game_id')
+        ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
+        ->select('champions.id', 'champions.name', 'champions.square', DB::raw('count(*) as total'))
+        ->where('clasifications.player_id', $this->id)
+        ->groupBy('champions.id', 'champions.name', 'champions.square')
+        ->orderBy('total', 'desc')
+        ->first();
+}
+
 
     public function comments()
     {
