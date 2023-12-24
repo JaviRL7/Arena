@@ -67,11 +67,10 @@ class GamesController extends Controller
 
     public function indexadmin()
     {
-        $games = Game::orderBy('id')->get();
+        $games = Game::orderBy('id')->paginate(5);
         if (auth()->check() && auth()->user()->admin) {
             return view('admin.games.index', [
                 'games' => $games,
-
             ]);
         } else {
             return view('pages.players', [
@@ -152,4 +151,10 @@ class GamesController extends Controller
             'champions' => $champions
         ]);
     }
+    public function destroy(Game $game)
+{
+    $game->delete();
+
+    return redirect()->route('admin.games.index')->with('success', 'Game deleted successfully');
+}
 }

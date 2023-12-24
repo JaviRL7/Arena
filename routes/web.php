@@ -86,6 +86,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/games/{game}/edit', [GamesController::class, 'edit'])->name('admin.games.edit');
     Route::put('/games/{game}/edit', [GamesController::class, 'update'])->name('admin.games.update');
+    Route::delete('/admin/games/{game}', [GamesController::class, 'destroy'])->name('admin.games.delete');
 
     Route::get('/games/create', [GamesController::class, 'create'])->name('admin.games.create');
     Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');

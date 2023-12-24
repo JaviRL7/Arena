@@ -632,6 +632,10 @@ input.search-minigame {
     border: 2px solid #e44445;
     color: #e44445;
     border-radius: 15px;
+
+}
+.table_crud_admin {
+    border-width: 1px !important; /* Ajusta este valor según tus necesidades */
 }
 
 .table_crud_admin a:nth-child(1):hover {
@@ -724,7 +728,20 @@ input.search-minigame {
     border-spacing: 0 15px; /* Aumenta este valor para más espacio entre las filas */
 
 }
+.btn-primary{
+    background-color: white;
+    border: 2px solid #e44445;
+    color: #e44445;
+    border-radius: 15px;
+    text-align: center; /* Aligns the content in the center */
+    font-size: 1.2em; /* Increases the font size */
+}
 
+.btn-primary:hover {
+    background-color: #e44445 !important;
+    color: white !important;;
+    border-color: white !important;
+}
 .table_crud_admin tr {
     box-shadow: 0 0 0 2px #e44445;
     border-radius: 30px;
@@ -772,8 +789,42 @@ input.search-minigame {
 
 /*ADMIN PANEL*/
 
-.admin-contenido{
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+/* Estilo personalizado para los enlaces de paginación */
+.pagination {
+    justify-content: center; /* Alinea los enlaces de paginación al centro */
 }
+
+.pagination li a, .pagination li span {
+    color: red !important; /* Cambia el color a rojo */
+    font-size: 1.9em !important; /* Aumenta el tamaño del texto */
+}
+
+.edit-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.pagination .page-item.active .page-link {
+    background-color: #4CAF50; /* Color de fondo para el ítem activo */
+    border-color: #4CAF50; /* Color de borde para el ítem activo */
+}
+
+.pagination .page-link {
+    color: #4CAF50; /* Color del texto para los enlaces */
+    /* Otros estilos como padding, margin, etc. */
+}
+
+
+/*create a new game del admin*/
+
+.create-game {
+    background-color: #e44445;
+    color: white;
+    text-align: left;
+    padding: 20px;
+    border-radius: 15px;
+    width: 900px;
+    margin-left: 20px;
+}
+
