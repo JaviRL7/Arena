@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantilla_admin')
 @section('title', 'Players index')
 
 @section('content')
@@ -25,7 +25,7 @@
                             <p>{{ $player->nick }}</p>
                         </td>
                         <td>
-                            <span class="text-gray-500">{{ $player->name }} {{ $player->lastname1 }}</span>
+                            <p>{{ $player->name }} {{ $player->lastname1 }}</p>
                         </td>
                         <td>
                             <p>{{ $player->role->name }}</p>
@@ -38,43 +38,17 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificate</a> <br>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $player->id }}">Delete</button>
                         </td>
                     </tr>
 
-                    <!-- Ventana modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $player->id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <h1> holaaaaaaaaaaaaaaaa </h1>
+                    <!-- Modal -->
+                    @include('modals.delete')
 
-
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simpleModal" onclick="console.log('Button clicked!')">
-                    Open Modal
-                  </button>
-
-                  <!-- Ventana modal -->
-
             </tbody>
         </table>
+        {{ $players->links() }}
     </div>
-    <!-- Paginación -->
-    @include('modals.prueba')
-    {{ $players->links() }}
 </div>
-<script>
-$(document).ready(function() {
-    $('#simpleModal').on('show.bs.modal', function (e) {
-      console.log('Modal is opening');
-    });
-
-    $('#simpleModal').on('hide.bs.modal', function (e) {
-      console.log('Modal is closing');
-    });
-  });
-</script>
 @endsection

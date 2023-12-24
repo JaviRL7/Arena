@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
-});
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -61,7 +62,6 @@ Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->na
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');
 Route::get('/show/{team1Id}/{team2Id}', [PlayersController::class, 'show'])->name('players.show');
 Route::get('/player', [PlayersController::class, 'player'])->name('players.player');
-Route::delete('/players/{player}', 'PlayerController@destroy')->name('admin.players.destroy');
 
 Route::post('/minigame/check-response', [MinigameController::class, 'checkresponse'])->name('minigame.check_response');
 Route::get('/minigame', [MinigameController::class, 'index'])->name('minigame.index');
@@ -69,8 +69,6 @@ Route::get('/minigame/get-clue', [MinigameController::class, 'getClue'])->name('
 /************* Admin *************/
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-
-
     /************* Players *************/
     Route::get('/players', [PlayersController::class, 'index'])->name('admin.players.index');
     Route::get('/players/create', [PlayersController::class, 'create'])->name('admin.players.create');

@@ -675,9 +675,44 @@ input.search-minigame {
     min-height: 80vh;
     background-color: white;
 }
-.edit-player-container div:not(.separador){
+.edit-player-container > div:not(.separador, .modal-delete){
     border-radius: 15px;
     margin-bottom: 10px;
+}
+.model-delete-estilo{
+    max-height: 700px;
+    width: 900px !important;
+    overflow-y: auto;
+}
+.modal-dialog-estilo{
+    max-width: 900px !important;
+}
+.modal-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    width: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+    height: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+    padding: 10px;
+    margin: auto; /* Centra el contenedor en la modal */
+}
+.modal-body-estilo, .modal-footer-estilo {
+
+    text-align: center; /* Centra el texto */
+}
+.btn-estilo {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    border-radius: 15px;
+}
+.btn-blanco {
+    background-color: white !important;
+    border: 2px solid #e44445;
+    color: #e44445;
+    font-size: 1,2em;
 }
 .btn:hover {
     background-color: #e44445;
@@ -707,4 +742,38 @@ input.search-minigame {
     border: none;
     font-size: 1.1em; /* Aumenta el tamaño de la fuente */
     border-radius: 15px;
+}
+
+
+
+
+
+/*SIDE BAR*/
+
+.sidebar-estilo {
+    background-color: #e44445;
+    border-radius: 15px;
+}
+.titulo-estilo {
+    font-size: 2em; /* Aumenta el tamaño de la fuente */
+    font-family: important;
+    color: white;
+}
+.sidebar-estilo hr {
+    border-color: white; /* Cambia el color de las líneas de separación a blanco */
+}
+.enlace-estilo {
+    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
+    color: white !important; /* Cambia el color a blanco */
+    margin-bottom: 20px !important; /* Aumenta el margen inferior */
+    font-family: 'Tu Fuente', sans-serif !important; /* Cambia la fuente */
+}
+
+
+/*ADMIN PANEL*/
+
+.admin-contenido{
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
 }

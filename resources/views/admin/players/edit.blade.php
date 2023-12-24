@@ -24,7 +24,7 @@
                 this.role_name = selectedRole.text;
             }
         }">
-        <div style="background-color: #e44445; color: white; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="background-color: #e44445; color: white; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; border-radius: 15px">
             <div style="flex: 1 0 45%; margin: 20px; display: flex;">
                 <div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; background-color: white;">
                     <img x-show="photoData" :src="photoData" style="width: 100%;">
@@ -43,7 +43,7 @@
                 <h3> <span x-text="role_name"></span></h3>
             </div>
         </div>
-
+<br>
             <form action="{{ route('admin.players.update', $player) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
