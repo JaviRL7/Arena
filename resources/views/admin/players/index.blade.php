@@ -53,33 +53,28 @@
                         </div>
                     </div>
                 @endforeach
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simpleModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simpleModal" onclick="console.log('Button clicked!')">
                     Open Modal
                   </button>
 
                   <!-- Ventana modal -->
-                  <div class="modal" tabindex="-1" role="dialog" id="simpleModal">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Simple Modal</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>This is a simple modal!</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
             </tbody>
         </table>
     </div>
     <!-- Paginación -->
+    @include('modals.prueba')
     {{ $players->links() }}
 </div>
+<script>
+$(document).ready(function() {
+    $('#simpleModal').on('show.bs.modal', function (e) {
+      console.log('Modal is opening');
+    });
+
+    $('#simpleModal').on('hide.bs.modal', function (e) {
+      console.log('Modal is closing');
+    });
+  });
+</script>
 @endsection
