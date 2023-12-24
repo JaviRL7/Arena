@@ -18,7 +18,7 @@ return new class extends Migration
         $table->integer('kills');
         $table->integer('deaths');
         $table->integer('assists');
-        $table->foreign('player_id')->references('id')->on('players');
+        $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
         $table->foreign('game_id')->references('id')->on('games');
         $table->foreign('champion_id')->references('id')->on('champions');
         $table->primary(['player_id', 'game_id']);

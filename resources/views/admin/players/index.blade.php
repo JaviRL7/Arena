@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid edit-player-container">
     <div class="table-responsive">
         <table class="table_crud_admin">
             <thead>
@@ -50,7 +50,10 @@
 
                     <td>
                         <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificate</a> <br>
-                        <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Delete</a>
+                        <form action="{{ route('admin.players.destroy', ['player' => $player]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="text-blue" onclick="return confirm('Are you sure to delete this player?')">                        </form>
                     </td>
                 </tr>
             @endforeach

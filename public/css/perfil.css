@@ -618,7 +618,86 @@ input.search-minigame {
    text-align: right;
 }
 /*ADMIN PANEL*/
+.table_crud_admin a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+}
+
+/* Botón con fondo blanco y borde rojo */
+.table_crud_admin a:nth-child(1) {
+    background-color: white;
+    border: 2px solid #e44445;
+    color: #e44445;
+    border-radius: 15px;
+}
+
+.table_crud_admin a:nth-child(1):hover {
+    background-color: #e44445;
+    color: white;
+}
+
+/* Botón con fondo rojo y letras blancas */
+.table_crud_admin input[type="submit"] {
+    background-color: #e44445;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.table_crud_admin input[type="submit"]:hover {
+    background-color: white;
+    color: #e44445;
+    border: 2px solid #e44445; ;
+
+}
+.table_crud_admin a:nth-child(2) {
+    background-color: #e44445;
+    color: white;
+}
+
+.table_crud_admin a:nth-child(2):hover {
+    background-color: white;
+    color: #e44445;
+}
+
+.panel-admin{
+    background-color: white;
+}
 .edit-player-container{
     min-height: 80vh;
+    background-color: white;
+}
+.edit-player-container div:not(.separador){
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.btn:hover {
+    background-color: #e44445;
+    color: white;
+}
+.table_crud_admin {
+    border-collapse: separate;
+
+    border-spacing: 0 15px; /* Aumenta este valor para más espacio entre las filas */
+
+}
+
+.table_crud_admin tr {
+    box-shadow: 0 0 0 2px #e44445;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.table-responsive {
+    padding-left: 5px;
 }
 

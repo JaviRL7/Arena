@@ -61,6 +61,7 @@ Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->na
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');
 Route::get('/show/{team1Id}/{team2Id}', [PlayersController::class, 'show'])->name('players.show');
 Route::get('/player', [PlayersController::class, 'player'])->name('players.player');
+Route::delete('/players/{player}', 'PlayerController@destroy')->name('admin.players.destroy');
 
 Route::post('/minigame/check-response', [MinigameController::class, 'checkresponse'])->name('minigame.check_response');
 Route::get('/minigame', [MinigameController::class, 'index'])->name('minigame.index');

@@ -9,20 +9,12 @@ main {
 .table_crud_admin th,
 .table_crud_admin td {
     padding: 2rem 3rem; /* cambiar esto para que no tenga tanto espacio*/
-    vertical-align: top;
 }
 
 .table_crud_admin thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+    /*border-bottom: 2px solid #dee2e6;*/
 }
-
-.table_crud_admin tbody + tbody {
-    border-top: 2px solid #dee2e6;
-}
-
-
-
 
 .label-crud {
     font-size: 1.5em;
@@ -49,6 +41,10 @@ body {
 .input-crud {
     width: 100%;
     padding: 10px;
-    border: 2px solid #e44445;
+    border: 2px solid #e44445 !important;
     border-radius: 15px;
+}
+.btn:hover {
+    background-color: #e44445 !important;
+    color: white !important;
 }
