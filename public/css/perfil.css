@@ -575,7 +575,7 @@ input.search-minigame {
 
 .btn-danger, .btn-outline-danger {
     margin-top: 20px;
-    color: #e44445 !important;
+
     border-color: #e44445 !important;
 
 }
@@ -701,3 +701,10 @@ input.search-minigame {
     padding-left: 5px;
 }
 
+.btn-danger {
+    background-color: #e44445;
+    color: white;
+    border: none;
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente */
+    border-radius: 15px;
+}
