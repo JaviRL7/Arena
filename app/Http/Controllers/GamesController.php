@@ -7,6 +7,7 @@ use App\Models\Game;
 use App\Models\Score;
 use App\Models\Comment;
 use App\Models\Player;
+use App\Models\Serie;
 use App\Models\Team;
 use App\Models\Champion;
 
@@ -66,18 +67,23 @@ class GamesController extends Controller
     ///Los de admin
 
     public function indexadmin()
-    {
-        $games = Game::orderBy('id')->paginate(5);
-        if (auth()->check() && auth()->user()->admin) {
-            return view('admin.games.index', [
-                'games' => $games,
-            ]);
-        } else {
-            return view('pages.players', [
-                'games' => $games,
-            ]);
-        }
+{
+    $games = Game::orderBy('id')->paginate(5);
+    $series = Serie::orderBy('id')->paginate(5); // Asegúrate de que 'Serie' sea el nombre correcto de tu modelo
+
+    if (auth()->check() && auth()->user()->admin) {
+        return view('admin.games.index', [ // Cambia 'admin.index' por la vista que quieras mostrar
+            'games' => $games,
+            'series' => $series,
+        ]);
+    } else {
+        return view('pages.players', [
+            'games' => $games,
+            'series' => $series,
+        ]);
     }
+}
+
     public function show(Game $game)
 
     {

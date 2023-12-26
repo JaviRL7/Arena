@@ -48,7 +48,9 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $players->links() }}
+        <div style="display: flex; justify-content: left;">
+            {{ $players->links() }}
+        </div>
     </div>
 </div>
 @endsection

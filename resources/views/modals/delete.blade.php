@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body text-white">
-                <div class="modal-image-container">
+                <div class="modal-image-container modal-player-photo">
                     <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="w-36 h-36 object-cover rounded-full">
                 </div>
                 <div class=" text-white modal-body-estilo">

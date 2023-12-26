@@ -92,7 +92,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
     //Cambiar el otro store que deberia ser vote
  // Ruta para obtener los jugadores basado en los equipos seleccionados
-
+    /************* Series *************/
+    Route::get('/series', [SeriesController::class, 'indexadmin'])->name('admin.series.index');
+    Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
+    Route::post('/series/create', [SeriesController::class, 'store'])->name('admin.series.store');
+    Route::get('/series/{serie}/edit', [SeriesController::class, 'edit'])->name('admin.series.edit');
+    Route::put('/series/{serie}/edit', [SeriesController::class, 'update'])->name('admin.series.update');
+    Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.delete');
 
 
 

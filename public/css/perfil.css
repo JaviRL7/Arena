@@ -634,9 +634,7 @@ input.search-minigame {
     border-radius: 15px;
 
 }
-.table_crud_admin {
-    border-width: 1px !important; /* Ajusta este valor según tus necesidades */
-}
+
 
 .table_crud_admin a:nth-child(1):hover {
     background-color: #e44445;
@@ -683,6 +681,8 @@ input.search-minigame {
     border-radius: 15px;
     margin-bottom: 10px;
 }
+
+/*MODAL DELETE PLAYERS */
 .model-delete-estilo{
     max-height: 700px;
     width: 900px !important;
@@ -691,7 +691,7 @@ input.search-minigame {
 .modal-dialog-estilo{
     max-width: 900px !important;
 }
-.modal-image-container {
+.modal-player-photo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -702,6 +702,14 @@ input.search-minigame {
     padding: 10px;
     margin: auto; /* Centra el contenedor en la modal */
 }
+
+.modal-player-photo img {
+    max-width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    max-height: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .modal-body-estilo, .modal-footer-estilo {
 
     text-align: center; /* Centra el texto */
@@ -799,12 +807,7 @@ input.search-minigame {
     font-size: 1.9em !important; /* Aumenta el tamaño del texto */
 }
 
-.edit-player-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-}
 .pagination .page-item.active .page-link {
     background-color: #4CAF50; /* Color de fondo para el ítem activo */
     border-color: #4CAF50; /* Color de borde para el ítem activo */
@@ -828,3 +831,84 @@ input.search-minigame {
     margin-left: 20px;
 }
 
+/*modal delete de games*/
+.modal-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0 10px;
+}
+
+.logo {
+    max-height: 100%;
+    width: auto;
+}
+
+.vs {
+    align-self: center;
+}
+
+/*MODO GAMES DEL ADMIN GAMES*/
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-name {
+    text-align: center;
+}
+.team-logo {
+    object-fit: contain;
+}
+
+
+/*Crear serie*/
+
+
+.team-option {
+    display: flex;
+    align-items: center;
+}
+
+.img-flag {
+    height: 20px;
+    width: auto;
+    margin-left: 10px;
+}
+.form-group {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+.form-control {
+    border-color: red;
+}
+.wrapper {
+    border: 2px solid red;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row {
+    width: 80%;  /* Ajusta este valor según tus necesidades */
+    min-width: 300px;  /* Ajusta este valor según tus necesidades */
+}
+.team-select {
+    height: 50px; /* Ajusta la altura aquí */
+}
+
+.team-select .select2-selection__rendered {
+    line-height: 50px; /* Asegúrate de que esta línea coincida con la altura */
+}
