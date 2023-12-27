@@ -38,7 +38,7 @@ class SeriesController extends Controller
     $serie->team_2_id = $request->team2;
     $serie->type = $request->type;
     $serie->date = $request->date;
-    $serie->competition_id = $request->competition;
+    $serie->competition_id = $request->competition_id; // Cambio aquí
     $serie->save();
 
     return redirect()->route('admin.games.index')->with('success', 'Serie created successfully.');

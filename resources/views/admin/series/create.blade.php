@@ -19,7 +19,8 @@
                         <div class="form-group row">
                             <label for="competition" class="label-crud">Competition</label>
                             <div class="col-sm-10">
-                                <select id="competition" name="competition" class="input-crud rounded-lg">
+                                <select id="competition" name="competition_id" class="input-crud rounded-lg">
+
                                     <option value="">No competition selected</option>
 
                                     @foreach ($competitions as $competition)
