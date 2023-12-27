@@ -22,25 +22,26 @@ class SeriesController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'team_1_id' => 'required',
-            'team_2_id' => 'required',
-            'type' => 'required',
-            'date' => 'required',
-            'competition_id' => 'required',
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'team1' => 'required',
+        'team2' => 'required',
+        'type' => 'required',
+        'competition_id' => 'required',
+        'date' => 'required',
+    ]);
 
-        $serie = new Serie;
-        $serie->name = $request->name;
-        $serie->team_1_id = $request->team_1_id;
-        $serie->team_2_id = $request->team_2_id;
-        $serie->type = $request->type;
-        $serie->date = $request->date;
-        $serie->competition_id = $request->competition_id;
-        $serie->save();
+    $serie = new Serie;
+    $serie->name = $request->name;
+    $serie->team_1_id = $request->team1;
+    $serie->team_2_id = $request->team2;
+    $serie->type = $request->type;
+    $serie->date = $request->date;
+    $serie->competition_id = $request->competition;
+    $serie->save();
 
-        return redirect()->route('admin.series.index')->with('success', 'Serie created successfully.');
-    }
+    return redirect()->route('admin.games.index')->with('success', 'Serie created successfully.');
+}
+
 }

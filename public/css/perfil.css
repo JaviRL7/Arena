@@ -901,10 +901,7 @@ input.search-minigame {
     align-items: center;
     justify-content: center;
 }
-.row {
-    width: 80%;  /* Ajusta este valor según tus necesidades */
-    min-width: 300px;  /* Ajusta este valor según tus necesidades */
-}
+
 .team-select {
     height: 50px; /* Ajusta la altura aquí */
 }
@@ -912,3 +909,55 @@ input.search-minigame {
 .team-select .select2-selection__rendered {
     line-height: 50px; /* Asegúrate de que esta línea coincida con la altura */
 }
+/*create seriess*/
+/* styles.css */
+
+.container-create-series {
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .square-create-series {
+    width: 600px;
+    height: 600px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .select-container-create-series {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 45%;
+  }
+
+  .separator-create-series {
+    height: 80%;
+    width: 2px;
+    background-color: white;
+  }
+
+  .create-series-btn {
+    background-color: white;
+    color: #e44445;
+    border: 2px solid #e44445;
+    padding: 5px 10px;
+    margin-top: 1px;
+  }
+
+  .selected-items-create-series {
+    background-color: #e44445;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    height: 100px;
+    overflow: auto;
+  }
+
+

@@ -37,6 +37,10 @@ class Serie extends Model
     {
         return $this->belongsTo(Team::class, 'team_1_id');
     }
+    public function competition()
+    {
+        return $this->belongsTo(Competition::class, 'competition_id');
+    }
     public function games()
 {
     return $this->hasMany(Game::class);
