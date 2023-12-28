@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="" class="btn btn-primary">Show</a> <br>
+                                <a href="{{ route('admin.series.show', ['serie' => $serie]) }}" class="btn btn-primary">Show</a>
                                 <!-- Botón de "Eliminar" que abre la ventana modal -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $serie->id }}">
                                     Delete

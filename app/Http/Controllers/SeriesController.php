@@ -43,5 +43,9 @@ class SeriesController extends Controller
 
     return redirect()->route('admin.games.index')->with('success', 'Serie created successfully.');
 }
+public function show(Serie $serie)
+{
 
+    return view('admin.series.show', compact('serie'));
+}
 }
