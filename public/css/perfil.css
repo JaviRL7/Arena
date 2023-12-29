@@ -627,7 +627,7 @@ input.search-minigame {
 }
 
 /* Botón con fondo blanco y borde rojo */
-.table_crud_admin a:nth-child(1) {
+.table_crud_admin a {
     background-color: white;
     border: 2px solid #e44445;
     color: #e44445;
@@ -636,7 +636,7 @@ input.search-minigame {
 }
 
 
-.table_crud_admin a:nth-child(1):hover {
+.table_crud_admin a:hover {
     background-color: #e44445;
     color: white;
 }
@@ -652,22 +652,6 @@ input.search-minigame {
     transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
     border-radius: 15px;
     margin-top: 10px;
-}
-
-.table_crud_admin input[type="submit"]:hover {
-    background-color: white;
-    color: #e44445;
-    border: 2px solid #e44445; ;
-
-}
-.table_crud_admin a:nth-child(2) {
-    background-color: #e44445;
-    color: white;
-}
-
-.table_crud_admin a:nth-child(2):hover {
-    background-color: white;
-    color: #e44445;
 }
 
 .panel-admin{
@@ -780,7 +764,7 @@ input.search-minigame {
     border-radius: 15px;
 }
 .titulo-estilo {
-    font-size: 2em; /* Aumenta el tamaño de la fuente */
+    font-size: 3em; /* Aumenta el tamaño de la fuente */
     font-family: important;
     color: white;
 }
@@ -788,10 +772,10 @@ input.search-minigame {
     border-color: white; /* Cambia el color de las líneas de separación a blanco */
 }
 .enlace-estilo {
-    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
+    font-size: 1em !important; /* Aumenta el tamaño de la fuente */
     color: white !important; /* Cambia el color a blanco */
-    margin-bottom: 20px !important; /* Aumenta el margen inferior */
-    font-family: 'Tu Fuente', sans-serif !important; /* Cambia la fuente */
+    margin-bottom: 50px !important; /* Aumenta el margen inferior */
+    font-family: 'important' !important; /* Cambia la fuente */
 }
 
 
@@ -959,6 +943,52 @@ input.search-minigame {
     height: 100px;
     overflow: auto;
   }
+/*show*/
+.custom-div {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 55%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    background-color: #e44445;
+    border-radius: 25px;
+    color: white;
+    padding: 40px;
+}
 
+.custom-div img {
+    float: left;
+    margin-right: 10px;
+}
 
+.custom-div p {
+    font-size: 1.5em;
+    margin: 50px;
+}
+.custom-div select{
+    color: #333;
+    border-radius: 15px;
+}
+/*modal serie*/
+.input-style {
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.label-style {
+    display: block;
+    margin-bottom: 3px;
+}
+.modal-serie-form {
+    font-size: 1.2em;
+    line-height: 2;
+    max-height: 60vh;
+}
+
+.modal-serie-form input {
+    border-radius: 15px;
+    padding: 10px;
+}
 

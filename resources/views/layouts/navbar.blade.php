@@ -4,7 +4,7 @@
         <!--logo-->
         <a class="navbar-brand fs-4 d-flex align-items-center" href="#">
             <img src="/icons/logof.png" alt="Logo" style="height: 50px;">
-            <span class="ms-2">Gunlim</span>
+            <h2 style="font-family: important; color: #e44445">Gunlim</h2>
         </a>
 
         <!--Button-->
@@ -17,7 +17,7 @@
             aria-labelledby="offcanvasNavbarLabel">
             <!--side bar header-->
             <div class="offcanvas-header border-bottom">
-                <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlin</h4>
+                <h1 class="offcanvas-title" id="offcanvasNavbarLabel">Gunlin</h1>
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
@@ -25,7 +25,7 @@
             <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
                 <ul class="navbar-nav justify-content-center fs-5 flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page"  href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="{{ route('games.index') }}">Games</a>
@@ -38,6 +38,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="#Calendar">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="#Calendar">Transfers</a>
                     </li>
                 </ul>
                 <!--Login-->

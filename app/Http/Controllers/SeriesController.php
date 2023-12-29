@@ -45,7 +45,31 @@ class SeriesController extends Controller
 }
 public function show(Serie $serie)
 {
+    $teams = Team::all();
+    $competitions = Competition::all();
 
-    return view('admin.series.show', compact('serie'));
+    return view('admin.series.show', compact('serie', 'teams', 'competitions'));
+}
+public function update(Request $request, Serie $serie)
+{
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'team_1_id' => 'required',
+        'team_2_id' => 'required',
+        'type' => 'required',
+        'date' => 'required',
+        'competition_id' => 'required',
+    ]);
+
+    $serie->name = $validatedData['name'];
+    $serie->team_1_id = $validatedData['team_1_id'];
+    $serie->team_2_id = $validatedData['team_2_id'];
+    $serie->type = $validatedData['type'];
+    $serie->date = $validatedData['date'];
+    $serie->competition_id = $validatedData['competition_id'];
+
+    $serie->save();
+
+    return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
 }
 }

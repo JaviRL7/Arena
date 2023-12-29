@@ -93,12 +93,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
  // Ruta para obtener los jugadores basado en los equipos seleccionados
     /************* Series *************/
     Route::get('/series', [SeriesController::class, 'indexadmin'])->name('admin.series.index');
-    Route::get('/series/{serie}', [SeriesController::class, 'show'])->name('admin.series.show');
-    Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
-    Route::post('/series/create', [SeriesController::class, 'store'])->name('admin.series.store');
-    Route::get('/series/{serie}/edit', [SeriesController::class, 'edit'])->name('admin.series.edit');
-    Route::put('/series/{serie}/edit', [SeriesController::class, 'update'])->name('admin.series.update');
-    Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.delete');
+Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
+Route::post('/series/create', [SeriesController::class, 'store'])->name('admin.series.store');
+
+// Coloca las rutas con parámetros después de las rutas sin parámetros
+Route::get('/series/{serie}', [SeriesController::class, 'show'])->name('admin.series.show');
+Route::get('/series/{serie}/edit', [SeriesController::class, 'edit'])->name('admin.series.edit');
+Route::put('/series/{serie}/edit', [SeriesController::class, 'update'])->name('admin.series.update');
+Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.delete');
+
 
 
 
