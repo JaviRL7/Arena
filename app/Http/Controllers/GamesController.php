@@ -112,6 +112,7 @@ class GamesController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $game = Game::find($id);
 
         // Actualizar equipos, resultados, número del juego y bans
