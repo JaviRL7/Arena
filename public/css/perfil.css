@@ -957,7 +957,10 @@ input.search-minigame {
     color: white;
     padding: 40px;
 }
-
+.custom-div input{
+    border-radius: 15px;
+    color: #333;
+}
 .custom-div img {
     float: left;
     margin-right: 10px;
@@ -992,3 +995,127 @@ input.search-minigame {
     padding: 10px;
 }
 
+/*INTERRUCTOR*/
+ /* Estilo del interruptor de alternancia */
+ .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 auto; /* Centra el interruptor de alternancia */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 1px solid white; /* Añade un borde blanco */
+
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 3px; /* Ajusta la posición de la "bolita" */
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #e44445; /* Rojo cuando está activado */
+}
+
+input:not(:checked) + .slider {
+    background-color: #2196F3; /* Azul cuando no está activado */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Forma redondeada del interruptor (si prefieres) */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.custom-div {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    /* El resto de tus estilos */
+}
+
+.custom-div {
+    display: flex;
+
+    align-items: center;
+    gap: 40px;
+
+}
+
+.selector {
+    align-self: center;
+    margin-top: auto;
+}
+
+
+/*ban phase*/
+
+.ban_phase_blue {
+    background-color: #2196F3; /* Color de fondo azul */
+    border-radius: 10px; /* Bordes redondeados */
+    color: #FFFFFF; /* Color de texto blanco */
+    padding: 10px; /* Espaciado interno */
+}
+
+.ban_phase_blue select {
+    color:  #333; /* Color de texto negro para los selectores */
+}
+
+.ban_phase_red {
+    background-color: #e44445; /* Color de fondo rojo */
+    border-radius: 10px; /* Bordes redondeados */
+    color: #FFFFFF; /* Color de texto blanco */
+    padding: 10px; /* Espaciado interno */
+}
+
+.ban_phase_red select {
+    color:  #333; /* Color de texto negro para los selectores */
+}
+.ban_phase_blue, .ban_phase_red {
+    margin-left: 30%; /* Espacio alrededor del div */
+    margin-right: 30%; /* Espacio alrededor del div */
+    margin-top: 20px; /* Espacio alrededor del div */
+}
+
+/* Espacio entre los selectores y bordes redondeados */
+.ban_phase_blue select, .ban_phase_red select {
+    margin-top: 10px; /* Espacio entre los selectores */
+    border-radius: 5px; /* Bordes redondeados */
+}
