@@ -12,12 +12,12 @@ class CompetitionsSeeder extends Seeder
      */
     public function run(): void
     {
-        Competition::create(['name' => 'LEC', 'region' => 'Europe','logo' => 'competition_logo/LEC_logo.png']);
-        Competition::create(['name' => 'Worlds', 'region' => 'International','logo' => 'competition_logo/Worlds_logo.png']);
-        Competition::create(['name' => 'LCK', 'region' => 'Korea','logo' => 'competition_logo/LCk_logo.png']);
-        Competition::create(['name' => 'LPL', 'region' => 'China','logo' => 'competition_logo/LPL_logo.png']);
-        Competition::create(['name' => 'LCS', 'region' => 'North America','logo' => 'competition_logo/LCS_logo.png']);
-        Competition::create(['name' => 'MSI', 'region' => 'International','logo' => 'competition_logo/MSI_logo.png']);
+        Competition::create(['name' => 'LEC', 'region' => 'Europe','logo' => 'competition_logo/lec_logo.webp']);
+        Competition::create(['name' => 'Worlds', 'region' => 'International','logo' => 'competition_logo/worlds_logo.png']);
+        Competition::create(['name' => 'LCK', 'region' => 'Korea','logo' => 'competition_logo/lck_logo.webp']);
+        Competition::create(['name' => 'LPL', 'region' => 'China','logo' => 'competition_logo/lpl_logo.png']);
+        Competition::create(['name' => 'LCS', 'region' => 'North America','logo' => 'competition_logo/lcs_logo.webp']);
+        Competition::create(['name' => 'MSI', 'region' => 'International','logo' => 'competition_logo/msi_logo.png']);
 
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('contract_expiration_date');
             $table->date('end_date')->nullable();
-            $table->foreign('player_id')->references('id')->on('players');
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams');
             $table->unique(['player_id', 'team_id', 'start_date']);
             $table->timestamps();

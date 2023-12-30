@@ -114,5 +114,10 @@ public function player()
 
     return redirect()->route('admin.players.index')->with('success', 'Se ha modificado el player con éxito.');
 }
+public function destroy(Player $player)
+{
+    $player->delete();
+    return redirect()->route('admin.players.index');
+}
 
 }

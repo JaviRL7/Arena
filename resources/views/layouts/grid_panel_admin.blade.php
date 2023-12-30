@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid panel-admin">
 	<div class="row">
 		<div class="col-md-3">
             @include('layouts.sidebar')
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9 admin-contenido">
             @yield('content')
 		</div>
 	</div>

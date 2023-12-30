@@ -7,6 +7,7 @@ use App\Models\Game;
 use App\Models\Score;
 use App\Models\Comment;
 use App\Models\Player;
+use App\Models\Serie;
 use App\Models\Team;
 use App\Models\Champion;
 
@@ -67,18 +68,22 @@ class GamesController extends Controller
 
     public function indexadmin()
     {
-        $games = Game::orderBy('id')->get();
-        if (auth()->check() && auth()->user()->admin) {
-            return view('admin.games.index', [
-                'games' => $games,
+        $games = Game::orderBy('id')->paginate(5);
+        $series = Serie::orderBy('id')->paginate(5); // Asegúrate de que 'Serie' sea el nombre correcto de tu modelo
 
+        if (auth()->check() && auth()->user()->admin) {
+            return view('admin.games.index', [ // Cambia 'admin.index' por la vista que quieras mostrar
+                'games' => $games,
+                'series' => $series,
             ]);
         } else {
             return view('pages.players', [
                 'games' => $games,
+                'series' => $series,
             ]);
         }
     }
+
     public function show(Game $game)
 
     {
@@ -101,21 +106,28 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::find($id);
-        $champions = Champion::all(); // Asegúrate de tener todos los campeones disponibles para la selección
+        $champions = Champion::all();
         return view('admin.game.edit', compact('game', 'champions'));
     }
 
     public function update(Request $request, $id)
     {
+
         $game = Game::find($id);
 
-        // Actualizar equipos y resultados
+        // Actualizar equipos, resultados, número del juego y bans
         $game->team_blue_id = $request->team_blue_id;
         $game->team_red_id = $request->team_red_id;
         $game->team_blue_result = $request->team_blue_result;
         $game->team_red_result = $request->team_red_result;
-        $game->save();
+        $game->number = $request->number;
 
+        for ($i = 1; $i <= 5; $i++) {
+            $game->{"ban{$i}_blue"} = $request->{"ban{$i}_blue"};
+            $game->{"ban{$i}_red"} = $request->{"ban{$i}_red"};
+        }
+
+        $game->save();
 
         foreach ($request->players as $player_id => $player_data) {
             $player = Player::find($player_id);
@@ -130,7 +142,7 @@ class GamesController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.games.show', $game->id);
+        return redirect()->route('admin.games.index');
     }
     public function create()
     {
@@ -151,5 +163,11 @@ class GamesController extends Controller
             'team2Players' => $team2Players,
             'champions' => $champions
         ]);
+    }
+    public function destroy(Game $game)
+    {
+        $game->delete();
+
+        return redirect()->route('admin.games.index')->with('success', 'Game deleted successfully');
     }
 }

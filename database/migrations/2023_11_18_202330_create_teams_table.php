@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('league_id')->nullable();
             $table->string('country')->nullable();
             $table->foreign('league_id')->references('id')->on('competitions');
+            $table->string('team_photo')->nullable();
             $table->timestamps();
         });
     }

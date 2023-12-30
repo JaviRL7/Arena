@@ -120,7 +120,7 @@ class GamesSeeder extends Seeder
         $game5 = Game::create([
             'team_blue_id' => 4,
             'team_red_id' => 2,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 2,
             'team_blue_result' => 'W',
             'team_red_result' => 'L']);
@@ -146,7 +146,7 @@ class GamesSeeder extends Seeder
         $game6 = Game::create([
             'team_blue_id' => 2,
             'team_red_id' => 4,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 3,
             'team_blue_result' => 'W',
             'team_red_result' => 'L']);
@@ -172,7 +172,7 @@ class GamesSeeder extends Seeder
         $game7 = Game::create([
             'team_blue_id' => 4,
             'team_red_id' => 2,
-            'serie_id' => 1,
+            'serie_id' => 2,
             'number' => 4,
             'team_blue_result' => 'L',
             'team_red_result' => 'W']);
@@ -458,7 +458,7 @@ class GamesSeeder extends Seeder
     $game19 = Game::create([
         'team_blue_id' => 4,
         'team_red_id' => 5,
-        'serie_id' => 6,
+        'serie_id' => 5,
         'number' => 1,
         'team_blue_result' => 'L',
         'team_red_result' => 'W']);
@@ -481,7 +481,7 @@ class GamesSeeder extends Seeder
     $game20 = Game::create([
         'team_blue_id' => 4,
         'team_red_id' => 5,
-        'serie_id' => 6,
+        'serie_id' => 5,
         'number' => 2,
         'team_blue_result' => 'W',
         'team_red_result' => 'L']);
@@ -504,7 +504,7 @@ class GamesSeeder extends Seeder
     $game21 = Game::create([
         'team_blue_id' => 5,
         'team_red_id' => 4,
-        'serie_id' => 6,
+        'serie_id' => 5,
         'number' => 3,
         'team_blue_result' => 'L',
         'team_red_result' => 'W']);
@@ -527,7 +527,7 @@ class GamesSeeder extends Seeder
     $game22 = Game::create([
         'team_blue_id' => 5,
         'team_red_id' => 4,
-        'serie_id' => 6,
+        'serie_id' => 5,
         'number' => 4,
         'team_blue_result' => 'L',
         'team_red_result' => 'W']);
@@ -547,7 +547,124 @@ class GamesSeeder extends Seeder
     ];
 
     $game22->attachPlayers($resultados_blue, $resultados_red);
+    $game23 = Game::create([
+        'team_blue_id' => 1,
+        'team_red_id' => 6,
+        'serie_id' => 3,
+        'number' => 1,
+        'team_blue_result' => 'W',
+        'team_red_result' => 'L']);
+    $resultados_blue = [
+        ['kills' => 8, 'deaths' => 1, 'assists' => 3, 'champion_name' => 'rumble'],
+        ['kills' => 3, 'deaths' => 0, 'assists' => 6, 'champion_name' => 'bel\'veth'],
+        ['kills' => 4, 'deaths' => 0, 'assists' => 7, 'champion_name' => 'neeko'],
+        ['kills' => 3, 'deaths' => 0, 'assists' => 6, 'champion_name' => 'aphelios'],
+        ['kills' => 0, 'deaths' => 2, 'assists' => 15, 'champion_name' => 'milio']
+    ];
+    $resultados_red = [
+        ['kills' => 0, 'deaths' => 6, 'assists' => 0, 'champion_name' => 'aatrox'],
+        ['kills' => 0, 'deaths' => 2, 'assists' => 3, 'champion_name' => 'vi'],
+        ['kills' => 2, 'deaths' => 3, 'assists' => 0, 'champion_name' => 'syndra'],
+        ['kills' => 0, 'deaths' => 2, 'assists' => 2, 'champion_name' => 'xayah'],
+        ['kills' => 1, 'deaths' => 5, 'assists' => 1, 'champion_name' => 'rell']
+    ];
+
+    $game23->attachPlayers($resultados_blue, $resultados_red);
+    $game24 = Game::create([
+        'team_blue_id' => 6,
+        'team_red_id' => 1,
+        'serie_id' => 3,
+        'number' => 2,
+        'team_blue_result' => 'W',
+        'team_red_result' => 'L']);
+    $resultados_blue = [
+        ['kills' => 5, 'deaths' => 6, 'assists' => 3, 'champion_name' => 'jax'],
+        ['kills' => 4, 'deaths' => 2, 'assists' => 10, 'champion_name' => 'vi'],
+        ['kills' => 5, 'deaths' => 1, 'assists' => 9, 'champion_name' => 'sylas'],
+        ['kills' => 6, 'deaths' => 2, 'assists' => 9, 'champion_name' => 'varus'],
+        ['kills' => 4, 'deaths' => 1, 'assists' => 15, 'champion_name' => 'ashe']
+    ];
+    $resultados_red = [
+        ['kills' => 3, 'deaths' => 5, 'assists' => 4, 'champion_name' => 'aatrox'],
+        ['kills' => 2, 'deaths' => 5, 'assists' => 4, 'champion_name' => 'maokai'],
+        ['kills' => 5, 'deaths' => 6, 'assists' => 4, 'champion_name' => 'azir'],
+        ['kills' => 2, 'deaths' => 3, 'assists' => 2, 'champion_name' => 'caitlyn'],
+        ['kills' => 0, 'deaths' => 5, 'assists' => 7, 'champion_name' => 'lux']
+    ];
+
+    $game24->attachPlayers($resultados_blue, $resultados_red);
+    $game25 = Game::create([
+        'team_blue_id' => 1,
+        'team_red_id' => 6,
+        'serie_id' => 3,
+        'number' => 3,
+        'team_blue_result' => 'W',
+        'team_red_result' => 'L']);
+    $resultados_blue = [
+        ['kills' => 6, 'deaths' => 0, 'assists' => 2, 'champion_name' => 'graves'],
+        ['kills' => 1, 'deaths' => 2, 'assists' => 8, 'champion_name' => 'poppy'],
+        ['kills' => 3, 'deaths' => 0, 'assists' => 6, 'champion_name' => 'syndra'],
+        ['kills' => 1, 'deaths' => 1, 'assists' => 5, 'champion_name' => 'varus'],
+        ['kills' => 2, 'deaths' => 1, 'assists' => 9, 'champion_name' => 'ashe']
+    ];
+    $resultados_red = [
+        ['kills' => 0, 'deaths' => 3, 'assists' => 1, 'champion_name' => 'aatrox'],
+        ['kills' => 1, 'deaths' => 4, 'assists' => 1, 'champion_name' => 'vi'],
+        ['kills' => 3, 'deaths' => 3, 'assists' => 1, 'champion_name' => 'akali'],
+        ['kills' => 0, 'deaths' => 2, 'assists' => 2, 'champion_name' => 'kalista'],
+        ['kills' => 0, 'deaths' => 1, 'assists' => 2, 'champion_name' => 'caitlyn']
+    ];
+
+    $game25->attachPlayers($resultados_blue, $resultados_red);
+    $game26 = Game::create([
+        'team_blue_id' => 6,
+        'team_red_id' => 1,
+        'serie_id' => 3,
+        'number' => 4,
+        'team_blue_result' => 'W',
+        'team_red_result' => 'L']);
+    $resultados_blue = [
+        ['kills' => 3, 'deaths' => 0, 'assists' => 6, 'champion_name' => 'jax'],
+        ['kills' => 2, 'deaths' => 0, 'assists' => 10, 'champion_name' => 'sejuani'],
+        ['kills' => 7, 'deaths' => 1, 'assists' => 7, 'champion_name' => 'orianna'],
+        ['kills' => 7, 'deaths' => 1, 'assists' => 5, 'champion_name' => 'aphelios'],
+        ['kills' => 0, 'deaths' => 1, 'assists' => 14, 'champion_name' => 'bard']
+    ];
+    $resultados_red = [
+        ['kills' => 0, 'deaths' => 5, 'assists' => 1, 'champion_name' => 'quinn'],
+        ['kills' => 0, 'deaths' => 4, 'assists' => 0, 'champion_name' => 'rell'],
+        ['kills' => 3, 'deaths' => 4, 'assists' => 0, 'champion_name' => 'syndra'],
+        ['kills' => 0, 'deaths' => 2, 'assists' => 2, 'champion_name' => 'ashe'],
+        ['kills' => 0, 'deaths' => 4, 'assists' => 1, 'champion_name' => 'heimerdinger']
+    ];
+
+    $game26->attachPlayers($resultados_blue, $resultados_red);
+    $game27 = Game::create([
+        'team_blue_id' => 1,
+        'team_red_id' => 6,
+        'serie_id' => 3,
+        'number' => 5,
+        'team_blue_result' => 'W',
+        'team_red_result' => 'L']);
+    $resultados_blue = [
+        ['kills' => 0, 'deaths' => 6, 'assists' => 10, 'champion_name' => 'ornn'],
+        ['kills' => 1, 'deaths' => 3, 'assists' => 12, 'champion_name' => 'maokai'],
+        ['kills' => 6, 'deaths' => 2, 'assists' => 7, 'champion_name' => 'azir'],
+        ['kills' => 12, 'deaths' => 2, 'assists' => 5, 'champion_name' => 'kalista'],
+        ['kills' => 1, 'deaths' => 2, 'assists' => 15, 'champion_name' => 'renata glasc']
+    ];
+    $resultados_red = [
+        ['kills' => 3, 'deaths' => 5, 'assists' => 5, 'champion_name' => 'k\'sante'],
+        ['kills' => 0, 'deaths' => 4, 'assists' => 8, 'champion_name' => 'sejuani'],
+        ['kills' => 4, 'deaths' => 3, 'assists' => 4, 'champion_name' => 'jayce'],
+        ['kills' => 5, 'deaths' => 3, 'assists' => 5, 'champion_name' => 'caitlyn'],
+        ['kills' => 3, 'deaths' => 5, 'assists' => 3, 'champion_name' => 'lux']
+    ];
+
+    $game27->attachPlayers($resultados_blue, $resultados_red);
+
 }
+
 
 }
 

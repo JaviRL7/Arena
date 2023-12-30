@@ -9,14 +9,12 @@
                     <li>Patreon</li>
                     <li>Twitter</li>
                     <li>YouTube</li>
-                    <li>Editorial AnaitGames</li>
-                    <li>Twitch</li>
+                    <li>Discord</li>
                 </ul>
             </div>
             <div class="col-md-4 legal-links">
                 Aviso Legal<br/>
-                Política de puntuaciones<br/>
-                Volver arriba ↑
+                Política de cookies<br/>
             </div>
         </div>
     </div>

@@ -35,6 +35,7 @@
     margin-top: -125px;
     position: relative;
     z-index: 2;
+    object-fit: cover;
 }
 
 .profile-text {
@@ -118,9 +119,33 @@
     font-family: "salih";
     src: url("/Fuentes/salih/Salih_Regular.ttf");
 }
-
+@font-face {
+    font-family: "mol";
+    src: url("/Fuentes/mollen/Mollen Personal Use/Mollen-BoldPersonalUse.otf") format("opentype");
+}
+@font-face {
+    font-family: "digital";
+    src: url("/Fuentes/digital/DS-DIGI.TTF");
+}
 
 /*Modales*/
+.overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+}
+.remove-photo-icon1 {
+    margin-left: 190px; /* Ajusta este valor para cambiar la posición del icono de cierre */
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.7);
+    filter: invert(1);
+    padding: 4px;
+    border-radius: 30%;
+}
 .profile-comments-container {
     display: flex;
     flex-direction: column;
@@ -147,7 +172,7 @@
     align-items: center;
     justify-content: flex-end;
     color: #333;
-    font-size: 1, 5em;
+    font-size: 1,5em;
 }
 .comment-likes img {
     max-width: 15px;
@@ -167,6 +192,8 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+    object-fit: cover;
+
 }
 .user-info {
     flex-grow: 1;
@@ -198,6 +225,7 @@
     width: 100px;
     height: 100px;
     position: relative;
+    object-fit: cover;
 }
 .add-photo-icon {
     width: 35px;
@@ -207,6 +235,17 @@
     position: relative;
     padding: 4px;
     border-radius: 30%;
+
+}
+.add-photo-icon1 {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.7);
+    filter: invert(1);
+    padding: 4px;
+    border-radius: 30%;
+
+    margin-right: 100px;
 }
 .form-label {
     position: absolute;
@@ -235,4 +274,971 @@
 .modal-body {
     height: 80vh;
     overflow-y: auto;
+}
+
+/*EL FALLO ESTA AQUIIIII!!!!*/
+/* Estilos generales de la tabla */
+#playersTable {
+    width: 100%;
+    border: none !important;
+}
+
+/* Estilos para las celdas de la tabla */
+#playersTable td {
+    width: 100%;
+    height: auto;
+    text-align: left !important;
+    border: none !important;
+}
+
+/* Estilos para las imágenes de los jugadores */
+#playersTable .player-photo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Estilos para los logos de los equipos */
+#playersTable .team-logo {
+    width: 70px;
+    height: auto;
+    position: absolute;
+    bottom: 30px;
+    right: 530px;
+    border-radius: 0;
+
+}
+#playersTable .role-logo {
+    width: 70px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 530px;
+    border-radius: 0;
+}
+
+/* Estilos para los nombres de los jugadores */
+#playersTable .player-name {
+    font-size: 2em;
+    text-align: left;
+}
+
+/* Estilos para DataTables */
+table.dataTable {
+    width: auto !important;
+}
+
+
+/*Estilos para el div de jugadores favoritos*/
+.profile-comments-container {
+    gap: 10px; /* Esto añade un espacio entre los divs de los jugadores */
+    margin-bottom: 10px;
+}
+
+.player {
+    max-width: 100%; /* Esto hace que el div sea responsive */
+    width: 500px; /* Esto establece el ancho máximo del div */
+    border-radius: 10px; /* Esto redondea los bordes del div */
+    background-color: #e44445; /* Esto establece el color de fondo del div */
+    display: flex; /* Esto permite alinear los elementos dentro del div */
+    align-items: center; /* Esto centra verticalmente los elementos dentro del div */
+}
+
+.player .getFavorites-div {
+    order: 2; /* Esto coloca el div después de la imagen */
+}
+
+.player .getFavorites-name {
+    color: white;
+    margin-left: auto; /* Esto mueve el nombre a la derecha del div */
+}
+
+.player .getFavorites-photo {
+    order: 1; /* Esto coloca la imagen antes del div */
+    max-width: 100%; /* Esto hace que el div sea responsive */
+    width: 250px;
+}
+
+.player .getFavorites-link {
+    position: absolute;
+    top: 0;
+    color: rgb(134, 134, 187); /* Esto hace que el texto del enlace sea azul */
+    text-decoration: none; /* Esto elimina el subrayado del enlace */
+    background-color: blue; /* Esto hace que el fondo del enlace sea azul */
+    color: white; /* Esto hace que el texto del enlace sea blanco */
+    padding: 10px 20px; /* Esto añade un poco de relleno alrededor del texto del enlace para que parezca un botón */
+    border-radius: 5px; /* Esto redondea los bordes del enlace para que parezca un botón */
+
+}
+.getFavorites-text-button {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/*CARRUSEL DE SERIES*/
+.my-carousel .carousel-inner {
+    width: 50%; /* Ajusta este valor para cambiar el tamaño del carrusel */
+    margin: auto;
+}
+
+.my-carousel .carousel-item > div > img {
+    object-fit: cover; /* Esto hará que las imágenes se recorten en lugar de deformarse */
+    height: 100%;
+    width: 100%;
+}
+.my-carousel .carousel-control-prev,
+.my-carousel .carousel-control-next {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    background: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.my-carousel .carousel-control-prev {
+    left: 25%; /* Ajusta este valor para mover la flecha a la izquierda */
+}
+
+.my-carousel .carousel-control-next {
+    right: 25%; /* Ajusta este valor para mover la flecha a la derecha */
+}
+
+.final-image-container {
+    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+    margin: auto;
+
+}
+
+.final-image {
+    width: 100%;
+}
+body{
+    background-color: #fffcdc;
+}
+#titulo{
+    font-family: important;
+    color: #e44445;
+    margin-left: 25%;
+}
+.team-logo {
+    max-height: 60px; /* Esto hará que los logos sean de 60px de alto como máximo */
+}
+
+.result {
+    font-size: 1.75rem; /* Esto hará que el resultado sea del tamaño de un h3 */
+    font-family: 'Your Desired Font', sans-serif !important;
+    white-space: nowrap; /* Esto evitará que el resultado se divida en varias líneas */
+    margin-bottom: 20px;
+}
+.final-image-container {
+    display: flex; /* Añade esta línea */
+    justify-content: center; /* Añade esta línea */
+    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+    margin: auto;
+}
+
+.final-image-container img {
+    width: 50%; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+    height: auto; /* Asegura que la altura de las imágenes sea automática */
+}
+
+
+/*Portada*/
+.image-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+}
+
+.image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
+    color: white;
+    text-align: center;
+    font-family: important;
+}
+
+.image-container img {
+    /*border-radius: 5px;*/
+    transform-origin: center center;
+    transition: all .2s;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+}
+
+.image-container:hover img {
+    transform: scale(1.03); /* Aumenta el tamaño de la imagen al pasar el ratón */
+}
+.title-line {
+    border-bottom: 1px solid gray; /* Crea una línea gris */
+    text-align: left;
+    margin-bottom: 20px; /* Añade espacio debajo de la línea */
+    font-family: important;
+    color: #e44445;
+  }
+  .title-secundary{
+
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: mol;
+    color: #333;
+  }
+.informacion{
+    font-family: mol;
+    color: #333;
+}
+.informacion a {
+    color: #333;
+    text-decoration: none;
+}
+
+/*minigame*/
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.card {
+    width: 150px; /* Tamaño fijo para ancho */
+    height: 150px; /* Tamaño fijo para alto */
+    /* Resto de las propiedades */
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.front {
+    background-color: #e44445;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+}
+
+.back {
+    transform: rotateY(180deg);
+    height: 200px;
+    width: 200px;
+    background-color: #e44445;
+    border-radius: 15px;
+}
+
+.card.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.card.flipped .back {
+    transform: rotateY(0deg);
+}
+.card-wrapper {
+    width: 150px;
+    height: 150px;
+    gap: 20px;
+    margin: 50px;
+}
+.minigame-container{
+    min-height: 80vh;
+}
+
+input.search-minigame {
+    width: 100% ; /* Hace que el buscador sea más grande */
+    border: 2px solid red ; /* Añade bordes rojos */
+    border-radius: 25px ; /* Redondea los bordes */
+    padding: 10px ; /* Añade un poco de espacio interior para que el texto no esté pegado a los bordes */
+}
+
+.card {
+    border: none !important;
+}
+
+
+.btn-danger, .btn-outline-danger {
+    margin-top: 20px;
+
+    border-color: #e44445 !important;
+
+}
+
+.btn-danger {
+    background-color: #e44445 !important;
+    margin-right: 30px;
+}
+.card-face p{
+    color: white;
+    font-size: 30px;
+}
+.card-face.back {
+    color: white; /* Cambia el color del texto a blanco */
+    font-size: 30px; /* Aumenta el tamaño del texto */
+}
+/*footer*/
+.footer {
+    background-color: #e44445;
+    color: white;
+    padding: 20px 0;
+}
+.footer-title {
+    font-size: 60px;
+    font-family: "important";
+}
+.footer p, .footer ul, .footer li {
+    font-size: 18px;
+}
+
+.footer .links ul {
+    list-style-type: none;
+}
+
+.footer .links li {
+   margin-bottom: 10px;
+}
+
+.legal-links {
+   text-align: right;
+}
+/*ADMIN PANEL*/
+.table_crud_admin a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+}
+
+/* Botón con fondo blanco y borde rojo */
+.table_crud_admin a {
+    background-color: white;
+    border: 2px solid #e44445;
+    color: #e44445;
+    border-radius: 15px;
+
+}
+
+
+.table_crud_admin a:hover {
+    background-color: #e44445;
+    color: white;
+}
+
+/* Botón con fondo rojo y letras blancas */
+.table_crud_admin input[type="submit"] {
+    background-color: #e44445;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.panel-admin{
+    background-color: white;
+}
+.edit-player-container{
+    min-height: 80vh;
+    background-color: white;
+}
+.edit-player-container > div:not(.separador, .modal-delete){
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+/*MODAL DELETE PLAYERS */
+.model-delete-estilo{
+    max-height: 700px;
+    width: 900px !important;
+    overflow-y: auto;
+}
+.modal-dialog-estilo{
+    max-width: 900px !important;
+}
+.modal-player-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    width: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+    height: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+    padding: 10px;
+    margin: auto; /* Centra el contenedor en la modal */
+}
+
+.modal-player-photo img {
+    max-width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    max-height: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.modal-body-estilo, .modal-footer-estilo {
+
+    text-align: center; /* Centra el texto */
+}
+.btn-estilo {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    border-radius: 15px;
+}
+.btn-blanco {
+    background-color: white !important;
+    border: 2px solid #e44445;
+    color: #e44445;
+    font-size: 2em;
+}
+.btn:hover {
+    background-color: #e44445;
+    color: white;
+}
+.table_crud_admin {
+    border-collapse: separate;
+
+    border-spacing: 0 15px; /* Aumenta este valor para más espacio entre las filas */
+
+}
+.btn-primary{
+    background-color: white;
+    border: 2px solid #e44445;
+    color: #e44445;
+    border-radius: 15px;
+    text-align: center; /* Aligns the content in the center */
+    font-size: 1.2em; /* Increases the font size */
+}
+
+.btn-primary:hover {
+    background-color: #e44445 !important;
+    color: white !important;;
+    border-color: white !important;
+}
+.table_crud_admin tr {
+    box-shadow: 0 0 0 2px #e44445;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.table-responsive {
+    padding-left: 5px;
+}
+
+.btn-danger {
+    background-color: #e44445;
+    color: white;
+    border: none;
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente */
+    border-radius: 15px;
+}
+
+
+
+
+
+/*SIDE BAR*/
+
+.sidebar-estilo {
+    background-color: #e44445;
+    border-radius: 15px;
+}
+.titulo-estilo {
+    font-size: 3em; /* Aumenta el tamaño de la fuente */
+    font-family: important;
+    color: white;
+}
+.sidebar-estilo hr {
+    border-color: white; /* Cambia el color de las líneas de separación a blanco */
+}
+.enlace-estilo {
+    font-size: 1em !important; /* Aumenta el tamaño de la fuente */
+    color: white !important; /* Cambia el color a blanco */
+    margin-bottom: 50px !important; /* Aumenta el margen inferior */
+    font-family: 'important' !important; /* Cambia la fuente */
+}
+
+
+/*ADMIN PANEL*/
+
+/* Estilo personalizado para los enlaces de paginación */
+.pagination {
+    justify-content: center; /* Alinea los enlaces de paginación al centro */
+}
+
+.pagination li a, .pagination li span {
+    color: red !important; /* Cambia el color a rojo */
+    font-size: 1.9em !important; /* Aumenta el tamaño del texto */
+}
+
+
+.pagination .page-item.active .page-link {
+    background-color: #4CAF50; /* Color de fondo para el ítem activo */
+    border-color: #4CAF50; /* Color de borde para el ítem activo */
+}
+
+.pagination .page-link {
+    color: #4CAF50; /* Color del texto para los enlaces */
+    /* Otros estilos como padding, margin, etc. */
+}
+
+
+/*create a new game del admin*/
+
+.create-game {
+    background-color: #e44445;
+    color: white;
+    text-align: left;
+    padding: 20px;
+    border-radius: 15px;
+    width: 900px;
+    margin-left: 20px;
+}
+
+/*modal delete de games*/
+.modal-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0 10px;
+}
+
+.logo {
+    max-height: 100%;
+    width: auto;
+}
+
+.vs {
+    align-self: center;
+}
+
+/*MODO GAMES DEL ADMIN GAMES*/
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-name {
+    text-align: center;
+}
+.team-logo {
+    object-fit: contain;
+}
+
+
+/*Crear serie*/
+
+
+.team-option {
+    display: flex;
+    align-items: center;
+}
+
+.img-flag {
+    height: 20px;
+    width: auto;
+    margin-left: 10px;
+}
+.form-group {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+.form-control {
+    border-color: red;
+}
+.wrapper {
+    border: 2px solid red;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-select {
+    height: 50px; /* Ajusta la altura aquí */
+}
+
+.team-select .select2-selection__rendered {
+    line-height: 50px; /* Asegúrate de que esta línea coincida con la altura */
+}
+/*create seriess*/
+/* styles.css */
+
+.container-create-series {
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .square-create-series {
+    width: 600px;
+    height: 600px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .select-container-create-series {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 45%;
+  }
+
+  .separator-create-series {
+    height: 80%;
+    width: 2px;
+    background-color: white;
+  }
+
+  .create-series-btn {
+    background-color: white;
+    color: #e44445;
+    border: 2px solid #e44445;
+    padding: 5px 10px;
+    margin-top: 1px;
+  }
+
+  .selected-items-create-series {
+    background-color: #e44445;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    height: 100px;
+    overflow: auto;
+  }
+/*show*/
+
+/*modal serie*/
+.input-style {
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.label-style {
+    display: block;
+    margin-bottom: 3px;
+}
+.modal-serie-form {
+    font-size: 1.2em;
+    line-height: 2;
+    max-height: 60vh;
+}
+
+.modal-serie-form input {
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/*INTERRUCTOR*/
+ /* Estilo del interruptor de alternancia */
+ .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 auto; /* Centra el interruptor de alternancia */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 1px solid white; /* Añade un borde blanco */
+
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 3px; /* Ajusta la posición de la "bolita" */
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #e44445; /* Rojo cuando está activado */
+}
+
+input:not(:checked) + .slider {
+    background-color: #2196F3; /* Azul cuando no está activado */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Forma redondeada del interruptor (si prefieres) */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*CUSTOM DIV*/
+.custom-div {
+    display: flex; /* Alinea los hijos de lado a lado */
+    flex-direction: row; /* Alinea los hijos horizontalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples filas si no hay suficiente espacio */
+    gap: 40px; /* Espacio de 40px entre los hijos */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 60%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    background-color: #e44445;
+    border-radius: 25px;
+    color: white;
+    padding: 40px;
+}
+
+.custom-div input,
+.custom-div img,
+.custom-div p,
+.custom-div select {
+    flex: 1 0 auto; /* Hace que los elementos sean flexibles */
+}
+
+.custom-div input {
+    border-radius: 15px;
+    color: #333;
+}
+
+.custom-div img {
+    float: left;
+    margin-right: 10px;
+}
+
+.custom-div p {
+    font-size: 1.5em;
+    margin: 50px;
+}
+
+.custom-div select {
+    color: #333;
+    border-radius: 15px;
+}
+
+
+
+
+
+/*ban phase*/
+
+.ban_phase_blue {
+    background-color: #2196F3;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px;
+    border-right: none; /* Elimina el borde derecho */
+}
+
+.ban_phase_blue select {
+    color:  #333;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.ban_phase_red {
+    background-color: #e44445;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px;
+    border-left: none; /* Elimina el borde izquierdo */
+    text-align: right; /* Alinea el texto a la derecha */
+}
+
+.ban_phase_red select {
+    color:  #333;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.ban_phase_container {
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.ban_phase_blue, .ban_phase_red {
+    width: 50%;
+    box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho */
+    font-size: 1.2em;
+
+}
+.titulos{
+    color: #e44445;
+    font-family: important;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-bottom: 5px;
+}
+
+.custom-div {
+    margin-top: 0; /* Elimina el margen superior */
+    font-size: 1.2em;
+    /* El resto de tus estilos... */
+}
+/*table de show editar games*/
+
+.my-table-container {
+    display: flex; /* Alinea los hijos de lado a lado */
+    justify-content: center; /* Centra los hijos horizontalmente */
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+}
+.my-table-container input{
+    border-radius: 15px;
+    width: 50%;
+}
+.my-table-container select{
+    border-radius: 15px;
+    width: 75%;
+}
+.my-table-container table {
+    border-collapse: collapse; /* Combina los bordes de las celdas */
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+}
+
+.my-table-container td, .my-table-container th {
+    padding: 3px; /* Añade espacio alrededor del contenido de las celdas */
+    border-bottom: 1px solid #000; /* Añade una línea de un píxel debajo de cada celda */
+}
+.custom-div input[type="submit"] {
+    background-color: #2196F3; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa por encima */
+    font-size: 20px; /* Tamaño del texto del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    margin-left: 60%;
+    border: none; /* Elimina el borde del botón */
+}
+
+.custom-div input[type="submit"]:hover {
+    background-color: #e44445; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: 2px solid white; /* Agrega un borde blanco al hacer hover */
+}
+.custom-div-2 {
+    background-color: #e44445;
+    color: white;
+    border-radius: 15px;
+    width: 50%;
+
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+}
+
+.custom-div-2 .logo {
+    float: left;
+    margin-right: 20px;
+}
+
+.custom-div-2 .edit-button {
+    width: 100px;
+    float: right; /* Alinea el botón a la derecha */
+    margin-top: -40px;
+}
+/*modal configure*/
+.modal-configure .modal-dialog {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+.modal-body-configure{
+    max-height: 60vh;
+    padding: 10%;
+}
+
+
+/*calnedar*/
+
+.my-table-container-calendar {
+    width: 100%;
+}
+
+.my-table-calendar {
+    width: 100%;
+}
+
+.game-calendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teams-calendar {
+    width: 40%;
+    text-align: center;
+}
+
+.team-logo-calendar {
+    max-height: 40px;
 }
