@@ -18,58 +18,69 @@ class SeriesController extends Controller
     {
         $competitions = Competition::all();
         $teams = Team::all();
-        return view('admin.series.create', ['competitions' => $competitions, 'teams' => $teams ]);
+        return view('admin.series.create', ['competitions' => $competitions, 'teams' => $teams]);
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'team1' => 'required',
-        'team2' => 'required',
-        'type' => 'required',
-        'competition_id' => 'required',
-        'date' => 'required',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'team1' => 'required',
+            'team2' => 'required',
+            'type' => 'required',
+            'competition_id' => 'required',
+            'date' => 'required',
+        ]);
 
-    $serie = new Serie;
-    $serie->name = $request->name;
-    $serie->team_1_id = $request->team1;
-    $serie->team_2_id = $request->team2;
-    $serie->type = $request->type;
-    $serie->date = $request->date;
-    $serie->competition_id = $request->competition_id; // Cambio aquí
-    $serie->save();
+        $serie = new Serie;
+        $serie->name = $request->name;
+        $serie->team_1_id = $request->team1;
+        $serie->team_2_id = $request->team2;
+        $serie->type = $request->type;
+        $serie->date = $request->date;
+        $serie->competition_id = $request->competition_id; // Cambio aquí
+        $serie->save();
 
-    return redirect()->route('admin.games.index')->with('success', 'Serie created successfully.');
-}
-public function show(Serie $serie)
-{
-    $teams = Team::all();
-    $competitions = Competition::all();
+        return redirect()->route('admin.games.index')->with('success', 'Serie created successfully.');
+    }
+    public function show(Serie $serie)
+    {
+        $teams = Team::all();
+        $competitions = Competition::all();
 
-    return view('admin.series.show', compact('serie', 'teams', 'competitions'));
-}
-public function update(Request $request, Serie $serie)
-{
-    $validatedData = $request->validate([
-        'name' => 'required',
-        'team_1_id' => 'required',
-        'team_2_id' => 'required',
-        'type' => 'required',
-        'date' => 'required',
-        'competition_id' => 'required',
-    ]);
+        return view('admin.series.show', compact('serie', 'teams', 'competitions'));
+    }
+    public function update(Request $request, Serie $serie)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'team_1_id' => 'required',
+            'team_2_id' => 'required',
+            'type' => 'required',
+            'date' => 'required',
+            'competition_id' => 'required',
+        ]);
 
-    $serie->name = $validatedData['name'];
-    $serie->team_1_id = $validatedData['team_1_id'];
-    $serie->team_2_id = $validatedData['team_2_id'];
-    $serie->type = $validatedData['type'];
-    $serie->date = $validatedData['date'];
-    $serie->competition_id = $validatedData['competition_id'];
+        $serie->name = $validatedData['name'];
+        $serie->team_1_id = $validatedData['team_1_id'];
+        $serie->team_2_id = $validatedData['team_2_id'];
+        $serie->type = $validatedData['type'];
+        $serie->date = $validatedData['date'];
+        $serie->competition_id = $validatedData['competition_id'];
 
-    $serie->save();
+        $serie->save();
 
-    return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
-}
+        return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
+    }
+    public function calendar()
+    {
+        $series = Serie::where('date', '>=', now())->orderBy('date')->get();
+
+        $seriesByDate = $series->groupBy(function ($serie) {
+            $date = \DateTime::createFromFormat('Y-m-d', $serie->date);
+            return $date->format('Y-m-d');
+        });
+
+        return view('calendar.index', ['seriesByDate' => $seriesByDate]);
+    }
 }

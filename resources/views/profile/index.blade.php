@@ -6,7 +6,6 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/profile/comments.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/showplayers.js') }}"></script>
-
     <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
 @endsection
 @section('content')
@@ -52,7 +51,6 @@
                 </div>
             </div>
 
-            <div class="row m-0 justify-content-center">
                 <div class="col-12 p-0 profile-links-container">
                     <div class="profile-links">
                         <a href="#" id="comments-link"><img src="icons/comments.png" alt="Descripción de la imagen" />
@@ -61,11 +59,14 @@
                                 alt="Descripción de la imagen" /> Favorites</a>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal"><img
                                 src="icons/edit.png" alt="Descripción de la imagen" /> Edit profile</a>
-                        <a href="#"><img src="icons/gear.svg" alt="Descripción de la imagen" /> Settings</a>
-                        <a href="#"><img src="icons/like.png" alt="Descripción de la imagen" /> Your likes</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#updateModal">
+                                    <img src="icons/gear.svg" alt="Descripción de la imagen" /> Settings</a>
+                                <a href="#">
+                                    <img src="icons/like.png" alt="Descripción de la imagen" /> Your likes</a>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="row m-0">
             <div class="col-md-12 p-0 profile-comments-container">
@@ -74,4 +75,6 @@
         </div>
         @include('modals.edit_profile')
         @include('modals.favorite_players')
+        @include('modals.configure')
+
     @endsection

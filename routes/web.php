@@ -41,7 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/favorite', [ProfileController::class, 'favorite'])->name('profile.favorite');
     Route::get('/profile/favorite', [ProfileController::class, 'getFavorite'])->name('profile.getFavorite');
-});
+    Route::post('/profile/configure', [ProfileController::class, 'configure'])->name('profile.configure');}
+);
+
 
 
 
@@ -120,6 +122,7 @@ Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('ad
     Route::delete('/teams/{player}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.destroy');
 });
 
+Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar');
 
 
 

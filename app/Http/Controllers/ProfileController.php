@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use App\Models\Player;
 
@@ -47,17 +47,17 @@ class ProfileController extends Controller
         ]);
     }
     public function getFavorite()
-{
-    $user = Auth::user();
-    $favoritePlayers = Player::whereIn('id', [
-        $user->favorite_player1,
-        $user->favorite_player2,
-        $user->favorite_player3,
-        $user->favorite_player4,
-        $user->favorite_player5,
-    ])->get();
-    return response()->json($favoritePlayers);
-}
+    {
+        $user = Auth::user();
+        $favoritePlayers = Player::whereIn('id', [
+            $user->favorite_player1,
+            $user->favorite_player2,
+            $user->favorite_player3,
+            $user->favorite_player4,
+            $user->favorite_player5,
+        ])->get();
+        return response()->json($favoritePlayers);
+    }
     public function favorite(Request $request)
     {
         // Obtén el usuario actualmente autenticado
@@ -162,6 +162,37 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
+    public function configure(Request $request)
+{
+    $user = Auth::user();
+
+    if ($request->filled('current_password')) {
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'La contraseña actual es incorrecta']);
+        }
+
+        if ($request->filled('email')) {
+            $request->validate(['email' => 'required|email|unique:users,email,' . Auth::id()]);
+            $user->email = $request->email;
+        }
+
+        if ($request->filled('password')) {
+            $request->validate(['password' => 'required|min:8']);
+            $user->password = Hash::make($request->password);
+        }
+        /** @var \App\Models\User $user */
+
+        $user->save();
+
+        return back()->with('success', 'Los cambios se han guardado con éxito');
+    }
+
+    return back()->withErrors(['current_password' => 'Debes ingresar tu contraseña actual para hacer cambios']);
+}
+
+
+
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

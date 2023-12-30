@@ -1207,3 +1207,38 @@ input:checked + .slider:before {
     float: right; /* Alinea el botón a la derecha */
     margin-top: -40px;
 }
+/*modal configure*/
+.modal-configure .modal-dialog {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+.modal-body-configure{
+    max-height: 60vh;
+    padding: 10%;
+}
+
+
+/*calnedar*/
+
+.my-table-container-calendar {
+    width: 100%;
+}
+
+.my-table-calendar {
+    width: 100%;
+}
+
+.game-calendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teams-calendar {
+    width: 40%;
+    text-align: center;
+}
+
+.team-logo-calendar {
+    max-height: 40px;
+}
