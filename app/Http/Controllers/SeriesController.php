@@ -73,14 +73,16 @@ class SeriesController extends Controller
         return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
     }
     public function calendar()
-    {
-        $series = Serie::where('date', '>=', now())->orderBy('date')->get();
+{
+    $series = Serie::where('date', '>=', now())->orderBy('date')->get();
 
-        $seriesByDate = $series->groupBy(function ($serie) {
-            $date = \DateTime::createFromFormat('Y-m-d', $serie->date);
-            return $date->format('Y-m-d');
-        });
+    $seriesByMonth = $series->groupBy(function ($serie) {
+        $date = \Carbon\Carbon::parse($serie->date);
+        return $date->format('F Y');
+    });
 
-        return view('calendar.index', ['seriesByDate' => $seriesByDate]);
-    }
+    return view('calendar.index', ['seriesByMonth' => $seriesByMonth]);
+}
+
+
 }

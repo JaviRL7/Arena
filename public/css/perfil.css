@@ -1232,6 +1232,9 @@ input:checked + .slider:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+
 }
 
 .teams-calendar {
@@ -1240,5 +1243,51 @@ input:checked + .slider:before {
 }
 
 .team-logo-calendar {
-    max-height: 40px;
+    height: auto;
+    width: 80px;
+}
+.titulo-vs{
+    font-family: important;
+    color: #333;
+}
+.game-calendar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.teams-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-logo-calendar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.my-table-calendar h2 {
+    text-align: left;
+    padding-left: 15%; /* Ajusta este valor según tus necesidades */
+    font-family: mol;
+    color: #e44445;
+}
+.competition-logo {
+    text-align: left;
+    width: 80px;
+    height: auto;
+}
+.serie-details {
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Ajusta este valor según tus necesidades */
+}
+.my-table-container-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
