@@ -172,7 +172,7 @@
     align-items: center;
     justify-content: flex-end;
     color: #333;
-    font-size: 1, 5em;
+    font-size: 1,5em;
 }
 .comment-likes img {
     max-width: 15px;
@@ -708,7 +708,7 @@ input.search-minigame {
     background-color: white !important;
     border: 2px solid #e44445;
     color: #e44445;
-    font-size: 1,2em;
+    font-size: 2em;
 }
 .btn:hover {
     background-color: #e44445;
@@ -1127,6 +1127,8 @@ input:checked + .slider:before {
 .ban_phase_blue, .ban_phase_red {
     width: 50%;
     box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho */
+    font-size: 1.2em;
+
 }
 .titulos{
     color: #e44445;
@@ -1138,7 +1140,7 @@ input:checked + .slider:before {
 
 .custom-div {
     margin-top: 0; /* Elimina el margen superior */
-
+    font-size: 1.2em;
     /* El resto de tus estilos... */
 }
 /*table de show editar games*/
@@ -1182,4 +1184,26 @@ input:checked + .slider:before {
     background-color: #e44445; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
     border: 2px solid white; /* Agrega un borde blanco al hacer hover */
+}
+.custom-div-2 {
+    background-color: #e44445;
+    color: white;
+    border-radius: 15px;
+    width: 50%;
+
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+}
+
+.custom-div-2 .logo {
+    float: left;
+    margin-right: 20px;
+}
+
+.custom-div-2 .edit-button {
+    width: 100px;
+    float: right; /* Alinea el botón a la derecha */
+    margin-top: -40px;
 }

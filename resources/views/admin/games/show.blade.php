@@ -1,6 +1,7 @@
 @extends('layouts.plantilla')
 @section('title', 'Teams index')
 @section('content')
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         var resultToggle = document.getElementById('resultToggle');
@@ -89,6 +90,8 @@
                     <div>
                         <label for="ban{{ $i }}_blue">Ban {{ $i }} Blue side:</label>
                         <select name="ban{{ $i }}_blue" id="ban{{ $i }}_blue">
+                            <option value="">No champ selected</option>
+
                             @foreach ($champions as $champion)
                                 <option value="{{ $champion->id }}"
                                     {{ $champion->id == $game->{"ban{$i}_blue"} ? 'selected' : '' }}>
@@ -105,6 +108,7 @@
                     <div>
                         <label for="ban{{ $i }}_red">Ban {{ $i }} Red side:</label>
                         <select name="ban{{ $i }}_red" id="ban{{ $i }}_red">
+                            <option value="">No champ selected</option>
                             @foreach ($champions as $champion)
                                 <option value="{{ $champion->id }}"
                                     {{ $champion->id == $game->{"ban{$i}_red"} ? 'selected' : '' }}>
@@ -139,7 +143,7 @@
                             <td>
                                 <div class="">
                                     <img src="{{ asset($player_blue->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                        alt="{{ $player_blue->games->first()->pivot->champion->name }}"
+                                        alt="{{ $player_blue->games->where('id', $game->id)->first()->pivot->champion->name }}"
                                         class="w-14 h-14 object-cover rounded-full">
                                 </div>
                             </td>
@@ -151,7 +155,7 @@
                                 <select name="players[{{ $player_blue->id }}][champion]" id="champion">
                                     @foreach ($champions as $champion)
                                         <option value="{{ $champion->id }}"
-                                            {{ $champion->id == $player_blue->games->first()->pivot->champion->id ? 'selected' : '' }}>
+                                            {{ $champion->id == $player_blue->games->where('id', $game->id)->first()->pivot->champion->id ? 'selected' : '' }}>
                                             {{ $champion->name }}
                                         </option>
                                     @endforeach
@@ -205,7 +209,7 @@
                             <td>
                                 <div class="">
                                     <img src="{{ asset($player_red->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                        alt="{{ $player_red->games->first()->pivot->champion->name }}"
+                                        alt="{{ $player_red->games->where('id', $game->id)->first()->pivot->champion->name  }}"
                                         class="w-14 h-14 object-cover rounded-full">
                                 </div>
                             </td>
@@ -217,7 +221,7 @@
                                 <select name="players[{{ $player_red->id }}][champion]" id="champion">
                                     @foreach ($champions as $champion)
                                         <option value="{{ $champion->id }}"
-                                            {{ $champion->id == $player_red->games->first()->pivot->champion->id ? 'selected' : '' }}>
+                                            {{ $champion->id == $player_red->games->where('id', $game->id)->first()->pivot->champion->id ? 'selected' : '' }}>
                                             {{ $champion->name }}
                                         </option>
                                     @endforeach
