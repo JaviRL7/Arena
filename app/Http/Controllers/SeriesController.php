@@ -51,38 +51,47 @@ class SeriesController extends Controller
         return view('admin.series.show', compact('serie', 'teams', 'competitions'));
     }
     public function update(Request $request, Serie $serie)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'team_1_id' => 'required',
-            'team_2_id' => 'required',
-            'type' => 'required',
-            'date' => 'required',
-            'competition_id' => 'required',
-        ]);
-
-        $serie->name = $validatedData['name'];
-        $serie->team_1_id = $validatedData['team_1_id'];
-        $serie->team_2_id = $validatedData['team_2_id'];
-        $serie->type = $validatedData['type'];
-        $serie->date = $validatedData['date'];
-        $serie->competition_id = $validatedData['competition_id'];
-
-        $serie->save();
-
-        return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
-    }
-    public function calendar()
 {
-    $series = Serie::where('date', '>=', now())->orderBy('date')->get();
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'team_1_id' => 'required',
+        'team_2_id' => 'required',
+        'type' => 'required',
+        'date' => 'required',
+        'hour' => 'required', // Añade esto
+        'competition_id' => 'required',
+    ]);
 
-    $seriesByMonth = $series->groupBy(function ($serie) {
-        $date = \Carbon\Carbon::parse($serie->date);
-        return $date->format('F Y');
-    });
+    $serie->name = $validatedData['name'];
+    $serie->team_1_id = $validatedData['team_1_id'];
+    $serie->team_2_id = $validatedData['team_2_id'];
+    $serie->type = $validatedData['type'];
+    $serie->date = $validatedData['date'];
+    $serie->hour = $validatedData['hour']; // Añade esto
+    $serie->competition_id = $validatedData['competition_id'];
 
-    return view('calendar.index', ['seriesByMonth' => $seriesByMonth]);
+    $serie->save();
+
+    return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
 }
+    public function calendar()
+    {
+        $series = Serie::where('date', '>=', now())->orderBy('date')->get();
+
+        $seriesByMonth = $series->groupBy(function ($serie) {
+            $date = \Carbon\Carbon::parse($serie->date);
+            return $date->format('F Y');
+        });
+
+        foreach ($seriesByMonth as $month => $series) {
+            $seriesByMonth[$month] = $series->groupBy(function ($serie) {
+                $date = \Carbon\Carbon::parse($serie->date);
+                return $date->format('Y-m-d');
+            });
+        }
+
+        return view('calendar.index', ['seriesByMonth' => $seriesByMonth]);
+    }
 
 
 }

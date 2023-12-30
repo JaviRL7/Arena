@@ -3,27 +3,32 @@
 @section('content')
 
 <div class="month-selector">
-    @foreach ($seriesByMonth as $month => $series)
+    @foreach ($seriesByMonth as $month => $seriesByDate)
     <button onclick="showMonth('{{ $month }}')">{{ $month }}</button>
     @endforeach
 </div>
-<div style="height: 80vh; margin-top: 150px;">
+<div class="contenedor-calendar">
 
 <div class="my-table-container-calendar">
-    @foreach ($seriesByMonth as $month => $series)
+    @foreach ($seriesByMonth as $month => $seriesByDate)
     <table class="my-table-calendar" id="{{ $month }}" style="display: none;">
         <tbody>
-            @foreach ($series as $serie)
+            @foreach ($seriesByDate as $date => $series)
             <tr>
                 <td colspan="5">
-                    <h2>{{ \Carbon\Carbon::parse($serie->date)->format('l - j F') }}</h2>
+                    <h2>{{ \Carbon\Carbon::parse($date)->format('l - j F') }}</h2>
                     <hr>
                 </td>
             </tr>
+            @foreach ($series as $serie)
             <tr class="game-calendar">
                 <td class="competition-logo">
                     <img src="{{ $serie->competition->logo }}" alt="{{ $serie->competition->name }}">
-                </td>
+                    @if($serie->hour)
+                    <h4 class="hora">{{ \Carbon\Carbon::parse($serie->hour)->format('H:i') }}</h4>
+                @else
+                    <h5 class="titulo-sin-hora">No hour yet</h5>
+                @endif                </td>
                 <td class="teams-calendar">
                     <img class="team-logo-calendar" src="{{ $serie->team_1->logo }}" alt="{{ $serie->team_1->name }}">
                 </td>
@@ -40,6 +45,7 @@
                     </div>
                 </td>
             </tr>
+            @endforeach
             @endforeach
         </tbody>
     </table>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('team_2_id');
             $table->enum('type',['bo1', 'bo3', 'bo5']);
             $table->date('date');
+            $table->time('hour')->nullable();
             $table->unsignedBigInteger('competition_id');
             $table->foreign('competition_id')->references('id')->on('competitions');
             $table->foreign('team_1_id')->references('id')->on('teams');

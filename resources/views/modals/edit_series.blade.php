@@ -53,6 +53,12 @@
                         <label for="date" class="label-style">Date</label>
                         <input type="date" class="input-style" id="date" name="date" value="{{ $serie->date }}">
                     </div>
+                    <div class="mb-3">
+                        <label for="time" class="label-style">Hour</label>
+                        <input type="time" class="input-style" id="date" name="hour" value="{{ $serie->hour }}">
+                    </div>
+
+
 
                     <div class="mb-3">
                         <label for="competition_id" class="label-style">Competition</label>
