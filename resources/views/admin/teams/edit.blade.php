@@ -8,6 +8,15 @@
             @method('PUT')
             <div class="form-crud">
                 <div class="form-group row">
+                    <img src="{{ asset($team->logo) }}" alt="{{ $team->logo }}"
+                                class="w-auto h-36">
+                    <br>
+                    <label for="loog" class="label-crud"><br>Team logo</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="logo" accept="image/*" class="input-crud rounded-lg">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="name" class="label-crud">Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="input-crud" value="{{ $team->name }}">
@@ -26,15 +35,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <img src="{{ asset($team->logo) }}" alt="{{ $team->logo }}"
-                                class="w-36 h-36">
-                    <br>
-                    <label for="loog" class="label-crud"><br>Team logo</label>
-                    <div class="col-sm-10">
-                        <input type="file" name="logo" accept="image/*" class="input-crud rounded-lg">
-                    </div>
-                </div>
+
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <a href="{{ route('admin.teams.add', ['team' => $team]) }}" class="btn btn-primary">Add a new player</a>

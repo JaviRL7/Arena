@@ -23,12 +23,16 @@
             @foreach ($series as $serie)
             <tr class="game-calendar">
                 <td class="competition-logo">
-                    <img src="{{ $serie->competition->logo }}" alt="{{ $serie->competition->name }}">
-                    @if($serie->hour)
-                    <h4 class="hora">{{ \Carbon\Carbon::parse($serie->hour)->format('H:i') }}</h4>
-                @else
-                    <h5 class="titulo-sin-hora">No hour yet</h5>
-                @endif                </td>
+                    <div class="logo-and-time">
+                        <img class="team-logo-calendar" src="{{ $serie->competition->logo }}" alt="{{ $serie->competition->name }}">
+                        @if($serie->hour)
+                            <h4 class="hora">{{ \Carbon\Carbon::parse($serie->hour)->format('H:i') }}</h4>
+                        @else
+                            <h5 class="titulo-sin-hora">No hour yet</h5>
+                        @endif
+                    </div>
+                </td>
+
                 <td class="teams-calendar">
                     <img class="team-logo-calendar" src="{{ $serie->team_1->logo }}" alt="{{ $serie->team_1->name }}">
                 </td>

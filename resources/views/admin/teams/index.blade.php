@@ -19,7 +19,7 @@
                     <tr class="row-color">
                         <td>
                             <img src="{{ asset($team->logo) }}" alt="{{ $team->logo }}"
-                                class="w-36 h-36">
+                                class="w-36 h-auto">
                         </td>
                         <td>
                             <h5>
