@@ -93,6 +93,57 @@
                         <p class="player-date">Start Date: {{ $player->pivot->start_date }}</p>
                         <p class="player-date">End Date: {{ $player->pivot->contract_expiration_date }}</p>
                     </div>
+                    <div class="player-buttons">
+                        <button type="button" class="boton1" data-bs-toggle="modal" data-bs-target="#renewModal{{ $player->id }}">Renovar</button>
+                        <button type="button" class="boton2" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $player->id }}">Eliminar</button>
+                        <button type="button" class="boton3" data-bs-toggle="modal" data-bs-target="#editModal{{ $player->id }}">Corregir</button>
+                    </div>
+
+<!-- Modales -->
+<!-- Modal para renovar el contrato -->
+<div class="modal fade" id="renewModal{{ $player->id }}" tabindex="-1" role="dialog" aria-labelledby="renewModalLabel{{ $player->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-estilo">
+        <div class="modal-content model-delete-estilo" style="background-color: #e44445;">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="renewModalLabel{{ $player->id }}">Renovar contrato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-white">
+                <!-- Aquí puedes poner el formulario para renovar el contrato -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para eliminar al jugador -->
+<div class="modal fade" id="deleteModal{{ $player->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $player->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-estilo">
+        <div class="modal-content model-delete-estilo" style="background-color: #e44445;">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="deleteModalLabel{{ $player->id }}">Eliminar jugador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-white">
+                <!-- Aquí puedes poner el formulario para eliminar al jugador -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para corregir la fecha de inicio -->
+<div class="modal fade" id="editModal{{ $player->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $player->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-estilo">
+        <div class="modal-content model-delete-estilo" style="background-color: #e44445;">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="editModalLabel{{ $player->id }}">Corregir fecha de inicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-white">
+                <!-- Aquí puedes poner el formulario para corregir la fecha de inicio -->
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             @endforeach
         </div>

@@ -1536,3 +1536,52 @@ input:checked + .slider:before {
     font-size: 1.2em;
     margin-top: 10px;
 }
+.player-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.boton1, .boton2, .boton3 {
+    background-color: white;
+    color: white;
+    border-width: 3px;
+    border-style: solid;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 10px;
+    font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+    padding: 10px 20px; /* Aumenta el relleno */
+}
+
+.boton1 {
+    border-color: #2196F3;
+    color: #2196F3;
+}
+
+.boton1:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+.boton2 {
+    border-color: green;
+    color: green;
+}
+
+.boton2:hover {
+    background-color: green;
+    color: white;
+}
+
+.boton3 {
+    border-color: orange;
+    color: orange;
+}
+
+.boton3:hover {
+    background-color: orange;
+    color: white;
+}
