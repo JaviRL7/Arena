@@ -19,7 +19,7 @@ class Team extends Model
     ];
     public function players()
     {
-        return $this->belongsToMany(Player::class);
+        return $this->belongsToMany(Player::class)->withPivot('start_date', 'contract_expiration_date', 'end_date');
     }
 
     public function histories()
@@ -41,16 +41,18 @@ class Team extends Model
             ->get();
     }
     public function getPlayersDate($date)
-{
-    return $this->players()
-        ->where('start_date', '<=', $date)
-        ->where(function ($query) use ($date) {
-            $query->where('end_date', '>=', $date)
-                ->orWhereNull('end_date');
-        })
-        ->orderBy('role_id', 'asc')
-        ->get();
-}
+    {
+        return $this->players()
+            ->where('start_date', '<=', $date)
+            ->where('contract_expiration_date', '>=', $date)
+            ->where(function ($query) use ($date) {
+                $query->where('end_date', '>=', $date)
+                    ->orWhereNull('end_date');
+            })
+            ->orderBy('role_id', 'asc')
+            ->get();
+    }
+
     public function getPlayersSubstitute()
     {
         $today = Carbon::now()->format('Y-m-d');

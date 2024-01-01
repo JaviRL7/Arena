@@ -31,10 +31,11 @@
                             <p>{{ $player->role->name }}</p>
                         </td>
                         <td>
-                            <p>{{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name }}</p>
-                        </td>
+                            <td>
+                                <p>{{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name ?? 'Free agent' }}</p>
+                            </td>
                         <td>
-                            <p>{{ $player->currentTeam()->pivot->contract_expiration_date }}</p>
+                            <p>{{ $player->currentTeam()->pivot->contract_expiration_date ?? ''}}</p>
                         </td>
                         <td>
                             <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificate</a> <br>

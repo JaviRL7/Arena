@@ -33,10 +33,11 @@
                         </td>
                         <td>
                             <h5>
-                                @foreach ($team->getPlayers() as $player)
+                                @foreach ($team->getPlayersDate(\Carbon\Carbon::now()) as $player)
                                 {{ $player->role->name }} : {{ $player->nick }} <br>
                                 @endforeach
                             </h5>
+
                             <h5>
                                 @foreach ($team->getPlayersSubstitute() as $player)
                                 Substitutes : {{ $player->nick }} <br>
