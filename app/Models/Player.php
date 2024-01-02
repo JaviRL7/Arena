@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Player extends Model
 {
@@ -151,5 +152,9 @@ class Player extends Model
             ->wherePivot('contract_expiration_date', '>=', $now)
             ->withPivot('start_date', 'contract_expiration_date')
             ->first();
+    }
+    public function getLastTeam()
+    {
+        return $this->teams()->wherePivot('end_date', '<=', Carbon::now())->orderBy('pivot_end_date', 'desc')->first();
     }
 }
