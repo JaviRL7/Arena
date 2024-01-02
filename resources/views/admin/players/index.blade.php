@@ -30,10 +30,12 @@
                         <td>
                             <p>{{ $player->role->name }}</p>
                         </td>
+
+
                         <td>
-                            <td>
+
                                 <p>{{ $player->teams()->where('start_date', '<=', $today)->where('contract_expiration_date', '>=', $today)->first()->name ?? 'Free agent' }}</p>
-                            </td>
+
                         <td>
                             <p>{{ $player->currentTeam()->pivot->contract_expiration_date ?? ''}}</p>
                         </td>

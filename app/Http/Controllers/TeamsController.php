@@ -132,18 +132,6 @@ class TeamsController extends Controller
 
         if ($previousTeam) {
             $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
-
-            // Inserta en la tabla 'transfers'
-            $inserted = DB::table('transfers')->insert([
-                'player_id' => $player->id,
-                'team_from_id' => $previousTeam->id,
-                'team_to_id' => $team->id,
-                'date' => date('Y-m-d'),
-            ]);
-
-            if (!$inserted) {
-                throw new \Exception('Failed to insert into transfers table');
-            }
         }
 
         $contract_expiration_date = $request->contract_expiration_date;
@@ -163,10 +151,26 @@ class TeamsController extends Controller
         ]);
         $player->substitute = false;
         $player->save();
+
+        // Inserta en la tabla 'transfers' después de actualizar 'end_date' y añadir el jugador al nuevo equipo
+        if ($previousTeam) {
+            $inserted = DB::table('transfers')->insert([
+                'player_id' => $player->id,
+                'team_from_id' => $previousTeam->id,
+                'team_to_id' => $team->id,
+                'date' => date('Y-m-d'),
+            ]);
+
+            if (!$inserted) {
+                dd('Failed to insert into transfers table');
+            }
+        }
     });
 
     return redirect()->route('admin.teams.index');
 }
+
+
 
 
     public function renewContract(Request $request, $teamId, $playerId)

@@ -155,6 +155,6 @@ class Player extends Model
     }
     public function getLastTeam()
     {
-        return $this->teams()->wherePivot('end_date', '<=', Carbon::now())->orderBy('pivot_end_date', 'desc')->first();
+        return $this->teams()->wherePivot('contract_expiration_date', '<=', Carbon::now())->orderBy('pivot_end_date', 'desc')->first();
     }
 }
