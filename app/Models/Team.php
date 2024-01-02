@@ -136,7 +136,6 @@ class Team extends Model
     }
     public function checksubstitute($date)
     {
-
         $date = Carbon::parse($date);
 
         $players = $this->players()->wherePivot('start_date', '<=', $date)
@@ -144,7 +143,6 @@ class Team extends Model
                 $query->where('end_date', '>=', $date)
                     ->orWhereNull('end_date');
             })->get();
-
 
         $grouped = $players->groupBy('role_id');
         foreach ($grouped as $roleId => $players) {
@@ -159,10 +157,8 @@ class Team extends Model
 
                 $latest = $sorted->shift();
 
-
-                DB::table('player_team')
-                    ->where('team_id', $this->id)
-                    ->whereIn('player_id', $sorted->pluck('id')->toArray())
+                // Actualiza la tabla 'player' en lugar de 'player_team'
+                Player::whereIn('id', $sorted->pluck('id')->toArray())
                     ->update(['substitute' => true]);
             }
         }

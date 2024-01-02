@@ -120,6 +120,14 @@ Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('ad
     Route::post('/teams/{team}/add_player', [TeamsController::class, 'add_player'])->name('admin.teams.add_player');
     Route::put('/teams/{team}/edit', [TeamsController::class, 'update'])->name('admin.teams.update');
     Route::delete('/teams/{player}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.destroy');
+
+
+    Route::post('/teams/{team}/players/{player}/renew', [TeamsController::class, 'renewContract'])->name('admin.teams.renewContract');
+    Route::post('/teams/{team}/players/{player}/setEndDate', [TeamsController::class, 'setEndDate'])->name('admin.teams.setEndDate');
+    Route::post('/teams/{team}/players/{player}/correctStartDate', [TeamsController::class, 'correctStartDate'])->name('admin.teams.correctStartDate');
+
+
+    Route::post('/teams/{team}/updateTitular', [TeamsController::class, 'updateTitular'])->name('teams.updateTitular');
 });
 
 Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar');

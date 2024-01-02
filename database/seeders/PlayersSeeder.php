@@ -23,6 +23,7 @@ class PlayersSeeder extends Seeder
         $team_KT = Team::where('name', 'KT')->first();
         $team_NRG = Team::where('name', 'NRG')->first();
         $team_LNG = Team::where('name', 'LNG')->first();
+        $team_Fnatic = Team::where('name', 'Fnatic')->first();
 
         $player1 = Player::create([
             'name' => 'Choi',
@@ -606,6 +607,34 @@ class PlayersSeeder extends Seeder
         $player40->teams()->attach($team_KT->id, [
             'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
             'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2023')
+        ]);
+        $player41 = Player::create([
+            'name' => 'Oscar',
+            'lastname1'=>'Muñoz',
+            'nick'=>'Oscarinin',
+            'lastname2' => 'Jiménez',
+            'role_id' => 1,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '11/07/2003'),
+            'country' => 'Spain',
+            'photo' => '/players_photos/Oscarinin.png']);
+
+        $player41->teams()->attach($team_Fnatic->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2023'),
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2025')
+        ]);
+        $player42 = Player::create([
+            'name' => 'Iván',
+            'lastname1'=>'Martín',
+            'nick'=>'Razork',
+            'lastname2' => 'Díaz',
+            'role_id' => 2,
+            'birth_date' => Carbon::createFromFormat('d/m/Y', '07/09/2000'),
+            'country' => 'Korea',
+            'photo' => '/players_photos/Razork.png']);
+
+        $player42->teams()->attach($team_Fnatic->id, [
+            'start_date' => Carbon::createFromFormat('d/m/Y', '01/01/2022'),
+            'contract_expiration_date' => Carbon::createFromFormat('d/m/Y', '31/12/2026')
         ]);
 }
 }
