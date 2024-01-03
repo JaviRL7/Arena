@@ -37,10 +37,10 @@
                         <a class="nav-link mx-2" href="{{ route('minigame.index') }}">Who's the Player?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#Calendar">Calendar</a>
+                        <a class="nav-link mx-2" href="{{ route('calendar') }}">Calendar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#Calendar">Transfers</a>
+                        <a class="nav-link mx-2" href="{{ route('transfers.index') }}">Transfers</a>
                     </li>
                 </ul>
                 <!--Login-->
