@@ -127,21 +127,22 @@ class TeamsController extends Controller
             $previousPlayer->save();
         }
 
-        // Obtiene el equipo anterior del jugador
         $previousTeam = $player->getLastTeam();
 
         if ($previousTeam) {
+
             $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
         }
 
+
         $contract_expiration_date = $request->contract_expiration_date;
 
-        // Comprueba si se ha enviado una fecha completa, solo un año, o nada
         if (strlen($contract_expiration_date) == 4) {
-            // Si solo se ha enviado un año, establece la fecha de finalización del contrato al 31 de diciembre de ese año
+
             $contract_expiration_date = $contract_expiration_date . '-12-31';
+
         } elseif (empty($contract_expiration_date)) {
-            // Si no se ha enviado nada, establece la fecha de finalización del contrato al 31 de diciembre del año actual
+
             $contract_expiration_date = date('Y') . '-12-31';
         }
 
@@ -152,7 +153,6 @@ class TeamsController extends Controller
         $player->substitute = false;
         $player->save();
 
-        // Inserta en la tabla 'transfers' después de actualizar 'end_date' y añadir el jugador al nuevo equipo
         if ($previousTeam) {
             $inserted = DB::table('transfers')->insert([
                 'player_id' => $player->id,

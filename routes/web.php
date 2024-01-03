@@ -9,6 +9,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\MinigameController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TransferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +133,7 @@ Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('ad
 
 Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar');
 
+Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
 
 
 require __DIR__.'/auth.php';

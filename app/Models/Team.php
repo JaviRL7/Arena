@@ -52,7 +52,11 @@ class Team extends Model
             ->orderBy('role_id', 'asc')
             ->get();
     }
-
+    public function getPlayersFromLastYear()
+    {
+        $date = \Carbon\Carbon::now()->subYear()->toDateString();
+        return $this->getPlayersDate($date);
+    }
     public function getPlayersSubstitute()
     {
         $today = Carbon::now()->format('Y-m-d');
@@ -163,4 +167,11 @@ class Team extends Model
             }
         }
     }
+    public function hadFiveRolesLastYear()
+{
+    $lastYearPlayers = $this->getPlayersFromLastYear();
+    $roles = $lastYearPlayers->pluck('role_id')->unique();
+
+    return count($roles) == 5;
+}
 }

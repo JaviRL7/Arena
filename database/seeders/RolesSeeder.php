@@ -12,10 +12,10 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'Top', 'icono' => 'icons/Top_logo.png']);
-        Role::create(['name' => 'Jungler', 'icono' => 'icons/Jungler_logo.png']);
-        Role::create(['name' => 'Mid', 'icono' => 'icons/Mid_logo.png']);
-        Role::create(['name' => 'ADC', 'icono' => 'icons/ADC_logo.png']);
-        Role::create(['name' => 'Support', 'icono' => 'icons/Support_logo.png']);
+        Role::create(['name' => 'Top', 'icono' => 'icons/Top_logo.png', 'icono_w' => 'icons/top_w.svg']);
+        Role::create(['name' => 'Jungler', 'icono' => 'icons/Jungler_logo.png', 'icono_w' => 'icons/jungler_w.svg']);
+        Role::create(['name' => 'Mid', 'icono' => 'icons/Mid_logo.png', 'icono_w' => 'icons/mid_w.svg']);
+        Role::create(['name' => 'ADC', 'icono' => 'icons/ADC_logo.png', 'icono_w' => 'icons/adc_w.svg']);
+        Role::create(['name' => 'Support', 'icono' => 'icons/Support_logo.png', 'icono_w' => 'icons/sup_w.svg']);
     }
 }
