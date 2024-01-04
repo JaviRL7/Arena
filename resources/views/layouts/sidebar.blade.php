@@ -22,7 +22,7 @@
             <h1><a class="nav-link mx-2 enlace-estilo" href="#Calendar" >Transfers</a></h1>
         </li>
         <li class="nav-item" style="margin-bottom: 10px;">
-            <h1><a class="nav-link mx-2 enlace-estilo" href="#Calendar" >Users</a></h1>
+            <h1><a class="nav-link mx-2 enlace-estilo" href="{{ route('admin.users.index') }}" >Users</a></h1>
         </li>
     </ul>
     <hr>

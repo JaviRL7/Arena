@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use App\Models\Player;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -45,6 +46,11 @@ class ProfileController extends Controller
             'user' => $request->user(),
             'players' => $players,
         ]);
+    }
+    public function show($id) {
+        $user = User::findOrFail($id);
+        $players = Player::paginate(5);
+        return view('profile.index', ['user' => $user, 'players' => $players]);
     }
     public function getFavorite()
     {
@@ -210,4 +216,40 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function admin_index() {
+        $users = User::orderBy('id')->paginate(5);
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('admin.users.index', [
+                'users' => $users,
+            ]);
+        } else {
+            return view('pages.users', [
+                'users' => $users,
+            ]);
+        }
+    }
+
+    public function admin_show($id) {
+        $user = User::findOrFail($id);
+        $players = Player::paginate(5);
+        return view('profile.index', ['user' => $user, 'players' => $players]);
+    }
+
+
+    public function admin_validateProfile(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $user->validated = true;
+        $user->save();
+
+        return redirect()->route('admin.users.index');
+    }
+
+    public function admin_destroy($id) {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.users.index');
+    }
 }
+

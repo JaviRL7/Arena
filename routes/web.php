@@ -29,20 +29,25 @@ Route::get('/home', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/profile/comments', [ProfileController::class, 'comments'])->name('profile.comments');
-    Route::get('/profile/getplayers', [ProfileController::class, 'getplayers'])->name('profile.getplayers');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/favorite', [ProfileController::class, 'favorite'])->name('profile.favorite');
-    Route::get('/profile/favorite', [ProfileController::class, 'getFavorite'])->name('profile.getFavorite');
-    Route::post('/profile/configure', [ProfileController::class, 'configure'])->name('profile.configure');}
+Route::middleware('auth')->group(
+    function () {
+        // Ruta para ver el perfil del usuario logueado
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+        // Ruta para ver los perfiles de otros usuarios
+        Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::get('/profile/comments', [ProfileController::class, 'comments'])->name('profile.comments');
+        Route::get('/profile/getplayers', [ProfileController::class, 'getplayers'])->name('profile.getplayers');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::post('/profile/favorite', [ProfileController::class, 'favorite'])->name('profile.favorite');
+        Route::get('/profile/favorite', [ProfileController::class, 'getFavorite'])->name('profile.getFavorite');
+        Route::post('/profile/configure', [ProfileController::class, 'configure'])->name('profile.configure');
+    }
 );
 
 
@@ -51,7 +56,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
-//modificar para usar con series
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
 
 
@@ -69,6 +73,8 @@ Route::get('/player', [PlayersController::class, 'player'])->name('players.playe
 Route::post('/minigame/check-response', [MinigameController::class, 'checkresponse'])->name('minigame.check_response');
 Route::get('/minigame', [MinigameController::class, 'index'])->name('minigame.index');
 Route::get('/minigame/get-clue', [MinigameController::class, 'getClue'])->name('minigame.get_clue');
+
+
 /************* Admin *************/
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
@@ -92,18 +98,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin/games/{game}', [GamesController::class, 'destroy'])->name('admin.games.delete');
 
     Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
-    //Cambiar el otro store que deberia ser vote
- // Ruta para obtener los jugadores basado en los equipos seleccionados
-    /************* Series *************/
-    Route::get('/series', [SeriesController::class, 'indexadmin'])->name('admin.series.index');
-Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
-Route::post('/series/create', [SeriesController::class, 'store'])->name('admin.series.store');
 
-// Coloca las rutas con parámetros después de las rutas sin parámetros
-Route::get('/series/{serie}', [SeriesController::class, 'show'])->name('admin.series.show');
-Route::get('/series/{serie}/edit', [SeriesController::class, 'edit'])->name('admin.series.edit');
-Route::put('/series/{serie}/edit', [SeriesController::class, 'update'])->name('admin.series.update');
-Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.delete');
+    Route::get('/series', [SeriesController::class, 'indexadmin'])->name('admin.series.index');
+    Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
+    Route::post('/series/create', [SeriesController::class, 'store'])->name('admin.series.store');
+
+    // Coloca las rutas con parámetros después de las rutas sin parámetros
+    Route::get('/series/{serie}', [SeriesController::class, 'show'])->name('admin.series.show');
+    Route::get('/series/{serie}/edit', [SeriesController::class, 'edit'])->name('admin.series.edit');
+    Route::put('/series/{serie}/edit', [SeriesController::class, 'update'])->name('admin.series.update');
+    Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.delete');
 
 
 
@@ -129,6 +133,15 @@ Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('ad
     Route::delete('/admin/teams/{team}/players/{player}/delete', [TeamsController::class, 'deleteAppearance'])->name('admin.teams.deleteAppearance');
 
     Route::post('/teams/{team}/updateTitular', [TeamsController::class, 'updateTitular'])->name('teams.updateTitular');
+
+
+
+
+
+    Route::get('/profile', [ProfileController::class, 'admin_index'])->name('admin.users.index');
+    Route::get('/profile/{id}', [ProfileController::class, 'admin_show'])->name('admin.user.show');
+    Route::post('/profile/validate', [ProfileController::class, 'admin_validateProfile'])->name('admin.user.validate');
+    Route::delete('/profile/{id}', [ProfileController::class, 'admin_destroy'])->name('admin.user.destroy');
 });
 
 Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar');
@@ -136,4 +149,4 @@ Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar')
 Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
