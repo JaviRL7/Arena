@@ -103,7 +103,7 @@
                 <h1 class="titulo">Current players</h1>
             </div>
             <div class="current-players-container">
-                @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('substitute', false) as $player)
+                @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('pivot.substitute', false) as $player)
                     <div class="player-card">
                         <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="player-photo">
                         <div class="player-info">
@@ -119,12 +119,16 @@
                                 data-bs-target="#setEndDateModal{{ $player->id }}">Terminate contract</button>
                             <button type="button" class="boton3" data-bs-toggle="modal"
                                 data-bs-target="#editModal{{ $player->id }}">Edit contract</button>
+                            <button type="button" class="boton4" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $player->id }}">Delete vinculation</button>
                         </div>
 
                         <!-- Modales -->
                         @include('modals.renew')
                         @include('modals.terminate_player')
                         @include('modals.modificate_player')
+                        @include('modals.eliminate')
+
                     </div>
                 @endforeach
             </div>
@@ -148,12 +152,32 @@
                                 data-bs-target="#setEndDateModal{{ $player->id }}">Terminate contract</button>
                             <button type="button" class="boton3" data-bs-toggle="modal"
                                 data-bs-target="#editModal{{ $player->id }}">Edit contract</button>
+                            <button type="button" class="boton4" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $player->id }}">Delete vinculation</button>
                         </div>
 
                         <!-- Modales -->
                         @include('modals.renew')
                         @include('modals.terminate_player')
                         @include('modals.modificate_player')
+                        @include('modals.eliminate')
+
+                    </div>
+                @endforeach
+            </div>
+            <div>
+                <h1 class="titulo">Player History</h1>
+            </div>
+            <div class="past-players-container">
+                @foreach ($team->getPastPlayers() as $player)
+                    <div class="player-card">
+                        <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="player-photo">
+                        <div class="player-info">
+                            <h2 class="player-nick">{{ $player->nick }}</h2>
+                            <p class="player-role">Role: {{ $player->role->name }}</p>
+                            <p class="player-date">Start Date: {{ $player->pivot->start_date }}</p>
+                            <p class="player-date">End Date: {{ $player->pivot->end_date }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>

@@ -301,4 +301,20 @@ class TeamsController extends Controller
 
         return redirect()->route('admin.teams.index');
     }
+
+
+
+
+
+
+
+
+
+
+    public function deleteAppearance(Request $request, Team $team, Player $player)
+{
+    $team->players()->detach($player->id);
+
+    return redirect()->route('admin.teams.index');
+}
 }

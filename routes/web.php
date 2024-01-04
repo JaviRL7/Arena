@@ -126,7 +126,7 @@ Route::delete('/series/{serie}', [SeriesController::class, 'destroy'])->name('ad
     Route::post('/teams/{team}/players/{player}/renew', [TeamsController::class, 'renewContract'])->name('admin.teams.renewContract');
     Route::post('/teams/{team}/players/{player}/setEndDate', [TeamsController::class, 'setEndDate'])->name('admin.teams.setEndDate');
     Route::post('/teams/{team}/players/{player}/correctStartDate', [TeamsController::class, 'correctStartDate'])->name('admin.teams.correctStartDate');
-
+    Route::delete('/admin/teams/{team}/players/{player}/delete', [TeamsController::class, 'deleteAppearance'])->name('admin.teams.deleteAppearance');
 
     Route::post('/teams/{team}/updateTitular', [TeamsController::class, 'updateTitular'])->name('teams.updateTitular');
 });

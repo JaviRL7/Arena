@@ -102,17 +102,36 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('.competition-button').click(function() {
-                var leagueId = $(this).data('id');
-                if (leagueId == "all") {
-                    $('.team-container').show();
-                } else {
-                    $('.team-container').hide();
-                    $('.team-container[data-league="' + leagueId + '"]').show();
-                }
-            });
-        });
-    </script>
+$(document).ready(function() {
+    // Muestra todos los elementos .team-container cuando se carga la página
+    $('.team-container').show();
 
+    $('.competition-button').click(function() {
+        // Elimina la clase 'active' de todos los botones
+        $('.competition-button').removeClass('active');
+        // Añade la clase 'active' al botón que se ha hecho clic
+        $(this).addClass('active');
+
+        var leagueId = $(this).data('id');
+        if (leagueId == "all") {
+            $('.team-container').show();
+        } else {
+            $('.team-container').hide();
+            $('.team-container[data-league="' + leagueId + '"]').show();
+        }
+    });
+
+    // Obtiene el parámetro 'view' de la URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var view = urlParams.get('view');
+
+    // Si hay un parámetro 'view', simula un clic en el botón correspondiente
+    if (view) {
+        $('.competition-button[data-id="' + view + '"]').click();
+    } else {
+        // Si no hay un parámetro 'view', simula un clic en el botón "All"
+        $('.competition-button[data-id="all"]').click();
+    }
+});
+    </script>
 @endsection

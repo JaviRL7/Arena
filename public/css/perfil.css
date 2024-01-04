@@ -1544,7 +1544,7 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-.boton1, .boton2, .boton3 {
+.boton1, .boton2, .boton3, .boton4 {
     background-color: white;
     color: white;
     border-width: 3px;
@@ -1572,7 +1572,7 @@ input:checked + .slider:before {
 }
 
 .boton2:hover {
-    background-color: green;
+    background-color: #e44445;
     color: white;
 }
 
@@ -1583,6 +1583,15 @@ input:checked + .slider:before {
 
 .boton3:hover {
     background-color: orange;
+    color: white;
+}
+.boton4 {
+    border-color: black;
+    color: black;
+}
+
+.boton4:hover {
+    background-color: #333;
     color: white;
 }
 /*modales renew*/
@@ -1738,12 +1747,11 @@ input:checked + .slider:before {
 .team-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
-    align-content: flex-start; /* Alinea las filas al inicio del contenedor */
+    justify-content: space-between; /* Asegura una distancia uniforme entre las columnas */
+    align-content: flex-start;
     margin: 0 auto;
-    max-width: 90%;
+    max-width: 100%; /* Hace que los divs sean más anchos */
 }
-
 .team-container {
     display: flex;
     flex-direction: column;
@@ -1751,13 +1759,14 @@ input:checked + .slider:before {
     background-color: #e44445;
     border-radius: 10px;
     color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    max-height: 350px; /* Altura máxima de 350px */
+    padding: 20px; /* Aumenta el espacio entre las filas */
+    margin-bottom: 20px; /* Aumenta el espacio entre las filas */
+    max-height: 500px;
     overflow: auto;
-    flex: 0 0 calc(50% - 20px); /* Esto permitirá que solo aparezcan 2 divs por fila */
-    margin: 10px; /* Esto añadirá un margen alrededor de cada div */
+    flex: 0 0 calc(50% - 20px);
+    margin: 10px;
 }
+
 
 /* Para pantallas de hasta 600px de ancho */
 @media (max-width: 600px) {
@@ -1766,22 +1775,31 @@ input:checked + .slider:before {
     }
 }
 
-h3 {
+.team-containe h3 {
     text-align: center;
 }
 
 .arrow {
-    width: 10px;
+    width: 20px !important;
     filter: invert(1); /* Esto invertirá los colores de la imagen de la flecha */
 }
 
 .my-custom-table {
-    width: 100%; /* Esto hará que la tabla ocupe todo el ancho del div */
-    font-size: 1.2em; /* Esto hará que los elementos de la tabla sean un poco más grandes */
+    width: 100%;
+    table-layout: fixed; /* Hace que las columnas tengan un ancho fijo */
+    font-size: 2em;
+}
+
+.my-custom-table td {
+    width: 25%; /* Hace que cada columna ocupe un 25% del ancho total */
+}
+.my-custom-table img {
+    width: 30px;
+    height: auto;
 }
 
 .my-custom-table tr {
-    margin-bottom: 10px; /* Esto añadirá más espacio entre las filas de la tabla */
+    margin-bottom: 20px; /* Aumenta el espacio entre las filas */
 }
 
 .titulo-tabla-transfer{
@@ -1797,6 +1815,12 @@ h3 {
     font-size: 2em;
 }
 .btn-large {
-    padding: 10px 24px; /* Aumenta el padding para hacer los botones más grandes */
-    font-size: 18px; /* Aumenta el tamaño de la fuente para hacer el texto más grande */
+    padding: 10px 24px;
+    font-size: 18px;
 }
+
+.btn-group .active {
+    background-color: #444; /* Cambia el color de fondo del botón activo */
+    color: #fff; /* Cambia el color del texto del botón activo */
+}
+

@@ -41,13 +41,6 @@ class Team extends Model
             ->get();
     }
 
-
-
-
-
-
-
-
     public function getPlayersDate($date)
     {
         return $this->players()
@@ -60,51 +53,41 @@ class Team extends Model
             ->orderBy('role_id', 'asc')
             ->get();
     }
-
-
-
-
-
-
-
-
-
-
     public function getPlayersFromLastYear()
     {
         $date = \Carbon\Carbon::now()
-                                    ->subYear()
-                                    ->setMonth(12)
-                                    ->setDay(30)
-                                    ->toDateString();
+            ->subYear()
+            ->setMonth(12)
+            ->setDay(30)
+            ->toDateString();
         return $this->getPlayersDate($date);
     }
-
-
-
-
-
     public function getPlayersSubstitute()
     {
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()
             ->where(function ($query) use ($today) {
                 $query->where('player_team.end_date', '>=', $today)
-                      ->orWhereNull('player_team.end_date');
+                    ->orWhereNull('player_team.end_date');
             })
             ->where('player_team.substitute', true)
             ->orderBy('role_id', 'asc')
             ->get();
     }
-
-
-
-
-
-
-
-
-
+    public function getPastPlayers()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+            ->where(function ($query) use ($today) {
+                $query->where('player_team.end_date', '<', $today)
+                    ->orWhere(function ($query) use ($today) {
+                        $query->whereNull('player_team.end_date')
+                            ->where('player_team.contract_expiration_date', '<', $today);
+                    });
+            })
+            ->orderBy('player_team.end_date', 'desc')
+            ->get();
+    }
     public function getPlayersWithSameRole()
     {
         $today = Carbon::now()->format('Y-m-d');
@@ -121,8 +104,6 @@ class Team extends Model
             ->orderBy('role_id', 'asc')
             ->get();
     }
-
-    //HAY FALLOS CON EL START DATE REPASAR
     public function getToplaner()
     {
         $today = Carbon::now()->format('Y-m-d');
@@ -175,46 +156,41 @@ class Team extends Model
             ->orderBy('start_date', 'desc');
     }
 
-
     public function checksubstitute($date)
-{
-    $date = Carbon::parse($date);
+    {
+        $date = Carbon::parse($date);
 
-    $players = $this->players()->wherePivot('start_date', '<=', $date)
-        ->where(function ($query) use ($date) {
-            $query->where('end_date', '>=', $date)
-                ->orWhereNull('end_date');
-        })->get();
+        $players = $this->players()->wherePivot('start_date', '<=', $date)
+            ->where(function ($query) use ($date) {
+                $query->where('end_date', '>=', $date)
+                    ->orWhereNull('end_date');
+            })->get();
 
-    $grouped = $players->groupBy('role_id');
-    foreach ($grouped as $roleId => $players) {
+        $grouped = $players->groupBy('role_id');
+        foreach ($grouped as $roleId => $players) {
 
-        $notSubstitutes = $players->where('pivot.substitute', false);
+            $notSubstitutes = $players->where('pivot.substitute', false);
 
-        if ($notSubstitutes->count() > 1) {
+            if ($notSubstitutes->count() > 1) {
 
-            $sorted = $notSubstitutes->sortByDesc(function ($player) {
-                return $player->pivot->start_date;
-            });
+                $sorted = $notSubstitutes->sortByDesc(function ($player) {
+                    return $player->pivot->start_date;
+                });
 
-            $latest = $sorted->shift();
+                $latest = $sorted->shift();
 
-            foreach ($sorted as $player) {
-                $player->pivot->substitute = true;
-                $player->pivot->save();
+                foreach ($sorted as $player) {
+                    $player->pivot->substitute = true;
+                    $player->pivot->save();
+                }
             }
         }
     }
-}
-
-
-
-
     public function hadFiveRolesLastYear()
-{
-    $lastYearPlayers = $this->getPlayersFromLastYear();
-    $roles = $lastYearPlayers->pluck('role_id')->unique();
+    {
+        $lastYearPlayers = $this->getPlayersFromLastYear();
+        $roles = $lastYearPlayers->pluck('role_id')->unique();
 
-    return count($roles) == 5;
-}
+        return count($roles) == 5;
+    }
 }
