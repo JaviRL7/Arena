@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('country');
             $table->date('birth_date');
             $table->unsignedBigInteger('role_id');
-            $table->boolean('substitute')->default(false);
             $table->timestamps();
         });
     }

@@ -153,6 +153,9 @@ class Player extends Model
             ->withPivot('start_date', 'contract_expiration_date')
             ->first();
     }
+
+
+
     public function getLastTeam()
 {
     // Primero, intenta obtener el equipo con la 'end_date' más reciente

@@ -9,7 +9,7 @@
             @foreach ($roles as $role)
                 @php
                     $players = $team->getPlayersDate(\Carbon\Carbon::now())->where('role_id', $role->id);
-                    $substitutes = $players->where('substitute', true);
+                    $substitutes = $players->where('pivot.substitute', true);
                 @endphp
                 @if ($substitutes->count() > 0)
                     <h1>{{ $role->name }}</h1>
@@ -24,7 +24,7 @@
                                     <td><img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="player-photo"></td>
                                     <td><h2>{{ $player->nick }}</h2></td>
                                     <td>
-                                        <input type="radio" name="titular[{{ $role->id }}]" value="{{ $player->id }}" {{ $player->substitute ? '' : 'checked' }}>
+                                        <input type="radio" name="titular[{{ $role->id }}]" value="{{ $player->id }}" {{ $player->pivot->substitute ? '' : 'checked' }}>
                                     </td>
                                 </tr>
                             @endforeach

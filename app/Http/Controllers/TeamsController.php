@@ -115,60 +115,113 @@ class TeamsController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function add_player(Request $request, Team $team)
-{
-    $player = Player::find($request->player_id);
+    {
+        try {
+            DB::transaction(function () use ($request, $team) {
+                $player = Player::find($request->player_id);
 
-    DB::transaction(function () use ($player, $team, $request) {
+                $previousPlayers = $team->getPlayersDate($request->start_date);
 
-        $previousPlayer = $team->Players()->where('role_id', $player->role_id)->first();
-        if ($previousPlayer) {
-            $previousPlayer->substitute = true;
-            $previousPlayer->save();
+                $previousPlayer = $previousPlayers->where('role_id', $player->role_id)->first();
+                if ($previousPlayer) {
+                    $team->players()->updateExistingPivot($previousPlayer->id, ['substitute' => true]);
+                }
+
+                $previousTeam = $player->getLastTeam();
+
+                if ($previousTeam) {
+                    $previousContract = $player->teams()->where('team_id', $previousTeam->id)->first()->pivot;
+                    $end_date = $previousContract->contract_expiration_date < $request->start_date ? $previousContract->contract_expiration_date : $request->start_date;
+                    $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $end_date]);
+                }
+
+                $contract_expiration_date = $request->contract_expiration_date;
+
+                if (strlen($contract_expiration_date) == 4) {
+                    $contract_expiration_date = $contract_expiration_date . '-12-31';
+                } elseif (empty($contract_expiration_date)) {
+                    $contract_expiration_date = date('Y') . '-12-31';
+                }
+
+                // Comprobar si ya existe un registro con el mismo team_id y player_id
+                $existingRecord = DB::table('player_team')
+                    ->where('player_id', $player->id)
+                    ->where('team_id', $team->id)
+                    ->where(function ($query) use ($request, $contract_expiration_date) {
+                        $query->whereBetween('start_date', [$request->start_date, $contract_expiration_date])
+                              ->orWhereBetween('end_date', [$request->start_date, $contract_expiration_date]);
+                    })
+                    ->first();
+
+                if ($existingRecord) {
+                    // Si existe un registro, lanzar una excepción
+                    throw new \Exception('A record with the same dates already exists.');
+                }
+
+                $team->players()->attach($player->id, [
+                    'start_date' => $request->start_date,
+                    'contract_expiration_date' => $contract_expiration_date,
+                    'substitute' => false
+                ]);
+
+                if ($previousTeam) {
+                    $inserted = DB::table('transfers')->insert([
+                        'player_id' => $player->id,
+                        'team_from_id' => $previousTeam->id,
+                        'team_to_id' => $team->id,
+                        'date' => date('Y-m-d'),
+                    ]);
+
+                    if (!$inserted) {
+                        dd('Failed to insert into transfers table');
+                    }
+                }
+            });
+        } catch (\Exception $e) {
+            // Redirigir al usuario a la página anterior con un mensaje de error
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        $previousTeam = $player->getLastTeam();
-
-        if ($previousTeam) {
-
-            $player->teams()->updateExistingPivot($previousTeam->id, ['end_date' => $request->start_date]);
-        }
+        return redirect()->route('admin.teams.index');
+    }
 
 
-        $contract_expiration_date = $request->contract_expiration_date;
 
-        if (strlen($contract_expiration_date) == 4) {
 
-            $contract_expiration_date = $contract_expiration_date . '-12-31';
 
-        } elseif (empty($contract_expiration_date)) {
 
-            $contract_expiration_date = date('Y') . '-12-31';
-        }
 
-        $team->Players()->attach($player->id, [
-            'start_date' => $request->start_date,
-            'contract_expiration_date' => $contract_expiration_date,
-        ]);
-        $player->substitute = false;
-        $player->save();
 
-        if ($previousTeam) {
-            $inserted = DB::table('transfers')->insert([
-                'player_id' => $player->id,
-                'team_from_id' => $previousTeam->id,
-                'team_to_id' => $team->id,
-                'date' => date('Y-m-d'),
-            ]);
 
-            if (!$inserted) {
-                dd('Failed to insert into transfers table');
-            }
-        }
-    });
 
-    return redirect()->route('admin.teams.index');
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -216,28 +269,31 @@ class TeamsController extends Controller
 
         return redirect()->route('admin.teams.edit', ['team' => $teamId])->with('success', 'Start date corrected successfully!');
     }
+
+
+
+
+
     public function updateTitular(Request $request, Team $team)
     {
         DB::transaction(function () use ($request, $team) {
             foreach ($request->titular as $role_id => $player_id) {
                 // Encuentra al jugador que se ha seleccionado como titular
-                $titular = Player::find($player_id);
+                $titular = $team->players()->where('player_team.player_id', $player_id)->first();
 
                 // Comprueba si $titular es un objeto antes de intentar asignarle propiedades
                 if (is_object($titular)) {
-                    $titular->substitute = false;
-                    $titular->save();
+                    $team->players()->updateExistingPivot($titular->id, ['substitute' => false]);
                 }
 
                 // Encuentra a los jugadores suplentes en el mismo rol
-                $suplentes = Player::where('role_id', $role_id)->where('id', '!=', $player_id)->get();
+                $suplentes = $team->players()->where('role_id', $role_id)->where('player_team.player_id', '!=', $player_id)->get();
 
                 // Actualiza a los jugadores suplentes
                 foreach ($suplentes as $suplente) {
                     // Comprueba si $suplente es un objeto antes de intentar asignarle propiedades
                     if (is_object($suplente)) {
-                        $suplente->substitute = true;
-                        $suplente->save();
+                        $team->players()->updateExistingPivot($suplente->id, ['substitute' => true]);
                     }
                 }
             }

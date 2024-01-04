@@ -33,7 +33,7 @@
                         </td>
                         <td>
                             <h5>
-                                @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('substitute', false) as $player)
+                                @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('pivot.substitute', false) as $player)
                                     {{ $player->role->name }} : {{ $player->nick }} <br>
                                 @endforeach
                             </h5>

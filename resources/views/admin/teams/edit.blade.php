@@ -84,17 +84,27 @@
             </div>
             <div class="add-player-button-container">
                 <h2>Do you want to add a new player to this team ?</h2>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlayerModal{{ $team->id }}">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#addPlayerModal{{ $team->id }}">
                     Add Player
                 </button>
             </div>
             @include('modals.add_player')
             <div>
+                @if ($errors->any())
+                    <div class="alert alert-danger" style="margin: 10px">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h1 class="titulo">Current players</h1>
             </div>
             <div class="current-players-container">
                 @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('substitute', false) as $player)
-                        <div class="player-card">
+                    <div class="player-card">
                         <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="player-photo">
                         <div class="player-info">
                             <h2 class="player-nick">{{ $player->nick }}</h2>
@@ -148,9 +158,9 @@
                 @endforeach
             </div>
             </form>
-            </div>
-
-            </form>
         </div>
 
-    @endsection
+        </form>
+    </div>
+
+@endsection
