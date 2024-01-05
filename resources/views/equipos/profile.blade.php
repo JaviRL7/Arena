@@ -8,7 +8,8 @@
             <div class="col-md-12" style="min-height: 80vh; position: relative;">
                 <div style="width: 100%;">
                     <!-- Cabecera con el logo del equipo -->
-                    <img src="{{asset($team->team_photo)}}" alt="" style="border-radius: 15px; border-color:orange; width: 100%;">
+                    <img src="{{ asset($team->team_photo) }}" alt=""
+                        style="border-radius: 15px; border-color:orange; width: 100%;">
 
                     <div class="team-header" style="background-color: {{ $rgbColor }};">
                         <div class="logo-container">
@@ -18,25 +19,26 @@
                 </div>
 
                 <div class="team-information">
-                    <h1 class="titulo-team" style="color:{{ $rgbColor }}; ">{{$team->name}}</h1>
-                    <h4 class="titulo-team" style="color:{{ $rgbColor }}; ">{{$team->competition->name}}</h1>
+                    <h1 class="titulo-team" style="color:{{ $rgbColor }}; ">{{ $team->name }}</h1>
+                    <h4 class="titulo-team" style="color:{{ $rgbColor }}; ">{{ $team->competition->name }}</h1>
                 </div>
                 <br>
                 <br>
                 <!-- Línea separadora -->
-                    <div style="height: 5px; background-color: #e44445;"></div>
-                    <div class="team-players">
-                        <h1 class="titulo">Current roster</h1>
-                        @foreach ($team->getPlayersDate(\Carbon\Carbon::now()) as $player)
-                            <div class="team-profile-player-div" style="background-color:#e44445;">
-                                <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}" class="team-profile-player-img">
-                                <div class="team-profile-player-info">
-                                    <h1>{{ $player->nick }}</h1>
-                                    <img src="{{ asset($player->role->icono_w) }}" alt="{{ $player->role->name }}">
-                                </div>
+                <div style="height: 5px; background-color: #e44445;"></div>
+                <div class="team-players">
+                    <h1 class="titulo">Current roster</h1>
+                    @foreach ($team->getPlayersDate(\Carbon\Carbon::now()) as $player)
+                        <div class="team-profile-player-div" style="background-color:#e44445;">
+                            <img src="{{ asset($player->photo) }}" alt="{{ $player->nick }}"
+                                class="team-profile-player-img">
+                            <div class="team-profile-player-info">
+                                <h1>{{ $player->nick }}</h1>
+                                <img src="{{ asset($player->role->icono_w) }}" alt="{{ $player->role->name }}">
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
+                </div>
 
 
 
@@ -46,11 +48,14 @@
                     <!-- Botones de año -->
                     @foreach ($years as $year)
                         <button class="year-button" data-year="{{ $year }}">{{ $year }}</button>
+                        <div class="players" id="players-{{ $year }}" style="display: none;">
+                            @foreach ($playersByYear[$year] as $player)
+                                <p>{{ $player->nick }}</p>
+                            @endforeach
+                        </div>
                     @endforeach
 
-                    <!-- Div para los jugadores del año seleccionado -->
                     <div id="playersByYear">
-                        <!-- Los jugadores del año seleccionado se mostrarán aquí -->
                     </div>
                 </div>
                 <div class="md-col-6">
@@ -60,18 +65,10 @@
         </div>
 
         <script>
-        $('.year-button').click(function() {
-    var year = $(this).data('year');
-    $.get('/teams_show/' + {{ $team->id }} + '/players/' + year, function(data) {
-        // Imprime los datos en la consola
-        console.log(data);
-
-        // Aquí puedes actualizar tu vista con los jugadores obtenidos
-        $('#playersByYear').empty();
-        $.each(data, function(i, player) {
-            $('#playersByYear').append('<p>' + player.nick + '</p>');
-        });
-    });
-});
+            $('.year-button').click(function() {
+                var year = $(this).data('year');
+                $('.players').hide();
+                $('#players-' + year).show();
+            });
         </script>
     @endsection

@@ -11,6 +11,7 @@
                     <th>Logo</th>
                     <th>Name</th>
                     <th>League</th>
+                    <th>Jugadores por año</th>
                     <th>Current players</th>
                     <th>Actions</th>
                 </thead>
@@ -29,6 +30,13 @@
                         <td>
                             <h5>
                                 {{ $team->competition->name }}
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @foreach ($team->getPlayersByYear(2022) as $player)
+                                    {{ $player->nick }}
+                                @endforeach
                             </h5>
                         </td>
                         <td>

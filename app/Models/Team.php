@@ -62,23 +62,56 @@ class Team extends Model
             ->toDateString();
         return $this->getPlayersDate($date);
     }
-    public function getPlayersByYear($year)
-{
-    $startDate = \Carbon\Carbon::create($year, 1, 1);
-    $endDate = \Carbon\Carbon::create($year, 12, 31);
 
-    return $this->players()
-        ->where('start_date', '<=', $endDate)
-        ->where(function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('end_date', [$startDate, $endDate])
-                ->orWhere(function ($query) use ($startDate, $endDate) {
-                    $query->where('end_date', '>=', $endDate)
-                        ->where('start_date', '<=', $startDate);
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getPlayersByYear($year)
+    {
+        $startDate = \Carbon\Carbon::create($year, 1, 1);
+        $endDate = \Carbon\Carbon::create($year, 12, 31);
+
+        return $this->players()
+            ->where('start_date', '<=', $endDate)
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->where(function ($query) use ($startDate, $endDate) {
+                    $query->whereBetween('end_date', [$startDate, $endDate]);
+                })->orWhere(function ($query) use ($endDate) {
+                    $query->whereNull('end_date')
+                          ->where('contract_expiration_date', '>=', $endDate);
                 });
-        })
-        ->orderBy('role_id', 'asc')
-        ->get();
-}
+            })
+            ->orderBy('role_id', 'asc')
+            ->get();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getPlayersSubstitute()
     {
         $today = Carbon::now()->format('Y-m-d');

@@ -38,8 +38,12 @@ class TeamsController extends Controller
         // Extrae el color predominante del logo del equipo
         $dominantColor = ColorThief::getColor(public_path($team->logo));
         $rgbColor = 'rgb(' . $dominantColor[0] . ',' . $dominantColor[1] . ',' . $dominantColor[2] . ')';
-
-        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor, 'years' => $years]);
+        //
+        $playersByYear = [];
+        foreach ($years as $year) {
+            $playersByYear[$year] = $team->getPlayersByYear($year);
+        }
+        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor, 'years' => $years, 'playersByYear' => $playersByYear]);
     }
     public function index()
     {
