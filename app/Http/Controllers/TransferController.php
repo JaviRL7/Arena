@@ -20,4 +20,18 @@ class TransferController extends Controller
 
         return view('transfers.index', compact('transfers', 'players', 'teams', 'competitions'));
     }
+    public function index2()
+    {
+
+        $transfers = Transfer::all();
+
+        return view('transfers.index2', compact('transfers'));
+    }
+    public function index13()
+    {
+
+
+
+        return view('equipos.index');
+    }
 }

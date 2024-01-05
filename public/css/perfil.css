@@ -2,1827 +2,1914 @@
 .container-fluid,
 .row,
 .col-12 {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 /*Header de profile*/
 .profile-header {
-    position: relative;
-    height: 500px;
-    color: white;
-    background-size: cover;
-    background-position: center;
-    background-color: grey;
+  position: relative;
+  height: 500px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-color: grey;
 }
 
 /*Name nick photo de profile*/
 .profile-info {
-    display: flex;
-    align-items: center;
-    background-color: #e44445;
-    margin: 0;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  background-color: #e44445;
+  margin: 0;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .profile-icon {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    margin-right: 20px;
-    margin-left: 200px;
-    margin-top: -125px;
-    position: relative;
-    z-index: 2;
-    object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-right: 20px;
+  margin-left: 200px;
+  margin-top: -125px;
+  position: relative;
+  z-index: 2;
+  object-fit: cover;
 }
 
 .profile-text {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-text h1 {
-    font-family: important;
-    font-size: 50px;
-    color: #ffff;
+  font-family: important;
+  font-size: 50px;
+  color: #ffff;
 }
 
 .profile-accounts {
-    display: flex;
-    gap: 40px; /* Ajusta este valor para cambiar el espacio entre los elementos */
+  display: flex;
+  gap: 40px; /* Ajusta este valor para cambiar el espacio entre los elementos */
 }
 
 .profile-accounts .account {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .profile-accounts p {
-    margin: 0;
-    font-family: pixel2_5;
-    font-size: x-large;
-    color: #ffff;
+  margin: 0;
+  font-family: pixel2_5;
+  font-size: x-large;
+  color: #ffff;
 }
 .profile-accounts .account img {
-    margin-right: 10px;
-    filter: invert(100%);
+  margin-right: 10px;
+  filter: invert(100%);
 }
 
 /*Enlaces*/
 .profile-links-container {
-    background-color: #bcbcbc;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  background-color: #bcbcbc;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .profile-links {
-    display: flex;
-    font-size: 20px;
-    gap: 50px;
-
+  display: flex;
+  font-size: 20px;
+  gap: 50px;
 }
 .profile-links img {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 .profile-links a {
-    color: #333;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-family: "Pixel2_5";
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "Pixel2_5";
 }
 
 /*Fuentes*/
 @font-face {
-    font-family: "Pixel";
-    src: url("/Fuentes/pixel/pixel.otf") format("opentype");
+  font-family: "Pixel";
+  src: url("/Fuentes/pixel/pixel.otf") format("opentype");
 }
 @font-face {
-    font-family: "Pixel2_5";
-    src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
+  font-family: "Pixel2_5";
+  src: url("/Fuentes/pixel2/Fonts/5.otf") format("opentype");
 }
 @font-face {
-    font-family: "important";
-    src: url("/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf");
+  font-family: "important";
+  src: url("/Fuentes/cocogoose/Cocogoose-Pro-Regular-trial.ttf");
 }
 @font-face {
-    font-family: "Russian";
-    src: url("/Fuentes/Russian/Russian.otf") format("opentype");
+  font-family: "Russian";
+  src: url("/Fuentes/Russian/Russian.otf") format("opentype");
 }
 @font-face {
-    font-family: "salih";
-    src: url("/Fuentes/salih/Salih_Regular.ttf");
+  font-family: "salih";
+  src: url("/Fuentes/salih/Salih_Regular.ttf");
 }
 @font-face {
-    font-family: "mol";
-    src: url("/Fuentes/mollen/Mollen Personal Use/Mollen-BoldPersonalUse.otf") format("opentype");
+  font-family: "mol";
+  src: url("/Fuentes/mollen/Mollen Personal Use/Mollen-BoldPersonalUse.otf")
+    format("opentype");
 }
 @font-face {
-    font-family: "digital";
-    src: url("/Fuentes/digital/DS-DIGI.TTF");
+  font-family: "digital";
+  src: url("/Fuentes/digital/DS-DIGI.TTF");
 }
 
 /*Modales*/
-.overlay{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 10px;
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
 }
 .remove-photo-icon1 {
-    margin-left: 190px; /* Ajusta este valor para cambiar la posición del icono de cierre */
-    width: 35px;
-    height: 35px;
-    background-color: rgba(255, 255, 255, 0.7);
-    filter: invert(1);
-    padding: 4px;
-    border-radius: 30%;
+  margin-left: 190px; /* Ajusta este valor para cambiar la posición del icono de cierre */
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: invert(1);
+  padding: 4px;
+  border-radius: 30%;
 }
 .profile-comments-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 80%;
+  margin: 0 auto;
 }
 .profile-comments-container h1 {
-    color: #e44445;
-    font-family: "important";
+  color: #e44445;
+  font-family: "important";
 }
 .comment {
-    border: 2px solid #e44445;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    max-width: 600px;
-    min-width: 450px;
+  border: 2px solid #e44445;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 600px;
+  min-width: 450px;
 }
 .comment-likes {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: #333;
-    font-size: 1,5em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #333;
+  font-size: 1, 5em;
 }
 .comment-likes img {
-    max-width: 15px;
-    vertical-align: middle;
-    margin-right: 5px;
+  max-width: 15px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 .comment-likes p {
-    margin: 0;
+  margin: 0;
 }
 .comment-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .user-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    object-fit: cover;
-
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
 }
 .user-info {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 .user-name {
-    margin: 0;
-    font-weight: bold;
+  margin: 0;
+  font-weight: bold;
 }
 .user-nick {
-    margin: 0;
-    color: #888;
+  margin: 0;
+  color: #888;
 }
 .comment-date {
-    font-size: 0.8em;
-    color: #888;
+  font-size: 0.8em;
+  color: #888;
 }
 .comment-body {
-    margin: 0;
+  margin: 0;
 }
 .comment-likes {
-    text-align: right;
+  text-align: right;
 }
 .modal_user_photo > div {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 .modal-user-photo {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    position: relative;
-    object-fit: cover;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  object-fit: cover;
 }
 .add-photo-icon {
-    width: 35px;
-    height: 35px;
-    background-color: rgba(255, 255, 255, 0.7);
-    filter: invert(1);
-    position: relative;
-    padding: 4px;
-    border-radius: 30%;
-
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: invert(1);
+  position: relative;
+  padding: 4px;
+  border-radius: 30%;
 }
 .add-photo-icon1 {
-    width: 35px;
-    height: 35px;
-    background-color: rgba(255, 255, 255, 0.7);
-    filter: invert(1);
-    padding: 4px;
-    border-radius: 30%;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: invert(1);
+  padding: 4px;
+  border-radius: 30%;
 
-    margin-right: 100px;
+  margin-right: 100px;
 }
 .form-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 1;
 }
 .name-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    font-size: 20px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
 }
 .form-control {
-    border: 1px solid #808080;
-    padding: 20px;
-    position: relative;
-    font-size: 20px;
+  border: 1px solid #808080;
+  padding: 20px;
+  position: relative;
+  font-size: 20px;
 }
 #user_photo {
-    z-index: 0;
+  z-index: 0;
 }
 .modal-body {
-    height: 80vh;
-    overflow-y: auto;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 /*EL FALLO ESTA AQUIIIII!!!!*/
 /* Estilos generales de la tabla */
 #playersTable {
-    width: 100%;
-    border: none !important;
+  width: 100%;
+  border: none !important;
 }
 
 /* Estilos para las celdas de la tabla */
 #playersTable td {
-    width: 100%;
-    height: auto;
-    text-align: left !important;
-    border: none !important;
+  width: 100%;
+  height: auto;
+  text-align: left !important;
+  border: none !important;
 }
 
 /* Estilos para las imágenes de los jugadores */
 #playersTable .player-photo {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Estilos para los logos de los equipos */
 #playersTable .team-logo {
-    width: 70px;
-    height: auto;
-    position: absolute;
-    bottom: 30px;
-    right: 530px;
-    border-radius: 0;
-
+  width: 70px;
+  height: auto;
+  position: absolute;
+  bottom: 30px;
+  right: 530px;
+  border-radius: 0;
 }
 #playersTable .role-logo {
-    width: 70px;
-    height: auto;
-    position: absolute;
-    top: 0;
-    right: 530px;
-    border-radius: 0;
+  width: 70px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 530px;
+  border-radius: 0;
 }
 
 /* Estilos para los nombres de los jugadores */
 #playersTable .player-name {
-    font-size: 2em;
-    text-align: left;
+  font-size: 2em;
+  text-align: left;
 }
 
 /* Estilos para DataTables */
 table.dataTable {
-    width: auto !important;
+  width: auto !important;
 }
-
 
 /*Estilos para el div de jugadores favoritos*/
 .profile-comments-container {
-    gap: 10px; /* Esto añade un espacio entre los divs de los jugadores */
-    margin-bottom: 10px;
+  gap: 10px; /* Esto añade un espacio entre los divs de los jugadores */
+  margin-bottom: 10px;
 }
 
 .player {
-    max-width: 100%; /* Esto hace que el div sea responsive */
-    width: 500px; /* Esto establece el ancho máximo del div */
-    border-radius: 10px; /* Esto redondea los bordes del div */
-    background-color: #e44445; /* Esto establece el color de fondo del div */
-    display: flex; /* Esto permite alinear los elementos dentro del div */
-    align-items: center; /* Esto centra verticalmente los elementos dentro del div */
+  max-width: 100%; /* Esto hace que el div sea responsive */
+  width: 500px; /* Esto establece el ancho máximo del div */
+  border-radius: 10px; /* Esto redondea los bordes del div */
+  background-color: #e44445; /* Esto establece el color de fondo del div */
+  display: flex; /* Esto permite alinear los elementos dentro del div */
+  align-items: center; /* Esto centra verticalmente los elementos dentro del div */
 }
 
 .player .getFavorites-div {
-    order: 2; /* Esto coloca el div después de la imagen */
+  order: 2; /* Esto coloca el div después de la imagen */
 }
 
 .player .getFavorites-name {
-    color: white;
-    margin-left: auto; /* Esto mueve el nombre a la derecha del div */
+  color: white;
+  margin-left: auto; /* Esto mueve el nombre a la derecha del div */
 }
 
 .player .getFavorites-photo {
-    order: 1; /* Esto coloca la imagen antes del div */
-    max-width: 100%; /* Esto hace que el div sea responsive */
-    width: 250px;
+  order: 1; /* Esto coloca la imagen antes del div */
+  max-width: 100%; /* Esto hace que el div sea responsive */
+  width: 250px;
 }
 
 .player .getFavorites-link {
-    position: absolute;
-    top: 0;
-    color: rgb(134, 134, 187); /* Esto hace que el texto del enlace sea azul */
-    text-decoration: none; /* Esto elimina el subrayado del enlace */
-    background-color: blue; /* Esto hace que el fondo del enlace sea azul */
-    color: white; /* Esto hace que el texto del enlace sea blanco */
-    padding: 10px 20px; /* Esto añade un poco de relleno alrededor del texto del enlace para que parezca un botón */
-    border-radius: 5px; /* Esto redondea los bordes del enlace para que parezca un botón */
-
+  position: absolute;
+  top: 0;
+  color: rgb(134, 134, 187); /* Esto hace que el texto del enlace sea azul */
+  text-decoration: none; /* Esto elimina el subrayado del enlace */
+  background-color: blue; /* Esto hace que el fondo del enlace sea azul */
+  color: white; /* Esto hace que el texto del enlace sea blanco */
+  padding: 10px 20px; /* Esto añade un poco de relleno alrededor del texto del enlace para que parezca un botón */
+  border-radius: 5px; /* Esto redondea los bordes del enlace para que parezca un botón */
 }
 .getFavorites-text-button {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 /*CARRUSEL DE SERIES*/
 .my-carousel .carousel-inner {
-    width: 50%; /* Ajusta este valor para cambiar el tamaño del carrusel */
-    margin: auto;
+  width: 50%; /* Ajusta este valor para cambiar el tamaño del carrusel */
+  margin: auto;
 }
 
 .my-carousel .carousel-item > div > img {
-    object-fit: cover; /* Esto hará que las imágenes se recorten en lugar de deformarse */
-    height: 100%;
-    width: 100%;
+  object-fit: cover; /* Esto hará que las imágenes se recorten en lugar de deformarse */
+  height: 100%;
+  width: 100%;
 }
 .my-carousel .carousel-control-prev,
 .my-carousel .carousel-control-next {
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    background: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .my-carousel .carousel-control-prev {
-    left: 25%; /* Ajusta este valor para mover la flecha a la izquierda */
+  left: 25%; /* Ajusta este valor para mover la flecha a la izquierda */
 }
 
 .my-carousel .carousel-control-next {
-    right: 25%; /* Ajusta este valor para mover la flecha a la derecha */
+  right: 25%; /* Ajusta este valor para mover la flecha a la derecha */
 }
 
 .final-image-container {
-    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
-    margin: auto;
-
+  width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+  margin: auto;
 }
 
 .final-image {
-    width: 100%;
+  width: 100%;
 }
-body{
-    background-color: #fffcdc;
+body {
+  background-color: #fffcdc;
 }
-#titulo{
-    font-family: important;
-    color: #e44445;
-    margin-left: 25%;
+#titulo {
+  font-family: important;
+  color: #e44445;
+  margin-left: 25%;
 }
 .team-logo {
-    max-height: 60px; /* Esto hará que los logos sean de 60px de alto como máximo */
+  max-height: 60px; /* Esto hará que los logos sean de 60px de alto como máximo */
 }
 
 .result {
-    font-size: 1.75rem; /* Esto hará que el resultado sea del tamaño de un h3 */
-    font-family: 'Your Desired Font', sans-serif !important;
-    white-space: nowrap; /* Esto evitará que el resultado se divida en varias líneas */
-    margin-bottom: 20px;
+  font-size: 1.75rem; /* Esto hará que el resultado sea del tamaño de un h3 */
+  font-family: "Your Desired Font", sans-serif !important;
+  white-space: nowrap; /* Esto evitará que el resultado se divida en varias líneas */
+  margin-bottom: 20px;
 }
 .final-image-container {
-    display: flex; /* Añade esta línea */
-    justify-content: center; /* Añade esta línea */
-    width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
-    margin: auto;
+  display: flex; /* Añade esta línea */
+  justify-content: center; /* Añade esta línea */
+  width: 25%; /* Ajusta este valor para cambiar el tamaño del contenedor de la imagen */
+  margin: auto;
 }
 
 .final-image-container img {
-    width: 50%; /* Ajusta este valor para cambiar el tamaño de las imágenes */
-    height: auto; /* Asegura que la altura de las imágenes sea automática */
+  width: 50%; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+  height: auto; /* Asegura que la altura de las imágenes sea automática */
 }
-
 
 /*Portada*/
 .image-container {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
 }
 
 .image-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
-    color: white;
-    text-align: center;
-    font-family: important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
+  color: white;
+  text-align: center;
+  font-family: important;
 }
 
 .image-container img {
-    /*border-radius: 5px;*/
-    transform-origin: center center;
-    transition: all .2s;
-    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+  /*border-radius: 5px;*/
+  transform-origin: center center;
+  transition: all 0.2s;
+  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
 }
 
 .image-container:hover img {
-    transform: scale(1.03); /* Aumenta el tamaño de la imagen al pasar el ratón */
+  transform: scale(1.03); /* Aumenta el tamaño de la imagen al pasar el ratón */
 }
 .title-line {
-    border-bottom: 1px solid gray; /* Crea una línea gris */
-    text-align: left;
-    margin-bottom: 20px; /* Añade espacio debajo de la línea */
-    font-family: important;
-    color: #e44445;
-  }
-  .title-secundary{
-
-    text-align: left;
-    margin-bottom: 20px;
-    font-family: mol;
-    color: #333;
-  }
-.informacion{
-    font-family: mol;
-    color: #333;
+  border-bottom: 1px solid gray; /* Crea una línea gris */
+  text-align: left;
+  margin-bottom: 20px; /* Añade espacio debajo de la línea */
+  font-family: important;
+  color: #e44445;
+}
+.title-secundary {
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: mol;
+  color: #333;
+}
+.informacion {
+  font-family: mol;
+  color: #333;
 }
 .informacion a {
-    color: #333;
-    text-decoration: none;
+  color: #333;
+  text-decoration: none;
 }
 
 /*minigame*/
 .card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  cursor: pointer;
 }
 .card {
-    width: 150px; /* Tamaño fijo para ancho */
-    height: 150px; /* Tamaño fijo para alto */
-    /* Resto de las propiedades */
+  width: 150px; /* Tamaño fijo para ancho */
+  height: 150px; /* Tamaño fijo para alto */
+  /* Resto de las propiedades */
 }
 
 .card-face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: transform 0.6s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .front {
-    background-color: #e44445;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 200px;
-    border-radius: 15px;
+  background-color: #e44445;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
 }
 
 .back {
-    transform: rotateY(180deg);
-    height: 200px;
-    width: 200px;
-    background-color: #e44445;
-    border-radius: 15px;
+  transform: rotateY(180deg);
+  height: 200px;
+  width: 200px;
+  background-color: #e44445;
+  border-radius: 15px;
 }
 
 .card.flipped .front {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .card.flipped .back {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 .card-wrapper {
-    width: 150px;
-    height: 150px;
-    gap: 20px;
-    margin: 50px;
+  width: 150px;
+  height: 150px;
+  gap: 20px;
+  margin: 50px;
 }
-.minigame-container{
-    min-height: 80vh;
+.minigame-container {
+  min-height: 80vh;
 }
 
 input.search-minigame {
-    width: 100% ; /* Hace que el buscador sea más grande */
-    border: 2px solid red ; /* Añade bordes rojos */
-    border-radius: 25px ; /* Redondea los bordes */
-    padding: 10px ; /* Añade un poco de espacio interior para que el texto no esté pegado a los bordes */
+  width: 100%; /* Hace que el buscador sea más grande */
+  border: 2px solid red; /* Añade bordes rojos */
+  border-radius: 25px; /* Redondea los bordes */
+  padding: 10px; /* Añade un poco de espacio interior para que el texto no esté pegado a los bordes */
 }
 
 .card {
-    border: none !important;
+  border: none !important;
 }
 
+.btn-danger,
+.btn-outline-danger {
+  margin-top: 20px;
 
-.btn-danger, .btn-outline-danger {
-    margin-top: 20px;
-
-    border-color: #e44445 !important;
-
+  border-color: #e44445 !important;
 }
 
 .btn-danger {
-    background-color: #e44445 !important;
-    margin-right: 30px;
+  background-color: #e44445 !important;
+  margin-right: 30px;
 }
-.card-face p{
-    color: white;
-    font-size: 30px;
+.card-face p {
+  color: white;
+  font-size: 30px;
 }
 .card-face.back {
-    color: white; /* Cambia el color del texto a blanco */
-    font-size: 30px; /* Aumenta el tamaño del texto */
+  color: white; /* Cambia el color del texto a blanco */
+  font-size: 30px; /* Aumenta el tamaño del texto */
 }
 /*footer*/
 .footer {
-    background-color: #e44445;
-    color: white;
-    padding: 20px 0;
+  background-color: #e44445;
+  color: white;
+  padding: 20px 0;
 }
 .footer-title {
-    font-size: 60px;
-    font-family: "important";
+  font-size: 60px;
+  font-family: "important";
 }
-.footer p, .footer ul, .footer li {
-    font-size: 18px;
+.footer p,
+.footer ul,
+.footer li {
+  font-size: 18px;
 }
 
 .footer .links ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .footer .links li {
-   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .legal-links {
-   text-align: right;
+  text-align: right;
 }
 /*ADMIN PANEL*/
 .table_crud_admin a {
-    display: inline-block;
-    text-decoration: none;
-    margin: 5px;
-    padding: 10px;
-    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+  display: inline-block;
+  text-decoration: none;
+  margin: 5px;
+  padding: 10px;
+  transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
 }
 
 /* Botón con fondo blanco y borde rojo */
 .table_crud_admin a {
-    background-color: white;
-    border: 2px solid #e44445;
-    color: #e44445;
-    border-radius: 15px;
-
+  background-color: white;
+  border: 2px solid #e44445;
+  color: #e44445;
+  border-radius: 15px;
 }
 
-
 .table_crud_admin a:hover {
-    background-color: #e44445;
-    color: white;
+  background-color: #e44445;
+  color: white;
 }
 
 /* Botón con fondo rojo y letras blancas */
 .table_crud_admin input[type="submit"] {
-    background-color: #e44445;
-    color: white;
-    border: none;
-    padding: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
-    border-radius: 15px;
-    margin-top: 10px;
+  background-color: #e44445;
+  color: white;
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Para el efecto hover */
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
-.panel-admin{
-    background-color: white;
+.panel-admin {
+  background-color: white;
 }
-.edit-player-container{
-    min-height: 80vh;
-    background-color: white;
+.edit-player-container {
+  min-height: 80vh;
+  background-color: white;
 }
-.edit-player-container > div:not(.separador, .modal-delete){
-    border-radius: 15px;
-    margin-bottom: 10px;
+.edit-player-container > div:not(.separador, .modal-delete) {
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
 /*MODAL DELETE PLAYERS */
-.model-delete-estilo{
-    max-height: 700px;
-    width: 900px !important;
-    overflow-y: auto;
+.model-delete-estilo {
+  max-height: 700px;
+  width: 900px !important;
+  overflow-y: auto;
 }
-.modal-dialog-estilo{
-    max-width: 900px !important;
+.modal-dialog-estilo {
+  max-width: 900px !important;
 }
 .modal-player-photo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 50%; /* Hace que el contenedor sea un círculo */
-    width: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
-    height: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
-    padding: 10px;
-    margin: auto; /* Centra el contenedor en la modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 50%; /* Hace que el contenedor sea un círculo */
+  width: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+  height: 150px; /* Ajusta este valor para cambiar el tamaño del círculo */
+  padding: 10px;
+  margin: auto; /* Centra el contenedor en la modal */
 }
 
 .modal-player-photo img {
-    max-width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
-    max-height: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
-    object-fit: cover;
-    border-radius: 50%;
+  max-width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  max-height: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-.modal-body-estilo, .modal-footer-estilo {
-
-    text-align: center; /* Centra el texto */
+.modal-body-estilo,
+.modal-footer-estilo {
+  text-align: center; /* Centra el texto */
 }
 .btn-estilo {
-    background-color: white;
-    border: 2px solid red;
-    color: red;
-    border-radius: 15px;
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+  border-radius: 15px;
 }
 .btn-blanco {
-    background-color: white !important;
-    border: 2px solid #e44445;
-    color: #e44445;
-    font-size: 2em;
+  background-color: white !important;
+  border: 2px solid #e44445;
+  color: #e44445;
+  font-size: 2em;
 }
 .btn:hover {
-    background-color: #e44445;
-    color: white;
+  background-color: #e44445;
+  color: white;
 }
 .table_crud_admin {
-    border-collapse: separate;
+  border-collapse: separate;
 
-    border-spacing: 0 15px; /* Aumenta este valor para más espacio entre las filas */
-
+  border-spacing: 0 15px; /* Aumenta este valor para más espacio entre las filas */
 }
-.btn-primary{
-    background-color: white;
-    border: 2px solid #e44445;
-    color: #e44445;
-    border-radius: 15px;
-    text-align: center; /* Aligns the content in the center */
-    font-size: 1.2em; /* Increases the font size */
+.btn-primary {
+  background-color: white;
+  border: 2px solid #e44445;
+  color: #e44445;
+  border-radius: 15px;
+  text-align: center; /* Aligns the content in the center */
+  font-size: 1.2em; /* Increases the font size */
 }
 
 .btn-primary:hover {
-    background-color: #e44445 !important;
-    color: white !important;;
-    border-color: white !important;
+  background-color: #e44445 !important;
+  color: white !important;
+  border-color: white !important;
 }
 .table_crud_admin tr {
-    box-shadow: 0 0 0 2px #e44445;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 1.5em;
+  box-shadow: 0 0 0 2px #e44445;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .table-responsive {
-    padding-left: 5px;
+  padding-left: 5px;
 }
 
 .btn-danger {
-    background-color: #e44445;
-    color: white;
-    border: none;
-    font-size: 1.1em; /* Aumenta el tamaño de la fuente */
-    border-radius: 15px;
+  background-color: #e44445;
+  color: white;
+  border: none;
+  font-size: 1.1em; /* Aumenta el tamaño de la fuente */
+  border-radius: 15px;
 }
-
-
-
-
 
 /*SIDE BAR*/
 
 .sidebar-estilo {
-    background-color: #e44445;
-    border-radius: 15px;
+  background-color: #e44445;
+  border-radius: 15px;
 }
 .titulo-estilo {
-    font-size: 3em; /* Aumenta el tamaño de la fuente */
-    font-family: important;
-    color: white;
+  font-size: 3em; /* Aumenta el tamaño de la fuente */
+  font-family: important;
+  color: white;
 }
 .sidebar-estilo hr {
-    border-color: white; /* Cambia el color de las líneas de separación a blanco */
+  border-color: white; /* Cambia el color de las líneas de separación a blanco */
 }
 .enlace-estilo {
-    font-size: 1em !important; /* Aumenta el tamaño de la fuente */
-    color: white !important; /* Cambia el color a blanco */
-    margin-bottom: 50px !important; /* Aumenta el margen inferior */
-    font-family: 'important' !important; /* Cambia la fuente */
+  font-size: 1em !important; /* Aumenta el tamaño de la fuente */
+  color: white !important; /* Cambia el color a blanco */
+  margin-bottom: 50px !important; /* Aumenta el margen inferior */
+  font-family: "important" !important; /* Cambia la fuente */
 }
-
 
 /*ADMIN PANEL*/
 
 /* Estilo personalizado para los enlaces de paginación */
 .pagination {
-    justify-content: center; /* Alinea los enlaces de paginación al centro */
+  justify-content: center; /* Alinea los enlaces de paginación al centro */
 }
 
-.pagination li a, .pagination li span {
-    color: red !important; /* Cambia el color a rojo */
-    font-size: 1.9em !important; /* Aumenta el tamaño del texto */
+.pagination li a,
+.pagination li span {
+  color: red !important; /* Cambia el color a rojo */
+  font-size: 1.9em !important; /* Aumenta el tamaño del texto */
 }
-
 
 .pagination .page-item.active .page-link {
-    background-color: #4CAF50; /* Color de fondo para el ítem activo */
-    border-color: #4CAF50; /* Color de borde para el ítem activo */
+  background-color: #4caf50; /* Color de fondo para el ítem activo */
+  border-color: #4caf50; /* Color de borde para el ítem activo */
 }
 
 .pagination .page-link {
-    color: #4CAF50; /* Color del texto para los enlaces */
-    /* Otros estilos como padding, margin, etc. */
+  color: #4caf50; /* Color del texto para los enlaces */
+  /* Otros estilos como padding, margin, etc. */
 }
-
 
 /*create a new game del admin*/
 
 .create-game {
-    background-color: #e44445;
-    color: white;
-    text-align: left;
-    padding: 20px;
-    border-radius: 15px;
-    width: 900px;
-    margin-left: 20px;
+  background-color: #e44445;
+  color: white;
+  text-align: left;
+  padding: 20px;
+  border-radius: 15px;
+  width: 900px;
+  margin-left: 20px;
 }
 
 /*modal delete de games*/
 .modal-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-container {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin: 0 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 0 10px;
 }
 
 .logo {
-    max-height: 100%;
-    width: auto;
+  max-height: 100%;
+  width: auto;
 }
 
 .vs {
-    align-self: center;
+  align-self: center;
 }
 
 /*MODO GAMES DEL ADMIN GAMES*/
 .team {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .team-name {
-    text-align: center;
+  text-align: center;
 }
 .team-logo {
-    object-fit: contain;
+  object-fit: contain;
 }
-
 
 /*Crear serie*/
 
-
 .team-option {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .img-flag {
-    height: 20px;
-    width: auto;
-    margin-left: 10px;
+  height: 20px;
+  width: auto;
+  margin-left: 10px;
 }
 .form-group {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
 }
 .form-control {
-    border-color: red;
+  border-color: red;
 }
 .wrapper {
-    border: 2px solid red;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border: 2px solid red;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .team-select {
-    height: 50px; /* Ajusta la altura aquí */
+  height: 50px; /* Ajusta la altura aquí */
 }
 
 .team-select .select2-selection__rendered {
-    line-height: 50px; /* Asegúrate de que esta línea coincida con la altura */
+  line-height: 50px; /* Asegúrate de que esta línea coincida con la altura */
 }
 /*create seriess*/
 /* styles.css */
 
 .container-create-series {
-    height: 90vh;
-    width: 90vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .square-create-series {
-    width: 600px;
-    height: 600px;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.square-create-series {
+  width: 600px;
+  height: 600px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .select-container-create-series {
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    width: 45%;
-  }
+.select-container-create-series {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 45%;
+}
 
-  .separator-create-series {
-    height: 80%;
-    width: 2px;
-    background-color: white;
-  }
+.separator-create-series {
+  height: 80%;
+  width: 2px;
+  background-color: white;
+}
 
-  .create-series-btn {
-    background-color: white;
-    color: #e44445;
-    border: 2px solid #e44445;
-    padding: 5px 10px;
-    margin-top: 1px;
-  }
+.create-series-btn {
+  background-color: white;
+  color: #e44445;
+  border: 2px solid #e44445;
+  padding: 5px 10px;
+  margin-top: 1px;
+}
 
-  .selected-items-create-series {
-    background-color: #e44445;
-    color: white;
-    border-radius: 15px;
-    padding: 10px;
-    margin-top: 20px;
-    height: 100px;
-    overflow: auto;
-  }
+.selected-items-create-series {
+  background-color: #e44445;
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+  height: 100px;
+  overflow: auto;
+}
 /*show*/
 
 /*modal serie*/
 .input-style {
-    border-radius: 10px;
-    margin: 10px 0;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
 .label-style {
-    display: block;
-    margin-bottom: 3px;
+  display: block;
+  margin-bottom: 3px;
 }
 .modal-serie-form {
-    font-size: 1.2em;
-    line-height: 2;
-    max-height: 60vh;
+  font-size: 1.2em;
+  line-height: 2;
+  max-height: 60vh;
 }
 
 .modal-serie-form input {
-    border-radius: 15px;
-    padding: 10px;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 /*INTERRUCTOR*/
- /* Estilo del interruptor de alternancia */
- .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin: 0 auto; /* Centra el interruptor de alternancia */
+/* Estilo del interruptor de alternancia */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0 auto; /* Centra el interruptor de alternancia */
 }
 
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border: 1px solid white; /* Añade un borde blanco */
-
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border: 1px solid white; /* Añade un borde blanco */
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 3px; /* Ajusta la posición de la "bolita" */
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 3px; /* Ajusta la posición de la "bolita" */
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 input:checked + .slider {
-    background-color: #e44445; /* Rojo cuando está activado */
+  background-color: #e44445; /* Rojo cuando está activado */
 }
 
 input:not(:checked) + .slider {
-    background-color: #2196F3; /* Azul cuando no está activado */
+  background-color: #2196f3; /* Azul cuando no está activado */
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 /* Forma redondeada del interruptor (si prefieres) */
 .slider.round {
-    border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 /*CUSTOM DIV*/
 .custom-div {
-    display: flex; /* Alinea los hijos de lado a lado */
-    flex-direction: row; /* Alinea los hijos horizontalmente */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples filas si no hay suficiente espacio */
-    gap: 40px; /* Espacio de 40px entre los hijos */
-    margin-top: 100px;
-    margin-bottom: 100px;
-    width: 60%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    background-color: #e44445;
-    border-radius: 25px;
-    color: white;
-    padding: 40px;
+  display: flex; /* Alinea los hijos de lado a lado */
+  flex-direction: row; /* Alinea los hijos horizontalmente */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples filas si no hay suficiente espacio */
+  gap: 40px; /* Espacio de 40px entre los hijos */
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 60%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  background-color: #e44445;
+  border-radius: 25px;
+  color: white;
+  padding: 40px;
 }
 
 .custom-div input,
 .custom-div img,
 .custom-div p,
 .custom-div select {
-    flex: 1 0 auto; /* Hace que los elementos sean flexibles */
+  flex: 1 0 auto; /* Hace que los elementos sean flexibles */
 }
 
 .custom-div input {
-    border-radius: 15px;
-    color: #333;
+  border-radius: 15px;
+  color: #333;
 }
 
 .custom-div img {
-    float: left;
-    margin-right: 10px;
+  float: left;
+  margin-right: 10px;
 }
 
 .custom-div p {
-    font-size: 1.5em;
-    margin: 50px;
+  font-size: 1.5em;
+  margin: 50px;
 }
 
 .custom-div select {
-    color: #333;
-    border-radius: 15px;
+  color: #333;
+  border-radius: 15px;
 }
-
-
-
-
 
 /*ban phase*/
 
 .ban_phase_blue {
-    background-color: #2196F3;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    color: #FFFFFF;
-    padding: 10px;
-    border-right: none; /* Elimina el borde derecho */
+  background-color: #2196f3;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  border-right: none; /* Elimina el borde derecho */
 }
 
 .ban_phase_blue select {
-    color:  #333;
-    margin-top: 10px;
-    border-radius: 5px;
+  color: #333;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .ban_phase_red {
-    background-color: #e44445;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    color: #FFFFFF;
-    padding: 10px;
-    border-left: none; /* Elimina el borde izquierdo */
-    text-align: right; /* Alinea el texto a la derecha */
+  background-color: #e44445;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  border-left: none; /* Elimina el borde izquierdo */
+  text-align: right; /* Alinea el texto a la derecha */
 }
 
 .ban_phase_red select {
-    color:  #333;
-    margin-top: 10px;
-    border-radius: 5px;
+  color: #333;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .ban_phase_container {
-    display: flex;
-    justify-content: center;
-    margin-left: 20%;
-    margin-right: 20%;
+  display: flex;
+  justify-content: center;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
-.ban_phase_blue, .ban_phase_red {
-    width: 50%;
-    box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho */
-    font-size: 1.2em;
-
+.ban_phase_blue,
+.ban_phase_red {
+  width: 50%;
+  box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho */
+  font-size: 1.2em;
 }
-.titulos{
-    color: #e44445;
-    font-family: important;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-bottom: 5px;
+.titulos {
+  color: #e44445;
+  font-family: important;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-bottom: 5px;
 }
 
 .custom-div {
-    margin-top: 0; /* Elimina el margen superior */
-    font-size: 1.2em;
-    /* El resto de tus estilos... */
+  margin-top: 0; /* Elimina el margen superior */
+  font-size: 1.2em;
+  /* El resto de tus estilos... */
 }
 /*table de show editar games*/
 
 .my-table-container {
-    display: flex; /* Alinea los hijos de lado a lado */
-    justify-content: center; /* Centra los hijos horizontalmente */
-    margin-left: 20%;
-    margin-right: 20%;
-
-
+  display: flex; /* Alinea los hijos de lado a lado */
+  justify-content: center; /* Centra los hijos horizontalmente */
+  margin-left: 20%;
+  margin-right: 20%;
 }
-.my-table-container input{
-    border-radius: 15px;
-    width: 50%;
+.my-table-container input {
+  border-radius: 15px;
+  width: 50%;
 }
-.my-table-container select{
-    border-radius: 15px;
-    width: 75%;
+.my-table-container select {
+  border-radius: 15px;
+  width: 75%;
 }
 .my-table-container table {
-    border-collapse: collapse; /* Combina los bordes de las celdas */
-    width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+  border-collapse: collapse; /* Combina los bordes de las celdas */
+  width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
 }
 
-.my-table-container td, .my-table-container th {
-    padding: 3px; /* Añade espacio alrededor del contenido de las celdas */
-    border-bottom: 1px solid #000; /* Añade una línea de un píxel debajo de cada celda */
+.my-table-container td,
+.my-table-container th {
+  padding: 3px; /* Añade espacio alrededor del contenido de las celdas */
+  border-bottom: 1px solid #000; /* Añade una línea de un píxel debajo de cada celda */
 }
 .custom-div input[type="submit"] {
-    background-color: #2196F3; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa por encima */
-    font-size: 20px; /* Tamaño del texto del botón */
-    border-radius: 5px; /* Bordes redondeados del botón */
-    margin-left: 60%;
-    border: none; /* Elimina el borde del botón */
+  background-color: #2196f3; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  cursor: pointer; /* Cambia el cursor a una mano cuando se pasa por encima */
+  font-size: 20px; /* Tamaño del texto del botón */
+  border-radius: 5px; /* Bordes redondeados del botón */
+  margin-left: 60%;
+  border: none; /* Elimina el borde del botón */
 }
 
 .custom-div input[type="submit"]:hover {
-    background-color: #e44445; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border: 2px solid white; /* Agrega un borde blanco al hacer hover */
+  background-color: #e44445; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: 2px solid white; /* Agrega un borde blanco al hacer hover */
 }
 .custom-div-2 {
-    background-color: #e44445;
-    color: white;
-    border-radius: 15px;
-    width: 50%;
+  background-color: #e44445;
+  color: white;
+  border-radius: 15px;
+  width: 50%;
 
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 30px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
 }
 
 .custom-div-2 .logo {
-    float: left;
-    margin-right: 20px;
+  float: left;
+  margin-right: 20px;
 }
 
 .custom-div-2 .edit-button {
-    width: 100px;
-    float: right; /* Alinea el botón a la derecha */
-    margin-top: -40px;
+  width: 100px;
+  float: right; /* Alinea el botón a la derecha */
+  margin-top: -40px;
 }
 /*modal configure*/
 .modal-configure .modal-dialog {
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-.modal-body-configure{
-    max-height: 60vh;
-    padding: 10%;
+  max-height: 60vh;
+  overflow-y: auto;
 }
-
+.modal-body-configure {
+  max-height: 60vh;
+  padding: 10%;
+}
 
 /*calnedar*/
 
 .my-table-container-calendar {
-    width: 100%;
+  width: 100%;
 }
 
 .my-table-calendar {
-    width: 100%;
+  width: 100%;
 }
 
 .game-calendar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .teams-calendar {
-    width: 40%;
-    text-align: center;
+  width: 40%;
+  text-align: center;
 }
 
 .team-logo-calendar {
-    height: auto;
-    width: 80px;
-}
-.titulo-vs{
-    font-family: important;
-    color: #333;
-}
-.game-calendar {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-}
-
-.teams-calendar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.team-logo-calendar {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.my-table-calendar h2 {
-    text-align: left;
-    padding-left: 15%; /* Ajusta este valor según tus necesidades */
-    font-family: mol;
-    color: #e44445;
-}
-.competition-logo {
-    text-align: left;
-    width: 80px;
-    height: auto;
-}
-.serie-details {
-    text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px; /* Ajusta este valor según tus necesidades */
-}
-.my-table-container-calendar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.contenedor-calendar{
-    margin-left: 5%;
-    margin-right: 5%;
-    min-height: 80vh;
-    margin-top: 150px;
-}
-.month-selector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Ajusta este valor según tus necesidades */
-    margin-left: 15%;
-    margin-right: 15%;
-    font-size: 1.5em;
-    color: white;
-    background-color: #e44445;
-    border-radius: 15px;
-    padding-left: 20%;
-    padding-right: 20%;
-    height: 200px;
-}
-.competition-logo h3 {
-    margin-top: 10px; /* Ajusta este valor según tus necesidades */
-}
-.hora{
-    margin-left: 10px;
-    margin-top: 10px;
-}
-.titulo-sin-hora{
-    margin-top: 10px;
-    white-space: nowrap;
-    margin-left: -15px;
-
-}
-.game-calendar td {
-    width: 20%; /* Ajusta este valor según tus necesidades */
-}
-.logo-and-time {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.game-calendar {
-    display: flex;
-    justify-content: space-around; /* Cambia 'justify-content: center;' por 'justify-content: space-around;' */
-    align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
+  height: auto;
+  width: 80px;
 }
 .titulo-vs {
-    text-align: center; /* Asegura que el 'vs' esté centrado en su celda */
+  font-family: important;
+  color: #333;
+}
+.game-calendar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 
+.teams-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.team-logo-calendar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.my-table-calendar h2 {
+  text-align: left;
+  padding-left: 15%; /* Ajusta este valor según tus necesidades */
+  font-family: mol;
+  color: #e44445;
+}
+.competition-logo {
+  text-align: left;
+  width: 80px;
+  height: auto;
+}
+.serie-details {
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Ajusta este valor según tus necesidades */
+}
+.my-table-container-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.contenedor-calendar {
+  margin-left: 5%;
+  margin-right: 5%;
+  min-height: 80vh;
+  margin-top: 150px;
+}
+.month-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Ajusta este valor según tus necesidades */
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 1.5em;
+  color: white;
+  background-color: #e44445;
+  border-radius: 15px;
+  padding-left: 20%;
+  padding-right: 20%;
+  height: 200px;
+}
+.competition-logo h3 {
+  margin-top: 10px; /* Ajusta este valor según tus necesidades */
+}
+.hora {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.titulo-sin-hora {
+  margin-top: 10px;
+  white-space: nowrap;
+  margin-left: -15px;
+}
+.game-calendar td {
+  width: 20%; /* Ajusta este valor según tus necesidades */
+}
+.logo-and-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game-calendar {
+  display: flex;
+  justify-content: space-around; /* Cambia 'justify-content: center;' por 'justify-content: space-around;' */
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.titulo-vs {
+  text-align: center; /* Asegura que el 'vs' esté centrado en su celda */
+}
 
 /*ALPINE DE TEAM ADMIN*/
 
 .team-alpine {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e44445;
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e44445;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .team-container {
-    flex: 1 0 30%;
-    display: flex;
-    flex-direction: row; /* Cambia 'column' por 'row' */
-    align-items: center;
+  flex: 1 0 30%;
+  display: flex;
+  flex-direction: row; /* Cambia 'column' por 'row' */
+  align-items: center;
 }
 
 .logo-team-container {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-team-container img {
-    object-fit: contain;
-    object-position: center;
+  object-fit: contain;
+  object-position: center;
 }
 
 .name-team-container {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos a la izquierda */
 }
 
 .players-container {
-    flex: 1 0 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex: 1 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .team-form {
-    border: 2px solid red;
-    padding: 20px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+  border: 2px solid red;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .team-input {
-    border: 2px solid red;
-    width: 70%;
+  border: 2px solid red;
+  width: 70%;
 }
 
 .form-group-left {
-    flex: 1 0 45%;
-    border-right: 1px solid #000;
-    padding-right: 10px;
+  flex: 1 0 45%;
+  border-right: 1px solid #000;
+  padding-right: 10px;
 }
 
 .form-group-right {
-    flex: 1 0 45%;
-    padding-left: 10px;
+  flex: 1 0 45%;
+  padding-left: 10px;
 }
 .contenedor-formulario-team {
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid #e44445;
-    border-radius: 15px;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #e44445;
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .form-group-left {
-    flex: 1 0 45%;
-    border-right: 1px solid #000;
-    padding-right: 10px;
+  flex: 1 0 45%;
+  border-right: 1px solid #000;
+  padding-right: 10px;
 }
 
 .form-group-right {
-    flex: 1 0 45%;
-    padding-left: 10px;
+  flex: 1 0 45%;
+  padding-left: 10px;
 }
 
 .team-input {
-    border: 2px solid red;
-    width: 70%;
+  border: 2px solid red;
+  width: 70%;
 }
 .contenedor-formulario-team {
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid red;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid red;
+  padding: 20px;
 }
 
 .form-group-left {
-    flex: 1 0 45%;
-    border-right: 1px solid #000;
-    padding-right: 10px;
+  flex: 1 0 45%;
+  border-right: 1px solid #000;
+  padding-right: 10px;
 }
 
 .form-group-right {
-    flex: 1 0 45%;
-    padding-left: 10px;
+  flex: 1 0 45%;
+  padding-left: 10px;
 }
 
 .team-input {
-    border: 2px solid red;
-    width: 60%; /* Hace los inputs un poco más pequeños */
+  border: 2px solid red;
+  width: 60%; /* Hace los inputs un poco más pequeños */
 }
-.btn-outline-success{
-    max-height: 50px;
-    align-self: flex-end; /* Alinea el botón por debajo */
-
+.btn-outline-success {
+  max-height: 50px;
+  align-self: flex-end; /* Alinea el botón por debajo */
 }
-.add-player-button-container{
-    height: 100px;
-    background-color: #e44445;
-    color: white;
-    margin-top: 40px;
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.boton{
-    border-color: white;
-    border: solid 1px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #e44445;
-    color: white;
-    transition: background-color 0.3s, color 0.3s;
+.add-player-button-container {
+  height: 100px;
+  background-color: #e44445;
+  color: white;
+  margin-top: 40px;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.boton:hover{
-    background-color: white;
-    color: #e44445;
+.boton {
+  border-color: white;
+  border: solid 1px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #e44445;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
 }
-.titulo{
-    font-family: important;
-    color: #e44445;
-    margin-top: 40px;
+
+.boton:hover {
+  background-color: white;
+  color: #e44445;
+}
+.titulo {
+  font-family: important;
+  color: #e44445;
+  margin-top: 40px;
 }
 
 .player-card {
-    border: 4px solid #2196F3;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
+  border: 4px solid #2196f3;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .player-photo {
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .player-info {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .player-nick {
-    font-family: important !important;
-    color: #454242;
+  font-family: important !important;
+  color: #454242;
 }
 .player-info {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .player-nick {
-    font-family:important;
-    color: #454242;
+  font-family: important;
+  color: #454242;
 }
 
-.player-role, .player-date {
-    font-size: 1.2em;
-    margin-top: 10px;
+.player-role,
+.player-date {
+  font-size: 1.2em;
+  margin-top: 10px;
 }
 .player-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
 }
 
-.boton1, .boton2, .boton3, .boton4 {
-    background-color: white;
-    color: white;
-    border-width: 3px;
-    border-style: solid;
-    margin-bottom: 10px;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 10px;
-    font-size: 1.2em; /* Aumenta el tamaño de la fuente */
-    padding: 10px 20px; /* Aumenta el relleno */
+.boton1,
+.boton2,
+.boton3,
+.boton4 {
+  background-color: white;
+  color: white;
+  border-width: 3px;
+  border-style: solid;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 10px;
+  font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+  padding: 10px 20px; /* Aumenta el relleno */
 }
 
 .boton1 {
-    border-color: #2196F3;
-    color: #2196F3;
+  border-color: #2196f3;
+  color: #2196f3;
 }
 
 .boton1:hover {
-    background-color: #2196F3;
-    color: white;
+  background-color: #2196f3;
+  color: white;
 }
 
 .boton2 {
-    border-color: #e44445;
-    color: #e44445;
+  border-color: #e44445;
+  color: #e44445;
 }
 
 .boton2:hover {
-    background-color: #e44445;
-    color: white;
+  background-color: #e44445;
+  color: white;
 }
 
 .boton3 {
-    border-color: orange;
-    color: orange;
+  border-color: orange;
+  color: orange;
 }
 
 .boton3:hover {
-    background-color: orange;
-    color: white;
+  background-color: orange;
+  color: white;
 }
 .boton4 {
-    border-color: black;
-    color: black;
+  border-color: black;
+  color: black;
 }
 
 .boton4:hover {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
 /*modales renew*/
 .renew-player-modal .modal-content {
-    /* Alinea el texto al centro */
-    text-align: center;
+  /* Alinea el texto al centro */
+  text-align: center;
 }
 
 .renew-player-modal .form-control {
-    /* Cambia el color del texto a negro */
-    color: black;
-    /* Aumenta el tamaño del input */
-    height: 50px;
-    /* Aumenta el tamaño del texto dentro del input */
-    font-size: 18px;
+  /* Cambia el color del texto a negro */
+  color: black;
+  /* Aumenta el tamaño del input */
+  height: 50px;
+  /* Aumenta el tamaño del texto dentro del input */
+  font-size: 18px;
 }
 
 .renew-player-modal .form-control-sm {
-    /* Hace que el input del año sea menos ancho */
-    max-width: 200px;
-    margin: auto;
+  /* Hace que el input del año sea menos ancho */
+  max-width: 200px;
+  margin: auto;
 }
 .renew-player-modal .modal-body img {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .modal-dialog-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .renew-player-modal .modal-body img {
-    position: relative;
-    width: 200px; /* Ajusta este valor al tamaño deseado */
-    height: 200px; /* Ajusta este valor al tamaño deseado */
-    border-radius: 50%;
-    object-fit: cover; /* Esto asegura que la imagen no se deforme */
+  position: relative;
+  width: 200px; /* Ajusta este valor al tamaño deseado */
+  height: 200px; /* Ajusta este valor al tamaño deseado */
+  border-radius: 50%;
+  object-fit: cover; /* Esto asegura que la imagen no se deforme */
 }
 
 .renew-player-modal .modal-body img::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: white;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white;
 }
 
 .player-image-wrapper {
-    display: flex; /* Esto centra la imagen */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    height: 200px; /* Ajusta este valor al tamaño deseado */
-    width: 200px; /* Ajusta este valor al tamaño deseado */
-    border-radius: 50%;
-    background-color: white;
-    margin-left: 38%;
+  display: flex; /* Esto centra la imagen */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 200px; /* Ajusta este valor al tamaño deseado */
+  width: 200px; /* Ajusta este valor al tamaño deseado */
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 38%;
 }
 .modal-header button.btn-close {
-    /* Cambia el color de la 'X' a blanco */
-    color: white !important;
-    filter: invert(1);
-
+  /* Cambia el color de la 'X' a blanco */
+  color: white !important;
+  filter: invert(1);
 }
-.tabla-sustituto{
-    margin-left: 5%;
-    margin-right: 5%;
-
+.tabla-sustituto {
+  margin-left: 5%;
+  margin-right: 5%;
 }
-.role-logo{
-    height: 70px;
-    width: auto;
-    margin-left: 40px;
+.role-logo {
+  height: 70px;
+  width: auto;
+  margin-left: 40px;
 }
-
-
-
-
-
 
 /*Tranfers container*/
 
 .transfers-container {
-    background-color:#2196F3;
+  background-color: #2196f3;
 
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
 
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px;
-    color: white;
-    gap: 20px;
-    margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  color: white;
+  gap: 20px;
+  margin: 20px;
 }
 .transfers-container img {
-    height: 64px;
-    width: auto;
+  height: 64px;
+  width: auto;
 }
 .transfers-container .player-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: important;
 }
-.player-info img{
-    height: 40px;
+.player-info img {
+  height: 40px;
 }
 .transfers-container .team-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .transfers-container .team-info p {
-    font-size: 1.5em;
-    font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 .transfers-container .status-circle {
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
 }
 .bg-green-500 {
-    background-color: rgb(47, 200, 47);
+  background-color: rgb(47, 200, 47);
 }
 
 .bg-red-500 {
-    background-color: #e44445;
+  background-color: #e44445;
 }
 .transfers-container .status-circle img {
-
-    filter: invert(1); /* Invierte los colores de la imagen */
-    height: 40px;
-    width: auto;
-    margin-left: 10px;
-    margin-top: 10px;
+  filter: invert(1); /* Invierte los colores de la imagen */
+  height: 40px;
+  width: auto;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .transfers-container .transfer-label {
-    color: #d3d3d3; /* Gris claro */
-    font-size: 1.5em; /* Más grande */
-    margin-left: 70px;
+  color: #d3d3d3; /* Gris claro */
+  font-size: 1.5em; /* Más grande */
+  margin-left: 70px;
 }
 
 /*PT2*/
 .team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Asegura una distancia uniforme entre las columnas */
-    align-content: flex-start;
-    margin: 0 auto;
-    max-width: 100%; /* Hace que los divs sean más anchos */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Asegura una distancia uniforme entre las columnas */
+  align-content: flex-start;
+  margin: 0 auto;
+  max-width: 100%; /* Hace que los divs sean más anchos */
 }
 .team-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #e44445;
-    border-radius: 10px;
-    color: white;
-    padding: 20px; /* Aumenta el espacio entre las filas */
-    margin-bottom: 20px; /* Aumenta el espacio entre las filas */
-    max-height: 500px;
-    overflow: auto;
-    flex: 0 0 calc(50% - 20px);
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e44445;
+  border-radius: 10px;
+  color: white;
+  padding: 20px; /* Aumenta el espacio entre las filas */
+  margin-bottom: 20px; /* Aumenta el espacio entre las filas */
+  max-height: 500px;
+  overflow: auto;
+  flex: 0 0 calc(50% - 20px);
+  margin: 10px;
 }
-
 
 /* Para pantallas de hasta 600px de ancho */
 @media (max-width: 600px) {
-    .team-container {
-        flex: 0 0 100%; /* Esto permitirá que solo aparezca 1 div por fila */
-    }
+  .team-container {
+    flex: 0 0 100%; /* Esto permitirá que solo aparezca 1 div por fila */
+  }
 }
 
 .team-containe h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .arrow {
-    width: 20px !important;
-    filter: invert(1); /* Esto invertirá los colores de la imagen de la flecha */
+  width: 20px !important;
+  filter: invert(1); /* Esto invertirá los colores de la imagen de la flecha */
 }
 
 .my-custom-table {
-    width: 100%;
-    table-layout: fixed; /* Hace que las columnas tengan un ancho fijo */
-    font-size: 2em;
+  width: 100%;
+  table-layout: fixed; /* Hace que las columnas tengan un ancho fijo */
+  font-size: 2em;
 }
 
 .my-custom-table td {
-    width: 25%; /* Hace que cada columna ocupe un 25% del ancho total */
+  width: 25%; /* Hace que cada columna ocupe un 25% del ancho total */
 }
 .my-custom-table img {
-    width: 30px;
-    height: auto;
+  width: 30px;
+  height: auto;
 }
 
 .my-custom-table tr {
-    margin-bottom: 20px; /* Aumenta el espacio entre las filas */
+  margin-bottom: 20px; /* Aumenta el espacio entre las filas */
 }
 
-.titulo-tabla-transfer{
-    text-align: center;
-    margin-bottom: 20px; /* Esto añadirá un poco de espacio entre el título y la tabla */
+.titulo-tabla-transfer {
+  text-align: center;
+  margin-bottom: 20px; /* Esto añadirá un poco de espacio entre el título y la tabla */
 }
-.selecor-league{
-    font-size: 2em;
-    margin-top: 20px;
-    margin-left: 20px;
+.selecor-league {
+  font-size: 2em;
+  margin-top: 20px;
+  margin-left: 20px;
 }
-.competition-button{
-    font-size: 2em;
+.competition-button {
+  font-size: 2em;
 }
+
 .btn-large {
-    padding: 10px 24px;
-    font-size: 18px;
+  padding: 10px 24px;
+  font-size: 18px;
 }
 
 .btn-group .active {
-    background-color: #444; /* Cambia el color de fondo del botón activo */
-    color: #fff; /* Cambia el color del texto del botón activo */
+  background-color: #444; /* Cambia el color de fondo del botón activo */
+  color: #fff; /* Cambia el color del texto del botón activo */
 }
 
+
+
+/**/
+
+.competitions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
+}
+
+.team-show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-left: 10%;
+}
+
+
+
+.team-show-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Alinea los elementos horizontalmente al centro */
+}
+
+.team-show-item {
+    flex: 1 0 calc(20% - 20px); /* Ajusta este valor para cambiar el tamaño de los elementos */
+    max-width: calc(20% - 20px); /* Ajusta este valor para cambiar el tamaño máximo de los elementos */
+    margin: 10px 10px 90px 10px; /* Aumenta el margen inferior para más espacio entre las filas */
+    box-sizing: border-box;
+}
+.teams-show-team-card {
+    text-align: center;
+    background: none;
+    position: relative; /* Posiciona el elemento en relación a su ubicación normal */
+}
+
+.teams-show-team-logo {
+    max-height: 70px;
+    max-width: 100px;
+    height: auto;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.teams-show-team-card:hover .teams-show-team-logo {
+    z-index: -1; /* Coloca la imagen detrás del texto y el fondo rojo */
+}
+
+.card-title {
+    color: black;
+}
+
+.teams-show-competition-logo {
+    height: 50px;
+    width: auto;
+}
+
+
+/*PROFILE TEAM*/
+
+.team-header {
+    height: 200px;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    margin-top: -200px; /* Añade un margin-top negativo del mismo valor que la altura de .team-header */
+}
+
+.logo-container {
+    background-color: white;
+    border-radius: 50%;
+    padding: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teams-show-team-logo {
+    max-height: 90px;
+    max-width: 120px;
+    height: auto;
+    width: auto;
+}
+
+.team-information, .team-players, .team-stats {
+    margin-top: 50px; /* Añade un margin-top del mismo valor que la altura de .team-header */
+}
+.titulo-team{
+    font-family: important;
+}
+/*pt2*/
+.team-profile-player-div {
+    width: 45%;
+    color: white;
+    margin: 2.5%;
+    box-sizing: border-box; /* Añade 'box-sizing: border-box' para incluir el padding y el borde en el ancho del elemento */
+    float: left; /* Añade 'float: left' para distribuir los jugadores en dos columnas */
+}
+
+.team-profile-player-img {
+    width: 30%;
+    float: left;
+}
+
+.team-profile-player-info {
+    width: 70%;
+    float: right;
+    text-align: right;
+    display: flex; /* Añade 'display: flex' */
+    justify-content: flex-end; /* Alinea el nick y el icono a la derecha */
+    align-items: center; /* Alinea el nick y el icono en el centro verticalmente */
+    padding-right: 10px; /* Añade un poco de espacio a la derecha */
+}
+
+.team-profile-player-info h1 {
+    margin-right: 10px; /* Añade un poco de espacio a la derecha del nick */
+}

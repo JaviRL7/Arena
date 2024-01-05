@@ -10,11 +10,38 @@ use App\Models\Role;
 use App\Models\Competition;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use ColorThief\ColorThief;
 
 class TeamsController extends Controller
 {
+
+    public function index_show()
+    {
+        $teams = Team::all();
+        $competitions = Competition::all();
+
+        return view('equipos.index', [
+            'teams' => $teams,
+            'competitions' => $competitions,
+        ]);
+    }
+    public function profile($id)
+    {
+        $team = Team::find($id);
+
+        // Extrae el color predominante del logo del equipo
+        $dominantColor = ColorThief::getColor(public_path($team->logo));
+        $rgbColor = 'rgb(' . $dominantColor[0] . ',' . $dominantColor[1] . ',' . $dominantColor[2] . ')';
+
+        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor]);
+    }
     public function index()
     {
+        if (!auth()->check() || !auth()->user()->admin) {
+            // Redirige a los usuarios no administradores a donde quieras, por ejemplo, a la página de inicio
+            return redirect('/');
+        }
+
         $teams = Team::orderBy('id')->get();
         $today = Carbon::now()->format('Y-m-d');
 
@@ -22,16 +49,9 @@ class TeamsController extends Controller
             $team->checkSubstitute($today);
         }
 
-        if (auth()->check() && auth()->user()->admin) {
-            return view('admin.teams.index', [
-                'teams' => $teams, 'today' => $today,
-
-            ]);
-        } else {
-            return view('pages.players', [
-                'teams' => $teams,
-            ]);
-        }
+        return view('admin.teams.index', [
+            'teams' => $teams, 'today' => $today,
+        ]);
     }
     public function edit(Team $team)
     {
@@ -112,25 +132,6 @@ class TeamsController extends Controller
         return redirect()->back()->with('success', 'Substitute status updated successfully.');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function add_player(Request $request, Team $team)
     {
         try {
@@ -166,7 +167,7 @@ class TeamsController extends Controller
                     ->where('team_id', $team->id)
                     ->where(function ($query) use ($request, $contract_expiration_date) {
                         $query->whereBetween('start_date', [$request->start_date, $contract_expiration_date])
-                              ->orWhereBetween('end_date', [$request->start_date, $contract_expiration_date]);
+                            ->orWhereBetween('end_date', [$request->start_date, $contract_expiration_date]);
                     })
                     ->first();
 
@@ -201,30 +202,6 @@ class TeamsController extends Controller
 
         return redirect()->route('admin.teams.index');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function renewContract(Request $request, $teamId, $playerId)
     {
@@ -302,19 +279,10 @@ class TeamsController extends Controller
         return redirect()->route('admin.teams.index');
     }
 
-
-
-
-
-
-
-
-
-
     public function deleteAppearance(Request $request, Team $team, Player $player)
-{
-    $team->players()->detach($player->id);
+    {
+        $team->players()->detach($player->id);
 
-    return redirect()->route('admin.teams.index');
-}
+        return redirect()->route('admin.teams.index');
+    }
 }

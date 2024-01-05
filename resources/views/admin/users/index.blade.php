@@ -13,9 +13,6 @@
                     <th>Email</th>
                     <th>Admin</th>
                     <th>Validated</th>
-                    <th>Birth Date</th>
-                    <th>Twitter</th>
-                    <th>Discord</th>
                     <th>Actions</th>
                 </thead>
                 <tbody>
@@ -51,29 +48,30 @@
                             </h5>
                         </td>
                         <td>
-                            <h5>
-                                {{ $user->birth_date }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->twitter }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->discord }}
-                            </h5>
-                        </td>
-                        <td>
                             <div>
-                                <a href="{{ route('profile.show', $user->id) }}" class="text-blue">Show</a>
+                                <form method="GET" action="{{ route('profile.index', $user) }}">
+                                    @csrf
+                                    <button type="submit" class="boton1">Show</button>
+                                </form>
                             </div>
                             <div>
-                                <a href="{{ route('admin.user.validate', $user->id) }}" class="text-blue">Validate</a>
+                                <form method="POST" action="{{ route('admin.user.validate', $user->id) }}">
+                                    @csrf
+                                    <button type="submit" class="boton3">Validate</button>
+                                </form>
                             </div>
                             <div>
-                                <a href="{{ route('admin.user.destroy', $user->id) }}" class="text-blue">Delete</a>
+                                <form method="POST" action="{{ route('admin.user.invalidate', $user->id) }}">
+                                    @csrf
+                                    <button type="submit" class="boton2">Invalidate</button>
+                                </form>
+                            </div>
+                            <div>
+                                <form method="POST" action="{{ route('admin.user.destroy', $user->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="boton4">Delete</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

@@ -27,6 +27,7 @@ Route::get('/home', function () {
 })->name('home');
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,10 +36,9 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(
     function () {
         // Ruta para ver el perfil del usuario logueado
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
 
         // Ruta para ver los perfiles de otros usuarios
-        Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::get('/profile/comments', [ProfileController::class, 'comments'])->name('profile.comments');
         Route::get('/profile/getplayers', [ProfileController::class, 'getplayers'])->name('profile.getplayers');
@@ -139,14 +139,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 
     Route::get('/profile', [ProfileController::class, 'admin_index'])->name('admin.users.index');
-    Route::get('/profile/{id}', [ProfileController::class, 'admin_show'])->name('admin.user.show');
-    Route::post('/profile/validate', [ProfileController::class, 'admin_validateProfile'])->name('admin.user.validate');
+    Route::post('/profile/validate/{id}', [ProfileController::class, 'admin_validateProfile'])->name('admin.user.validate');
     Route::delete('/profile/{id}', [ProfileController::class, 'admin_destroy'])->name('admin.user.destroy');
+    Route::post('/profile/invalidate/{id}', [ProfileController::class, 'admin_invalidateProfile'])->name('admin.user.invalidate');
 });
 
 Route::get('/calendar', [SeriesController::class, 'calendar'])->name('calendar');
 
 Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
 
+Route::get('/teams_show', [TeamsController::class, 'index_show'])->name('teams.index');
+Route::get('/teams_show/{id}', [TeamsController::class, 'profile'])->name('team.profile');
 
 require __DIR__ . '/auth.php';

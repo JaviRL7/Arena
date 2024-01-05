@@ -1,3 +1,4 @@
 [ZoneTransfer]
 ZoneId=3
-HostUrl=about:internet
+ReferrerUrl=https://www.flickr.com/
+HostUrl=https://live.staticflickr.com/65535/53306820001_1c1c5710b6_k_d.jpg

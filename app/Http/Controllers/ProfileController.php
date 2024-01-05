@@ -18,14 +18,14 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function index(Request $request): View
-    {
-        $players = Player::paginate(5);
-        return view('profile.index', [
-            'user' => $request->user(),
-            'players' => $players,
-        ]);
-    }
+    public function index(User $user): View
+{
+    $players = Player::paginate(5);
+    return view('profile.index', [
+        'user' => $user,
+        'players' => $players,
+    ]);
+}
     public function getPlayers(Request $request)
     {
         if ($request->ajax()) {
@@ -47,11 +47,7 @@ class ProfileController extends Controller
             'players' => $players,
         ]);
     }
-    public function show($id) {
-        $user = User::findOrFail($id);
-        $players = Player::paginate(5);
-        return view('profile.index', ['user' => $user, 'players' => $players]);
-    }
+
     public function getFavorite()
     {
         $user = Auth::user();
@@ -230,11 +226,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function admin_show($id) {
-        $user = User::findOrFail($id);
-        $players = Player::paginate(5);
-        return view('profile.index', ['user' => $user, 'players' => $players]);
-    }
+
 
 
     public function admin_validateProfile(Request $request, $id) {
@@ -248,6 +240,13 @@ class ProfileController extends Controller
     public function admin_destroy($id) {
         $user = User::findOrFail($id);
         $user->delete();
+
+        return redirect()->route('admin.users.index');
+    }
+    public function admin_invalidateProfile(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $user->validated = false;
+        $user->save();
 
         return redirect()->route('admin.users.index');
     }

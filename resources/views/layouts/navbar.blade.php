@@ -40,6 +40,9 @@
                         <a class="nav-link mx-2" href="{{ route('calendar') }}">Calendar</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link mx-2" href="{{ route('teams.index') }}">Cteams</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link mx-2" href="{{ route('transfers.index') }}">Transfers</a>
                     </li>
                 </ul>
@@ -52,8 +55,7 @@
                                 <span style="margin-top: 5px;">{{ auth()->user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('profile.index') }}">Perfil</a></li>
-                                @if (auth()->user()->admin)
+                                <li><a class="dropdown-item" href="{{ route('profile.index', auth()->user()) }}">Profile</a></li>                                @if (auth()->user()->admin)
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin
                                             panel</a>
