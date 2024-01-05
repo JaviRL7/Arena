@@ -44,11 +44,9 @@
             <div class="row">
                 <div class="md-col-6">
                     <!-- Botones de año -->
-                    @for ($year = date('Y') - 1; $year >= 2000; $year--)
-                        @if (count($team->getPlayersDate(new Date($year, 0, 1))) > 0)
-                            <button onclick="getPlayersByYear({{ $year }})">{{ $year }}</button>
-                        @endif
-                    @endfor
+                    @foreach ($years as $year)
+                        <button class="year-button" data-year="{{ $year }}">{{ $year }}</button>
+                    @endforeach
 
                     <!-- Div para los jugadores del año seleccionado -->
                     <div id="playersByYear">
@@ -60,45 +58,20 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        function getPlayersByYear(year) {
-            // Usa la función getPlayersDate($date) para obtener los jugadores del año seleccionado
-            // Asegúrate de reemplazar 'team' con la instancia actual del equipo
-            var players = team.getPlayersDate(new Date(year, 0, 1));
 
-            var playersDiv = document.getElementById('playersByYear');
-            playersDiv.innerHTML = '';
+        <script>
+        $('.year-button').click(function() {
+    var year = $(this).data('year');
+    $.get('/teams_show/' + {{ $team->id }} + '/players/' + year, function(data) {
+        // Imprime los datos en la consola
+        console.log(data);
 
-            players.forEach(function(player) {
-                var playerDiv = document.createElement('div');
-                playerDiv.className = 'team-profile-player-div';
-                playerDiv.style.backgroundColor = '#e44445';
-
-                var playerImg = document.createElement('img');
-                playerImg.src = player.photo;
-                playerImg.alt = player.nick;
-                playerImg.className = 'team-profile-player-img';
-
-                var playerInfo = document.createElement('div');
-                playerInfo.className = 'team-profile-player-info';
-
-                var playerNick = document.createElement('h1');
-                playerNick.textContent = player.nick;
-
-                var playerRoleIcon = document.createElement('img');
-                playerRoleIcon.src = player.role.icono_w;
-                playerRoleIcon.alt = player.role.name;
-
-                playerInfo.appendChild(playerNick);
-                playerInfo.appendChild(playerRoleIcon);
-
-                playerDiv.appendChild(playerImg);
-                playerDiv.appendChild(playerInfo);
-
-                playersDiv.appendChild(playerDiv);
-            });
-        }
-            </script>
-@endsection
-
+        // Aquí puedes actualizar tu vista con los jugadores obtenidos
+        $('#playersByYear').empty();
+        $.each(data, function(i, player) {
+            $('#playersByYear').append('<p>' + player.nick + '</p>');
+        });
+    });
+});
+        </script>
+    @endsection

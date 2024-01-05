@@ -25,15 +25,21 @@ class TeamsController extends Controller
             'competitions' => $competitions,
         ]);
     }
+    public function getPlayersYear($teamId, $year)
+    {
+        $team = Team::find($teamId);
+        $players = $team->getPlayersByYear($year);
+        return response()->json($players);
+    }
     public function profile($id)
     {
         $team = Team::find($id);
-
+        $years = range(\Carbon\Carbon::parse($team->players()->min('start_date'))->year, now()->year);
         // Extrae el color predominante del logo del equipo
         $dominantColor = ColorThief::getColor(public_path($team->logo));
         $rgbColor = 'rgb(' . $dominantColor[0] . ',' . $dominantColor[1] . ',' . $dominantColor[2] . ')';
 
-        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor]);
+        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor, 'years' => $years]);
     }
     public function index()
     {
