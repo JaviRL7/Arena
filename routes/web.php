@@ -150,6 +150,5 @@ Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.
 
 Route::get('/teams_show', [TeamsController::class, 'index_show'])->name('teams.index');
 Route::get('/teams_show/{id}', [TeamsController::class, 'profile'])->name('team.profile');
-
-
+Route::get('/players/{id}/profile', [PlayersController::class, 'profile'])->name('players.profile');
 require __DIR__ . '/auth.php';

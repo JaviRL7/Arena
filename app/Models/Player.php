@@ -168,5 +168,32 @@ class Player extends Model
 
     return $lastTeam;
 }
+public function getTotalKills()
+{
+    return $this->games()->sum('kills');
+}
+
+public function getTotalAssists()
+{
+    return $this->games()->sum('assists');
+}
+
+public function getTotalDeaths()
+{
+    return $this->games()->sum('deaths');
+}
+
+public function getKDA()
+{
+    $totalKills = $this->getTotalKills();
+    $totalAssists = $this->getTotalAssists();
+    $totalDeaths = $this->getTotalDeaths();
+
+    if ($totalDeaths == 0) {
+        return ($totalKills + $totalAssists);
+    } else {
+        return ($totalKills + $totalAssists) / $totalDeaths;
+    }
+}
 
 }

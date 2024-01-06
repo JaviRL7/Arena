@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Role;
+use App\Models\Serie;
 use App\Models\Champion;
 use App\Models\Competition;
 use Illuminate\Validation\Rule;
@@ -40,6 +41,7 @@ class TeamsController extends Controller
 
     public function profile($id)
     {
+        $series = Serie::all();
         $team = Team::find($id);
         $years = range(\Carbon\Carbon::parse($team->players()->min('start_date'))->year, now()->year);
 
@@ -78,6 +80,7 @@ class TeamsController extends Controller
             'team' => $team,
             'rgbColor' => $rgbColor,
             'years' => $years,
+            'series' => $series,
             'playersByYear' => $playersByYear,
             'championData' => $championData,
         ]);

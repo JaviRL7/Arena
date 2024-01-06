@@ -120,4 +120,13 @@ public function destroy(Player $player)
     return redirect()->route('admin.players.index');
 }
 
+public function profile($id)
+{
+    $player = Player::find($id);
+
+    return view('players.profile', ['player' => $player]);
+}
+
+
+
 }

@@ -19,8 +19,8 @@
                 </div>
 
                 <div class="team-information">
-                    <h1 class="titulo-team" style="color:{{ $rgbColor }}; ">{{ $team->name }}</h1>
-                    <h4 class="titulo-team" style="color:{{ $rgbColor }}; ">{{ $team->competition->name }}</h1>
+                    <h1 class="titulo-team" style="color:{{ $rgbColor }}; font-family: mol;">{{ $team->name }}</h1>
+                    <h4 class="titulo-team" style="color:{{ $rgbColor }}; font-family: mol; ">{{ $team->competition->name }}</h1>
                 </div>
                 <br>
                 <br>
@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div style="height: 5px; background-color: #e44445;"></div>
+                    <div style="height: 5px; background-color: #e44445; margin-bottom:10px;"></div>
                     <h1 class="titulo"> History roster</h1>
                     <!-- Años -->
                     <div class="d-flex flex-wrap p-3 rounded" style="background-color: #e44445;">
@@ -63,7 +63,10 @@
                     @foreach ($years as $year)
                         <div class="players" id="players-{{ $year }}" style="display: none;">
                             @foreach ($playersByYear[$year] as $player)
-                                <p>{{ $player->nick }}</p>
+                                <div class="player-card">
+                                    <h2>{{ $player->nick }}</h2>
+                                    <img src="{{ asset($player->role->icono_w) }}" alt="{{ $player->role->name }}">
+                                </div>
                             @endforeach
                         </div>
                     @endforeach
@@ -81,7 +84,7 @@
                                 @foreach ($chunk as $championId => $champion)
                                     <div class="champion">
                                         <img src="{{ asset($champion['image']) }}" alt="{{ $champion['name'] }}">
-                                        <h2>{{ $champion['name'] }}</h2>
+                                        <h4 class="name-champ">{{ $champion['name'] }}</h4>
                                         <div class="bar">
                                             <div class="win"
                                                 style="width: {{ $champion['stats']['win_percentage'] }}%;">
@@ -101,6 +104,69 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="height: 5px; background-color: #e44445;"></div>
+                    <h1 class="titulo"> Series history</h1>
+                    <hr style="margin-top: 30px">
+                    @foreach ($series as $serie)
+                        @if ($serie->team_1_id == $team->id || $serie->team_2_id == $team->id)
+                            <div class="serie">
+                                <div class="team">
+                                    <img src="{{ asset($serie->team_1->logo) }}" alt="{{ $serie->team_1->name }}">
+                                </div>
+                                <div class="result">
+                                    <h2>{{ $serie->getResultSerie() }}</h2>
+                                </div>
+                                <div class="team">
+                                    <img src="{{ asset($serie->team_2->logo) }}" alt="{{ $serie->team_2->name }}">
+                                </div>
+                            </div>
+                            <hr> <!-- Línea horizontal -->
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 40px">
+                <div class="col-md-12">
+                    <div style="height: 5px; background-color: #e44445;"></div>
+                    <h1 class="titulo">Fans</h1>
+                    @php
+                        $fans = \App\Models\User::where('favorite_team', $team->id)->get();
+                    @endphp
+                    @if ($fans->isEmpty())
+                        <h5>This team doesn't have any fans yet.</h5>
+                    @else
+                        @foreach ($fans as $fan)
+                            <div class="fan">
+                                <h2>{{ $fan->name }}</h2>
+                                <!-- Añade aquí más detalles del fan si lo deseas -->
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <script>
                 $(document).ready(function() {
                     console.log("Documento listo");

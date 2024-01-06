@@ -1964,3 +1964,73 @@ input:checked + .slider:before {
     width: 40px !important;
     height: 40px !important;
 }
+.name-champ{
+    font-family: mol;
+    color: #444;
+    margin-right: 30px;
+}
+/*pt4*/
+
+.player-card {
+    margin-top: 10px;
+    background-color: #2196f3;
+    border-radius: 5px; /* Ajusta este valor para cambiar cuánto quieres redondear los bordes */
+    color: white;
+    font-family: 'Mol', sans-serif; /* Asegúrate de tener la fuente 'Mol' cargada */
+    padding: 20px; /* Añade espacio alrededor del contenido dentro del div */
+    margin-bottom: 20px; /* Añade espacio entre cada tarjeta de jugador */
+}
+
+.player-card h2 {
+    display: inline-block; /* Permite que la imagen se muestre a la derecha del texto */
+}
+
+.player-card img {
+    float: right; /* Alinea la imagen a la derecha */
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+/**/
+.serie {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Añade espacio entre cada serie */
+}
+
+.serie .team {
+    width: 40%; /* Ajusta este valor según tus necesidades */
+}
+
+.serie .team img {
+    max-height: 90px;
+    max-width: 120px;
+    height: auto;
+    width: auto;
+}
+
+.serie .result {
+    width: 20%; /* Ajusta este valor según tus necesidades */
+    align-self: center; /* Centra verticalmente el resultado en el div */
+    text-align: center; /* Centra horizontalmente el texto del resultado */
+}
+/*profile player nuevo*/
+
+
+
+.player-profile-img {
+    border-radius: 15px;
+}
+
+
+.player-profile-photo-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.player-profile-nick {
+    font-size: 2em;
+    color: white;
+}
+

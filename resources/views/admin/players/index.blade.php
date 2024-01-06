@@ -41,6 +41,7 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.players.edit', ['player' => $player]) }}" class="text-blue">Modificate</a> <br>
+                            <a href="{{ route('players.profile', ['id' => $player->id]) }}" class="text-green">View Profile</a> <br>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $player->id }}">Delete</button>
                         </td>
                     </tr>
