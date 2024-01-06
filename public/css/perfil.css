@@ -1960,3 +1960,7 @@ input:checked + .slider:before {
     font-family: mol;
     color: #333;
 }
+.owl-carousel .item img {
+    width: 40px !important;
+    height: 40px !important;
+}

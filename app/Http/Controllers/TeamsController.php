@@ -62,7 +62,8 @@ class TeamsController extends Controller
                         ->join('series', 'games.serie_id', '=', 'series.id')
                         ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
                         ->select('champions.*', 'series.date as date')
-                        ->paginate(10);  // Cambia este número para ajustar cuántos campeones se muestran por página
+                        ->get()
+                        ->unique('id');
 
         // Calcula los porcentajes de victoria y derrota para cada campeón
         foreach ($champions as $champion) {
@@ -79,9 +80,9 @@ class TeamsController extends Controller
             'years' => $years,
             'playersByYear' => $playersByYear,
             'championData' => $championData,
-            'champions' => $champions,  // Pasa los campeones a la vista para la paginación
         ]);
     }
+
 
 
 

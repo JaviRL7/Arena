@@ -75,28 +75,45 @@
                     <div style="height: 5px; background-color: #e44445;"></div>
                     <h1 class="titulo"> Win rate</h1>
 
-                    @foreach (collect($championData)->chunk(10) as $chunk)
-                    @foreach ($chunk as $championId => $champion)
-                        <div class="champion">
-                            <img src="{{ asset($champion['image']) }}" alt="{{ $champion['name'] }}">
-                            <h2>{{ $champion['name'] }}</h2>
-                            <div class="bar">
-                                <div class="win" style="width: {{ $champion['stats']['win_percentage'] }}%;">
-                                    {{ round($champion['stats']['win_percentage']) }}% W
-                                </div>
-                                <div class="loss" style="width: {{ $champion['stats']['loss_percentage'] }}%;">
-                                    {{ round($champion['stats']['loss_percentage']) }}% L
-                                </div>
+                    <div class="owl-carousel owl-theme">
+                        @foreach (collect($championData)->chunk(10) as $chunk)
+                            <div class="item">
+                                @foreach ($chunk as $championId => $champion)
+                                    <div class="champion">
+                                        <img src="{{ asset($champion['image']) }}" alt="{{ $champion['name'] }}">
+                                        <h2>{{ $champion['name'] }}</h2>
+                                        <div class="bar">
+                                            <div class="win"
+                                                style="width: {{ $champion['stats']['win_percentage'] }}%;">
+                                                {{ round($champion['stats']['win_percentage']) }}% W
+                                            </div>
+                                            <div class="loss"
+                                                style="width: {{ $champion['stats']['loss_percentage'] }}%;">
+                                                {{ round($champion['stats']['loss_percentage']) }}% L
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>
-                    @endforeach
-                    <hr>
-                @endforeach
-                {{ $champions->links() }}
+                        @endforeach
+                    </div>
+
 
                 </div>
             </div>
-
+            <script>
+                $(document).ready(function() {
+                    console.log("Documento listo");
+                    $(".owl-carousel").owlCarousel({
+                        items: 1,
+                        loop: true,
+                        margin: 10,
+                        //autoplay: true,
+                        autoplayTimeout: 3000,
+                        autoplayHoverPause: true
+                    });
+                });
+            </script>
             <script>
                 $('.year-button').click(function() {
                     var year = $(this).data('year');
@@ -131,20 +148,5 @@
                     });
                 }
             </script>
-            <script>
-                $(document).on('click', '.pagination a', function(e) {
-    e.preventDefault();
 
-    var url = $(this).attr('href');
-
-    $.ajax({
-        url: url,
-        type: 'get',
-        success: function(data) {
-
-            $('#champions').html(data);
-        }
-    });
-});
-            </script>
         @endsection
