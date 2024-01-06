@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Role;
+use App\Models\Champion;
 use App\Models\Competition;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -31,20 +32,74 @@ class TeamsController extends Controller
         $players = $team->getPlayersByYear($year);
         return response()->json($players);
     }
+
+
+
+
+
+
     public function profile($id)
     {
         $team = Team::find($id);
         $years = range(\Carbon\Carbon::parse($team->players()->min('start_date'))->year, now()->year);
+
         // Extrae el color predominante del logo del equipo
         $dominantColor = ColorThief::getColor(public_path($team->logo));
         $rgbColor = 'rgb(' . $dominantColor[0] . ',' . $dominantColor[1] . ',' . $dominantColor[2] . ')';
-        //
+
         $playersByYear = [];
+        $championData = [];
+
         foreach ($years as $year) {
             $playersByYear[$year] = $team->getPlayersByYear($year);
         }
-        return view('equipos.profile', ['team' => $team, 'rgbColor' => $rgbColor, 'years' => $years, 'playersByYear' => $playersByYear]);
+
+        // Obtén solo los campeones con los que ha jugado el equipo
+        $playerIds = $team->players()->pluck('id');
+        $champions = DB::table('clasifications')
+                        ->whereIn('player_id', $playerIds)
+                        ->join('games', 'clasifications.game_id', '=', 'games.id')
+                        ->join('series', 'games.serie_id', '=', 'series.id')
+                        ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
+                        ->select('champions.*', 'series.date as date')
+                        ->paginate(10);  // Cambia este número para ajustar cuántos campeones se muestran por página
+
+        // Calcula los porcentajes de victoria y derrota para cada campeón
+        foreach ($champions as $champion) {
+            $championData[$champion->id] = [
+                'name' => $champion->name,
+                'image' => $champion->square, // Usa el atributo 'square' para la imagen
+                'stats' => $team->getChampionWinLoss($champion->id),
+            ];
+        }
+
+        return view('equipos.profile', [
+            'team' => $team,
+            'rgbColor' => $rgbColor,
+            'years' => $years,
+            'playersByYear' => $playersByYear,
+            'championData' => $championData,
+            'champions' => $champions,  // Pasa los campeones a la vista para la paginación
+        ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function index()
     {
         if (!auth()->check() || !auth()->user()->admin) {

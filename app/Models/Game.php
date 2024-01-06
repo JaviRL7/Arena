@@ -64,7 +64,10 @@ class Game extends Model
     }
 
 
-
+    public function clasifications()
+    {
+        return $this->hasMany(Clasification::class);
+    }
 
 
 

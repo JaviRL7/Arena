@@ -44,10 +44,23 @@
 
             </div>
             <div class="row">
-                <div class="md-col-6">
-                    <!-- Botones de año -->
+                <div class="col-md-6">
+                    <div style="height: 5px; background-color: #e44445;"></div>
+                    <h1 class="titulo"> History roster</h1>
+                    <!-- Años -->
+                    <div class="d-flex flex-wrap p-3 rounded" style="background-color: #e44445;">
+                        @foreach ($years as $year)
+                            @if ($year < date('Y'))
+                                <button type="button" class="btn p-2 m-1 text-white year-button"
+                                    data-year="{{ $year }}" style="background-color: transparent; border: none;">
+                                    {{ $year }}
+                                </button>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <!-- Jugadores por año -->
                     @foreach ($years as $year)
-                        <button class="year-button" data-year="{{ $year }}">{{ $year }}</button>
                         <div class="players" id="players-{{ $year }}" style="display: none;">
                             @foreach ($playersByYear[$year] as $player)
                                 <p>{{ $player->nick }}</p>
@@ -58,17 +71,80 @@
                     <div id="playersByYear">
                     </div>
                 </div>
-                <div class="md-col-6">
-                    <!-- Puedes agregar contenido adicional aquí -->
+                <div class="col-md-6">
+                    <div style="height: 5px; background-color: #e44445;"></div>
+                    <h1 class="titulo"> Win rate</h1>
+
+                    @foreach (collect($championData)->chunk(10) as $chunk)
+                    @foreach ($chunk as $championId => $champion)
+                        <div class="champion">
+                            <img src="{{ asset($champion['image']) }}" alt="{{ $champion['name'] }}">
+                            <h2>{{ $champion['name'] }}</h2>
+                            <div class="bar">
+                                <div class="win" style="width: {{ $champion['stats']['win_percentage'] }}%;">
+                                    {{ round($champion['stats']['win_percentage']) }}% W
+                                </div>
+                                <div class="loss" style="width: {{ $champion['stats']['loss_percentage'] }}%;">
+                                    {{ round($champion['stats']['loss_percentage']) }}% L
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <hr>
+                @endforeach
+                {{ $champions->links() }}
+
                 </div>
             </div>
-        </div>
 
-        <script>
-            $('.year-button').click(function() {
-                var year = $(this).data('year');
-                $('.players').hide();
-                $('#players-' + year).show();
-            });
-        </script>
-    @endsection
+            <script>
+                $('.year-button').click(function() {
+                    var year = $(this).data('year');
+                    $('.players').hide();
+                    $('#players-' + year).show();
+                });
+            </script>
+            <script>
+                let championData = @json($championData);
+
+                for (let championId in championData) {
+                    let ctx = document.getElementById('chart-' + championId).getContext('2d');
+                    let winPercentage = championData[championId].stats.win_percentage;
+                    let lossPercentage = championData[championId].stats.loss_percentage;
+
+                    let chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Victorias', 'Derrotas'],
+                            datasets: [{
+                                data: [winPercentage, lossPercentage],
+                                backgroundColor: ['blue', 'red'],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            </script>
+            <script>
+                $(document).on('click', '.pagination a', function(e) {
+    e.preventDefault();
+
+    var url = $(this).attr('href');
+
+    $.ajax({
+        url: url,
+        type: 'get',
+        success: function(data) {
+
+            $('#champions').html(data);
+        }
+    });
+});
+            </script>
+        @endsection

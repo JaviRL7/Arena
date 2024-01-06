@@ -1913,3 +1913,50 @@ input:checked + .slider:before {
 .team-profile-player-info h1 {
     margin-right: 10px; /* Añade un poco de espacio a la derecha del nick */
 }
+
+/*pt3*/
+.champion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.champion img {
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.champion h2 {
+    margin: 0;
+    margin-right: 30px;  /* Aumenta la distancia entre el nombre del campeón y la barra */
+}
+
+.bar {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+
+.win {
+    background-color: #2196f3;
+    color: white;
+    text-align: right;
+}
+
+.loss {
+    background-color: #e44445;
+    color: white;
+    text-align: left;
+}
+
+
+.champion-name{
+    font-family: mol;
+    color: #333;
+}

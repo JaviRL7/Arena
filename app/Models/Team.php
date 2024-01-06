@@ -66,9 +66,49 @@ class Team extends Model
 
 
 
+    public function getChampionWinLoss($championId) {
+        // Obtén los ID de los jugadores del equipo
+        $playerIds = $this->players()->pluck('id');
 
+        // Obtén todas las clasificaciones donde se jugó el campeón por uno de los jugadores del equipo
+        $clasifications = DB::table('clasifications')
+                    ->whereIn('player_id', $playerIds)
+                    ->where('champion_id', $championId)
+                    ->join('games', 'clasifications.game_id', '=', 'games.id')
+                    ->join('series', 'games.serie_id', '=', 'series.id')
+                    ->select('clasifications.*', 'games.team_blue_id', 'games.team_red_id', 'games.team_blue_result', 'games.team_red_result', 'series.date as date')
+                    ->get();
 
+        $winCount = 0;
+        $lossCount = 0;
 
+        // Recorre cada clasification y determina si fue una victoria o una derrota
+        foreach ($clasifications as $clasification) {
+            // Obtén los jugadores del equipo en la fecha del juego
+            $players = $this->getPlayersDate($clasification->date)->pluck('id');
+
+            // Verifica si el jugador que jugó el campeón es parte del equipo
+            if ($players->contains($clasification->player_id)) {
+                if (($clasification->team_blue_id == $this->id && $clasification->team_blue_result == 'W') ||
+                    ($clasification->team_red_id == $this->id && $clasification->team_red_result == 'W')) {
+                    $winCount++;
+                } else {
+                    $lossCount++;
+                }
+            }
+        }
+
+        // Calcula los porcentajes de victoria y derrota
+        $totalGames = $winCount + $lossCount;
+        $winPercentage = $totalGames > 0 ? ($winCount / $totalGames) * 100 : 0;
+        $lossPercentage = $totalGames > 0 ? ($lossCount / $totalGames) * 100 : 0;
+
+        // Devuelve los porcentajes
+        return [
+            'win_percentage' => $winPercentage,
+            'loss_percentage' => $lossPercentage,
+        ];
+    }
 
 
 
@@ -204,6 +244,10 @@ class Team extends Model
             ->where('start_date', '<=', $today)
             ->where('end_date', '>=', $today)
             ->orderBy('start_date', 'desc');
+    }
+    public function games()
+    {
+        return $this->hasMany(Game::class, 'team_blue_id')->orWhere('team_red_id', $this->id);
     }
 
     public function checksubstitute($date)
