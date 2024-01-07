@@ -75,7 +75,6 @@ class TeamsController extends Controller
                 'stats' => $team->getChampionWinLoss($champion->id),
             ];
         }
-
         return view('equipos.profile', [
             'team' => $team,
             'rgbColor' => $rgbColor,

@@ -2014,23 +2014,162 @@ input:checked + .slider:before {
     align-self: center; /* Centra verticalmente el resultado en el div */
     text-align: center; /* Centra horizontalmente el texto del resultado */
 }
-/*profile player nuevo*/
 
 
-
+/**/
 .player-profile-img {
     border-radius: 15px;
+    position: relative;
 }
 
+.player-profile-nick {
+    font-size: 10em;
+    font-family: important;
+    color: #e44445;
+    position: absolute;
+    bottom: 0;
+}
+
+.player-profile-nick.digit {
+    font-family: mol;
+}
+
+.player-profile-photo {
+    background-color: #e44445;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+    height: 250px;
+}
 
 .player-profile-photo-img {
     border-radius: 50%;
     object-fit: cover;
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    margin-left: 10px;
 }
 
+.player-profile-role-icon {
+    position: absolute;
+    height: 50px;
+    width: auto;
+}
 
-.player-profile-nick {
-    font-size: 2em;
+.player-profile-role-icon {
+    bottom: 50px;
+    left: 215px;
+}
+.player-profile-current-team{
+    max-height: 70px;
+    max-width: 100px;
+    height: auto;
+    width: auto;
+    position: absolute;
+    bottom: 150px; /* Ajusta este valor según lo necesites */
+    left: 200px; /* Ajusta este valor según lo necesites */
+}
+.player-profile-information {
     color: white;
+    text-align: left;
+    margin-left: 150px;
 }
 
+
+/**/
+.player-profile-history-team{
+    height: 50px !important;
+    width: auto;
+    position: relative;
+    bottom: 10px; /* Adjust this value as needed */
+    left: 180px; /* Adjust this value as needed */
+    margin-left: -180px; /* Ajusta este valor según lo necesites */
+
+}
+
+.player-profile-statistics {
+    color: white;
+    text-align: left;
+    margin-top: 20px;
+}
+.player-profile-history {
+    background-color: #2196f3;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
+    padding: 10px;
+}
+
+
+.player-profile-history-team {
+    height: 50px;
+    width: auto;
+    margin-right: 20px; /* Añade un margen a la derecha para separar los logos */
+}
+
+
+
+.player-profile-history {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.player-profile-team {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+}
+
+.player-profile-history-team {
+    height: 50px;
+    max-height: 70px;
+    max-width: 100px;
+    height: auto;
+    width: auto;
+    margin-top: 20px;
+}
+.profile-player-team-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Añade un margen a la derecha para separar los equipos */
+}
+
+.profile-player-team-number {
+    margin-right: 10px; /* Añade un margen a la derecha para separar el número del logo */
+}
+.contador-contenedor {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Añade un margen a la derecha para separar los equipos */
+}
+
+.contador-numero {
+    margin-right: 10px; /* Añade un margen a la derecha para separar el número del logo */
+}
+.fechas-contenedor {
+    margin-left: 10px; /* Añade un margen a la izquierda para separar las fechas del logo */
+}
+
+.fechas {
+    font-size: 0.8em; /* Ajusta el tamaño de la fuente según lo necesites */
+}
+.player-profile-stadistics {
+    background-color: #2196f3;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 1.3em;
+}
+
+.datos {
+    margin-bottom: 10px; /* Añade un margen inferior para separar los divs */
+}

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 //corregir esto
 
@@ -120,13 +121,36 @@ public function destroy(Player $player)
     return redirect()->route('admin.players.index');
 }
 
+
+
+
 public function profile($id)
 {
     $player = Player::find($id);
+    $today = Carbon::now();
 
-    return view('players.profile', ['player' => $player]);
+    // Obtén solo los campeones con los que ha jugado el jugador
+    $champions = DB::table('clasifications')
+                    ->where('player_id', $player->id)
+                    ->join('games', 'clasifications.game_id', '=', 'games.id')
+                    ->join('series', 'games.serie_id', '=', 'series.id')
+                    ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
+                    ->select('champions.*', 'series.date as date')
+                    ->get()
+                    ->unique('id');
+
+    // Calcula los porcentajes de victoria y derrota para cada campeón
+    $playerChampionData = [];
+    foreach ($champions as $champion) {
+        $playerChampionData[$champion->id] = [
+            'name' => $champion->name,
+            'image' => $champion->square, // Usa el atributo 'square' para la imagen
+            'stats' => $player->getChampionWinLoss($champion->id),
+        ];
+    }
+
+    return view('players.profile', ['player' => $player, 'today' => $today, 'playerChampionData' => $playerChampionData]);
 }
-
 
 
 }

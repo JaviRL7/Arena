@@ -121,6 +121,11 @@ class Player extends Model
 
         return $players;
     }
+    public function clasifications()
+    {
+        return $this->hasMany(Clasification::class);
+    }
+
 
     public function champions()
     {
@@ -153,6 +158,69 @@ class Player extends Model
             ->withPivot('start_date', 'contract_expiration_date')
             ->first();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getChampionWinLoss($championId) {
+        $clasifications = $this->clasifications()
+            ->where('champion_id', $championId)
+            ->join('games', 'clasifications.game_id', '=', 'games.id')
+            ->select('clasifications.*', 'games.team_blue_id', 'games.team_red_id', 'games.team_blue_result', 'games.team_red_result')
+            ->get();
+
+        $winCount = 0;
+        $lossCount = 0;
+
+        // Verifica si el equipo del jugador ganó este juego
+        foreach ($clasifications as $clasification) {
+            $teams = $this->teams()->where(function ($query) use ($clasification) {
+                if ($clasification->date !== null) {
+                    $query->wherePivot('start_date', '<=', $clasification->date)
+                        ->where(function ($query) use ($clasification) {
+                            $query->wherePivot('end_date', '>=', $clasification->date)
+                                ->orWhere('end_date', null);
+                        });
+                }
+            })->get();
+
+            foreach ($teams as $team) {
+                if (($clasification->team_blue_id == $team->id && $clasification->team_blue_result == 'W') ||
+                    ($clasification->team_red_id == $team->id && $clasification->team_red_result == 'W')) {
+                    $winCount++;
+                } else if (($clasification->team_blue_id == $team->id && $clasification->team_blue_result == 'L') ||
+                    ($clasification->team_red_id == $team->id && $clasification->team_red_result == 'L')) {
+                    $lossCount++;
+                }
+            }
+        }
+
+        // Calcula los porcentajes de victoria y derrota
+        $totalGames = $winCount + $lossCount;
+        $winPercentage = $totalGames > 0 ? ($winCount / $totalGames) * 100 : 0;
+        $lossPercentage = $totalGames > 0 ? ($lossCount / $totalGames) * 100 : 0;
+
+        // Devuelve los porcentajes
+        return [
+            'win_percentage' => $winPercentage,
+            'loss_percentage' => $lossPercentage,
+        ];
+    }
+
+
+
+
+
+
 
 
 
