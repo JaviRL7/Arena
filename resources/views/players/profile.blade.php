@@ -64,10 +64,14 @@
             <div class="col-md-6">
                 <h2 class="titulo">Favorite Champion</h2>
                 <div class="player-profile-stadistics" style="display: flex; align-items: center;">
-
-                    <h1 style="font-family: important; color:white; margin-right: 280px;">{{$player->mostPlayedChampion()->name}}</h1>
-                    <img src="{{ asset($player->mostPlayedChampion()->square)}}" alt="" class="rounded-circle">
+                    @if($player->mostPlayedChampion())
+                        <h1 style="font-family: important; color:white; margin-right: 280px;">{{$player->mostPlayedChampion()->name}}</h1>
+                        <img src="{{ asset($player->mostPlayedChampion()->square)}}" alt="" class="rounded-circle">
+                    @else
+                        <h5 style="font-family: important; color:white; margin-right: 280px;">This player has not played any matches yet.</h5>
+                    @endif
                 </div>
+            </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="titulo">Fans</h1>

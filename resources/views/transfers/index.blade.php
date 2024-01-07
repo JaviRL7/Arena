@@ -23,8 +23,8 @@
                         </button>
                         @foreach ($competitions as $competition)
                             @if ($competition->id != 2 && $competition->id != 6)
-                            <button type="button" class="btn btn-secondary btn-large competition-button" data-id="all">
-                                data-id="{{ $competition->id }}">
+                                <button type="button" class="btn btn-secondary btn-large competition-button"
+                                    data-id="{{ $competition->id }}">
                                     {{ $competition->name }}
                                 </button>
                             @endif

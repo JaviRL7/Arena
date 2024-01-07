@@ -81,40 +81,54 @@ public function player()
 
 
     public function update(Request $request, Player $player)
-{
+    {
+        $messages = [
+            'img.mimes' => 'El archivo debe ser de tipo: png, jpg, jpeg.',
+            'img.max' => 'El tamaño del archivo no debe ser mayor a 3000 kilobytes.',
+        ];
+
         $request->validate([
-        'name' => ['required', 'string'],
-        'lastname1' => ['required', 'string'],
-        'lastname2' => ['nullable','string'],
-        'country' => ['required', 'string'],
-        'birth_date' => ['nullable', 'date_format:"Y-m-d"'],
-        'nick' => ['required', 'string', Rule::unique('players')->ignore($player->id)],
-        'photo' => ['nullable', 'image', 'max:3000'],
-    ]);
+            'name' => ['required', 'string'],
+            'lastname1' => ['required', 'string'],
+            'lastname2' => ['nullable','string'],
+            'country' => ['required', 'string'],
+            'birth_date' => ['nullable', 'date_format:"Y-m-d"'],
+            'nick' => ['required', 'string', Rule::unique('players')->ignore($player->id)],
+            'photo' => ['nullable', 'mimes:png,jpg,jpeg', 'max:5000'],
+            'img' => ['nullable', 'mimes:png,jpg,jpeg', 'max:3000']
+        ], $messages);
 
-    $photo = $player->photo;
+        $photo = $player->photo;
+        $img = $player->img;
 
+        $player->update($request->all());
 
+        if ($request->hasFile('photo')) {
+            $photo = 'img-' . $player->name . '.' . $request->file('photo')->getClientOriginalExtension();
+            $player->photo = str_replace(
+                'public',
+                'storage',
+                $request->file('photo')->storeAs('public/player', $photo)
+            );
+        } else {
+            $player->photo = $photo;
+        }
 
-    $player->update($request->all());
+        if ($request->hasFile('img')) {
+            $img = 'img-' . $player->name . '.' . $request->file('img')->getClientOriginalExtension();
+            $player->img = str_replace(
+                'public',
+                'storage',
+                $request->file('img')->storeAs('public/player_extra', $img)
+            );
+        } else {
+            $player->img = $img;
+        }
 
-    if ($request->hasFile('photo')) {
-        $photo = 'img-' . $player->name . '.' . $request->file('photo')
-        ->getClientOriginalExtension();
+        $player->save();
 
-        $player->photo = str_replace(
-            'public',
-            'storage',
-            $request->file('photo')->storeAs('public/player', $photo)
-        );
-    } else {
-        $player->photo = $photo;
+        return redirect()->route('admin.players.index')->with('success', 'Se ha modificado el jugador con éxito.');
     }
-
-    $player->save();
-
-    return redirect()->route('admin.players.index')->with('success', 'Se ha modificado el player con éxito.');
-}
 public function destroy(Player $player)
 {
     $player->delete();
@@ -151,6 +165,49 @@ public function profile($id)
 
     return view('players.profile', ['player' => $player, 'today' => $today, 'playerChampionData' => $playerChampionData]);
 }
+public function create()
+{
+    $roles = Role::all();
+    return view('admin.players.create')->with('roles', $roles);
+}
 
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => ['required', 'string'],
+        'lastname1' => ['required', 'string'],
+        'lastname2' => ['nullable','string'],
+        'country' => ['required', 'string'],
+        'birth_date' => ['nullable', 'date_format:"Y-m-d"'],
+        'nick' => ['required', 'string', 'unique:players,nick'],
+        'photo' => ['nullable', 'image', 'max:3000'],
+        'img' => ['nullable', 'image', 'max:3000'], // Añade la validación para 'img'
+    ]);
+
+    $player = new Player;
+    $player->fill($request->all());
+
+    if ($request->hasFile('photo')) {
+        $photo = 'img-' . $player->name . '.' . $request->file('photo')->getClientOriginalExtension();
+        $player->photo = str_replace(
+            'public',
+            'storage',
+            $request->file('photo')->storeAs('public/player', $photo)
+        );
+    }
+
+    if ($request->hasFile('img')) { // Añade este bloque para manejar 'img'
+        $img = 'img-' . $player->name . '.' . $request->file('img')->getClientOriginalExtension();
+        $player->img = str_replace(
+            'public',
+            'storage',
+            $request->file('img')->storeAs('public/player_extra', $img)
+        );
+    }
+
+    $player->save();
+
+    return redirect()->route('admin.players.index')->with('success', 'Se ha creado el player con éxito.');
+}
 
 }

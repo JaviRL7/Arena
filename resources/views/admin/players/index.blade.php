@@ -4,6 +4,10 @@
 @section('content')
 
 <div class="container-fluid edit-player-container">
+    <div>
+        <h3></h3><a href="{{ route('admin.players.create') }}">Create New Player</a>
+
+    </div>
     <div class="table-responsive">
         <table class="table_crud_admin">
             <thead>
