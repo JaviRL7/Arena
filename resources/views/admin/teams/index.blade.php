@@ -74,6 +74,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div style="display: flex; justify-content: left;">
+                {{ $teams->links() }}
+            </div>
         </div>
     </div>
 @endsection

@@ -57,6 +57,7 @@ Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('play
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
+Route::get('/series/{serie}', [SeriesController::class, 'show_2'])->name('series.show');
 
 
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
@@ -119,12 +120,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
     Route::post('/teams/create', [TeamsController::class, 'store'])->name('admin.teams.store');
     Route::delete('/teams/{team}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.delete');
+
     Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])->name('admin.teams.edit');
+
     Route::get('/teams/{team}/substitute', [TeamsController::class, 'substitute'])->name('admin.teams.substitute');
     Route::put('/admin/players/{player}/update-substitute', [TeamsController::class, 'updateSubstitute'])->name('admin.players.updateSubstitute');
     Route::get('/teams/{team}/add', [TeamsController::class, 'add'])->name('admin.teams.add');
     Route::post('/teams/{team}/add_player', [TeamsController::class, 'add_player'])->name('admin.teams.add_player');
+
     Route::put('/teams/{team}/edit', [TeamsController::class, 'update'])->name('admin.teams.update');
+
     Route::delete('/teams/{player}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.destroy');
 
 

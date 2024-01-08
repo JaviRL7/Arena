@@ -110,7 +110,7 @@ class TeamsController extends Controller
             return redirect('/');
         }
 
-        $teams = Team::orderBy('id')->get();
+        $teams = Team::orderBy('id')->paginate(5);
         $today = Carbon::now()->format('Y-m-d');
         $competitions = Competition::all();
 
@@ -139,32 +139,34 @@ class TeamsController extends Controller
 
     public function update(Request $request, Team $team)
     {
+
         $request->validate([
             'name' => ['required', 'string', Rule::unique('teams')->ignore($team->id)],
             'league' => ['nullable', 'string'],
             'country' => ['nullable', 'string'],
             'logo' => ['nullable', 'image', 'max:3000'],
+            'team_photo' => ['nullable', 'image', 'max:3000'],
         ]);
 
         $logo = $team->logo;
+        $team_photo = $team->team_photo; // Añade esta línea
 
-        $team->update($request->except('logo'));
+        $team->update($request->except(['logo', 'team_photo'])); // Excluye 'team_photo' también
 
         if ($request->hasFile('logo')) {
-            $teamName = str_replace(' ', '_', $team->name); // Reemplaza los espacios en blanco con un guión bajo
+            $teamName = str_replace(' ', '_', $team->name);
             $logo = $teamName . '_logo' . '.' . $request->file('logo')->getClientOriginalExtension();
             $request->file('logo')->move(public_path('teams_logo'), $logo);
             $team->logo = 'teams_logo/' . $logo;
         }
 
-        foreach ($team->getPlayers() as $player) {
-            $pivot = $player->teams()->where('team_id', $team->id)->first()->pivot;
-            if ($pivot) {
-                $pivot->start_date = $request->input("start_date_{$player->id}") ?? $pivot->start_date;
-                $pivot->end_date = $request->input("end_date_{$player->id}") ?? $pivot->end_date;
-                $pivot->save();
-            }
+        if ($request->hasFile('team_photo')) { // Añade este bloque
+            $teamName = str_replace(' ', '_', $team->name);
+            $team_photo = $teamName . '_photo' . '.' . $request->file('team_photo')->getClientOriginalExtension();
+            $request->file('team_photo')->move(public_path('teams'), $team_photo);
+            $team->team_photo = 'teams/' . $team_photo;
         }
+
 
         $team->save();
         return redirect()->route('admin.teams.index');
@@ -362,7 +364,8 @@ class TeamsController extends Controller
             'league_id' => ['required', 'integer'],
             'country' => ['nullable', 'string'],
             'team_photo' => ['nullable', 'image', 'max:3000'],
-            'logo' => ['nullable', 'image', 'max:3000']
+            'logo' => ['nullable', 'image', 'max:3000'],
+
         ]);
 
         $team = new Team;

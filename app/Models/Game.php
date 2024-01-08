@@ -20,8 +20,9 @@ class Game extends Model
         return $this->belongsTo(Team::class, 'team_red_id');
     }
 
-    public function players(){
-        return $this->belongsToMany(Player::class, 'clasifications')->withPivots('kills' , 'deaths', 'assists', 'champion_id');
+    public function players()
+    {
+        return $this->belongsToMany(Player::class, 'clasifications')->withPivot('kills', 'deaths', 'assists', 'champion_id');
     }
 
     public function getPlayerStats(Player $player) {

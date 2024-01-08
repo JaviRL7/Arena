@@ -13,23 +13,15 @@
         <div class="row">
             <div class="col-md-12">
                 @foreach ($series as $serie)
-                @foreach ($serie->games as $game)
-                <table>
-                    <td>
-                        <p>{{$game->number}}</p>
-                    </td>
-                    <td>
-                        <p>{{$game->team_blue->name}}</p>
-                    </td>
-                </table>
-                @endforeach
                     @if ($serie->name == 'Finale')
+                    <a href="{{ route('series.show', $serie) }}">
                     <div class="final-image-container">
                         <img src="{{ asset($serie->team_1->team_photo) }}" class="d-block w-100 img-fluid" alt="{{ $serie->team_1->name }}">
                         <img src="{{ asset($serie->team_2->team_photo) }}" class="d-block w-100 img-fluid" alt="{{ $serie->team_2->name }}">
                     </div>
 
                     @endif
+                    </a>
                 @endforeach
                 <div class="d-flex justify-content-center align-items-center w-100 mt-3">
                     <div class="d-flex flex-column align-items-center w-25">
@@ -44,7 +36,7 @@
                 </div>
 
             </div>
-        </div>+
+        </div>
         <br>
         <br>
         <div class="row">

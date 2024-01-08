@@ -39,7 +39,8 @@
                     <img x-show="logoData" :src="logoData" style="width: 100px;">
                 </div>
             </div>
-            <!-- Form -->
+            <br>
+
             <form action="{{ route('admin.teams.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-crud"

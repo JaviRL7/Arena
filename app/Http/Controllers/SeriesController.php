@@ -50,6 +50,13 @@ class SeriesController extends Controller
 
         return view('admin.series.show', compact('serie', 'teams', 'competitions'));
     }
+    public function show_2(Serie $serie)
+    {
+        $games = $serie->games;
+
+        return view('series.show', compact('serie', 'games'));
+    }
+
     public function update(Request $request, Serie $serie)
 {
     $validatedData = $request->validate([

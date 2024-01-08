@@ -45,7 +45,9 @@
             <br>
             <br>
 
-
+            <form action="{{ route('admin.teams.update', $team) }}" method="POST">
+                @csrf
+                @method('PUT')
             <div class="contenedor-formulario-team">
                 <div class="form-group-left">
                     <div class="form-group">
@@ -65,7 +67,7 @@
                             x-ref="competitionSelect" @change="updateCompetitionName()">
                             @foreach ($competitions as $competition)
                                 <option value="{{ $competition->id }}"
-                                    {{ $competition->id == $team->competition_id ? 'selected' : '' }}>
+                                    {{ $competition->id == $team->league_id ? 'selected' : '' }}>
                                     {{ $competition->name }}</option>
                             @endforeach
                         </select>
@@ -78,8 +80,14 @@
                         <input type="file" class="form-control-file border-danger w-50" id="logo" name="logo"
                             x-ref="logo" @change="logoPreview()">
                     </div>
+                    <div class="form-group">
+                        <label for="team_photo ">Team photo</label>
+                        <input type="file" class="form-control-file border-danger w-50" id="team_photo " name="team_photo"
+                            x-ref="team_photo" @change="logoPreview()">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-outline-success">Enviar</button>
+            </form>
 
             </div>
             <div class="add-player-button-container">
@@ -181,7 +189,6 @@
                     </div>
                 @endforeach
             </div>
-            </form>
         </div>
 
         </form>
