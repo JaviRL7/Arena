@@ -22,7 +22,7 @@ use App\Http\Controllers\TransferController;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
@@ -118,6 +118,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/teams', [TeamsController::class, 'index'])->name('admin.teams.index');
     Route::get('/teams/create', [TeamsController::class, 'create'])->name('admin.teams.create');
     Route::post('/teams/create', [TeamsController::class, 'store'])->name('admin.teams.store');
+    Route::delete('/teams/{team}/delete', [TeamsController::class, 'destroy'])->name('admin.teams.delete');
     Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])->name('admin.teams.edit');
     Route::get('/teams/{team}/substitute', [TeamsController::class, 'substitute'])->name('admin.teams.substitute');
     Route::put('/admin/players/{player}/update-substitute', [TeamsController::class, 'updateSubstitute'])->name('admin.players.updateSubstitute');

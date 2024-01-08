@@ -370,30 +370,33 @@ class TeamsController extends Controller
 
         if ($request->hasFile('team_photo')) {
             $team_photo = 'teams/' . $team->name . '.' . $request->file('team_photo')->getClientOriginalExtension();
-            $team->team_photo = str_replace(
-                'public',
-                'storage',
-                $request->file('team_photo')->storeAs('public', $team_photo)
-            );
+            $request->file('team_photo')->move(public_path('teams'), $team_photo);
+            $team->team_photo = $team_photo;
         }
 
         if ($request->hasFile('logo')) {
-            $logo = 'teams/logo/' . $team->name . '.' . $request->file('logo')->getClientOriginalExtension();
-            $team->logo = str_replace(
-                'public',
-                'storage',
-                $request->file('logo')->storeAs('public', $logo)
-            );
+            $logo = 'teams_logo/' . $team->name . '.' . $request->file('logo')->getClientOriginalExtension();
+            $request->file('logo')->move(public_path('teams_logo'), $logo);
+            $team->logo = $logo;
         }
 
         $team->save();
 
         return redirect()->route('admin.teams.index')->with('success', 'Se ha creado el equipo con éxito.');
     }
+
 public function create()
 {
     $competitions = Competition::all();
 
     return view('admin.teams.create', ['competitions' => $competitions]);
+}
+public function destroy(Team $team)
+{
+    // Elimina el equipo
+    $team->delete();
+
+    // Redirige al usuario a la página de índice con un mensaje de éxito
+    return redirect()->route('admin.teams.index')->with('success', 'Se ha eliminado el equipo con éxito.');
 }
 }

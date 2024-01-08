@@ -62,9 +62,15 @@
                             </h5>
                         </td>
                         <td>
-                            <a href="{{ route('admin.teams.edit', ['team' => $team]) }}" class="text-blue">Modificate</a>
+                            <button onclick="location.href='{{ route('admin.teams.edit', ['team' => $team]) }}'" class="boton1">Modificate</button><br>
+                            <button type="button" class="boton2" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $team->id }}">
+                                Delete
+                            </button>
                         </td>
+
                     </tr>
+                    @include('modals.delete_team')
+
                 @endforeach
                 </tbody>
             </table>

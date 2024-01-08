@@ -12,7 +12,7 @@ class Team extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'league',
+        'league_id',
         'country',
         'logo',
         // cualquier otro campo que quieras que sea asignable en masa
