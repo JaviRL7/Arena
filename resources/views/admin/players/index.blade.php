@@ -4,9 +4,11 @@
 @section('content')
 
 <div class="container-fluid edit-player-container">
-    <div>
-        <h3></h3><a href="{{ route('admin.players.create') }}">Create New Player</a>
-
+    <div class="col-md-12 create-game">
+        <div style="display: flex; justify-content: space-between;">
+            <h2>Do you want to create a new player?</h2>
+            <a href="{{ route('admin.players.create') }}" class="btn btn-primary">Create</a>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table_crud_admin">

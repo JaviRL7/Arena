@@ -5,6 +5,12 @@
 @section('content')
 
     <div class="container-fluid">
+        <div class="col-md-12 create-game">
+            <div style="display: flex; justify-content: space-between;">
+                <h2>Do you want to create a new team?</h2>
+                <a href="{{ route('admin.teams.create') }}" class="btn btn-primary">Create</a>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table_crud_admin">
                 <thead>
@@ -27,11 +33,13 @@
                                 {{ $team->name }}
                             </h5>
                         </td>
-                        <td>
-                            <h5>
-                                {{ $team->competition->name }}
-                            </h5>
-                        </td>
+
+                            <td>
+                                <h5>
+                                    {{ $team->competition->name ?? '' }}
+                                </h5>
+                            </td>
+
                         <td>
                             <h5>
                                 @foreach ($team->getPlayersByYear(2022) as $player)

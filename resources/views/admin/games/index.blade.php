@@ -13,7 +13,7 @@
         <div class="col-md-12 create-game">
             <div style="display: flex; justify-content: space-between;">
                 <h2>Do you want to create a new series?</h2>
-                <a href="{{ route('admin.series.create') }}" class="btn btn-primary">Crear</a>
+                <a href="{{ route('admin.series.create') }}" class="btn btn-primary">Create</a>
             </div>
         </div>
     </div>

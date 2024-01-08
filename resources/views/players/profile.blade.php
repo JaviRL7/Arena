@@ -71,7 +71,6 @@
                         <h5 style="font-family: important; color:white; margin-right: 280px;">This player has not played any matches yet.</h5>
                     @endif
                 </div>
-            </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="titulo">Fans</h1>
@@ -99,6 +98,8 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-6">
                 <h1 class="titulo"> Win rate</h1>
 
@@ -126,6 +127,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <script>
             $(document).ready(function() {
                 console.log("Documento listo");

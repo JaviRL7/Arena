@@ -112,13 +112,14 @@ class TeamsController extends Controller
 
         $teams = Team::orderBy('id')->get();
         $today = Carbon::now()->format('Y-m-d');
+        $competitions = Competition::all();
 
         foreach ($teams as $team) {
             $team->checkSubstitute($today);
         }
 
         return view('admin.teams.index', [
-            'teams' => $teams, 'today' => $today,
+            'teams' => $teams, 'today' => $today, 'competitions' => $competitions,
         ]);
     }
     public function edit(Team $team)
@@ -353,4 +354,46 @@ class TeamsController extends Controller
 
         return redirect()->route('admin.teams.index');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'league_id' => ['required', 'integer'],
+            'country' => ['nullable', 'string'],
+            'team_photo' => ['nullable', 'image', 'max:3000'],
+            'logo' => ['nullable', 'image', 'max:3000']
+        ]);
+
+        $team = new Team;
+        $team->fill($request->all());
+
+        if ($request->hasFile('team_photo')) {
+            $team_photo = 'teams/' . $team->name . '.' . $request->file('team_photo')->getClientOriginalExtension();
+            $team->team_photo = str_replace(
+                'public',
+                'storage',
+                $request->file('team_photo')->storeAs('public', $team_photo)
+            );
+        }
+
+        if ($request->hasFile('logo')) {
+            $logo = 'teams/logo/' . $team->name . '.' . $request->file('logo')->getClientOriginalExtension();
+            $team->logo = str_replace(
+                'public',
+                'storage',
+                $request->file('logo')->storeAs('public', $logo)
+            );
+        }
+
+        $team->save();
+
+        return redirect()->route('admin.teams.index')->with('success', 'Se ha creado el equipo con éxito.');
+    }
+public function create()
+{
+    $competitions = Competition::all();
+
+    return view('admin.teams.create', ['competitions' => $competitions]);
+}
 }
