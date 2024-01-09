@@ -77,6 +77,16 @@
     height: auto; /* Ajusta el tamaño según tus necesidades */
 }
     </style>
+    <h1>
+        @php
+            $players = $serie->team_1->getPlayersDate($serie->date);
+        @endphp
+
+        @foreach ($players as $player)
+            {{ $player->nick }}
+        @endforeach
+    </h1>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -264,6 +274,15 @@
             <div class="col-md-4">
                 <h1 class="titulo">Users:</h1>
             </div>
+
+
+
+
+
+
+
+
+
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -271,22 +290,24 @@
 
                 </div>
                 <h1 class="titulo">Comments:</h1>
-                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                <div class="card-footer py-3 border-0" style="background-color: #ffffff; margin-left: 100px">
                     <div class="d-flex flex-start w-100">
-                        <img class=""
-                            src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" width="40" height="40" />
+                        <img class="user-photo"
+                            src="{{ asset(Auth::user()->user_photo) }}" alt="avatar"/>
                         <div class="form-outline w-50"> <!-- Cambiado a ocupar el 50% del ancho -->
                             <form action="{{ route('comments.store', $game) }}" method="POST" class="space-y-4">
                                 @csrf
-                                <div class="form-group">
-                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fff;"></textarea>
-                                    <label class="form-labe" for="body">Comentario</label>
+                                <div class="form-group" >
+                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fffbfb;"></textarea>
+                                    <label class="form-labe" for="body"></label>
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                 <input type="hidden" name="game_id" value="{{ $game->id }}">
                                 <div class="float-end mt-2 pt-1">
                                     <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
                                     <button type="button" class="btn btn-outline-primary btn-sm">Cancelar</button>
+                                    <input type="hidden" id="serie" value="{{ $serie->id }}">
+
                                 </div>
                             </form>
                         </div>
@@ -295,6 +316,22 @@
             </div>
         </div>
     </div>
+<script>
+    var tribute;
+    var serie = document.getElementById('serie').value;
+
+$.getJSON("/series/" + serie + "/getPlayerNames", function(data) {
+    var players = data.map(function(player) {
+        return { key: player, value: player };
+    });
+
+    tribute = new Tribute({
+        values: players
+    });
+
+    tribute.attach(document.getElementById('body'));
+});
+</script>
     <script>
         $(document).ready(function() {
             console.log("Documento listo");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Serie;
 use App\Models\Competition;
 use App\Models\Team;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -14,6 +15,17 @@ class SeriesController extends Controller
         $series = Serie::all();
         return view('series.index', compact('series'));
     }
+
+    public function getPlayerNames(Serie $serie, Request $request)
+    {
+        $date = $serie->date;
+        $players1 = $serie->team_1->getPlayersDate($date);
+        $players2 = $serie->team_2->getPlayersDate($date);
+        $playerNames = $players1->concat($players2)->pluck('nick');
+
+        return response()->json($playerNames);
+    }
+
     public function create()
     {
         $competitions = Competition::all();

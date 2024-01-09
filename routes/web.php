@@ -58,7 +58,7 @@ Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('play
 
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
 Route::get('/series/{serie}', [SeriesController::class, 'show_2'])->name('series.show');
-
+Route::get('/series/{serie}/getPlayerNames', [SeriesController::class, 'getPlayerNames'])->name('series.getPlayerNames');
 
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('games.result');

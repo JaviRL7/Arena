@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tributejs/5.1.3/tribute.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tributejs/5.1.3/tribute.min.js"></script>
+
         @yield('css')
     </head>
 <body>
