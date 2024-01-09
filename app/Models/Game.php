@@ -10,6 +10,12 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ban1_blue_id', 'ban2_blue_id', 'ban3_blue_id', 'ban4_blue_id', 'ban5_blue_id',
+        'ban1_red_id', 'ban2_red_id', 'ban3_red_id', 'ban4_red_id', 'ban5_red_id',
+
+    ];
+
     public function serie() {
         return $this->belongsTo(Serie::class, 'serie_id');
     }
@@ -19,6 +25,45 @@ class Game extends Model
     public function team_red() {
         return $this->belongsTo(Team::class, 'team_red_id');
     }
+    public function ban1_blue()
+    {
+        return $this->belongsTo(Champion::class, 'ban1_blue');
+    }
+    public function ban2_blue()
+    {
+        return $this->belongsTo(Champion::class, 'ban2_blue');
+    }
+    public function ban3_blue()
+    {
+        return $this->belongsTo(Champion::class, 'ban3_blue');
+    }
+    public function ban4_blue()
+    {
+        return $this->belongsTo(Champion::class, 'ban4_blue');
+    }
+    public function ban5_blue()
+    {
+        return $this->belongsTo(Champion::class, 'ban5_blue');
+    }
+    public function ban1_red()
+    {
+        return $this->belongsTo(Champion::class, 'ban1_red');
+    }
+    public function ban2_red()
+    {
+        return $this->belongsTo(Champion::class, 'ban2_red');
+    }
+    public function ban3_red()
+    {
+        return $this->belongsTo(Champion::class, 'ban3_red');
+    }public function ban4_red()
+    {
+        return $this->belongsTo(Champion::class, 'ban4_red');
+    }public function ban5_red()
+    {
+        return $this->belongsTo(Champion::class, 'ban5_red');
+    }
+
 
     public function players()
     {
@@ -31,7 +76,7 @@ class Game extends Model
     public function champion(){
         return $this->belongsTo(Champion::class, 'champion_id');
     }
-    public function attachPlayers($results_blue, $results_red) {
+    public function attachPlayers($results_blue, $results_red, $bans = null) {
         $team_blue_id = $this->team_blue_id;
         $team_red_id = $this->team_red_id;
 
@@ -62,6 +107,18 @@ class Game extends Model
             unset($results_red[$index]['champion_name']);
             $player->games()->attach($this->id, $results_red[$index]);
         }
+        if ($bans !== null) {
+            for ($i = 0; $i < 10; $i++) {
+                $champion_name = strtolower($bans[$i]);
+                $champion = Champion::whereRaw('lower(name) = ?', $champion_name)->first();
+                if ($champion) {
+                    $ban_column = 'ban' . ($i % 5 + 1) . '_' . ($i < 5 ? 'blue' : 'red');
+                    $this->$ban_column = $champion->id;
+                }
+            }
+        }
+
+        $this->save();
     }
 
 

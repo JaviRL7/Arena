@@ -61,8 +61,20 @@ class GamesSeeder extends Seeder
             ['kills' => 3, 'deaths' => 0, 'assists' => 6, 'champion_name' => 'Draven'],
             ['kills' => 0, 'deaths' => 0, 'assists' => 11, 'champion_name' => 'renata glasc']
         ];
+        $bans = [
+            'Aatrox',
+            'Ahri',
+            'Akali',
+            'Alistar',
+            'Amumu',
+            'Anivia',
+            'Annie',
+            'Aphelios',
+            'Ashe',
+            'seet'
+        ];
 
-        $game2->attachPlayers($resultados_blue, $resultados_red);
+        $game2->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //WEIBO T1 MAPA 3
         $game3 = Game::create([
@@ -87,7 +99,7 @@ class GamesSeeder extends Seeder
             ['kills' => 2, 'deaths' => 0, 'assists' => 5, 'champion_name' => 'xayah'],
             ['kills' => 0, 'deaths' => 2, 'assists' => 16, 'champion_name' => 'rakan']
         ];
-        $game3->attachPlayers($resultados_blue, $resultados_red);
+        $game3->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //JDG t1 mapa 1
 
