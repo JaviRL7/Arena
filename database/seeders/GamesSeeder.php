@@ -71,7 +71,7 @@ class GamesSeeder extends Seeder
             'Annie',
             'Aphelios',
             'Ashe',
-            'seet'
+            'Sett'
         ];
 
         $game2->attachPlayers($resultados_blue, $resultados_red, $bans);

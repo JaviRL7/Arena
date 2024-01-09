@@ -32,12 +32,77 @@
             border-radius: 50%;
             object-fit: cover;
         }
-    </style>
-    <h1 class="titulos">Game data</h1>
-    <div class="container-fluid">
 
+        .conte {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .serie-show-table {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+        }
+        .team-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.team-img {
+    width: 600px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Ajusta el tamaño según tus necesidades */
+}
+
+.vs-img {
+    position: absolute;
+    width: 180px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Ajusta el tamaño según tus necesidades */
+}
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="team-images">
+                    <img src="{{ asset($serie->team_1->team_photo) }}" class="img-fluid team-img">
+                    <img src="{{ asset('recursos/VS.png') }}" class="img-fluid vs-img">
+                    <img src="{{ asset($serie->team_2->team_photo) }}" class="img-fluid team-img">
+                </div>
+                <div class="serie">
+                    <div class="team">
+                        <img src="{{ asset($serie->team_1->logo) }}" alt="{{ $serie->team_1->name }}">
+                    </div>
+                    <div class="result">
+                        <h2>{{ $serie->getResultSerie() }}</h2>
+                    </div>
+                    <div class="team">
+                        <img src="{{ asset($serie->team_2->logo) }}" alt="{{ $serie->team_2->name }}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <div class="row">
             <div class="col-md-8">
+                <h1 class="titulo" style="text-align-last: center">Game Data</h1>
+
                 <div class="owl-carousel owl-theme owl-grande">
 
                     @foreach ($serie->games as $game)
@@ -143,27 +208,53 @@
                                 </table>
                             </div>
                             <div class="ban-container">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        @foreach(range(1, 5) as $ban)
-                                            @if($game->{'ban'.$ban.'_blue'}()->exists())
-                                                <img src="{{ asset($game->{'ban'.$ban.'_blue'}()->first()->square) }}" class="img-fluid ban-img">
-                                            @else
-                                                <p>No hay ban disponible</p>
-                                            @endif
-                                        @endforeach
+                                <h1 class="titulo" style="text-align-last: center">Ban phase</h1>
+                                @if ($game->{'ban1_blue'}()->exists())
+                                    <div class="serie-show-table">
+                                        <!-- Primera fila -->
+                                        <div class="row">
+                                            @foreach (range(1, 3) as $ban)
+                                                @if ($game->{'ban' . $ban . '_blue'}()->exists())
+                                                    <div class="cell">
+                                                        <img src="{{ asset($game->{'ban' . $ban . '_blue'}()->first()->square) }}"
+                                                            style="width: 50px!important; height:50px !important"
+                                                            class="img-fluid ban-img">
+                                                    </div>
+                                                @endif
+                                                @if ($game->{'ban' . $ban . '_red'}()->exists())
+                                                    <div class="cell">
+                                                        <img src="{{ asset($game->{'ban' . $ban . '_red'}()->first()->square) }}"
+                                                            style="width: 50px!important; height:50px !important"
+                                                            class="img-fluid ban-img">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <!-- Segunda fila -->
+                                        <div class="row">
+                                            @foreach (range(4, 5) as $ban)
+                                                @if ($game->{'ban' . $ban . '_blue'}()->exists())
+                                                    <div class="cell">
+                                                        <img src="{{ asset($game->{'ban' . $ban . '_blue'}()->first()->square) }}"
+                                                            style="width: 50px!important; height:50px !important"
+                                                            class="img-fluid ban-img">
+                                                    </div>
+                                                @endif
+                                                @if ($game->{'ban' . $ban . '_red'}()->exists())
+                                                    <div class="cell">
+                                                        <img src="{{ asset($game->{'ban' . $ban . '_red'}()->first()->square) }}"
+                                                            style="width: 50px!important; height:50px !important"
+                                                            class="img-fluid ban-img">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        @foreach(range(1, 5) as $ban)
-                                            @if($game->{'ban'.$ban.'_red'}()->exists())
-                                                <img src="{{ asset($game->{'ban'.$ban.'_red'}()->first()->square) }}" class="img-fluid ban-img">
-                                            @else
-                                                <p>No hay ban disponible</p>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
+                                @endif
                             </div>
+
+
+
                         </div>
                     @endforeach
 
@@ -171,7 +262,36 @@
 
             </div>
             <div class="col-md-4">
+                <h1 class="titulo">Users:</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div>
 
+                </div>
+                <h1 class="titulo">Comments:</h1>
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                    <div class="d-flex flex-start w-100">
+                        <img class=""
+                            src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" width="40" height="40" />
+                        <div class="form-outline w-50"> <!-- Cambiado a ocupar el 50% del ancho -->
+                            <form action="{{ route('comments.store', $game) }}" method="POST" class="space-y-4">
+                                @csrf
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fff;"></textarea>
+                                    <label class="form-labe" for="body">Comentario</label>
+                                </div>
+                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                <input type="hidden" name="game_id" value="{{ $game->id }}">
+                                <div class="float-end mt-2 pt-1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

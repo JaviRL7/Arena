@@ -38,13 +38,3 @@ body {
 /*para el login*/
 /* Cambiar el color de fondo del formulario */
 
-.input-crud {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #e44445 !important;
-    border-radius: 15px;
-}
-.btn:hover {
-    background-color: #e44445 !important;
-    color: white !important;
-}
