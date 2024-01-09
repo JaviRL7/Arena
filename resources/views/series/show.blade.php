@@ -2,6 +2,8 @@
 @section('title', 'Teams index')
 @section('content')
     <style>
+        .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+
         .tabla {
             table-layout: fixed;
             width: 100%;
@@ -67,7 +69,7 @@
 }
 
 .team-img {
-    width: 600px; /* Ajusta el tamaño según tus necesidades */
+    width: 900px; /* Ajusta el tamaño según tus necesidades */
     height: auto; /* Ajusta el tamaño según tus necesidades */
 }
 
@@ -76,16 +78,13 @@
     width: 180px; /* Ajusta el tamaño según tus necesidades */
     height: auto; /* Ajusta el tamaño según tus necesidades */
 }
+.comments-container {
+    width: 50%; /* Ocupa la mitad de la pantalla */
+    margin: 0 auto; /* Centra el div en la pantalla */
+font-size: 1.2em;
+}
     </style>
-    <h1>
-        @php
-            $players = $serie->team_1->getPlayersDate($serie->date);
-        @endphp
 
-        @foreach ($players as $player)
-            {{ $player->nick }}
-        @endforeach
-    </h1>
 
     <div class="container-fluid">
         <div class="row">
@@ -286,35 +285,42 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div>
-
-                </div>
                 <h1 class="titulo">Comments:</h1>
-                <div class="card-footer py-3 border-0" style="background-color: #ffffff; margin-left: 100px">
+                <div class="card-footer py-3 border-0" style="background-color: #ffffff; margin: 0 auto; width: 50%; border: 2px solid #000;">
                     <div class="d-flex flex-start w-100">
-                        <img class="user-photo"
-                            src="{{ asset(Auth::user()->user_photo) }}" alt="avatar"/>
-                        <div class="form-outline w-50"> <!-- Cambiado a ocupar el 50% del ancho -->
-                            <form action="{{ route('comments.store', $game) }}" method="POST" class="space-y-4">
+                        <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar"/>
+                        <div class="form-outline w-100">
+                            <form action="{{ route('comments.store', $serie) }}" method="POST" class="space-y-4">
                                 @csrf
                                 <div class="form-group" >
-                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fffbfb;"></textarea>
+                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fffbfb; width: 100%;" placeholder="Write a comment..."></textarea>
                                     <label class="form-labe" for="body"></label>
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                <input type="hidden" name="game_id" value="{{ $game->id }}">
+                                <input type="hidden" name="serie_id" value="{{ $serie->id }}">
                                 <div class="float-end mt-2 pt-1">
                                     <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
                                     <button type="button" class="btn btn-outline-primary btn-sm">Cancelar</button>
                                     <input type="hidden" id="serie" value="{{ $serie->id }}">
-
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
+            <div class="comments-container">
+
+
+                        <h4 class="mb-0">Comments:</h4>
+                        <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+
+                        @foreach ($serie->comments as $comment)
+                            @include('comments', ['comment' => $comment])
+                        @endforeach
+
+            </div>
+        </div>.
     </div>
 <script>
     var tribute;

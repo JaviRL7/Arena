@@ -45,6 +45,10 @@ class Serie extends Model
 {
     return $this->hasMany(Game::class);
 }
+public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
     public function team_2()
     {
         return $this->belongsTo(Team::class, 'team_2_id');

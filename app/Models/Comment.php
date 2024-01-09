@@ -13,9 +13,9 @@ class Comment extends Model
 {
     protected $fillable = ['body', 'player_id', 'team_id'];
 
-     public function game()
+     public function serie()
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Serie::class);
     }
     public function player()
     {

@@ -63,7 +63,8 @@ Route::get('/series/{serie}/getPlayerNames', [SeriesController::class, 'getPlaye
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('games.result');
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
-Route::post('/games/{game}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
+
+Route::post('/series/{serie}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
 
 

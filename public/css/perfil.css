@@ -187,8 +187,8 @@
   margin-bottom: 10px;
 }
 .user-photo {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;
@@ -244,14 +244,7 @@
 
   margin-right: 100px;
 }
-.form-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 1;
-}
+
 .name-label {
   display: block;
   margin-bottom: 5px;
@@ -259,12 +252,7 @@
   font-size: 20px;
   font-weight: bold;
 }
-.form-control {
-  border: 1px solid #808080;
-  padding: 20px;
-  position: relative;
-  font-size: 20px;
-}
+
 #user_photo {
   z-index: 0;
 }
@@ -852,13 +840,7 @@ input.search-minigame {
   width: auto;
   margin-left: 10px;
 }
-.form-group {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-}
-.form-control {
-  border-color: red;
-}
+
 .wrapper {
   border: 2px solid red;
   height: 80vh;
