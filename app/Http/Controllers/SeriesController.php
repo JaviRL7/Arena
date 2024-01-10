@@ -25,7 +25,12 @@ class SeriesController extends Controller
 
         return response()->json($playerNames);
     }
+    public function getTeamNames(Serie $serie, Request $request)
+{
+    $teamNames = collect([$serie->team_1->name, $serie->team_2->name]);
 
+    return response()->json($teamNames);
+}
     public function create()
     {
         $competitions = Competition::all();

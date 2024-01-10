@@ -2,7 +2,13 @@
 @section('title', 'Teams index')
 @section('content')
     <style>
-        .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+        .link-muted {
+            color: #aaa;
+        }
+
+        .link-muted:hover {
+            color: #1266f1;
+        }
 
         .tabla {
             table-layout: fixed;
@@ -12,6 +18,12 @@
 
         .tabla-contenedor {
             margin: 20px;
+        }
+        .tabla-responsive div{
+            margin: 10%;
+        }
+        .tabla-responsive {
+            width: 100%;
         }
 
         .tabla tr {
@@ -33,6 +45,16 @@
         .owl-carousel img {
             border-radius: 50%;
             object-fit: cover;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info h5 {
+            margin-left: 10px;
+            /* Ajusta el margen según tus necesidades */
         }
 
         .conte {
@@ -61,56 +83,76 @@
             width: 100px;
             height: 100px;
         }
+
         .team-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-.team-img {
-    width: 900px; /* Ajusta el tamaño según tus necesidades */
-    height: auto; /* Ajusta el tamaño según tus necesidades */
-}
-.team-img:first-child {
-    width: 900px; /* Ajusta el tamaño según tus necesidades */
-    height: auto; /* Ajusta el tamaño según tus necesidades */
-    border-top-left-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
-    border-bottom-left-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
-}
 
-.team-img:last-child {
-    width: 900px; /* Ajusta el tamaño según tus necesidades */
-    height: auto; /* Ajusta el tamaño según tus necesidades */
-    border-top-right-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
-    border-bottom-right-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
-}
+        .team-img {
+            width: 900px;
+            /* Ajusta el tamaño según tus necesidades */
+            height: auto;
+            /* Ajusta el tamaño según tus necesidades */
+        }
 
-.vs-img {
-    position: absolute;
-    width: 180px; /* Ajusta el tamaño según tus necesidades */
-    height: auto; /* Ajusta el tamaño según tus necesidades */
-}
-.comments-container {
-    width: 50%; /* Ocupa la mitad de la pantalla */
-    margin: 0 auto; /* Centra el div en la pantalla */
-font-size: 1.2em;
-}
-.serie-info{
-margin-left: 430px;
-}
-.header {
-    width: 1800px;
-    display: block;
-    margin: auto;
-}
+        .team-img:first-child {
+            width: 900px;
+            /* Ajusta el tamaño según tus necesidades */
+            height: auto;
+            /* Ajusta el tamaño según tus necesidades */
+            border-top-left-radius: 15px;
+            /* Ajusta el radio del borde según tus necesidades */
+            border-bottom-left-radius: 15px;
+            /* Ajusta el radio del borde según tus necesidades */
+        }
 
-.header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
+        .team-img:last-child {
+            width: 900px;
+            /* Ajusta el tamaño según tus necesidades */
+            height: auto;
+            /* Ajusta el tamaño según tus necesidades */
+            border-top-right-radius: 15px;
+            /* Ajusta el radio del borde según tus necesidades */
+            border-bottom-right-radius: 15px;
+            /* Ajusta el radio del borde según tus necesidades */
+        }
+
+        .vs-img {
+            position: absolute;
+            width: 180px;
+            /* Ajusta el tamaño según tus necesidades */
+            height: auto;
+            /* Ajusta el tamaño según tus necesidades */
+        }
+
+        .comments-container {
+            width: 50%;
+            /* Ocupa la mitad de la pantalla */
+            margin: 0 auto;
+            /* Centra el div en la pantalla */
+            font-size: 1.2em;
+        }
+
+        .serie-info {
+            margin-left: 430px;
+        }
+
+        .header {
+            width: 1800px;
+            display: block;
+            margin: auto;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
     </style>
     <div class="container-fluid">
         <div class="row">
@@ -120,10 +162,10 @@ margin-left: 430px;
                 </div>
                 <div class="serie-info">
                     <h1 id="titulo1" class="titulo">
-                        {{$serie->competition->name}} 23
+                        {{ $serie->competition->name }} 23
                     </h1>
                     <h3 id="titulo2" class="titulo">
-                        {{$serie->name}}
+                        {{ $serie->name }}
                     </h3>
                 </div>
                 <div class="team-images">
@@ -145,7 +187,7 @@ margin-left: 430px;
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <h1 class="titulo" style="text-align-last: center">Game Data</h1>
 
                 <div class="owl-carousel owl-theme owl-grande">
@@ -161,30 +203,35 @@ margin-left: 430px;
 
                         <div class="item">
                             <div class="tabla-contenedor">
-                                <table class="tabla">
+                                <table class="tabla-responsive">
                                     <tbody>
                                         @for ($i = 0; $i < max(count($players_blue), count($players_red)); $i++)
-                                            <tr class="align-middle">
+                                        @include('modals.vote')
+
+                                        <tr class="align-middle">
                                                 @if (isset($players_blue[$i]))
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
-
+                                                            style="hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
+                                                                Votar
+                                                              </button>
                                                             <img src="{{ asset($players_blue[$i]->photo) }}"
                                                                 alt="{{ $players_blue[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                 height: 100px !important;">
+
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
                                                             {{ $players_blue[$i]->nick }}
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
 
                                                             {{ $players_blue[$i]->games->where('id', $game->id)->first()->pivot->kills }}
                                                             /
@@ -195,7 +242,7 @@ margin-left: 430px;
                                                     </td>
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
 
                                                             <img src="{{ asset($players_blue[$i]->games->where('id', $game->id)->first()->pivot->champion->square) }}"
                                                                 alt="{{ $players_blue[$i]->games->where('id', $game->id)->first()->pivot->champion->name }}"
@@ -204,12 +251,23 @@ margin-left: 430px;
                                                 height: 50px !important;">
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        <div class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
+                                                            {{ number_format($players_blue[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
+                                                        </div>
+                                                    </td>
                                                 @endif
                                                 <td style="font-family: mol">VS</td>
                                                 @if (isset($players_red[$i]))
                                                     <td>
+                                                        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;"
+                                                            class="mx-4 w-28 text-2xl font-extrabold text-white bg-red-500 border-2 border-red-500 rounded-md p-2">
+                                                            {{ number_format($players_red[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
+                                                        </div>
+                                                    </td>
+                                                    <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
                                                             <img src="{{ asset($players_red[$i]->games->where('id', $game->id)->first()->pivot->champion->square) }}"
                                                                 alt="{{ $players_red[$i]->games->where('id', $game->id)->first()->pivot->champion->name }}"
                                                                 class="img-fluid"
@@ -220,7 +278,7 @@ margin-left: 430px;
 
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
 
                                                             {{ $players_red[$i]->games->where('id', $game->id)->first()->pivot->kills }}
                                                             /
@@ -232,18 +290,21 @@ margin-left: 430px;
 
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
                                                             {{ $players_red[$i]->nick }}
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div
-                                                            style="width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
+                                                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
 
                                                             <img src="{{ asset($players_red[$i]->photo) }}"
                                                                 alt="{{ $players_red[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                     height: 100px !important;">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
+                                                        Votar
+                                                      </button>
                                                         </div>
                                                     </td>
                                                 @endif
@@ -300,16 +361,16 @@ margin-left: 430px;
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <h1 class="titulo">Users:</h1>
                 @php
                     $uniqueComments = $serie->comments->unique('user_id');
                 @endphp
-                @foreach($uniqueComments as $comment)
-                    <div >
+                @foreach ($uniqueComments as $comment)
+                    <div class="user-info">
                         <img src="{{ asset($comment->user->user_photo) }}" class="user-photo" alt="">
+                        <h5>&#64;{{ $comment->user->nick }}</h5>
                     </div>
-                    <p>&#64;{{ $comment->user->nick }}</p>
                     <hr>
                 @endforeach
             </div>
@@ -317,14 +378,16 @@ margin-left: 430px;
         <div class="row">
             <div class="col-md-12">
                 <h1 class="titulo">Comments:</h1>
-                <div class="card-footer py-3 border-0" style="background-color: #ffffff; margin: 0 auto; width: 50%; border: 2px solid #000;">
+                <div class="card-footer py-3 border-0"
+                    style="background-color: #ffffff; margin: 0 auto; width: 50%; border: 2px solid #000;">
                     <div class="d-flex flex-start w-100">
-                        <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar"/>
+                        <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" />
                         <div class="form-outline w-100">
                             <form action="{{ route('comments.store', $serie) }}" method="POST" class="space-y-4">
                                 @csrf
-                                <div class="form-group" >
-                                    <textarea class="form-control" name="body" id="body" rows="4" style="background: #fffbfb; width: 100%;" placeholder="Write a comment..."></textarea>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body" id="body" rows="4"
+                                        style="background: #fffbfb; width: 100%;" placeholder="Write a comment..."></textarea>
                                     <label class="form-labe" for="body"></label>
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
@@ -340,13 +403,14 @@ margin-left: 430px;
                 </div>
 
             </div>
-            <div class="comments-container">
-                        <h4 class="mb-0">Comments:</h4>
-                        <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
 
-                        @foreach ($serie->comments as $comment)
-                            @include('comments', ['comment' => $comment])
-                        @endforeach
+            <div class="comments-container">
+                <h4 class="mb-0">Comments:</h4>
+                <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+
+                @foreach ($serie->comments as $comment)
+                    @include('comments', ['comment' => $comment])
+                @endforeach
             </div>
         </div>
     </div>
@@ -361,22 +425,44 @@ margin-left: 430px;
             titulo2.style.fontFamily = 'mol';
         }
     </script>
-<script>
-    var tribute;
-    var serie = document.getElementById('serie').value;
+    <script>
+        var tributePlayers, tributeTeams;
+        var serie = document.getElementById('serie').value;
 
-$.getJSON("/series/" + serie + "/getPlayerNames", function(data) {
-    var players = data.map(function(player) {
-        return { key: player, value: player };
-    });
+        // Autocompletar nombres de jugadores
+        $.getJSON("/series/" + serie + "/getPlayerNames", function(data) {
+            var players = data.map(function(player) {
+                return {
+                    key: player,
+                    value: player
+                };
+            });
 
-    tribute = new Tribute({
-        values: players
-    });
+            tributePlayers = new Tribute({
+                trigger: '@',
+                values: players
+            });
 
-    tribute.attach(document.getElementById('body'));
-});
-</script>
+            tributePlayers.attach(document.getElementById('body'));
+        });
+
+        // Autocompletar nombres de equipos
+        $.getJSON("/series/" + serie + "/getTeamNames", function(data) {
+            var teams = data.map(function(team) {
+                return {
+                    key: team,
+                    value: team
+                };
+            });
+
+            tributeTeams = new Tribute({
+                trigger: '#',
+                values: teams
+            });
+
+            tributeTeams.attach(document.getElementById('body'));
+        });
+    </script>
     <script>
         $(document).ready(function() {
             console.log("Documento listo");
