@@ -188,6 +188,26 @@
         </div>
         <div class="row">
             <div class="col-md-10">
+
+
+
+                @php
+$date = $serie->date;
+                $players_red = $serie->team_1->getPlayersDate($date);
+            @endphp
+
+                @foreach ($players_red as $player_red)
+<div>
+    <p>{{ $player_red->name }}</p>
+    <!-- Botón que activa la modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $player_red->id }}">
+      View Player Photo
+    </button>
+</div>
+
+<!-- Modal -->
+@include('modals.vote')
+@endforeach
                 <h1 class="titulo" style="text-align-last: center">Game Data</h1>
 
                 <div class="owl-carousel owl-theme owl-grande">
@@ -211,16 +231,18 @@
                                         <tr class="align-middle">
                                                 @if (isset($players_blue[$i]))
                                                     <td>
+                                                        @include('modals.vote', ['player' => $players_blue[$i]])
+
                                                         <div
                                                             style="hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
-                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
-                                                                Votar
-                                                              </button>
+
                                                             <img src="{{ asset($players_blue[$i]->photo) }}"
                                                                 alt="{{ $players_blue[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                 height: 100px !important;">
-
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#playerModal">
+    View Player Photo
+  </button>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -260,6 +282,9 @@
                                                 <td style="font-family: mol">VS</td>
                                                 @if (isset($players_red[$i]))
                                                     <td>
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
+                                                            View Player Photo
+                                                          </button>
                                                         <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;"
                                                             class="mx-4 w-28 text-2xl font-extrabold text-white bg-red-500 border-2 border-red-500 rounded-md p-2">
                                                             {{ number_format($players_red[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
@@ -302,9 +327,7 @@
                                                                 alt="{{ $players_red[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                     height: 100px !important;">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
-                                                        Votar
-                                                      </button>
+
                                                         </div>
                                                     </td>
                                                 @endif
