@@ -19,9 +19,11 @@
         .tabla-contenedor {
             margin: 20px;
         }
-        .tabla-responsive div{
+
+        .tabla-responsive div {
             margin: 10%;
         }
+
         .tabla-responsive {
             width: 100%;
         }
@@ -191,23 +193,21 @@
 
 
 
+
+                @foreach ($serie->games as $game)
                 @php
-$date = $serie->date;
-                $players_red = $serie->team_1->getPlayersDate($date);
-            @endphp
+                $date = $serie->date;
+                $players_blue = $serie->team_1->getPlayersDate($date);
+                $players_red = $serie->team_2->getPlayersDate($date);
 
+                @endphp
+                @foreach ($players_blue as $player_blue)
+                    @include('modals.vote')
+                @endforeach
                 @foreach ($players_red as $player_red)
-<div>
-    <p>{{ $player_red->name }}</p>
-    <!-- Botón que activa la modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $player_red->id }}">
-      View Player Photo
-    </button>
-</div>
-
-<!-- Modal -->
-@include('modals.vote')
-@endforeach
+                    @include('modals.vote2')
+                @endforeach
+                @endforeach
                 <h1 class="titulo" style="text-align-last: center">Game Data</h1>
 
                 <div class="owl-carousel owl-theme owl-grande">
@@ -225,14 +225,13 @@ $date = $serie->date;
                             <div class="tabla-contenedor">
                                 <table class="tabla-responsive">
                                     <tbody>
-                                        @for ($i = 0; $i < max(count($players_blue), count($players_red)); $i++)
-                                        @include('modals.vote')
 
-                                        <tr class="align-middle">
+                                        @for ($i = 0; $i < max(count($players_blue), count($players_red)); $i++)
+                                            @include('modals.vote')
+
+                                            <tr class="align-middle">
                                                 @if (isset($players_blue[$i]))
                                                     <td>
-                                                        @include('modals.vote', ['player' => $players_blue[$i]])
-
                                                         <div
                                                             style="hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;">
 
@@ -240,9 +239,17 @@ $date = $serie->date;
                                                                 alt="{{ $players_blue[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                 height: 100px !important;">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#playerModal">
+
+
+
+
+<button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_blue[$i]->id }}">
     View Player Photo
-  </button>
+</button>
+
+
+
+
                                                         </div>
                                                     </td>
                                                     <td>
@@ -274,7 +281,8 @@ $date = $serie->date;
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
+                                                        <div
+                                                            class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
                                                             {{ number_format($players_blue[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
                                                         </div>
                                                     </td>
@@ -282,9 +290,7 @@ $date = $serie->date;
                                                 <td style="font-family: mol">VS</td>
                                                 @if (isset($players_red[$i]))
                                                     <td>
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal{{ $players_blue[$i]->id }}">
-                                                            View Player Photo
-                                                          </button>
+
                                                         <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; justify-content: center; align-items: center;"
                                                             class="mx-4 w-28 text-2xl font-extrabold text-white bg-red-500 border-2 border-red-500 rounded-md p-2">
                                                             {{ number_format($players_red[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
@@ -327,11 +333,16 @@ $date = $serie->date;
                                                                 alt="{{ $players_red[$i]->photo }}" class="img-fluid"
                                                                 style="width: 100px !important;
                                                     height: 100px !important;">
-
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#voteModal{{ $players_red[$i]->id }}">
+                                                                View Player Photo
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 @endif
                                             </tr>
+
                                         @endfor
                                     </tbody>
                                 </table>
@@ -487,6 +498,24 @@ $date = $serie->date;
         });
     </script>
     <script>
+$(document).ready(function() {
+    $('.open-modal').click(function() {
+        var gameId = $(this).data('game-id');
+        var modalId = $(this).data('bs-target');
+        // Actualiza el atributo 'data-game-id' de la modal
+        $(modalId).attr('data-game-id', gameId);
+        // Muestra la modal
+        $(modalId).modal('show');
+    });
+
+    $('.open-modal').on('shown.bs.modal', function() {
+        var modalId = $(this).data('bs-target');
+        var gameId = $(modalId).data('game-id');
+        console.log('Game ID: ' + gameId);
+    });
+});
+    </script>
+    <script>
         $(document).ready(function() {
             console.log("Documento listo");
             $(".owl-carousel").owlCarousel({
@@ -496,6 +525,16 @@ $date = $serie->date;
                 //autoplay: true,
                 autoplayTimeout: 3000,
                 autoplayHoverPause: true
+            });
+
+            $('.owl-carousel').on('initialized.owl.carousel', function(event) {
+                $('.btn-primary').each(function() {
+                    var target = $(this).data('bs-target');
+                    var modal = new bootstrap.Modal(document.querySelector(target));
+                    $(this).click(function() {
+                        modal.show();
+                    });
+                });
             });
         });
     </script>
