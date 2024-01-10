@@ -72,6 +72,19 @@
     width: 900px; /* Ajusta el tamaño según tus necesidades */
     height: auto; /* Ajusta el tamaño según tus necesidades */
 }
+.team-img:first-child {
+    width: 900px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Ajusta el tamaño según tus necesidades */
+    border-top-left-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
+    border-bottom-left-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
+}
+
+.team-img:last-child {
+    width: 900px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Ajusta el tamaño según tus necesidades */
+    border-top-right-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
+    border-bottom-right-radius: 15px; /* Ajusta el radio del borde según tus necesidades */
+}
 
 .vs-img {
     position: absolute;
@@ -83,12 +96,36 @@
     margin: 0 auto; /* Centra el div en la pantalla */
 font-size: 1.2em;
 }
+.serie-info{
+margin-left: 430px;
+}
+.header {
+    width: 1800px;
+    display: block;
+    margin: auto;
+}
+
+.header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
     </style>
-
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <div class="header">
+                    <img src="{{ asset('material/headerw3.webp') }}" alt="">
+                </div>
+                <div class="serie-info">
+                    <h1 id="titulo1" class="titulo">
+                        {{$serie->competition->name}} 23
+                    </h1>
+                    <h3 id="titulo2" class="titulo">
+                        {{$serie->name}}
+                    </h3>
+                </div>
                 <div class="team-images">
                     <img src="{{ asset($serie->team_1->team_photo) }}" class="img-fluid team-img">
                     <img src="{{ asset('recursos/VS.png') }}" class="img-fluid vs-img">
@@ -106,7 +143,6 @@ font-size: 1.2em;
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-8">
@@ -239,7 +275,6 @@ font-size: 1.2em;
                                                 @endif
                                             @endforeach
                                         </div>
-                                        <!-- Segunda fila -->
                                         <div class="row">
                                             @foreach (range(4, 5) as $ban)
                                                 @if ($game->{'ban' . $ban . '_blue'}()->exists())
@@ -261,27 +296,23 @@ font-size: 1.2em;
                                     </div>
                                 @endif
                             </div>
-
-
-
                         </div>
                     @endforeach
-
                 </div>
-
             </div>
             <div class="col-md-4">
                 <h1 class="titulo">Users:</h1>
+                @php
+                    $uniqueComments = $serie->comments->unique('user_id');
+                @endphp
+                @foreach($uniqueComments as $comment)
+                    <div >
+                        <img src="{{ asset($comment->user->user_photo) }}" class="user-photo" alt="">
+                    </div>
+                    <p>&#64;{{ $comment->user->nick }}</p>
+                    <hr>
+                @endforeach
             </div>
-
-
-
-
-
-
-
-
-
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -310,18 +341,26 @@ font-size: 1.2em;
 
             </div>
             <div class="comments-container">
-
-
                         <h4 class="mb-0">Comments:</h4>
                         <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
 
                         @foreach ($serie->comments as $comment)
                             @include('comments', ['comment' => $comment])
                         @endforeach
-
             </div>
-        </div>.
+        </div>
     </div>
+    <script>
+        var titulo1 = document.getElementById('titulo1');
+        var titulo2 = document.getElementById('titulo2');
+
+        if (/\d/.test(titulo1.textContent)) {
+            titulo1.style.fontFamily = 'mol';
+        }
+        if (/\d/.test(titulo2.textContent)) {
+            titulo2.style.fontFamily = 'mol';
+        }
+    </script>
 <script>
     var tribute;
     var serie = document.getElementById('serie').value;
