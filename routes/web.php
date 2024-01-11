@@ -51,6 +51,7 @@ Route::middleware('auth')->group(
 );
 
 
+Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 
 
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');

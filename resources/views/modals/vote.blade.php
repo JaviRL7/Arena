@@ -88,20 +88,38 @@
                     </div>
 
 
-                    <div class="player-champion-container">
+                    <div class="player-champion-container" style="display: flex; align-items: center; justify-content: space-around; gap: 20px;">
+                        <!-- Foto del jugador -->
                         <img src="{{ asset($player_blue->photo) }}" alt="{{ $player_blue->photo }}"
                             class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+
+                        <!-- Bloque para nick, name y lastnames -->
+                        <div style="display: flex; flex-direction: column; justify-content: center;">
+                            <h4 style="font-weight: bold; margin-bottom: 5px;">{{ $player_blue->nick }}</h4>
+                            <p style="color: gray;">
+                                {{ $player_blue->name }}
+                                {{ $player_blue->lastname1 }}
+                                @if ($player_blue->lastname2)
+                                    {{ ' ' . $player_blue->lastname2 }}
+                                @endif
+                            </p>
+                        </div>
+
+                        <!-- Imagen del campeón -->
                         <img src="{{ asset($player_blue->games->where('id', $game->id)->first()->pivot->champion->square) }}"
                             alt="{{ $player_blue->games->where('id', $game->id)->first()->pivot->champion->name }}"
                             class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+
+                        <!-- KDA y otros detalles -->
                         <div style="margin-left: 20px;">
-                            <h5 style="margin-left: 20px;">KDA</h5>
+                            <h5>KDA</h5>
                             <h3>{{ $player_blue->games->where('id', $game->id)->first()->pivot->kills }}
                             /{{ $player_blue->games->where('id', $game->id)->first()->pivot->deaths }}
                             /{{ $player_blue->games->where('id', $game->id)->first()->pivot->assists }}
                             </h3>
                         </div>
                     </div>
+
 
                     <div class="rating">
                         @for ($i = 10; $i > 0; $i--)

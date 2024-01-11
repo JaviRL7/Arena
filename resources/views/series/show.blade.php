@@ -195,18 +195,18 @@
 
 
                 @foreach ($serie->games as $game)
-                @php
-                $date = $serie->date;
-                $players_blue = $serie->team_1->getPlayersDate($date);
-                $players_red = $serie->team_2->getPlayersDate($date);
+                    @php
+                        $date = $serie->date;
+                        $players_blue = $serie->team_1->getPlayersDate($date);
+                        $players_red = $serie->team_2->getPlayersDate($date);
 
-                @endphp
-                @foreach ($players_blue as $player_blue)
-                    @include('modals.vote')
-                @endforeach
-                @foreach ($players_red as $player_red)
-                    @include('modals.vote2')
-                @endforeach
+                    @endphp
+                    @foreach ($players_blue as $player_blue)
+                        @include('modals.vote')
+                    @endforeach
+                    @foreach ($players_red as $player_red)
+                        @include('modals.vote2')
+                    @endforeach
                 @endforeach
                 <h1 class="titulo" style="text-align-last: center">Game Data</h1>
 
@@ -243,9 +243,11 @@
 
 
 
-<button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_blue[$i]->id }}">
-    View Player Photo
-</button>
+                                                            <button type="button" class="btn btn-primary open-modal"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_blue[$i]->id }}">
+                                                                View Player Photo
+                                                            </button>
 
 
 
@@ -281,7 +283,8 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
+                                                        <div
+                                                            class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
                                                             {{ number_format($players_blue[$i]->averageScoreForGame($game->id), 2, '.', '') ?? ' - ' }}
                                                         </div>
                                                     </td>
@@ -333,15 +336,14 @@
                                                                 style="width: 100px !important;
                                                     height: 100px !important;">
                                                             <button type="button" class="btn btn-primary"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#voteModal{{ $players_red[$i]->id }}">
-                                                                View Player Photo
-                                                            </button>
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_red[$i]->id }}">
+                                                            View Player Photo
+                                                        </button>
                                                         </div>
                                                     </td>
                                                 @endif
                                             </tr>
-
                                         @endfor
                                     </tbody>
                                 </table>
@@ -445,8 +447,20 @@
                     @include('comments', ['comment' => $comment])
                 @endforeach
             </div>
+            @include('modals.delete_comment')
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var deleteModal = document.getElementById('deleteCommentModal');
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var commentId = button.getAttribute('data-comment-id');
+                var form = deleteModal.querySelector('form');
+                form.action = '/comments/' + commentId; // Asegúrate de que esta ruta coincida con tu ruta de eliminación
+            });
+        });
+    </script>
     <script>
         var titulo1 = document.getElementById('titulo1');
         var titulo2 = document.getElementById('titulo2');
@@ -497,22 +511,22 @@
         });
     </script>
     <script>
-$(document).ready(function() {
-    $('.open-modal').click(function() {
-        var gameId = $(this).data('game-id');
-        var modalId = $(this).data('bs-target');
-        // Actualiza el atributo 'data-game-id' de la modal
-        $(modalId).attr('data-game-id', gameId);
-        // Muestra la modal
-        $(modalId).modal('show');
-    });
+        $(document).ready(function() {
+            $('.open-modal').click(function() {
+                var gameId = $(this).data('game-id');
+                var modalId = $(this).data('bs-target');
+                // Actualiza el atributo 'data-game-id' de la modal
+                $(modalId).attr('data-game-id', gameId);
+                // Muestra la modal
+                $(modalId).modal('show');
+            });
 
-    $('.open-modal').on('shown.bs.modal', function() {
-        var modalId = $(this).data('bs-target');
-        var gameId = $(modalId).data('game-id');
-        console.log('Game ID: ' + gameId);
-    });
-});
+            $('.open-modal').on('shown.bs.modal', function() {
+                var modalId = $(this).data('bs-target');
+                var gameId = $(modalId).data('game-id');
+                console.log('Game ID: ' + gameId);
+            });
+        });
     </script>
     <script>
         $(document).ready(function() {

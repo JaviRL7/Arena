@@ -39,4 +39,40 @@ class CommentsController extends Controller
 
         return back();
     }
+
+
+    public function destroy($id)
+{
+    $comentario = Comment::find($id);
+
+    // Comprobar si el comentario existe
+    if (!$comentario) {
+        return redirect()->back()->with('error', 'Comentario no encontrado.');
+    }
+
+    // Comprobar si el usuario actual es el propietario del comentario o un administrador
+    if (auth()->user()->id != $comentario->user_id && !auth()->user()->admin) {
+        return redirect()->back()->with('error', 'No tienes permiso para eliminar este comentario.');
+    }
+
+    $comentario->delete();
+
+    return redirect()->back()->with('success', 'Comentario eliminado con éxito.');
+}
+
+
+    public function edit($id)
+    {
+        $comentario = Comment::find($id);
+        return view('comentarios.edit', compact('comentario'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $comentario = Comment::find($id);
+        $comentario->texto = $request->get('texto');
+        $comentario->save();
+
+        return redirect('/Comment');
+    }
 }
