@@ -281,9 +281,8 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div
-                                                            class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
-                                                            {{ number_format($players_blue[$i]->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
+                                                        <div class="mx-4 w-28 text-2xl font-extrabold text-white bg-blue-500 border-2 border-blue-500 rounded-md p-2">
+                                                            {{ number_format($players_blue[$i]->averageScoreForGame($game->id), 2, '.', '') ?? ' - ' }}
                                                         </div>
                                                     </td>
                                                 @endif

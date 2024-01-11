@@ -55,9 +55,16 @@ class Player extends Model
     {
         return $this->hasMany('App\Models\Comment', 'player_id');
     }
+
     public function scoresGames()
+{
+    return $this->belongsToMany(Game::class, 'scores')->withPivot('user_id', 'note');
+}
+    public function averageScoreForGame($gameId)
     {
-        return $this->belongsToMany(Game::class, 'scores')->withPivot('user_id', 'note');
+        return $this->scoresGames()
+                    ->where('game_id', $gameId)
+                    ->avg('scores.note'); // Especifica la tabla 'scores' aquí
     }
 
 
