@@ -336,10 +336,10 @@
                                                                 style="width: 100px !important;
                                                     height: 100px !important;">
                                                             <button type="button" class="btn btn-primary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_red[$i]->id }}">
-                                                            View Player Photo
-                                                        </button>
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_red[$i]->id }}">
+                                                                View Player Photo
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 @endif
@@ -448,18 +448,27 @@
                 @endforeach
             </div>
             @include('modals.delete_comment')
+            @include('modals.edit_comment')
+
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var deleteModal = document.getElementById('deleteCommentModal');
-            deleteModal.addEventListener('show.bs.modal', function (event) {
+            deleteModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget;
                 var commentId = button.getAttribute('data-comment-id');
                 var form = deleteModal.querySelector('form');
-                form.action = '/comments/' + commentId; // Asegúrate de que esta ruta coincida con tu ruta de eliminación
+                form.action = '/comments/' + commentId;
             });
         });
+
+        function editComment(commentId, commentBody) {
+            document.getElementById('editCommentId').value = commentId;
+            document.getElementById('editCommentBody').value = commentBody;
+            var form = document.getElementById('editForm');
+            form.action = '/comments/' + commentId + '/update';
+        }
     </script>
     <script>
         var titulo1 = document.getElementById('titulo1');

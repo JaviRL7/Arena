@@ -67,12 +67,12 @@ class CommentsController extends Controller
         return view('comentarios.edit', compact('comentario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $comentario = Comment::find($id);
-        $comentario->texto = $request->get('texto');
-        $comentario->save();
+        $comment = Comment::findOrFail($request->comment_id);
+        $comment->body = $request->comment_body;
+        $comment->save();
 
-        return redirect('/Comment');
+        return redirect()->back()->with('success', 'Comment updated successfully');
     }
 }

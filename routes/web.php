@@ -52,7 +52,7 @@ Route::middleware('auth')->group(
 
 
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
-
+Route::put('/comments/{id}/update', [CommentsController::class, 'update'])->name('comments.update');
 
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
@@ -67,7 +67,7 @@ Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('ga
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
 
 Route::post('/series/{serie}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
-Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
+Route::get('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
 
 
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');

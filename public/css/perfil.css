@@ -257,7 +257,7 @@
   z-index: 0;
 }
 .modal-body {
-  height: 80vh;
+  /*height: 80vh;*/
   overflow-y: auto;
 }
 
@@ -555,17 +555,7 @@ input.search-minigame {
   border: none !important;
 }
 
-.btn-danger,
-.btn-outline-danger {
-  margin-top: 20px;
 
-  border-color: #e44445 !important;
-}
-
-.btn-danger {
-  background-color: #e44445 !important;
-  margin-right: 30px;
-}
 .card-face p {
   color: white;
   font-size: 30px;
@@ -726,13 +716,7 @@ input.search-minigame {
   padding-left: 5px;
 }
 
-.btn-danger {
-  background-color: #e44445;
-  color: white;
-  border: none;
-  font-size: 1.1em; /* Aumenta el tamaño de la fuente */
-  border-radius: 15px;
-}
+
 
 /*SIDE BAR*/
 

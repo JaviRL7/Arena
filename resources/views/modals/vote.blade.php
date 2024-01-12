@@ -93,7 +93,6 @@
                         <img src="{{ asset($player_blue->photo) }}" alt="{{ $player_blue->photo }}"
                             class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
 
-                        <!-- Bloque para nick, name y lastnames -->
                         <div style="display: flex; flex-direction: column; justify-content: center;">
                             <h4 style="font-weight: bold; margin-bottom: 5px;">{{ $player_blue->nick }}</h4>
                             <p style="color: gray;">
