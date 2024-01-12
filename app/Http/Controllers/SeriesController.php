@@ -69,10 +69,12 @@ class SeriesController extends Controller
     }
     public function show_2(Serie $serie)
     {
+        $activities = $serie->recentActivities();
+
         $games = $serie->games;
         $teams = Team::all();
 
-        return view('series.show', compact('serie', 'games','teams'));
+        return view('series.show', compact('serie', 'games','teams','activities'));
     }
 
     public function update(Request $request, Serie $serie)

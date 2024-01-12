@@ -246,7 +246,7 @@
                                                             <button type="button" class="btn btn-primary open-modal"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_blue[$i]->id }}">
-                                                                View Player Photo
+                                                                Vote
                                                             </button>
 
 
@@ -338,7 +338,7 @@
                                                             <button type="button" class="btn btn-primary"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#voteModalGame{{ $game->id }}Player{{ $players_red[$i]->id }}">
-                                                                View Player Photo
+                                                                Vote
                                                             </button>
                                                         </div>
                                                     </td>
@@ -396,19 +396,59 @@
                     @endforeach
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="col-md-2">
-                <h1 class="titulo">Users:</h1>
-                @php
-                    $uniqueComments = $serie->comments->unique('user_id');
-                @endphp
-                @foreach ($uniqueComments as $comment)
-                    <div class="user-info">
-                        <img src="{{ asset($comment->user->user_photo) }}" class="user-photo" alt="">
-                        <h5>&#64;{{ $comment->user->nick }}</h5>
+                <h1 class="titulo">Actividades Recientes:</h1>
+                @foreach ($activities as $activity)
+                    <div class="d-flex flex-start mb-4" style="margin-top: 30px;">
+                        <img class="rounded-circle shadow-1-strong me-3 user-photo" src="{{ asset($activity->user->user_photo) }}" alt="avatar"/>
+                        <div>
+                            <h6 class="fw-bold mb-1">&#64;{{ $activity->user->nick }}</h6>
+                            <br> <!-- Añade un salto de línea para separar el nombre de usuario del comentario -->
+                            @if(isset($activity->body)) <!-- Si es un comentario -->
+                                <p class="mb-0">{{ $activity->body }}</p>
+                            @elseif(isset($activity->note)) <!-- Si es una calificación -->
+                            <div class="d-flex align-items-center">
+                                <div class="rounded p-2 bg-primary">
+                                    <h5 class="text-white mb-0"><strong>{{ $activity->note }}</strong></h5>
+                                </div>
+                                <h5 class="mb-0 ms-3"><strong>{{ $activity->player->nick }}</strong></h5>
+                            </div>
+                            @endif
+                        </div>
                     </div>
-                    <hr>
+                    <hr class="my-0" />
                 @endforeach
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -437,20 +477,25 @@
                     </div>
                 </div>
 
+                </div>
+
+                <div class="comments-container">
+                    <h4 class="mb-0">Comments:</h4>
+                    <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+
+                    @if ($serie->comments->count() > 0)
+                        @foreach ($serie->comments as $comment)
+                            @include('comments', ['comment' => $comment])
+                        @endforeach
+                        @include('modals.delete_comment')
+                        @include('modals.edit_comment')
+                    @else
+                        <p>No comments available.</p>
+                    @endif
+                </div>
+
+
             </div>
-
-            <div class="comments-container">
-                <h4 class="mb-0">Comments:</h4>
-                <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
-
-                @foreach ($serie->comments as $comment)
-                    @include('comments', ['comment' => $comment])
-                @endforeach
-            </div>
-            @include('modals.delete_comment')
-            @include('modals.edit_comment')
-
-        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -544,7 +589,6 @@
                 items: 1,
                 loop: true,
                 margin: 10,
-                //autoplay: true,
                 autoplayTimeout: 3000,
                 autoplayHoverPause: true
             });

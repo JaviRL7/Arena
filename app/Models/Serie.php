@@ -53,4 +53,19 @@ public function comments()
     {
         return $this->belongsTo(Team::class, 'team_2_id');
     }
+    public function recentActivities($limit = 5)
+{
+    // Obtener comentarios
+    $comments = $this->comments()->with('user')->latest()->limit($limit)->get();
+
+    // Obtener puntuaciones (scores)
+    $scores = Score::whereHas('game', function ($query) {
+        $query->where('serie_id', $this->id);
+    })->with('user', 'player')->latest()->limit($limit)->get();
+
+    // Combinar y ordenar por fecha
+    $activities = $comments->concat($scores)->sortByDesc('created_at')->take($limit);
+
+    return $activities;
+}
 }

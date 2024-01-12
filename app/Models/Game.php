@@ -138,5 +138,9 @@ class Game extends Model
 {
     return $this->hasMany(Comment::class);
 }
+public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }
 

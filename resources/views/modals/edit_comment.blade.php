@@ -12,7 +12,7 @@
                 <div class="modal-body d-flex align-items-start"  style="height: 400px">
                     <img class="rounded-circle shadow-1-strong me-3 user-photo" src="{{ asset($comment->user->user_photo) }}" alt="avatar"/>
                     <div class="flex-grow-1">
-                        <h6 class="fw-bold mb-2" id="editUserNick">@{{$comment->user->nick}}</h6>
+                        <h6 class="fw-bold mb-2" id="editUserNick">&#64;{{$comment->user->nick}}</h6>
                         <textarea class="form-control" name="comment_body" id="editCommentBody" rows="3"></textarea>
                     </div>
                 </div>
