@@ -8,6 +8,8 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\MinigameController;
 use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\FollowController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransferController;
 
@@ -41,7 +43,13 @@ Route::middleware('auth')->group(
         // Ruta para ver los perfiles de otros usuarios
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::get('/profile/comments', [ProfileController::class, 'comments'])->name('profile.comments');
+
         Route::get('/profile/getplayers', [ProfileController::class, 'getplayers'])->name('profile.getplayers');
+
+
+
+
+
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::post('/profile/favorite', [ProfileController::class, 'favorite'])->name('profile.favorite');
@@ -49,7 +57,8 @@ Route::middleware('auth')->group(
         Route::post('/profile/configure', [ProfileController::class, 'configure'])->name('profile.configure');
     }
 );
-
+Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
+Route::delete('/unfollow/{user}', [FollowController::class, 'destroy'])->name('unfollow');
 
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{id}/update', [CommentsController::class, 'update'])->name('comments.update');
@@ -101,7 +110,21 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/games/{game}/edit', [GamesController::class, 'update'])->name('admin.games.update');
     Route::delete('/admin/games/{game}', [GamesController::class, 'destroy'])->name('admin.games.delete');
 
-    Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
+
+
+
+
+    //Route::get('/games/create/{team1Id}/{team2Id}', [GamesController::class, 'getPlayers'])->name('admin.games.getPlayers');
+
+
+
+
+
+
+
+
+
+
 
     Route::get('/series', [SeriesController::class, 'indexadmin'])->name('admin.series.index');
     Route::get('/series/create', [SeriesController::class, 'create'])->name('admin.series.create');
