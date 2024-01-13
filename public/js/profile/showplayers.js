@@ -1,7 +1,7 @@
 $("#favorites-link").on("click", function (e) {
     e.preventDefault(); // Evita que el enlace se siga
     $.ajax({
-        url: "/profile/favorite",
+        url: '/profile/' + userId + '/favorite',
         method: "GET",
         success: function (data) {
             // Convertir el objeto en un array

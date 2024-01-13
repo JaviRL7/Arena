@@ -77,5 +77,7 @@ style="background-color: #333333;"> @endif
     @include('modals.edit_profile')
     @include('modals.favorite_players')
     @include('modals.configure')
-
+    <script>
+        var userId = {{ $user->id }};
+    </script>
 @endsection

@@ -26,15 +26,35 @@ class ProfileController extends Controller
         'players' => $players,
     ]);
 }
+
+
+
+
+
+
+
+
+
 public function getPlayers(Request $request)
 {
     if ($request->ajax()) {
         $players = Player::query();
         return DataTables::of($players)
             ->addColumn('photo', function ($player) {
-                $teamLogo = $player->currentTeam() ? asset($player->currentTeam()->logo) : 'url_a_imagen_default'; // Proporciona una URL de imagen por defecto
-                $roleIcon = asset($player->role->icono); // Asegúrate de que $player->role también sea no nulo si es necesario
-                return '<div style="position:relative;"><img class="player-photo" src="' . asset($player->photo) . '"><img class="team-logo" src="' . $teamLogo . '"><img class="role-logo" src="' . $roleIcon . '"></div>';
+                $photoHtml = '<div style="position:relative;"><img class="player-photo" src="' . asset($player->photo) . '">';
+
+                if ($player->currentTeam()) {
+                    $photoHtml .= '<img class="team-logo" src="' . asset($player->currentTeam()->logo) . '">';
+                } else {
+                    $photoHtml .= '<h5 style="font-weight:bold;">LFT</h5>'; // LFT en negrita cuando currentTeam es null
+                }
+
+                if ($player->role) {
+                    $photoHtml .= '<img class="role-logo" src="' . asset($player->role->icono) . '">';
+                }
+
+                $photoHtml .= '</div>';
+                return $photoHtml;
             })
             ->addColumn('nick', function ($player) {
                 return '<div class="player-name"><h1>' . $player->nick . '</h1><p style="font-size: 0.8em; color: gray;">' . $player->name . ' ' . $player->lastname1 . '</p></div>';
@@ -49,6 +69,24 @@ public function getPlayers(Request $request)
         'players' => $players,
     ]);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function getFavorite()
