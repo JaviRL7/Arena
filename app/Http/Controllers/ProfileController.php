@@ -119,7 +119,7 @@ public function getPlayers(Request $request)
         $user->save();
 
         // Redirige al usuario a donde quieras que vaya después
-        return redirect('/profile');
+        return redirect()->route('profile.index', ['user' => $user->id]);
     }
 
     public function comments()

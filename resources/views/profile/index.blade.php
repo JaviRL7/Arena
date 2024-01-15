@@ -47,6 +47,28 @@ style="background-color: #333333;"> @endif
                                     <p>{{ date('F jS', strtotime($user->birth_date)) }}</p>
                                 </div>
                             @endif
+                            @if (auth()->user() && auth()->user()->id != $user->id)
+                                @php
+                                    $userFollowing = auth()
+                                        ->user()
+                                        ->isFollowing($user);
+                                    $userFollowed = $user->isFollowing(auth()->user());
+                                @endphp
+
+                                <form
+                                    action="{{ $userFollowing ? route('unfollow', $user->id) : route('follow', $user->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="btn {{ $userFollowing ? 'btn-secondary' : 'btn-primary' }}">
+                                        {{ $userFollowing ? 'Unfollow' : 'Follow' }}
+                                    </button>
+                                </form>
+
+                                @if ($userFollowing && $userFollowed)
+                                    <span>Mutuals <i class="fa fa-heart"></i></span>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -54,12 +76,14 @@ style="background-color: #333333;"> @endif
 
             <div class="col-12 p-0 profile-links-container">
                 <div class="profile-links">
-                    <a href="#" id="comments-link"><img src="{{ asset('icons/comments.png') }}" alt="Descripción de la imagen" />
+                    <a href="#" id="comments-link"><img src="{{ asset('icons/comments.png') }}"
+                            alt="Descripción de la imagen" />
                         Comments</a>
-                    <a href="#" id="favorites-link"><img src="{{ asset('icons/favorite.png') }}" alt="Descripción de la imagen" />
+                    <a href="#" id="favorites-link"><img src="{{ asset('icons/favorite.png') }}"
+                            alt="Descripción de la imagen" />
                         Favorites</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal"><img src="{{ asset('icons/edit.png') }}"
-                            alt="Descripción de la imagen" /> Edit profile</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal"><img
+                            src="{{ asset('icons/edit.png') }}" alt="Descripción de la imagen" /> Edit profile</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#updateModal">
                         <img src="{{ asset('icons/gear.svg') }}" alt="Descripción de la imagen" /> Settings</a>
                     <a href="#">

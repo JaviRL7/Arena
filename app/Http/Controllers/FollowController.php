@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Game;
+use App\Models\Score;
+use App\Models\Comment;
+use App\Models\Player;
+use App\Models\Serie;
+use App\Models\Team;
+use App\Models\Champion;
 
 use Illuminate\Http\Request;
 
