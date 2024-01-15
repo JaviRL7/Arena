@@ -1,19 +1,22 @@
 
 $(document).ready(function() {
-    var commentsLoaded = false; // Variable de control para verificar si los comentarios ya se han cargado
+    var commentsLoaded = false; // Variable de control
 
     $('#comments-link').click(function(e) {
         e.preventDefault();
 
-        // Si los comentarios ya se han cargado, no hagas nada
         if (commentsLoaded) {
             return;
         }
 
+        // Obten el ID del usuario de alguna manera, por ejemplo, a través de un atributo de datos
+        var userId = $(this).data('user-id');
+
         $.ajax({
-            url: '/profile/comments',
+            url: '/profile/' + userId + '/comments',
             type: 'GET',
             success: function(data) {
+                console.log(data);
                 var commentsContainer = $('.profile-comments-container');
                 commentsContainer.append('<h1>These are all your comments</h1>');
 

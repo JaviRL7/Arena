@@ -86,8 +86,9 @@ style="background-color: #333333;"> @endif
                             src="{{ asset('icons/edit.png') }}" alt="Descripción de la imagen" /> Edit profile</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#updateModal">
                         <img src="{{ asset('icons/gear.svg') }}" alt="Descripción de la imagen" /> Settings</a>
-                    <a href="#">
-                        <img src="{{ asset('icons/like.png') }}" alt="Descripción de la imagen" /> Your likes</a>
+                    <a href="#" id="for-you-link">
+                        <img src="{{ asset('icons/like.png') }}" alt="Descripción de la imagen" /> For you
+                    </a>
                 </div>
             </div>
         </div>

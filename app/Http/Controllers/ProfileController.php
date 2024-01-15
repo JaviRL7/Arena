@@ -138,7 +138,11 @@ public function getPlayers(Request $request)
         ]);
     }
 
-
+    public function followings(User $user)
+    {
+        $followings = $user->followings; // Asegúrate de tener esta relación en tu modelo User
+        return response()->json($followings);
+    }
     public function update(Request $request)
     {
         $user = Auth::user();

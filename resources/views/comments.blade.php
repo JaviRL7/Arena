@@ -1,8 +1,10 @@
 <div class="d-flex flex-start mb-4" style="margin-top: 30px;">
-    <img class="rounded-circle shadow-1-strong me-3 user-photo" src="{{ asset($comment->user->user_photo) }}" alt="avatar"/>
-    <div>
-        <h6 class="fw-bold mb-1">&#64;{{$comment->user->nick }}</h6>
-        <div class="d-flex align-items-start">
+    <a href="{{ route('profile.index', $comment->user->id) }}" class="me-3">
+        <img class="rounded-circle shadow-1-strong user-photo" src="{{ asset($comment->user->user_photo) }}" alt="avatar"/>
+    </a>    <div>
+        <a href="{{ route('profile.index', $comment->user->id) }}" class="text-dark">
+            <h6 class="fw-bold mb-1">&#64;{{$comment->user->nick }}</h6>
+        </a>        <div class="d-flex align-items-start">
             <div class="text-muted">
                 <p class="mb-0"><span>{{ $comment->created_at->format('F d, Y') }}</span></p>
             </div>

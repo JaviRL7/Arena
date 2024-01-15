@@ -42,10 +42,11 @@ Route::middleware('auth')->group(
 
         // Ruta para ver los perfiles de otros usuarios
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::get('/profile/comments', [ProfileController::class, 'comments'])->name('profile.comments');
+        Route::get('/profile/{user}/comments', [ProfileController::class, 'comments'])->name('profile.comments');
 
         Route::get('/profile/{user}/getPlayers', [ProfileController::class, 'getPlayers'])->name('profile.getplayers');
 
+        Route::get('/profile/{user}/followings', [ProfileController::class, 'followings'])->name('profile.followings');
 
 
 
