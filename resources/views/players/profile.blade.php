@@ -74,6 +74,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="titulo">Fans</h1>
+                        <form action="{{ route('players.addFan', ['player' => $player->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Become a Fan</button>
+                        </form>
+
+
                         @php
                             $fans = \App\Models\User::where('favorite_player1', $player->id)
                                 ->orWhere('favorite_player2', $player->id)

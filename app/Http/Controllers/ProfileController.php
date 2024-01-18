@@ -138,11 +138,88 @@ public function getPlayers(Request $request)
         ]);
     }
 
+
+
+
+
+
+
+
     public function followings(User $user)
     {
-        $followings = $user->followings; // Asegúrate de tener esta relación en tu modelo User
+        $followings = $user->followings()->get()->map(function ($following) use ($user) {
+            // Asume que tienes métodos para obtener los datos de jugadores y equipos favoritos
+            $favoritePlayers = $following->getFavoritePlayers();
+            $favoriteTeam = $following->getFavoriteTeam();
+
+            return [
+                'id' => $following->id,
+                'photo' => asset($following->user_photo), // Usa asset() para obtener la URL completa
+                'nick' => $following->nick,
+                'name' => $following->name,
+                'favoritePlayers' => $favoritePlayers, // Asegúrate de que incluyan la foto de cada jugador
+                'favoriteTeam' => $favoriteTeam, // Incluye el logo del equipo
+                'isMutual' => $following->followers->contains($user->id)
+            ];
+        });
+
         return response()->json($followings);
     }
+
+
+
+
+
+    public function addFan(Request $request, Player $player)
+    {
+        $user = Auth::user(); // obtén el usuario actualmente autenticado
+
+        // Comprueba si el usuario ya tiene todos los jugadores favoritos
+        if ($user->favorite_player1 && $user->favorite_player2 && $user->favorite_player3 && $user->favorite_player4 && $user->favorite_player5) {
+            return response()->json(['message' => 'Ya tienes todos los jugadores favoritos.'], 400);
+        }
+
+        // Agrega el jugador a la primera posición de jugador favorito disponible
+        if (!$user->favorite_player1) {
+            $user->favorite_player1 = $player->id;
+        } elseif (!$user->favorite_player2) {
+            $user->favorite_player2 = $player->id;
+        } elseif (!$user->favorite_player3) {
+            $user->favorite_player3 = $player->id;
+        } elseif (!$user->favorite_player4) {
+            $user->favorite_player4 = $player->id;
+        } else {
+            $user->favorite_player5 = $player->id;
+        }
+
+        $user->save(); // guarda los cambios en la base de datos
+
+        return response()->json(['message' => 'Te has convertido en fan del jugador.']);
+    }
+
+
+
+    public function updateFavorites(Request $request)
+    {
+        $user = Auth::user(); // obtén el usuario actualmente autenticado
+
+        // Actualiza los jugadores favoritos del usuario
+        $user->favorite_player1 = $request->favorite_player1;
+        $user->favorite_player2 = $request->favorite_player2;
+        $user->favorite_player3 = $request->favorite_player3;
+        $user->favorite_player4 = $request->favorite_player4;
+        $user->favorite_player5 = $request->favorite_player5;
+
+        $user->save(); // guarda los cambios en la base de datos
+
+        return response()->json(['message' => 'Jugadores favoritos actualizados con éxito.']);
+    }
+
+
+
+
+
+
     public function update(Request $request)
     {
         $user = Auth::user();

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 //corregir esto
 
@@ -209,5 +210,54 @@ public function store(Request $request)
 
     return redirect()->route('admin.players.index')->with('success', 'Se ha creado el player con éxito.');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function addFan(Request $request, Player $player)
+    {
+        $user = Auth::user(); // obtén el usuario actualmente autenticado
+
+        // Comprueba si el usuario ya tiene todos los jugadores favoritos
+        if ($user->favorite_player1 && $user->favorite_player2 && $user->favorite_player3 && $user->favorite_player4 && $user->favorite_player5) {
+            return response()->json(['message' => 'Ya tienes todos los jugadores favoritos.'], 400);
+        }
+
+        // Agrega el jugador a la primera posición de jugador favorito disponible
+        if (!$user->favorite_player1) {
+            $user->favorite_player1 = $player->id;
+        } elseif (!$user->favorite_player2) {
+            $user->favorite_player2 = $player->id;
+        } elseif (!$user->favorite_player3) {
+            $user->favorite_player3 = $player->id;
+        } elseif (!$user->favorite_player4) {
+            $user->favorite_player4 = $player->id;
+        } else {
+            $user->favorite_player5 = $player->id;
+        }
+
+        $user->save(); // guarda los cambios en la base de datos
+
+        return response()->json(['message' => 'Te has convertido en fan del jugador.']);
+    }
+
+
+
+
+
+
+
 
 }

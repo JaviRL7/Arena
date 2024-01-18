@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
 @endsection
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('/js/profile/followings.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/comments.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/showplayers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
@@ -99,9 +100,14 @@ style="background-color: #333333;"> @endif
 
         </div>
     </div>
+    <div class="row m-0">
+        <div class="col-md-12 p-0 profile-followings-container">
+        </div>
+    </div>
     @include('modals.edit_profile')
     @include('modals.favorite_players')
     @include('modals.configure')
+
     <script>
         var userId = {{ $user->id }};
     </script>

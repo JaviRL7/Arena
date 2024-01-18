@@ -58,13 +58,26 @@ Route::middleware('auth')->group(
         Route::post('/profile/configure', [ProfileController::class, 'configure'])->name('profile.configure');
     }
 );
+
+
+
+// web.php
+
+// Ruta para convertirse en fan de un jugador (cambiada para manejarlo desde la vista del perfil del jugador)
+// En tu archivo web.php asegúrate de que la ruta es POST
+Route::post('/players/{player}/become-fan', [ProfileController::class, 'becomeFan'])->name('players.become-fan');
+
+// Ruta para actualizar los jugadores favoritos (cambiada para manejarlo desde la vista del perfil del jugador)
+Route::post('/players/update-favorite-players', [ProfileController::class, 'updateFavoritePlayers'])->name('players.update-favorite-players');
+
+
+
 Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
 Route::delete('/unfollow/{user}', [FollowController::class, 'destroy'])->name('unfollow');
 
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{id}/update', [CommentsController::class, 'update'])->name('comments.update');
 
-Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
@@ -184,4 +197,6 @@ Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.
 Route::get('/teams_show', [TeamsController::class, 'index_show'])->name('teams.index');
 Route::get('/teams_show/{id}', [TeamsController::class, 'profile'])->name('team.profile');
 Route::get('/players/{id}/profile', [PlayersController::class, 'profile'])->name('players.profile');
+Route::post('/players/{player}/profile/add-fan', [PlayersController::class, 'addFan'])->name('players.addFan');
+
 require __DIR__ . '/auth.php';

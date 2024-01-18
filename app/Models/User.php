@@ -80,5 +80,49 @@ class User extends Authenticatable
     {
         return $this->followings()->where('followed_id', $user->id)->exists();
     }
+    public function getFavoritePlayers()
+    {
+        $players = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $playerField = 'favorite_player' . $i;
+            if ($this->$playerField) {
+                $players[] = $this->$playerField;
+            }
+        }
 
+        return $players;
+    }
+
+    /**
+     * Obtiene el equipo favorito del usuario.
+     */
+    public function getFavoriteTeam()
+    {
+        return $this->favorite_team;
+    }
+
+    public function hasMaxFavoritePlayers()
+{
+    // Verifica si todos los campos de jugadores favoritos están llenos
+    return $this->favorite_player1 && $this->favorite_player2 && $this->favorite_player3 && $this->favorite_player4 && $this->favorite_player5;
+}
+
+public function setFavoritePlayers($playerIds)
+{
+    $attributes = ['favorite_player1', 'favorite_player2', 'favorite_player3', 'favorite_player4', 'favorite_player5'];
+
+    foreach ($attributes as $index => $attribute) {
+        $this->$attribute = $playerIds[$index] ?? null;
+    }
+
+    $this->save();
+}
+public function favoritePlayers()
+{
+    return $this->hasMany(Player::class, 'id', 'favorite_player1')
+        ->union($this->hasMany(Player::class, 'id', 'favorite_player2'))
+        ->union($this->hasMany(Player::class, 'id', 'favorite_player3'))
+        ->union($this->hasMany(Player::class, 'id', 'favorite_player4'))
+        ->union($this->hasMany(Player::class, 'id', 'favorite_player5'));
+}
 }
