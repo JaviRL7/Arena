@@ -71,14 +71,35 @@
                         <h5 style="font-family: important; color:white; margin-right: 280px;">This player has not played any matches yet.</h5>
                     @endif
                 </div>
+
+
+
+
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="titulo">Fans</h1>
-                        <form action="{{ route('players.addFan', ['player' => $player->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">Become a Fan</button>
-                        </form>
 
+                        @php
+                            $isFan = in_array($player->id, [
+                                Auth::user()->favorite_player1,
+                                Auth::user()->favorite_player2,
+                                Auth::user()->favorite_player3,
+                                Auth::user()->favorite_player4,
+                                Auth::user()->favorite_player5
+                            ]);
+                        @endphp
+
+                        @if (!$isFan)
+                            <form action="{{ route('players.addFan', ['player' => $player->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" data-player-id="{{ $player->id }}">Become a Fan</button>
+                            </form>
+                        @else
+                        <form action="{{ route('players.removeFan', ['player' => $player->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary" data-player-id="{{ $player->id }}">Dejar de ser fan</button>
+                        </form>
+                        @endif
 
                         @php
                             $fans = \App\Models\User::where('favorite_player1', $player->id)
@@ -88,6 +109,7 @@
                                 ->orWhere('favorite_player5', $player->id)
                                 ->get();
                         @endphp
+
                         @if ($fans->isEmpty())
                             <h5>This player doesn't have any fans yet.</h5>
                         @else
@@ -96,13 +118,13 @@
                                     <div class="fan">
                                         <h2>{{ $fan->name }}</h2>
                                         <img src="{{ asset($fan->photo) }}" alt="" class="player-profile-img">
-
                                     </div>
                                 @endforeach
                             </div>
                         @endif
                     </div>
                 </div>
+                @include('modals.change_favorite')
             </div>
 
 
@@ -133,6 +155,7 @@
                 </div>
             </div>
         </div>
+
     </div>
         <script>
             $(document).ready(function() {
@@ -186,5 +209,92 @@ $(document).ready(function() {
     }
 });
 </script>
+<script>
+$(document).ready(function() {
+    $('.btn-primary').click(function(e) {
+        e.preventDefault();
+
+        // Guarda el ID del jugador
+        var playerId = $(this).data('player-id');
+
+        // Si el botón dice "Dejar de ser fan", entonces quita al jugador de los favoritos
+        if ($(this).text() === 'Dejar de ser fan') {
+            $.ajax({
+                url: '/players/' + playerId + '/removeFan',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}' // Añade el token CSRF para proteger contra ataques CSRF
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Actualiza la página o muestra un mensaje de éxito
+                        location.reload();
+                    } else {
+                        // Muestra un mensaje de error
+                        alert('Hubo un error al intentar dejar de ser fan. Por favor, inténtalo de nuevo.');
+                    }
+                }
+            });
+        } else {
+            // Intenta añadir al jugador a los favoritos
+            $.ajax({
+                url: '/players/' + playerId + '/addFan',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}' // Añade el token CSRF para proteger contra ataques CSRF
+                },
+                success: function(response) {
+                    if (response.maxFavoritesReached) {
+                        // Si ya se han seleccionado 5 jugadores, abre la modal
+                        // Obtiene los detalles del jugador actual
+                        $.ajax({
+                            url: '/players/' + playerId,
+                            method: 'GET',
+                            success: function(currentPlayer) {
+                                // Obtiene los jugadores favoritos del usuario
+                                $.ajax({
+                                    url: '/players/' + playerId + '/getFavorites',
+                                    method: 'GET',
+                                    success: function(favoritesResponse) {
+                                        // Añade el jugador actual a la respuesta
+                                        favoritesResponse.push(currentPlayer);
+
+                                        // Añade los jugadores favoritos a la modal
+                                        var favoritesContainer = $('#favorites-container');
+                                        favoritesContainer.empty(); // Limpia el contenedor
+
+                                        favoritesResponse.forEach(function(player) {
+                                            var playerElement = '<div class="favorite-player">' +
+                                                '<img src="' + player.photo +
+                                                '" alt="" class="player-profile-img" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover;">' +
+                                                '<h2>' + player.nick + '</h2>' +
+                                                '<p style="color: gray;">' + player.name + ' ' + (player.lastname1 || '') + ' ' + (player.lastname2 || '') +
+                                                '</p>' +
+                                                '<input type="checkbox" class="choose-favorite-checkbox" data-player-id="' +
+                                                player.id + '" style="position: absolute; right: 10px;">' +
+                                                '</div>';
+
+                                            favoritesContainer.append(playerElement);
+                                        });
+
+                                        // Abre la modal
+                                        $('#choose-favorites-modal').modal('show');
+                                    }
+                                });
+                            }
+                        });
+                    } else if (response.success) {
+                        // Si el jugador se añadió a los favoritos con éxito, actualiza la página
+                        location.reload();
+                    } else {
+                        // Muestra un mensaje de error
+                        alert('Hubo un error al intentar añadir a este jugador a tus favoritos. Por favor, inténtalo de nuevo.');
+                    }
+                }
+            });
+        }
+    });
+});
+        </script>
 
     @endsection

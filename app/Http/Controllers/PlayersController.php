@@ -212,46 +212,108 @@ public function store(Request $request)
 }
 
 
+public function updateFavorites(Request $request, Player $player)
+{
+    $user = Auth::user(); // obtén el usuario actualmente autenticado
+
+    // Actualiza los jugadores favoritos del usuario
+    $user->favorite_player1 = $request->favorite_player1;
+    $user->favorite_player2 = $request->favorite_player2;
+    $user->favorite_player3 = $request->favorite_player3;
+    $user->favorite_player4 = $request->favorite_player4;
+    $user->favorite_player5 = $request->favorite_player5;
+
+    $user->save(); // guarda los cambios en la base de datos
+
+    // Redirige al usuario a la página anterior sin mostrar ningún mensaje
+    return response()->json(['success' => true]);
+}
 
 
+public function getFavorites(Player $player)
+{
+    $user = Auth::user(); // obtén el usuario actualmente autenticado
+
+    // Obtiene los jugadores favoritos del usuario
+    $favoriteIds = [
+        $user->favorite_player1,
+        $user->favorite_player2,
+        $user->favorite_player3,
+        $user->favorite_player4,
+        $user->favorite_player5
+    ];
+
+    $favorites = Player::whereIn('id', $favoriteIds)->get();
+
+    // Retorna los jugadores favoritos como una respuesta JSON
+    return response()->json($favorites);
+}
 
 
+public function removeFan(Request $request, Player $player)
+{
+    $user = Auth::user(); // obtén el usuario actualmente autenticado
 
+    // Comprueba si el jugador es uno de los jugadores favoritos del usuario
+    if ($user->favorite_player1 == $player->id) {
+        $user->favorite_player1 = null;
+    } elseif ($user->favorite_player2 == $player->id) {
+        $user->favorite_player2 = null;
+    } elseif ($user->favorite_player3 == $player->id) {
+        $user->favorite_player3 = null;
+    } elseif ($user->favorite_player4 == $player->id) {
+        $user->favorite_player4 = null;
+    } elseif ($user->favorite_player5 == $player->id) {
+        $user->favorite_player5 = null;
+    }
 
+    // Aquí está la declaración dd()
 
+    $user->save(); // guarda los cambios en la base de datos
 
+    // Redirige al usuario a la página anterior sin mostrar ningún mensaje
+    return response()->json(['success' => true]);
+}
 
+public function getPlayer($id)
+{
+    $player = Player::find($id);
 
-
-
-
+    if ($player) {
+        return response()->json($player);
+    } else {
+        return response()->json(['error' => 'Player not found'], 404);
+    }
+}
 
 public function addFan(Request $request, Player $player)
-    {
-        $user = Auth::user(); // obtén el usuario actualmente autenticado
+{
+    $user = Auth::user(); // obtén el usuario actualmente autenticado
 
-        // Comprueba si el usuario ya tiene todos los jugadores favoritos
-        if ($user->favorite_player1 && $user->favorite_player2 && $user->favorite_player3 && $user->favorite_player4 && $user->favorite_player5) {
-            return response()->json(['message' => 'Ya tienes todos los jugadores favoritos.'], 400);
-        }
-
-        // Agrega el jugador a la primera posición de jugador favorito disponible
-        if (!$user->favorite_player1) {
-            $user->favorite_player1 = $player->id;
-        } elseif (!$user->favorite_player2) {
-            $user->favorite_player2 = $player->id;
-        } elseif (!$user->favorite_player3) {
-            $user->favorite_player3 = $player->id;
-        } elseif (!$user->favorite_player4) {
-            $user->favorite_player4 = $player->id;
-        } else {
-            $user->favorite_player5 = $player->id;
-        }
-
-        $user->save(); // guarda los cambios en la base de datos
-
-        return response()->json(['message' => 'Te has convertido en fan del jugador.']);
+    // Comprueba si el usuario ya tiene todos los jugadores favoritos
+    if ($user->favorite_player1 && $user->favorite_player2 && $user->favorite_player3 && $user->favorite_player4 && $user->favorite_player5) {
+        // Retorna una respuesta indicando que ya hay 5 jugadores favoritos
+        return response()->json(['maxFavoritesReached' => true, 'playerId' => $player->id]);
     }
+
+    // Agrega el jugador a la primera posición de jugador favorito disponible
+    if (!$user->favorite_player1) {
+        $user->favorite_player1 = $player->id;
+    } elseif (!$user->favorite_player2) {
+        $user->favorite_player2 = $player->id;
+    } elseif (!$user->favorite_player3) {
+        $user->favorite_player3 = $player->id;
+    } elseif (!$user->favorite_player4) {
+        $user->favorite_player4 = $player->id;
+    } else {
+        $user->favorite_player5 = $player->id;
+    }
+
+    $user->save(); // guarda los cambios en la base de datos
+
+    // Redirige al usuario a la página anterior sin mostrar ningún mensaje
+    return response()->json(['success' => true]);
+}
 
 
 
@@ -261,3 +323,5 @@ public function addFan(Request $request, Player $player)
 
 
 }
+
+
