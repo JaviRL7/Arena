@@ -24,7 +24,6 @@
                 </div>
                 <br>
                 <br>
-                <!-- Línea separadora -->
                 <div style="height: 5px; background-color: #e44445;"></div>
                 <div class="team-players">
                     <h1 class="titulo">Current roster</h1>
@@ -135,6 +134,7 @@
                     <h1 class="titulo">Fans</h1>
                     @php
                         $fans = \App\Models\User::where('favorite_team', $team->id)->get();
+                        $user = Auth::user();
                     @endphp
                     @if ($fans->isEmpty())
                         <h5>This team doesn't have any fans yet.</h5>
@@ -146,6 +146,21 @@
                             </div>
                         @endforeach
                     @endif
+                    @if ($user)
+    @if ($user->favorite_team == $team->id)
+        <form method="POST" action="{{ route('teams.unfan', $team) }}">
+            @csrf
+            <button type="submit">Dejar de ser fan</button>
+        </form>
+    @else
+        <form method="POST" action="{{ route('teams.becomeFan', $team) }}">
+            @csrf
+            <button type="submit">Hacerse fan</button>
+        </form>
+    @endif
+@else
+    <button onclick="location.href='/login'">Iniciar sesión para hacerse fan</button>
+@endif
                 </div>
             </div>
 

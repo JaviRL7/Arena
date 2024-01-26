@@ -196,6 +196,9 @@ Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.
 
 Route::get('/teams_show', [TeamsController::class, 'index_show'])->name('teams.index');
 Route::get('/teams_show/{id}', [TeamsController::class, 'profile'])->name('team.profile');
+Route::post('/teams_show/{team}/becomeFan', [TeamsController::class, 'becomeFan'])->name('teams.becomeFan');
+Route::post('/teams_show/{team}/unfan', [TeamsController::class, 'unfan'])->name('teams.unfan');
+
 Route::get('/players/{id}/profile', [PlayersController::class, 'profile'])->name('players.profile');
 Route::post('/players/{player}/addFan', [PlayersController::class, 'addFan'])->name('players.addFan');
 
@@ -203,4 +206,9 @@ Route::get('/players/{id}/getFavorites', [PlayersController::class, 'getFavorite
 Route::post('/players/{player}/removeFan', [PlayersController::class, 'removeFan'])->name('players.removeFan');
 Route::get('/players/{id}', [PlayersController::class, 'getPlayer'])->name('players.getPlayer');
 Route::post('/players/{player}/updateFavorites', [PlayersController::class, 'updateFavorites'])->name('players.updateFavorites');
+
+
+
+Route::get('/teams/{id}', [TeamsController::class, 'getTeam'])->name('teams.getTeam');
+
 require __DIR__ . '/auth.php';

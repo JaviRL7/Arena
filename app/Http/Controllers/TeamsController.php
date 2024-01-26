@@ -9,10 +9,13 @@ use App\Models\Team;
 use App\Models\Role;
 use App\Models\Serie;
 use App\Models\Champion;
+use App\Models\User;
 use App\Models\Competition;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use ColorThief\ColorThief;
+use Illuminate\Support\Facades\Auth;
+
 
 class TeamsController extends Controller
 {
@@ -59,13 +62,13 @@ class TeamsController extends Controller
         // Obtén solo los campeones con los que ha jugado el equipo
         $playerIds = $team->players()->pluck('id');
         $champions = DB::table('clasifications')
-                        ->whereIn('player_id', $playerIds)
-                        ->join('games', 'clasifications.game_id', '=', 'games.id')
-                        ->join('series', 'games.serie_id', '=', 'series.id')
-                        ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
-                        ->select('champions.*', 'series.date as date')
-                        ->get()
-                        ->unique('id');
+            ->whereIn('player_id', $playerIds)
+            ->join('games', 'clasifications.game_id', '=', 'games.id')
+            ->join('series', 'games.serie_id', '=', 'series.id')
+            ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
+            ->select('champions.*', 'series.date as date')
+            ->get()
+            ->unique('id');
 
         // Calcula los porcentajes de victoria y derrota para cada campeón
         foreach ($champions as $champion) {
@@ -388,18 +391,48 @@ class TeamsController extends Controller
         return redirect()->route('admin.teams.index')->with('success', 'Se ha creado el equipo con éxito.');
     }
 
-public function create()
-{
-    $competitions = Competition::all();
+    public function create()
+    {
+        $competitions = Competition::all();
 
-    return view('admin.teams.create', ['competitions' => $competitions]);
-}
-public function destroy(Team $team)
-{
-    // Elimina el equipo
-    $team->delete();
+        return view('admin.teams.create', ['competitions' => $competitions]);
+    }
+    public function destroy(Team $team)
+    {
+        // Elimina el equipo
+        $team->delete();
 
-    // Redirige al usuario a la página de índice con un mensaje de éxito
-    return redirect()->route('admin.teams.index')->with('success', 'Se ha eliminado el equipo con éxito.');
-}
+        // Redirige al usuario a la página de índice con un mensaje de éxito
+        return redirect()->route('admin.teams.index')->with('success', 'Se ha eliminado el equipo con éxito.');
+    }
+
+    public function getTeam($id)
+    {
+        $team = Team::find($id);
+        // Aquí va tu lógica para mostrar el equipo
+    }
+
+    public function becomeFan(Team $team)
+    {
+        $user = Auth::user();
+        if ($user) {
+            $user->favorite_team = $team->id;
+            $user->save();
+            return redirect()->back()->with('success', 'Te has convertido en fan del equipo!');
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function unfan(Team $team)
+    {
+        $user = Auth::user();
+        if ($user && $user->favorite_team == $team->id) {
+            $user->favorite_team = null;
+            $user->save();
+            return redirect()->back()->with('success', 'Has dejado de ser fan del equipo.');
+        } else {
+            return redirect()->route('login');
+        }
+    }
 }

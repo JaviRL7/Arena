@@ -1,8 +1,12 @@
 @extends('layouts.plantilla_sin_navbar')
-<div style="background: white; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); margin: 10% 20%; position: relative;">
+<script src="js/profile/validation/form-validation.js"></script>
+
+<div style="background: white; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); margin: 10% 20%; position: relative; border-radius: 10px;">
     <!-- Logo -->
-    <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%);">
-        <img src="roles_icons/ADC.png" alt="Logo" style="width: 100px; height: 100px;">
+    <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%);
+                background-color: white; border-radius: 50%; width: 120px; height: 120px;
+                display: flex; align-items: center; justify-content: center;">
+        <img src="icons/logof.png" alt="Logo" style="width: 100px; height: 100px;">
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="bg-white p-6 rounded" style="padding-top: 70px;">

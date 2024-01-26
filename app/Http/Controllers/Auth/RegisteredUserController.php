@@ -37,7 +37,8 @@ class RegisteredUserController extends Controller
             'twitter' => ['nullable', 'string', 'max:255'],
             'discord' => ['nullable', 'string', 'max:255'],
             'birth_date' => ['nullable', 'date'],
-            'user_photo' => ['nullable', 'string', 'max:255'],
+            // Removí 'nullable' ya que la foto de perfil tendrá un valor predeterminado
+            'user_photo' => ['string', 'max:255'],
         ]);
 
         $user = User::create([
@@ -46,14 +47,15 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'twitter' => $request->twitter,
             'discord' => $request->discord,
-            'birth_date' => $request->birthdate,
-            'user_photo' => $request->user_photo,
+            'birth_date' => $request->birth_date,
+            // Asignación de la foto de perfil con valor predeterminado si no se proporciona una
+            'user_photo' => $request->user_photo ?? 'Profile_photos/Default_profile.jpg',
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return back()->withInput();
     }
 }
