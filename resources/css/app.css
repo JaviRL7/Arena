@@ -20,20 +20,47 @@ main {
     font-size: 1.5em;
 }
 .navbar {
-    height: 120px; /* Ajusta esto a la altura que desees */
+    height: 80px; /* Ajusta esto a la altura que desees */
 }
 
 .navbar {
-    background-color: #fffcdc!important; /* Establece el color de fondo del navbar */
+    background-color: #111111!important; /* Establece el color de fondo del navbar */
 }
 
-.nav-link{
-    font-family: "Pixel2_5" !important; /* Aplica la fuente a los enlaces del navbar */
-    font-size: 25px !important;
+.navbar-brand {
+    color: white !important;
+    align-items: center; /* Alinea verticalmente el logo y el título */
+}
+
+.nav-link {
+    color: white !important;
+    font-family: "mol" !important;
+    font-size: 20px !important; /* Aumenta el tamaño de la fuente para separar más los enlaces */
 }
 body {
     padding-top: 60px; /* Esto debe ser igual a la altura del navbar */
 }
+.login-link, .register-link {
+    font-family: 'mol';
+}
+
+.login-link {
+    color: white !important;}
+
+.register-link {
+    color: white !important;
+    background-color: #e44445;
+    padding: 3px;
+    border-radius: 4px;
+}
+.navbar-link {
+    display: inline-block;
+    border-radius: 5px; /* Bordes redondeados */
+    position: relative;
+    padding: 5px 10px; /* Ajusta el padding según necesites */
+}
+
+
 
 /*para el login*/
 /* Cambiar el color de fondo del formulario */

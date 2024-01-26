@@ -399,7 +399,7 @@ table.dataTable {
   width: 100%;
 }
 body {
-  background-color: #fffcdc;
+  background-color: whitesmoke;
 }
 #titulo {
   font-family: important;
@@ -448,19 +448,37 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Añade transparencia al fondo */
   color: white;
   text-align: center;
-  font-family: important;
+  font-family: mol;
 }
 
 .image-container img {
-  /*border-radius: 5px;*/
-  transform-origin: center center;
-  transition: all 0.2s;
-  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+    /*border-radius: 5px;*/
+    transform-origin: center center;
+    transition: all 0.2s;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+  }
+
+  .image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(139, 0, 0, 0.5); /* Color rojo oscuro semi-transparente */
+    transition: all 0.2s; /* Hace que la transición sea más rápida */
+    pointer-events: none; /* Permite que los eventos del ratón pasen a través del pseudo-elemento */
 }
 
-.image-container:hover img {
-  transform: scale(1.03); /* Aumenta el tamaño de la imagen al pasar el ratón */
+  .image-container:hover::before {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .subtitulo {
+    color: gray;
+    font-family: mol;
 }
+
 .title-line {
   border-bottom: 1px solid gray; /* Crea una línea gris */
   text-align: left;
@@ -2142,4 +2160,68 @@ input:checked + .slider:before {
 
 .datos {
     margin-bottom: 10px; /* Añade un margen inferior para separar los divs */
+}
+
+.navbar-link {
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px; /* Aumenta el padding para hacer el rectángulo más ancho */
+}
+
+.navbar-link:hover {
+    background-color: #3c3c36; /* Un color un poco más claro que #2c2c26 */
+    border-radius: 5px;
+}
+
+.navbar-link:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px; /* Posiciona el subrayado más abajo */
+    height: 4px;
+    width: 100%;
+    background-color: #e44445;
+}
+.active-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 4px;
+    width: 100%;
+    background-color: #e44445;
+}
+
+
+/*footer 2222*/
+
+.social-icon {
+    display: inline-block;
+    background-color: #f46666; /* Un color más claro que #e44445 */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.social-icon:hover {
+    background-color: #ff7878; /* Un color aún más claro al hacer hover */
+}
+
+.social-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+.logo-img {
+    height: 60px; /* Aumenta la altura para compensar unos con otros */
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 100px;
+    min-width: 50px;
+    margin-right: 20px; /* Aumenta el margen para más separación entre logos */
+    object-fit: contain; /* Mantiene la proporción original de los logos */
 }
