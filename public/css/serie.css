@@ -1,0 +1,16 @@
+.container-car {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.inner img {
+    height: auto !important;
+    width: 50% !important;
+}
