@@ -30,7 +30,7 @@
                         <a class="nav-link navbar-link mx-2 {{ Request::routeIs('home') ? 'active-link' : '' }}" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link navbar-link mx-2 {{ Request::routeIs('games.index') ? 'active-link' : '' }}" href="{{ route('games.index') }}">Series</a>
+                        <a class="nav-link navbar-link mx-2 {{ Request::routeIs('games.index') ? 'active-link' : '' }}" href="{{ route('series.index') }}">Series</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link navbar-link mx-2 {{ Request::routeIs('players.rankings') ? 'active-link' : '' }}" href="{{ route('players.rankings') }}">Rankings</a>

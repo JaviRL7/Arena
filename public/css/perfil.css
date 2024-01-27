@@ -2195,33 +2195,72 @@ input:checked + .slider:before {
 
 
 /*footer 2222*/
+.logo-section {
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    align-items: center;
+    flex-direction: column;
+    padding-left: 15%; /* Añade un margen del 20% desde el borde izquierdo */
+}
 
 .social-icon {
-    display: inline-block;
-    background-color: #f46666; /* Un color más claro que #e44445 */
+    background-color: #808080;
     color: white;
     padding: 10px;
     border-radius: 5px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     text-align: center;
-}
-
-.social-icon:hover {
-    background-color: #ff7878; /* Un color aún más claro al hacer hover */
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .social-link {
     color: white;
     text-decoration: none;
     font-size: 1.2em;
+    margin-left: 10px;
+    vertical-align: middle;
 }
+
+
+
+.social-icon:hover {
+    background-color: #A9A9A9; /* Un gris aún más claro al hacer hover */
+}
+
+
 .logo-img {
-    height: 60px; /* Aumenta la altura para compensar unos con otros */
+    height: 60px;
     vertical-align: middle;
     display: inline-block;
     max-width: 100px;
     min-width: 50px;
-    margin-right: 20px; /* Aumenta el margen para más separación entre logos */
-    object-fit: contain; /* Mantiene la proporción original de los logos */
+    margin-right: 20px;
+    object-fit: contain;
+}
+
+
+
+.footer .links ul li {
+    margin: 0 10px; /* Añade margen a los lados para separar los logos */
+}
+
+.footer .links ul li a {
+    color: #808080;
+    text-decoration: none;
+}
+
+.footer .links ul li a:hover {
+    color: #ffffff;
+}
+
+
+.separador{
+    content: '';
+
+    display: block;
+    height: 3px; /* Altura de la línea */
+    background-color: #4e4e4e; /* Color gris oscuro para la línea */
+    width: 100%; /* Ancho de la línea */
 }

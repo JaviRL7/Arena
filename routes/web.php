@@ -211,4 +211,6 @@ Route::post('/players/{player}/updateFavorites', [PlayersController::class, 'upd
 
 Route::get('/teams/{id}', [TeamsController::class, 'getTeam'])->name('teams.getTeam');
 
+Route::get('/series/{competition}/{year}', [SeriesController::class, 'show_year'])->name('series.show_year');
+
 require __DIR__ . '/auth.php';

@@ -12,9 +12,41 @@ class SeriesController extends Controller
 {
     public function index()
     {
-        $series = Serie::all();
-        return view('series.index', compact('series'));
+        // Obtiene todos los años en los que se jugaron series
+        $years = Serie::selectRaw('EXTRACT(YEAR FROM date) as year')->distinct()->get();
+
+        $competitionsByYear = [];
+        foreach ($years as $year) {
+            // Obtiene las competiciones que tienen series en el año especificado
+            $competitions = Competition::whereHas('series', function ($query) use ($year) {
+                $query->whereYear('date', $year->year);
+            })->get();
+
+            $competitionsByYear[$year->year] = $competitions;
+        }
+
+        return view('series.index', compact('competitionsByYear'));
     }
+
+
+
+
+    public function show_year(Competition $competition, $year)
+    {
+        // Obtiene todas las series de la competición en el año especificado
+        $series = Serie::where('competition_id', $competition->id)->whereYear('date', $year)->get();
+
+        return view('series.show_year', compact('competition', 'year', 'series'));
+    }
+
+
+
+
+
+
+
+
+
 
     public function getPlayerNames(Serie $serie, Request $request)
     {
