@@ -1,6 +1,7 @@
 @extends('layouts.plantilla')
 @section('title', 'Esportle')
 
+
 {{-- Definir las secciones para las pistas --}}
 @section('clue1')
     <div class="card">

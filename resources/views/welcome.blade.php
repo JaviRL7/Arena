@@ -9,6 +9,8 @@
     <div class="container" style="">
         <br>
         <br>
+        {{ Breadcrumbs::render() }}
+
         <div class="title-line">
             <h2>Worlds</h2>
             <h4 class="subtitulo">"Rate and analyze your favorite players' matches in Worlds 2023."</h4>

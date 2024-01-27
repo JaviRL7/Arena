@@ -59,13 +59,13 @@ $('#form-suposicion').on('submit', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     const tribute = new Tribute({
         values: function(text, cb) {
-            // Filtrar jugadores cuyos nicks comienzan con el texto ingresado
+            // Asegúrate de que los objetos en 'players' tienen una propiedad 'nick'
             const filteredPlayers = players.filter(player => player.nick.toLowerCase().startsWith(text.toLowerCase()));
             // Llamar al callback con los jugadores filtrados
             cb(filteredPlayers);
         },
         lookup: 'nick',
-        fillAttr: 'nick',
+        fillAttr: 'nick',  // Asegúrate de que los objetos en 'players' tienen esta propiedad
         menuContainer: document.body, // Esto asegura que el menú de Tribute se coloca en el cuerpo del documento
         minimumChars: 1, // Muestra sugerencias después de escribir 1 carácter
         selectTemplate: function(item) {
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return '<a href="#" class="mention">' + item.original.value + '</a>';
             }
 
-            return item.original.value; // Eliminar '@' para que funcione sin necesidad del carácter especial
+            // Asegúrate de que 'item.original' tiene una propiedad que coincida con 'fillAttr'
+            return item.original.nick;  // Cambiar 'value' por 'nick' o la propiedad correcta
         },
         // No requerir carácter especial para activar Tribute
         trigger: '',

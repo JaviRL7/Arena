@@ -12,6 +12,9 @@
 @endsection
 
 @section('content')
+<br>
+<br>
+
 <div class="container-fluid" style="min-height: 80vh;">
     @if ($series->where('name', 'Finale')->count() > 0)
         <h2 class="titulo">Finale</h2>
