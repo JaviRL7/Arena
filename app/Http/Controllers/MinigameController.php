@@ -8,9 +8,10 @@ class MinigameController extends Controller
 {
     public function index() {
         $player = Player::inRandomOrder()->first();
+        $players = Player::all('nick');
         session(['id' => $player->id]);
         session(['clue_number' => 1]); // Reiniciamos el contador de pistas aquí
-        return view('minigame.index', compact('player'));
+        return view('minigame.index', compact('player', 'players'));
     }
 
     public function getClue(Request $request) {
@@ -29,7 +30,7 @@ class MinigameController extends Controller
                 $clue = $player->country;
                 break;
             case 4:
-                $clue = $player->currentTeam()->logo; // Asegúrate de que este método esté definido
+                $clue = $player->teamAtEndOf2023()->logo; // Asegúrate de que este método esté definido
                 break;
             case 5:
                 $clue = $player->randomTeammate()->photo; // Asegúrate de que este método esté definido
@@ -52,7 +53,14 @@ class MinigameController extends Controller
         $player = Player::whereRaw('lower(nick) = ?', [$tryNick])->first();
 
         if ($player && session('id') == $player->id) {
-            return response()->json(['result' => 'correct']);
+            // Asegúrate de que tienes una forma de obtener la URL de la foto. Puede ser un campo en tu base de datos o un método en tu modelo Player.
+            // Este ejemplo asume que tienes un campo 'photo' en tu modelo Player que contiene la URL de la foto.
+            $photoUrl = $player->photo;
+
+            return response()->json([
+                'result' => 'correct',
+                'photo' => $photoUrl // Devuelve la URL de la foto con la respuesta
+            ]);
         } else {
             return response()->json(['result' => 'incorrect']);
         }

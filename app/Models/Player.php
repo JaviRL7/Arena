@@ -165,7 +165,15 @@ class Player extends Model
             ->withPivot('start_date', 'contract_expiration_date')
             ->first();
     }
-
+    public function teamAtEndOf2023()
+    {
+        $endOf2023 = \Carbon\Carbon::create(2023, 12, 1);
+        return $this->belongsToMany(Team::class, 'player_team')
+            ->wherePivot('start_date', '<=', $endOf2023)
+            ->wherePivot('contract_expiration_date', '>=', $endOf2023)
+            ->withPivot('start_date', 'contract_expiration_date')
+            ->first();
+    }
 
 
 

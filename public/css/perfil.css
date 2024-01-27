@@ -1616,11 +1616,7 @@ input:checked + .slider:before {
   background-color: white;
   margin-left: 38%;
 }
-.modal-header button.btn-close {
-  /* Cambia el color de la 'X' a blanco */
-  color: white !important;
-  filter: invert(1);
-}
+
 .tabla-sustituto {
   margin-left: 5%;
   margin-right: 5%;
@@ -2263,4 +2259,48 @@ input:checked + .slider:before {
     height: 3px; /* Altura de la línea */
     background-color: #4e4e4e; /* Color gris oscuro para la línea */
     width: 100%; /* Ancho de la línea */
+}
+/* Estilo para la 'x' de cerrar en modales de instrucciones */
+
+/*modal de instrucciones*/
+.modal-instruction .btn-close {
+    filter: brightness(0) invert(0.5); /* Ajusta el color a gris oscuro */
+}
+
+/* Estilos para el texto de las instrucciones en modales de instrucciones */
+.modal-instruction .instruction-text {
+    font-family: 'mol' /* Cambia la familia de fuentes */
+}
+
+.modal-instruction .instruction-text p,
+.modal-instruction .instruction-text ol {
+    margin-left: 20px; /* Añade un margen a la izquierda para alinear con los puntos */
+}
+
+.modal-instruction .instruction-text ol {
+    list-style: inside decimal; /* Estilo de lista numerada */
+}
+
+/*minigame*/
+.slightly-rounded-input {
+    border-radius: 5px !important; /* Poco redondeado */
+}
+
+.btn-boton5 {
+    background-color: #e44445 !important; /* Color rojo */
+    color: white !important; /* Letras en blanco */
+    font-family: 'mol' !important; /* Fuente Mol */
+    border-color: #e44445 !important; /* Color de borde para botón tipo outline */
+    margin-right: 10px; /* Añade un margen a la derecha de 10px */
+    margin-top: 20px; /* Añade un margen a la derecha de 10px */
+
+}
+
+.btn-boton6 {
+    background-color: darkgray !important; /* Color gris oscuro */
+    color: white !important; /* Letras en blanco */
+    font-family: 'mol' !important; /* Fuente Mol */
+    border-color: darkgray !important; /* Color de borde para botón tipo outline */
+    margin-right: 10px; /* Añade un margen a la derecha de 10px */
+    margin-top: 20px; /* Añade un margen a la derecha de 10px */
 }

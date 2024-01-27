@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'MINIGAME')
+@section('title', 'Esportle')
 
 {{-- Definir las secciones para las pistas --}}
 @section('clue1')
@@ -59,75 +59,27 @@
 
 {{-- Definir la sección para la búsqueda --}}
 @section('search')
-    <form id="form-suposicion"  method="POST" action="/minigame/check-response">
+    <form id="form-suposicion" method="POST" action="/minigame/check-response">
+        <a href="#!" class="link-muted" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+            <i class="fas fa-info-circle ms-2"></i>
+        </a>
         @csrf
-        <input type="text" id="suposicion" class="search-minigame" name="try_nick" placeholder="Adivina el jugador">
-
-        <button type="submit" id="check" class="btn btn-danger text-white">Check</button>
-        <button type="button" id="get-clue" class="btn btn-outline-danger text-danger">Get a clue</button>
-
+        <input type="text" id="suposicion" class="search-minigame slightly-rounded-input" name="try_nick" placeholder="Guess the pro player">
+        <button type="submit" id="check" class="btn btn-danger btn-boton5">Check</button>
+        <button type="button" id="get-clue" class="btn btn-outline-danger btn-boton6">Get a clue</button>
     </form>
+    @include('modals.instructions')
+    @include('modals.CorrectGuess')
+
 @endsection
 
+
 @section('content')
-    {{-- Incluir la plantilla del grid aquí --}}
+<script>
+    var players = @json($players);
+</script>
     @include('layouts.grid_minigame')
-
-
-    <script>
-// JavaScript para manejar eventos
-// JavaScript para manejar eventos
-let clueIndex = 1;
-$('.card').on('click', function() {
-    $(this).toggleClass('flipped');
-    if (!$(this).hasClass('flipped')) {
-        return;
-    }
-    $.ajax({
-        url: '/minigame/get-clue',
-        method: 'GET',
-        success: function(response) {
-            console.log(response); // Añade este console.log para ver la respuesta del servidor
-            var clue = response.clue;
-            if (clue.endsWith('.jpg') || clue.endsWith('.png') || clue.endsWith('.webp')) {
-                // Si la pista termina con una extensión de archivo de imagen, la tratamos como una imagen
-                $('#clue' + clueIndex).html('<img src="' + clue + '" alt="Pista">');
-            } else {
-                // Si la pista no termina con una extensión de archivo de imagen, la tratamos como texto
-                $('#clue' + clueIndex).text(clue);
-            }
-            clueIndex++;
-        },
-        error: function(xhr, status, error) {
-            console.error(error); // También es útil para capturar y mostrar errores
-        }
-    });
-});
-
-$('#get-clue').on('click', function() {
-    if (clueIndex <= 5) {
-        $('.card').eq(clueIndex - 1).click();
-    } else {
-        alert('No hay más pistas disponibles.');
-    }
-});
-
-$('#form-suposicion').on('submit', function(e) {
-    e.preventDefault();
-    var formData = $(this).serialize(); // Esto incluirá el token CSRF y el try_id
-    $.ajax({
-        url: '/minigame/check-response',
-        method: 'POST',
-        data: formData,
-        success: function(response) {
-            if (response.result === 'correct') {
-                alert('¡Has adivinado correctamente!');
-            } else {
-                alert('Inténtalo de nuevo.');
-            }
-        }
-    });
-});
-
-    </script>
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('/js/minigame/game.js') }}"></script>
+@endsection
 @endsection
