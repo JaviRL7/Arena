@@ -9,6 +9,9 @@
         <title>@yield('title')</title>
         <!--//('resources/css/app.css')-->
         @vite('resources/css/app.css')
+
+        <meta name="predictions-store-url" content="{{ route('predictions.store') }}">
+
         <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

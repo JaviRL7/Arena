@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Serie;
 use App\Models\Competition;
 use App\Models\Team;
+use App\Models\Prediction;
+use App\Models\User;
 use App\Models\Player;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
@@ -58,11 +61,11 @@ class SeriesController extends Controller
         return response()->json($playerNames);
     }
     public function getTeamNames(Serie $serie, Request $request)
-{
-    $teamNames = collect([$serie->team_1->name, $serie->team_2->name]);
+    {
+        $teamNames = collect([$serie->team_1->name, $serie->team_2->name]);
 
-    return response()->json($teamNames);
-}
+        return response()->json($teamNames);
+    }
     public function create()
     {
         $competitions = Competition::all();
@@ -100,39 +103,71 @@ class SeriesController extends Controller
         return view('admin.series.show', compact('serie', 'teams', 'competitions'));
     }
     public function show_2(Serie $serie)
-    {
-        $activities = $serie->recentActivities();
+{
+    $activities = $serie->recentActivities();
+    $user = Auth::user();
 
-        $games = $serie->games;
-        $teams = Team::all();
+    $games = $serie->games;
+    $teams = Team::all();
 
-        return view('series.show', compact('serie', 'games','teams','activities'));
+    // Obtén la predicción existente, si la hay
+    $existingPrediction = Prediction::where('serie_id', $serie->id)
+        ->where('user_id', $user->id)
+        ->first();
+
+    $hasVoted = $existingPrediction !== null;
+    $votedForTeam = null;
+    if ($hasVoted) {
+        $votedForTeam = $existingPrediction->team_1_win ? $serie->team_1->name : $serie->team_2->name;
     }
 
-    public function update(Request $request, Serie $serie)
-{
-    $validatedData = $request->validate([
-        'name' => 'required',
-        'team_1_id' => 'required',
-        'team_2_id' => 'required',
-        'type' => 'required',
-        'date' => 'required',
-        'hour' => 'required', // Añade esto
-        'competition_id' => 'required',
+    // Obtener el total de predicciones para la serie
+    $totalPredictions = $serie->predictions->count();
+    $team1Wins = $serie->predictions->where('team_1_win', true)->count();
+
+    if ($totalPredictions > 0) {
+        $percentageTeam1 = ($team1Wins / $totalPredictions) * 100;
+        $percentageTeam2 = 100 - $percentageTeam1;
+    } else {
+        $percentageTeam1 = $percentageTeam2 = 50; // Valores por defecto si no hay predicciones
+    }
+
+    return view('series.show', [
+        'serie' => $serie,
+        'games' => $games,
+        'teams' => $teams,
+        'activities' => $activities,
+        'hasVoted' => $hasVoted,
+        'votedForTeam' => $votedForTeam,
+        'percentageTeam1' => $percentageTeam1,
+        'percentageTeam2' => $percentageTeam2,
     ]);
-
-    $serie->name = $validatedData['name'];
-    $serie->team_1_id = $validatedData['team_1_id'];
-    $serie->team_2_id = $validatedData['team_2_id'];
-    $serie->type = $validatedData['type'];
-    $serie->date = $validatedData['date'];
-    $serie->hour = $validatedData['hour']; // Añade esto
-    $serie->competition_id = $validatedData['competition_id'];
-
-    $serie->save();
-
-    return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
 }
+
+    public function update(Request $request, Serie $serie)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'team_1_id' => 'required',
+            'team_2_id' => 'required',
+            'type' => 'required',
+            'date' => 'required',
+            'hour' => 'required', // Añade esto
+            'competition_id' => 'required',
+        ]);
+
+        $serie->name = $validatedData['name'];
+        $serie->team_1_id = $validatedData['team_1_id'];
+        $serie->team_2_id = $validatedData['team_2_id'];
+        $serie->type = $validatedData['type'];
+        $serie->date = $validatedData['date'];
+        $serie->hour = $validatedData['hour']; // Añade esto
+        $serie->competition_id = $validatedData['competition_id'];
+
+        $serie->save();
+
+        return redirect()->route('admin.games.index')->with('success', 'Serie updated successfully');
+    }
     public function calendar()
     {
         $series = Serie::where('date', '>=', now())->orderBy('date')->get();
@@ -151,6 +186,4 @@ class SeriesController extends Controller
 
         return view('calendar.index', ['seriesByMonth' => $seriesByMonth]);
     }
-
-
 }

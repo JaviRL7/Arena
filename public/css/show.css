@@ -291,29 +291,63 @@
 
 
 
-
-.progress-bar-container {
+/*barra de votacion*/
+.prediction-section {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 100px 15% 20px;
 }
 
+.team-section {
+    text-align: center;
+}
 
+.team-logo {
+    width: 80px; /* Ajusta según sea necesario */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 
-.progress-bar {
+.prediction-form {
+    margin-top: 10px; /* Espacio entre el logo y el botón */
+}
+
+.progress-bar-container {
     flex-grow: 1;
-    height: 20px;
-    background-color: #ccc;
-    margin: 0 10px;
-    border-radius: 10px;
+    margin: 0 20px; /* Espacio entre la barra y los logos */
+}
+
+.progress {
+    height: 30px; /* Aumenta la altura de la barra */
+    background-color: #ccc; /* Color de fondo de la barra de progreso */
+    border-radius: 10px; /* Bordes redondeados para la barra de progreso */
     position: relative;
 }
 
-.progress-bar-fill {
+.progress-bar {
     height: 100%;
-    background: linear-gradient(to right, #2196f3 50%, #e44445 50%); /* Mitad azul, mitad roja */
-    border-radius: 10px;
-    position: absolute;
-    transition: width 0.5s;
+    transition: width 0.5s; /* Transición suave para el cambio de ancho */
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente */
+    justify-content: center; /* Centra el texto horizontalmente */
+}
+
+.bg-primary {
+    background-color: #2196f3; /* Color de fondo para el equipo 1 */
+    border-radius: 10px 0 0 10px; /* Bordes redondeados solo en el lado izquierdo */
+    color: white; /* Texto en blanco */
+}
+
+.bg-danger {
+    background-color: #e44445; /* Color de fondo para el equipo 2 */
+    border-radius: 0 10px 10px 0; /* Bordes redondeados solo en el lado derecho */
+    color: white; /* Texto en blanco */
 }
 
 
+.vote-change-message {
+    text-align: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+}

@@ -26,18 +26,24 @@ class PredictionController extends Controller
         ->first();
 
     if ($existingPrediction) {
-        // Devolver un mensaje de error en formato JSON
-        return response()->json([
-            'error' => 'You have already made a prediction for this series.'
-        ], 409); // Código de estado HTTP para conflicto
+        // Si ya votó y el voto es diferente, actualiza el voto
+        if ($existingPrediction->team_1_win != $request->team_1_win) {
+            $existingPrediction->team_1_win = $request->team_1_win;
+            $existingPrediction->save();
+        } else {
+            // Si votó por el mismo equipo, devuelve un mensaje sin cambios
+            return response()->json([
+                'message' => 'You have already voted for the same team.'
+            ], 200);
+        }
+    } else {
+        // Crear y guardar la nueva predicción si no existe
+        $prediction = new Prediction();
+        $prediction->user_id = Auth::id();
+        $prediction->serie_id = $request->serie_id;
+        $prediction->team_1_win = $request->team_1_win;
+        $prediction->save();
     }
-
-    // Crear y guardar la nueva predicción
-    $prediction = new Prediction();
-    $prediction->user_id = Auth::id();
-    $prediction->serie_id = $request->serie_id;
-    $prediction->team_1_win = $request->team_1_win;
-    $prediction->save();
 
     // Obtener el total de predicciones para la serie
     $serie = Serie::with('predictions')->find($request->serie_id);
