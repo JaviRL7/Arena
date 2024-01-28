@@ -97,9 +97,11 @@
                 $now = \Carbon\Carbon::now();
             @endphp
 
-            @if ($serie->date > $now && auth()->check())
-                @include('includes.votaciones')
-            @endif
+@if ($serie->date <= $now || !auth()->check())
+@include('includes.votaciones', ['static' => true])
+@else
+@include('includes.votaciones', ['static' => false])
+@endif
 
         </div>
         @include('includes.community-feedback', ['activities' => $activities])
