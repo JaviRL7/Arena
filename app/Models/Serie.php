@@ -49,6 +49,10 @@ public function comments()
 {
     return $this->hasMany(Comment::class);
 }
+public function predictions()
+    {
+        return $this->hasMany(Prediction::class);
+    }
     public function team_2()
     {
         return $this->belongsTo(Team::class, 'team_2_id');

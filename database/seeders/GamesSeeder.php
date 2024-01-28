@@ -37,7 +37,10 @@ class GamesSeeder extends Seeder
             ['kills' => 2, 'deaths' => 0, 'assists' => 4, 'champion_name' => 'kalista'],
             ['kills' => 0, 'deaths' => 0, 'assists' => 8, 'champion_name' => 'renata glasc']
         ];
-        $game1->attachPlayers($resultados_blue, $resultados_red);
+        $bans = [
+            "Kog'Maw", 'Ekko', 'Gragas', 'Camille', 'Alistar', 'Fiddlesticks', 'Xayah', 'Diana', 'Trundle', 'Draven'
+        ];
+        $game1->attachPlayers($resultados_blue, $resultados_red, $bans);
         //WEIBO T1 MAPA 2
         $game2 = Game::create([
             'team_blue_id' => 1,
@@ -99,6 +102,9 @@ class GamesSeeder extends Seeder
             ['kills' => 2, 'deaths' => 0, 'assists' => 5, 'champion_name' => 'xayah'],
             ['kills' => 0, 'deaths' => 2, 'assists' => 16, 'champion_name' => 'rakan']
         ];
+        $bans = [
+            'Jax', 'Aatrox', 'Sett', 'Jinx', 'Ziggs', 'Nautilus', 'Jayce', 'Blitzcrank', 'Sona', 'Hecarim'
+        ];
         $game3->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //JDG t1 mapa 1
@@ -125,7 +131,7 @@ class GamesSeeder extends Seeder
             ['kills' => 4, 'deaths' => 1, 'assists' => 10, 'champion_name' => 'jhin'],
             ['kills' => 3, 'deaths' => 2, 'assists' => 15, 'champion_name' => 'bard']
         ];
-        $game4->attachPlayers($resultados_blue, $resultados_red);
+        $game4->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //JDG t1 mapa 2
 
@@ -151,7 +157,7 @@ class GamesSeeder extends Seeder
             ['kills' => 2, 'deaths' => 3, 'assists' => 5, 'champion_name' => 'caitlyn'],
             ['kills' => 2, 'deaths' => 4, 'assists' => 5, 'champion_name' => 'ashe']
         ];
-        $game5->attachPlayers($resultados_blue, $resultados_red);
+        $game5->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //JDG t1 mapa 3
 
@@ -178,7 +184,7 @@ class GamesSeeder extends Seeder
             ['kills' => 3, 'deaths' => 1, 'assists' => 13, 'champion_name' => 'renata glasc']
         ];
 
-        $game6->attachPlayers($resultados_blue, $resultados_red);
+        $game6->attachPlayers($resultados_blue, $resultados_red, $bans);
 
         //Jdg t1 mapa 4
         $game7 = Game::create([
@@ -204,7 +210,7 @@ class GamesSeeder extends Seeder
             ['kills' => 6, 'deaths' => 0, 'assists' => 4, 'champion_name' => 'varus'],
             ['kills' => 0, 'deaths' => 3, 'assists' => 13, 'champion_name' => 'bard']
         ];
-        $game7->attachPlayers($resultados_blue, $resultados_red);
+        $game7->attachPlayers($resultados_blue, $resultados_red, $bans);
         //gen.g vs blg
     $game8 = Game::create([
         'team_blue_id' => 8,
@@ -228,7 +234,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 5, 'assists' => 4, 'champion_name' => 'renata glasc']
     ];
 
-    $game8->attachPlayers($resultados_blue, $resultados_red);
+    $game8->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game9 = Game::create([
         'team_blue_id' => 6,
         'team_red_id' => 8,
@@ -251,7 +257,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 1, 'assists' => 12, 'champion_name' => 'renata glasc']
     ];
 
-    $game9->attachPlayers($resultados_blue, $resultados_red);
+    $game9->attachPlayers($resultados_blue, $resultados_red, $bans);
 
     $game10 = Game::create([
         'team_blue_id' => 8,
@@ -275,7 +281,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 3, 'assists' => 4, 'champion_name' => 'braum']
     ];
 
-    $game10->attachPlayers($resultados_blue, $resultados_red);
+    $game10->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game11 = Game::create([
         'team_blue_id' => 6,
         'team_red_id' => 8,
@@ -298,7 +304,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 5, 'assists' => 8, 'champion_name' => 'tahm kench']
     ];
 
-    $game11->attachPlayers($resultados_blue, $resultados_red);
+    $game11->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game12 = Game::create([
         'team_blue_id' => 6,
         'team_red_id' => 8,
@@ -321,7 +327,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 4, 'assists' => 4, 'champion_name' => 'rell']
     ];
 
-    $game12->attachPlayers($resultados_blue, $resultados_red);
+    $game12->attachPlayers($resultados_blue, $resultados_red, $bans);
     //lng vs t1
     $game13 = Game::create([
         'team_blue_id' => 7,
@@ -345,7 +351,7 @@ class GamesSeeder extends Seeder
         ['kills' => 1, 'deaths' => 1, 'assists' => 9, 'champion_name' => 'senna']
     ];
 
-    $game13->attachPlayers($resultados_blue, $resultados_red);
+    $game13->attachPlayers($resultados_blue, $resultados_red, $bans);
 
     $game14 = Game::create([
         'team_blue_id' => 7,
@@ -369,7 +375,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 0, 'assists' => 3, 'champion_name' => 'ashe']
     ];
 
-    $game14->attachPlayers($resultados_blue, $resultados_red);
+    $game14->attachPlayers($resultados_blue, $resultados_red, $bans);
 
     $game15 = Game::create([
         'team_blue_id' => 7,
@@ -393,7 +399,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 0, 'assists' => 7, 'champion_name' => 'renata glasc']
     ];
 
-    $game15->attachPlayers($resultados_blue, $resultados_red);
+    $game15->attachPlayers($resultados_blue, $resultados_red, $bans);
 
     //NRG vs Weibo
     $game16 = Game::create([
@@ -418,7 +424,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 0, 'assists' => 7, 'champion_name' => 'milio']
     ];
 
-    $game16->attachPlayers($resultados_blue, $resultados_red);
+    $game16->attachPlayers($resultados_blue, $resultados_red, $bans);
 
     $game17 = Game::create([
         'team_blue_id' => 3,
@@ -442,7 +448,7 @@ class GamesSeeder extends Seeder
         ['kills' => 2, 'deaths' => 0, 'assists' => 17, 'champion_name' => 'milio']
     ];
 
-    $game17->attachPlayers($resultados_blue, $resultados_red);
+    $game17->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game18 = Game::create([
         'team_blue_id' => 3,
         'team_red_id' => 1,
@@ -465,7 +471,7 @@ class GamesSeeder extends Seeder
         ['kills' => 1, 'deaths' => 1, 'assists' => 10, 'champion_name' => 'heimerdinger']
     ];
 
-    $game18->attachPlayers($resultados_blue, $resultados_red);
+    $game18->attachPlayers($resultados_blue, $resultados_red, $bans);
     //JDG VS KT
     $game19 = Game::create([
         'team_blue_id' => 4,
@@ -489,7 +495,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 1, 'assists' => 12, 'champion_name' => 'lulu']
     ];
 
-    $game19->attachPlayers($resultados_blue, $resultados_red);
+    $game19->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game20 = Game::create([
         'team_blue_id' => 4,
         'team_red_id' => 5,
@@ -511,8 +517,11 @@ class GamesSeeder extends Seeder
         ['kills' => 6, 'deaths' => 0, 'assists' => 5, 'champion_name' => 'aphelios'],
         ['kills' => 0, 'deaths' => 1, 'assists' => 12, 'champion_name' => 'renata glasc']
     ];
+    $bans = [
+        'Sett', 'Ahri', 'Garen', 'Fizz', 'Hecarim', 'Nami', 'Darius', 'Malphite', 'Maokai', "Aphelios"
+    ];
 
-    $game20->attachPlayers($resultados_blue, $resultados_red);
+    $game20->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game21 = Game::create([
         'team_blue_id' => 5,
         'team_red_id' => 4,
@@ -535,7 +544,7 @@ class GamesSeeder extends Seeder
         ['kills' => 1, 'deaths' => 0, 'assists' => 11, 'champion_name' => 'rakan']
     ];
 
-    $game21->attachPlayers($resultados_blue, $resultados_red);
+    $game21->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game22 = Game::create([
         'team_blue_id' => 5,
         'team_red_id' => 4,
@@ -558,7 +567,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 3, 'assists' => 9, 'champion_name' => 'rakan']
     ];
 
-    $game22->attachPlayers($resultados_blue, $resultados_red);
+    $game22->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game23 = Game::create([
         'team_blue_id' => 1,
         'team_red_id' => 6,
@@ -581,7 +590,7 @@ class GamesSeeder extends Seeder
         ['kills' => 1, 'deaths' => 5, 'assists' => 1, 'champion_name' => 'rell']
     ];
 
-    $game23->attachPlayers($resultados_blue, $resultados_red);
+    $game23->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game24 = Game::create([
         'team_blue_id' => 6,
         'team_red_id' => 1,
@@ -603,8 +612,12 @@ class GamesSeeder extends Seeder
         ['kills' => 2, 'deaths' => 3, 'assists' => 2, 'champion_name' => 'caitlyn'],
         ['kills' => 0, 'deaths' => 5, 'assists' => 7, 'champion_name' => 'lux']
     ];
+    $bans = [
+        'Hecarim', 'Quinn', 'Anivia', 'Annie', 'Janna', "Cho'Gath", 'Jax', 'Zyra', 'Singed', 'Ekko'
+    ];
 
-    $game24->attachPlayers($resultados_blue, $resultados_red);
+
+    $game24->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game25 = Game::create([
         'team_blue_id' => 1,
         'team_red_id' => 6,
@@ -627,7 +640,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 1, 'assists' => 2, 'champion_name' => 'caitlyn']
     ];
 
-    $game25->attachPlayers($resultados_blue, $resultados_red);
+    $game25->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game26 = Game::create([
         'team_blue_id' => 6,
         'team_red_id' => 1,
@@ -650,7 +663,7 @@ class GamesSeeder extends Seeder
         ['kills' => 0, 'deaths' => 4, 'assists' => 1, 'champion_name' => 'heimerdinger']
     ];
 
-    $game26->attachPlayers($resultados_blue, $resultados_red);
+    $game26->attachPlayers($resultados_blue, $resultados_red, $bans);
     $game27 = Game::create([
         'team_blue_id' => 1,
         'team_red_id' => 6,
@@ -673,7 +686,7 @@ class GamesSeeder extends Seeder
         ['kills' => 3, 'deaths' => 5, 'assists' => 3, 'champion_name' => 'lux']
     ];
 
-    $game27->attachPlayers($resultados_blue, $resultados_red);
+    $game27->attachPlayers($resultados_blue, $resultados_red, $bans);
 
 }
 

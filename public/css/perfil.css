@@ -2303,4 +2303,80 @@ input:checked + .slider:before {
     border-color: darkgray !important; /* Color de borde para botón tipo outline */
     margin-right: 10px; /* Añade un margen a la derecha de 10px */
     margin-top: 20px; /* Añade un margen a la derecha de 10px */
+    border-radius: 5px;
+    padding: 5px;
+}
+.btn-boton7 {
+    background-color: #2196f3 !important; /* Color gris oscuro */
+    color: white !important; /* Letras en blanco */
+    font-family: 'mol' !important; /* Fuente Mol */
+    border-color: darkgray !important; /* Color de borde para botón tipo outline */
+    margin-top: 20px; /* Añade un margen a la derecha de 10px */
+    border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.btn-boton8 {
+    background-color: #e44445 !important; /* Color gris oscuro */
+    color: white !important; /* Letras en blanco */
+    font-family: 'mol' !important; /* Fuente Mol */
+    border-color: darkgray !important; /* Color de borde para botón tipo outline */
+    margin-top: 20px; /* Añade un margen a la derecha de 10px */
+    border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.titulo2{
+    font-family: important;
+    color:  #e44445;
+}
+.titulo3{
+    font-family: mol;
+
+}
+.owl-carousel .owl-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.titular{
+    font-family: 'mol';
+}
+.subtitular{
+    font-family: 'mol';
+    color: #bcbcbc
+}
+.comentarios{
+    font-family: 'mol';
+    color: gray
+}
+.dark-mode-label {
+    color: #CCCCCC; /* Gris muy claro */
+    font-family: 'mol';
+}
+
+
+body.dark-mode {
+    background-color: #15202b; /* Fondo para el modo oscuro */
+}
+
+/* Cambiar el color del texto para el contenido fuera del navbar */
+body.dark-mode {
+    color: whitesmoke; /* Cambia el color del texto general */
+}
+
+/* Si tienes clases específicas para textos, puedes definir los estilos así */
+body.dark-mode .text-class {
+    color: whitesmoke;
+}
+
+/* Para enlaces */
+body.dark-mode a {
+    color: whitesmoke;
+}
+
+/* Para mantener algunos textos en gris (si tenías textos en gris) */
+body.dark-mode .text-muted {
+    color: gray;
 }

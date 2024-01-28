@@ -53,7 +53,12 @@
                 @if (auth()->check())
                     <div class="d-flex justify-content-lg-end align-items-center gap-3 flex-column flex-lg-row"
                         style="margin-right: 50px;">
+                        <div class="form-check form-switch me-3">
+                            <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                            <label class="form-check-label dark-mode-label" for="darkModeSwitch">Dark mode</label>
+                        </div>
                         <div class="dropdown">
+
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span style="margin-top: 5px;">{{ auth()->user()->name }}</span>
@@ -88,3 +93,26 @@
         </div>
     </div>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const body = document.body;
+        const toggle = document.getElementById('darkModeSwitch');
+
+        // Cargar y aplicar preferencia
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'enabled') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('click', function () {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', null);
+            }
+        });
+    });
+    </script>

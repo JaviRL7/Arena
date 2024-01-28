@@ -53,13 +53,13 @@ class MinigameController extends Controller
         $player = Player::whereRaw('lower(nick) = ?', [$tryNick])->first();
 
         if ($player && session('id') == $player->id) {
-            // Asegúrate de que tienes una forma de obtener la URL de la foto. Puede ser un campo en tu base de datos o un método en tu modelo Player.
-            // Este ejemplo asume que tienes un campo 'photo' en tu modelo Player que contiene la URL de la foto.
             $photoUrl = $player->photo;
+            $playerNick = $player->nick;
 
             return response()->json([
                 'result' => 'correct',
-                'photo' => $photoUrl // Devuelve la URL de la foto con la respuesta
+                'photo' => $photoUrl,
+                'nick' => $playerNick
             ]);
         } else {
             return response()->json(['result' => 'incorrect']);

@@ -71,6 +71,7 @@
     </form>
     @include('modals.instructions')
     @include('modals.CorrectGuess')
+    @include('modals.WrongGuess')
 
 @endsection
 

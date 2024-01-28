@@ -9,6 +9,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\MinigameController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PredictionController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransferController;
@@ -212,5 +213,6 @@ Route::post('/players/{player}/updateFavorites', [PlayersController::class, 'upd
 Route::get('/teams/{id}', [TeamsController::class, 'getTeam'])->name('teams.getTeam');
 
 Route::get('/series/{competition}/{year}', [SeriesController::class, 'show_year'])->name('series.show_year');
+Route::post('/predictions', [PredictionController::class, 'store'])->name('predictions.store');
 
 require __DIR__ . '/auth.php';
