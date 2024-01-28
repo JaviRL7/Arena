@@ -146,6 +146,7 @@
 
 </div>
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
         const ratingInputs = document.querySelectorAll('.rating input');
         ratingInputs.forEach(input => {

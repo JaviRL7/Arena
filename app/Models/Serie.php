@@ -65,7 +65,7 @@ public function predictions()
         // Obtener puntuaciones (scores)
         $scores = Score::whereHas('game', function ($query) {
             $query->where('serie_id', $this->id);
-        })->with('user', 'player')->latest()->get();
+        })->with(['user', 'player', 'game', 'game.champion'])->latest()->get();
 
         // Combinar y ordenar por fecha
         $activities = $comments->concat($scores)->sortByDesc('created_at')->take($limit);
