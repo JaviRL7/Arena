@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('game_id');
             $table->integer('note');
+            $table->string('review', 150)->nullable();
             $table->foreign('player_id')->references('id')->on('players');
             $table->foreign('game_id')->references('id')->on('games');
             $table->foreign('user_id')->references('id')->on('users');

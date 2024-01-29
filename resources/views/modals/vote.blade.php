@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="voteModalGame{{ $game->id }}Player{{ $player_blue->id }}" tabindex="-1"
     aria-labelledby="voteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -14,17 +15,17 @@
 
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="{{ asset($game->serie->team_1->logo) }}" class="team-logo" alt="Team 1 Logo">
-                        <p class="series-result"><strong>{{ $game->serie->getResultSerie() }}</strong></p>
+                        <p class="series-result"><strong>{{$game->serie->getResultSerie()}}</strong></p>
 
                         <img src="{{ asset($game->serie->team_2->logo) }}" class="team-logo" alt="Team 2 Logo">
 
                         <div style="border-left:1px solid lightgray;height:100px;"></div>
 
                         <div>
-                            <p class="series-result">{{ $game->serie->competition->name }}</p>
-                            <p class="series-result">{{ $game->serie->name }}</p>
-                            <p class="series-result">Map {{ $game->number }}</p>
-                            <p class="series-result">
+                            <p class="series-result titular">{{ $game->serie->competition->name }}</p>
+                            <p class="series-result titular">{{ $game->serie->name }}</p>
+                            <p class="series-result titular">Map {{ $game->number }}</p>
+                            <p class="series-result titular">
                                 @if ($game->team_blue_result == 'W')
                                     <strong>WIN</strong>
                                 @elseif ($game->team_blue_result == 'L')
@@ -42,8 +43,8 @@
                             class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
 
                         <div style="display: flex; flex-direction: column; justify-content: center;">
-                            <h4 style="font-weight: bold; margin-bottom: 5px;">{{ $player_blue->nick }}</h4>
-                            <p style="color: gray;">
+                            <h4 class="titular">{{ $player_blue->nick }}</h4>
+                            <p class="subtitular">
                                 {{ $player_blue->name }}
                                 {{ $player_blue->lastname1 }}
                                 @if ($player_blue->lastname2)
@@ -59,14 +60,13 @@
 
                         <!-- KDA y otros detalles -->
                         <div style="margin-left: 20px;">
-                            <h5>KDA</h5>
-                            <h3>{{ $player_blue->games->where('id', $game->id)->first()->pivot->kills }}
+                            <h5 class="titular">KDA</h5>
+                            <h3 class="comentarios">{{ $player_blue->games->where('id', $game->id)->first()->pivot->kills }}
                                 /{{ $player_blue->games->where('id', $game->id)->first()->pivot->deaths }}
                                 /{{ $player_blue->games->where('id', $game->id)->first()->pivot->assists }}
                             </h3>
                         </div>
                     </div>
-
 
                     <div class="rating">
                         @for ($i = 10; $i > 0; $i--)
@@ -83,42 +83,37 @@
                     </div>
                 </div>
                 <input type="hidden" name="nota" value="">
+                <input type="hidden" name="review" id="reviewInputGame{{ $game->id }}Player{{ $player_blue->id }}" value="">
+                <div class="review-question">
+                    <p>¿Quieres añadir una review a este jugador?</p>
+                    <button type="button" class="btn btn-boton5 addReviewBtn" id="addReviewBtnGame{{ $game->id }}Player{{ $player_blue->id }}">Add</button>
+                </div>
 
+                <div class="comment-section" id="commentSectionGame{{ $game->id }}Player{{ $player_blue->id }}" style="display: none;">
+                    <x-modal-comment-form :game="$game" :player="$player_blue" :serie="$serie" :teamColor="'blue'" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-boton7">Submit</button>
+                    <button class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
+                </div>
             </form>
-            <div class="review-question">
-                <p>¿Quieres añadir una review a este jugador?</p>
-                <button type="button" class="btn btn-boton5 addReviewBtn"
-                    id="addReviewBtnGame{{ $game->id }}Player{{ $player_blue->id }}">Add</button>
-            </div>
-
-            <!-- Sección de comentarios, inicialmente oculta -->
-            <div class="comment-section" id="commentSectionGame{{ $game->id }}Player{{ $player_blue->id }}"
-                style="display: none;">
-                <x-modal-comment-form :game="$game" :player="$player_blue" :serie="$serie" :teamColor="'blue'" />
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Enviar</button>
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
         </div>
     </div>
 
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Escuchar eventos de cambio en los inputs de rating
         const ratingInputs = document.querySelectorAll('.rating input');
         ratingInputs.forEach(input => {
             input.addEventListener('change', function() {
                 let rating = this.value;
+                // Encuentra el input oculto para 'nota' en el mismo formulario que el input de estrellas
                 let form = this.closest('form');
                 let notaInput = form.querySelector('input[name="nota"]');
                 notaInput.value = rating;
             });
         });
 
-    });
-    $(document).ready(function() {
         // Cuando se hace clic en un botón 'Add', cualquiera que tenga la clase .addReviewBtn
         $('.addReviewBtn').click(function() {
             // Obtén el ID del botón que fue presionado
@@ -128,5 +123,17 @@
             // Muestra la sección de comentarios correspondiente
             $('#' + commentSectionId).show();
         });
+
+        // Cuando se envía el formulario, actualiza el valor del campo de entrada oculto 'review' con el valor del textarea
+        $('form').submit(function() {
+            // Obtén el ID del formulario que se está enviando
+            var formId = $(this).attr('id');
+            // Construye el ID del textarea correspondiente
+            var textareaId = 'review' + formId.substring('form'.length);
+            // Construye el ID del campo de entrada oculto 'review' correspondiente
+            var reviewInputId = 'reviewInput' + formId.substring('form'.length);
+            // Actualiza el valor del campo de entrada oculto 'review' con el valor del textarea
+            $('#' + reviewInputId).val($('#' + textareaId).val());
+        });
     });
-</script>
+    </script>

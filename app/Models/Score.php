@@ -12,7 +12,7 @@ class Score extends Model
     protected $primaryKey = null; // No hay una única clave primaria
 
     // Asegúrate de que todos los campos que componen la clave primaria compuesta sean asignables
-    protected $fillable = ['game_id', 'player_id', 'user_id', 'note'];
+    protected $fillable = ['game_id', 'player_id', 'user_id', 'note', 'review', 'created_at', 'updated_at'];
     public $timestamps = true;
 
     public function user()

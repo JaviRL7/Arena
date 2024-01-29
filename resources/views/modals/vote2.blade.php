@@ -22,31 +22,48 @@
                         <div style="border-left:1px solid lightgray;height:100px;"></div>
 
                         <div>
-                            <p class="series-result">{{ $game->serie->competition->name }}</p>
-                            <p class="series-result">{{ $game->serie->name }}</p>
-                            <p class="series-result">Map {{ $game->number }}</p>
-                            <p class="series-result">
-                                @if ($game->team_blue_result == 'W')
-                                    <strong>WIN</strong>
-                                @elseif ($game->team_blue_result == 'L')
-                                    <strong>LOSE</strong>
+                            <p class="series-result titular">{{ $game->serie->competition->name }}</p>
+                            <p class="series-result titular">{{ $game->serie->name }}</p>
+                            <p class="series-result titular">Map {{ $game->number }}</p>
+                            <p class="series-result titular">
+                                @if ($game->team_red_result == 'W')
+                                    <strong class="titular">WIN</strong>
+                                @elseif ($game->team_red_result == 'L')
+                                    <strong class="titular">LOSE</strong>
                                 @endif
                             </p>
                         </div>
                     </div>
 
 
-                    <div class="player-champion-container">
+                    <div class="player-champion-container"
+                        style="display: flex; align-items: center; justify-content: space-around; gap: 20px;">
+                        <!-- Foto del jugador -->
                         <img src="{{ asset($player_red->photo) }}" alt="{{ $player_red->photo }}"
                             class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+
+                        <div style="display: flex; flex-direction: column; justify-content: center;">
+                            <h4 class="titular">{{ $player_red->nick }}</h4>
+                            <p class="subtitular">
+                                {{ $player_red->name }}
+                                {{ $player_red->lastname1 }}
+                                @if ($player_red->lastname2)
+                                    {{ ' ' . $player_red->lastname2 }}
+                                @endif
+                            </p>
+                        </div>
+
+                        <!-- Imagen del campeón -->
                         <img src="{{ asset($player_red->games->where('id', $game->id)->first()->pivot->champion->square) }}"
                             alt="{{ $player_red->games->where('id', $game->id)->first()->pivot->champion->name }}"
                             class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+
+                        <!-- KDA y otros detalles -->
                         <div style="margin-left: 20px;">
-                            <h5 style="margin-left: 20px;">KDA</h5>
-                            <h3>{{ $player_red->games->where('id', $game->id)->first()->pivot->kills }}
-                            /{{ $player_red->games->where('id', $game->id)->first()->pivot->deaths }}
-                            /{{ $player_red->games->where('id', $game->id)->first()->pivot->assists }}
+                            <h5 class="titular">KDA</h5>
+                            <h3 class="comentarios">{{ $player_red->games->where('id', $game->id)->first()->pivot->kills }}
+                                /{{ $player_red->games->where('id', $game->id)->first()->pivot->deaths }}
+                                /{{ $player_red->games->where('id', $game->id)->first()->pivot->assists }}
                             </h3>
                         </div>
                     </div>
@@ -68,8 +85,8 @@
                 <input type="hidden" name="nota" value="">
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-boton7">Enviar</button>
+                    <button class="btn btn-boton8" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </form>
         </div>

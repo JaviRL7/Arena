@@ -37,43 +37,48 @@ class GamesController extends Controller
 
 
     public function store(Request $request)
-{
-    $user = auth()->user()->id;
-    $playerId = $request->player_id;
-    $note = $request->nota;
-    $gameId = $request->game_id;
+    {
+        $user = auth()->user()->id;
+        $playerId = $request->player_id;
+        $note = $request->nota;
+        $gameId = $request->game_id;
+        $review = $request->has('review') ? $request->review : null;
 
-    if ($note === null) {
-        Score::where('game_id', $gameId)
-            ->where('player_id', $playerId)
-            ->where('user_id', $user)
-            ->delete();
-    } else {
-        $score = Score::where('game_id', $gameId)
-                      ->where('player_id', $playerId)
-                      ->where('user_id', $user)
-                      ->first();
-
-        if ($score) {
-            // Actualizar un registro existente
-            $score->note = $note;
-            $score->updated_at = now();
-            $score->save();
+        if ($note === null) {
+            Score::where('game_id', $gameId)
+                ->where('player_id', $playerId)
+                ->where('user_id', $user)
+                ->delete();
         } else {
-            // Crear un nuevo registro
-            Score::create([
-                'game_id' => $gameId,
-                'player_id' => $playerId,
-                'user_id' => $user,
-                'note' => $note,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
-    }
+            $score = Score::where('game_id', $gameId)
+                          ->where('player_id', $playerId)
+                          ->where('user_id', $user)
+                          ->first();
+            if ($score) {
+                // Actualizar un registro existente
+                $score->note = $note;
+                $score->review = $review; // Añade esta línea
+                $score->updated_at = now();
 
-    return redirect()->back();
-}
+
+                $score->save();
+
+            } else {
+                // Crear un nuevo registro
+                Score::create([
+                    'game_id' => $gameId,
+                    'player_id' => $playerId,
+                    'user_id' => $user,
+                    'note' => $note,
+                    'review' => $review, // Añade esta línea
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
+
+        return redirect()->back();
+    }
 
 
     ///Los de admin
