@@ -3,6 +3,9 @@
 @section('content')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/activity.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal_vote.css') }}">
+
 @endsection
 <div class="container-fluid">
     <div class="row">

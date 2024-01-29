@@ -78,7 +78,7 @@ Route::delete('/unfollow/{user}', [FollowController::class, 'destroy'])->name('u
 
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{id}/update', [CommentsController::class, 'update'])->name('comments.update');
-
+Route::post('/series/{serie}/modal-comments', [CommentsController::class, 'storeModalComment'])->name('comments.storeModal')->middleware('auth');
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');

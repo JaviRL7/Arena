@@ -6,6 +6,7 @@ use App\Models\Serie;
 use App\Models\Competition;
 use App\Models\Team;
 use App\Models\Prediction;
+use App\Models\Score;
 use App\Models\User;
 use App\Models\Player;
 use Illuminate\Http\Request;
@@ -104,10 +105,22 @@ class SeriesController extends Controller
     }
     public function show_2(Serie $serie)
 {
-    $activities = $serie->recentActivities();
     $user = Auth::user();
 
-    $games = $serie->games;
+    $scores = Score::whereHas('game', function ($query) use ($serie) {
+
+        $query->where('serie_id', $serie->id);
+    })->with(['user', 'player', 'game', 'game.champion'])->latest()->get();
+
+    // Asegúrate de que la relación 'comments' esté definida en el modelo Serie y de obtener los comentarios
+    $comments = $serie->comments()->with('user')->latest()->get();
+
+
+
+    // Fusionar las colecciones y ordenarlas por fecha de creación
+    $activities = $scores->concat($comments)->sortByDesc('created_at')->take(7);
+    // Fusionar las colecciones y ordenarlas por fecha de creación
+
     $teams = Team::all();
 
     // Obtén la predicción existente, si la hay
@@ -134,7 +147,6 @@ class SeriesController extends Controller
 
     return view('series.show', [
         'serie' => $serie,
-        'games' => $games,
         'teams' => $teams,
         'activities' => $activities,
         'hasVoted' => $hasVoted,

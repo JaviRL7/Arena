@@ -32,6 +32,35 @@ class CommentsController extends Controller
         $comment->save();
         return back();
     }
+    public function storeModalComment(Request $request, Serie $serie){
+    $request->merge([
+        'player_id' => $request->player_id != '' ? $request->player_id : null,
+        'team_id' => $request->team_id != '' ? $request->team_id : null,
+    ]);
+
+    $request->validate([
+        'body' => 'required|max:250',
+        'player_id' => 'nullable|exists:players,id',
+        'team_id' => 'nullable|exists:teams,id',
+    ]);
+
+    $comment = new Comment;
+    $comment->body = $request->body;
+    $comment->user_id = $request->user_id;
+    $comment->serie_id = $serie->id;
+
+    //los nulos / repasar
+
+    $comment->save();
+
+    // Devuelve una respuesta JSON en lugar de redirigir
+    return back();
+}
+
+
+
+
+
     public function like(Comment $comment)
     {
         $comment->likes += 1;

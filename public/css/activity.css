@@ -1,0 +1,71 @@
+
+.activity-container {
+    margin-top: 30px;
+    padding-bottom: 10px;
+
+}
+
+.activity-user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Espacio debajo de la información del usuario */
+}
+
+.activity-user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.activity-details {
+    padding-left: 60px; /* Alinea el contenido con el nombre del usuario */
+}
+
+.activity-score-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-game-note-info {
+    display: flex;
+}
+
+.activity-divider {
+    width: 100%;
+    margin: 10px 0;
+
+}
+
+.activity-player-champion-info {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos de la fila */
+}
+
+.activity-player-photo {
+    width: 60px; /* Ajusta según sea necesario */
+    height: 60px; /* Ajusta según sea necesario */
+    border-radius: 50%; /* Hace la foto redonda */
+    object-fit: cover; /* Asegura que la foto se ajuste bien al espacio asignado */
+    margin-right: 10px; /* Espacio entre la foto y los detalles */
+}
+
+.activity-champion-photo {
+    width: 50px; /* Ajusta según sea necesario */
+    height: 50px; /* Ajusta según sea necesario */
+    border-radius: 50%; /* Hace la foto redonda */
+    object-fit: cover; /* Asegura que la foto se ajuste bien al espacio asignado */
+    margin-right: 10px; /* Espacio entre la foto y los detalles */
+}
+
+.activity-kda {
+    font-weight: bold; /* Estilo para el KDA */
+}
+
+
+
+.activity-game-number,
+.activity-score-note {
+    font-weight: bold; /* Estilo para el número de juego y la nota */
+}
