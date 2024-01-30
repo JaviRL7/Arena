@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Role;
+use App\Models\Champion;
+
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
@@ -22,14 +24,25 @@ class PlayersController extends Controller
         $playersByKDA = Player::getPlayersWithBestKDA();
         $playersByAssits = Player::getPlayersWithMostAssits();
         $playersByChampionpool = Player::getPlayersWithMostChamionpool();
+        $playersWithMostFans = Player::getPlayersWithMostFans();
+        $mostPlayedChampions = Champion::getMostPlayedChampions(); // Llamada a la nueva función
+        $championsWithHighestWinRate = Champion::getChampionsWithHighestWinRate();
+
         return view('players.rankings', [
             'playersByKills' => $playersByKills,
             'playersByComments' => $playersByComments,
             'playersByKDA' => $playersByKDA,
             'playersByAssits' => $playersByAssits,
             'playersByChampionpool' => $playersByChampionpool,
+            'playersWithMostFans' => $playersWithMostFans,
+            'mostPlayedChampions' => $mostPlayedChampions,
+            'championsWithHighestWinRate' => $championsWithHighestWinRate,
+
         ]);
     }
+
+
+
     public function show($team1Id, $team2Id)
 {
     $team1Players = Team::find($team1Id)->getPlayers();

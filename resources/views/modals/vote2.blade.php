@@ -7,7 +7,7 @@
                 <h5 class="modal-title" id="voteModalLabel">Player Photo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('games.store') }}" id="formGame{{ $game->id }}Player{{ $player_red->id }}" method="POST" class="bg-white-800 text-black p-6 rounded-md">
+            <form action="{{ route('games.store') }}" class="review-form" data-form-id="formGame{{ $game->id }}Player{{ $player_red->id }}" method="POST" class="bg-white-800 text-black p-6 rounded-md">
                 @csrf
                 <input type="hidden" name="modal_id" value="game{{ $game->id }}_player{{ $player_red->id }}">
 
@@ -84,9 +84,9 @@
                     </div>
                 </div>
                 <input type="hidden" name="nota" value="0">
-                <div class="review-question">
+                <div class="review-question" style="margin-left: 5%">
                     <p class="comentarios">¿Do you want to add a review?</p>
-                    <button type="button" class="btn btn-boton7 addReviewBtn" id="addReviewBtnGame{{ $game->id }}Player{{ $player_red->id }}">Add</button>
+                    <button type="button"  class="btn btn-boton7 addReviewBtn" id="addReviewBtnGame{{ $game->id }}Player{{ $player_red->id }}">Add</button>
                 </div>
 
                 <!-- Sección de comentarios, inicialmente oculta -->
@@ -94,7 +94,12 @@
                     <div class="form-group" style="margin: 10px;">
                         <div class="d-flex flex-start w-100">
                             <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" />
-                            <textarea class="form-control" name="review" id="review" rows="4" style="background: #fffbfb; width: 100%;" placeholder="Write a review...">{{trim($reviews[$game->id][$player_red->id][Auth::user()->id] ?? '')}}</textarea>
+                            <textarea class="form-control review-textarea" data-form-id="formGame{{ $game->id }}Player{{ $player_red->id }}" name="review" rows="4" style="background: #fffbfb; width: 100%;" placeholder="Write a review...">{{ trim($reviews[$game->id][$player_red->id][Auth::user()->id] ?? '') }}</textarea>
+
+                        </div>
+                        <div class="d-flex flex-start w-100" style="margin-left: 15%; margin-top: 5%">
+                            <p class="titular length-error-message" style="color: #e44445; display: none;" data-form-id="formGame{{ $game->id }}Player{{ $player_red->id }}">Your review must be less than 150 characters.</p>
+                            <p class="titular html-error-message" style="color: #e44445; display: none;" data-form-id="formGame{{ $game->id }}Player{{ $player_red->id }}">HTML tags are not allowed.</p>
                         </div>
                         <label class="form-label" for="review"></label>
                     </div>

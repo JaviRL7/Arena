@@ -290,5 +290,51 @@ class Team extends Model
 
 
 
+    public static function getTeamsWithMostFans()
+{
+    // Subconsulta para contar fans para cada equipo
+    $fansCountSubquery = DB::table('users')
+        ->select('favorite_team as team_id')
+        ->selectRaw('count(*) as total_fans')
+        ->groupBy('favorite_team')
+        ->toSql();
+
+    // Obtener equipos y realizar un LEFT JOIN con la subconsulta
+    $teams = DB::table('teams')
+        ->leftJoin(DB::raw("($fansCountSubquery) as fc"), 'teams.id', '=', 'fc.team_id')
+        ->select('teams.*')
+        ->selectRaw('COALESCE(SUM(fc.total_fans), 0) as total_fanbase')
+        ->groupBy('teams.id')
+        ->orderByRaw('COALESCE(SUM(fc.total_fans), 0) DESC') // Primero ordena por el número total de fans
+        ->orderBy('teams.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+        ->take(10)
+        ->get();
+
+    return $teams;
+}
+public static function getTeamsWithHighestWinRate()
+{
+    // Subconsulta para calcular el winrate para cada equipo
+    $winRateSubquery = DB::table('matches')
+        ->select('team_id')
+        ->selectRaw('SUM(case when result = "win" then 1 else 0 end) / COUNT(*) as win_rate')
+        ->groupBy('team_id')
+        ->toSql();
+
+    // Obtener equipos y realizar un LEFT JOIN con la subconsulta
+    $teams = DB::table('teams')
+        ->leftJoin(DB::raw("($winRateSubquery) as wr"), 'teams.id', '=', 'wr.team_id')
+        ->select('teams.*')
+        ->selectRaw('COALESCE(wr.win_rate, 0) as win_rate')
+        ->groupBy('teams.id')
+        ->orderByRaw('COALESCE(wr.win_rate, 0) DESC') // Ordena por winrate
+        ->orderBy('teams.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+        ->take(10)
+        ->get();
+
+    return $teams;
+}
+
+
 
 }

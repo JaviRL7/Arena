@@ -26,6 +26,21 @@ class Player extends Model
     {
         return $this->belongsToMany(Game::class, 'clasifications')->using(Clasification::class)->withPivot('kills', 'deaths', 'assists', 'champion_id');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function randomTeammate()
     {
         $teams = $this->teams()->pluck('team_id');
@@ -38,6 +53,39 @@ class Player extends Model
 
         return $teammates->random();
     }
+    public static function getPlayersWithMostFans()
+    {
+        // Subconsulta para contar fans para cada jugador
+        $fansCountSubquery = DB::table('users')
+            ->select('favorite_player1 as player_id')
+            ->selectRaw('count(*) as total_fans')
+            ->groupBy('favorite_player1')
+            ->unionAll(
+                DB::table('users')->select('favorite_player2 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player2')
+            ) // Repite esto para favorite_player3, favorite_player4, y favorite_player5
+            ->toSql();
+
+        // Obtener jugadores y realizar un LEFT JOIN con la subconsulta
+        $players = DB::table('players')
+            ->leftJoin(DB::raw("($fansCountSubquery) as fc"), 'players.id', '=', 'fc.player_id')
+            ->select('players.*')
+            ->selectRaw('COALESCE(SUM(fc.total_fans), 0) as total_fanbase')
+            ->groupBy('players.id')
+            ->orderByRaw('COALESCE(SUM(fc.total_fans), 0) DESC') // Primero ordena por el número total de fans
+            ->orderBy('players.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+            ->take(10)
+            ->get();
+
+        return $players;
+    }
+
+
+
+
+
+
+
+
     public function mostPlayedChampion()
 {
     return DB::table('games')
@@ -69,27 +117,31 @@ class Player extends Model
 
 
     public static function getPlayersWithMostKills()
-    {
-        $players = Player::withCount(['games as total_kills' => function ($query) {
-            $query->select(DB::raw('SUM(kills)'));
-        }])
-            ->orderBy('total_kills', 'desc')
-            ->take(10)
-            ->get();
+{
+    $players = Player::withCount(['games as total_kills' => function ($query) {
+        // Usa COALESCE para tratar NULL como 0
+        $query->select(DB::raw('COALESCE(SUM(kills), 0)'));
+    }])
+    ->orderBy('total_kills', 'desc')
+    ->take(10)
+    ->get();
 
-        return $players;
-    }
-    public static function getPlayersWithMostAssits()
-    {
-        $players = Player::withCount(['games as total_assits' => function ($query) {
-            $query->select(DB::raw('SUM(assists)'));
-        }])
-            ->orderBy('total_assits', 'desc')
-            ->take(10)
-            ->get();
+    return $players;
+}
 
-        return $players;
-    }
+public static function getPlayersWithMostAssits()
+{
+    $players = Player::withCount(['games as total_assits' => function ($query) {
+        // Usa COALESCE para tratar NULL como 0
+        $query->select(DB::raw('COALESCE(SUM(assists), 0)'));
+    }])
+    ->orderBy('total_assits', 'desc')
+    ->take(10)
+    ->get();
+
+    return $players;
+}
+
     public static function getPlayersWithMostChamionpool()
     {
         $players = Player::withCount(['games as total_championpool' => function ($query) {

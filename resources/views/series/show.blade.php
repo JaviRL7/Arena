@@ -1,13 +1,14 @@
 @extends('layouts.plantilla')
 @section('title', 'Series show')
+
 @section('content')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/activity.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal_vote.css') }}">
 
-@endsection
 
+@endsection
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -126,6 +127,7 @@
 </div>
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/serie/show.js') }}"></script>
+    <script src="/js/profile/validation/review.js"></script>
 
 @endsection
 

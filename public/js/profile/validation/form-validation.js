@@ -53,3 +53,18 @@ document.addEventListener("DOMContentLoaded", function () {
         error.textContent = message;
     }
 });
+    // Get the textarea and error message elements
+    var review = document.getElementById('review');
+    var errorMessage = document.getElementById('error-message');
+
+    // Add an event listener for the input event
+    review.addEventListener('input', function() {
+        // Check the length of the review
+        if (this.value.length > 150) {
+            // Show the error message
+            errorMessage.style.display = 'block';
+        } else {
+            // Hide the error message
+            errorMessage.style.display = 'none';
+        }
+    });

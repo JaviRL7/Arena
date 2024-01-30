@@ -37,10 +37,11 @@
                             </div>
                             @if (!empty($activity->review))
                                 <hr class="activity-divider" />
+                                <div class="activity-player-champion-info">
+                                    <p class="comentarios">"{{ $activity->review }}".</p>
+                                </div>
                             @endif
-                            <div class="activity-player-champion-info">
-                                <p class="comentarios">"{{ $activity->review }}".</p>
-                            </div>
+
                         </div>
                     @else
                         <p>Clasification information not found.</p>
