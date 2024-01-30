@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="{{ asset('css/modal_vote.css') }}">
 
 @endsection
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            @if (session('alert'))
+            <script>
+                // Muestra el mensaje de alerta
+                alert('{{ session('alert') }}');
+            </script>
+        @endif
+
 
             <div class="serie-info">
                 <h1 id="titulo1" class="titulo">
@@ -53,16 +61,17 @@
             @foreach ($serie->games as $game)
                 @php
                     $date = $serie->date;
-                    $players_blue = $serie->team_1->getPlayersDate($date);
-                    $players_red = $serie->team_2->getPlayersDate($date);
+                    $players_blue = $game->team_blue->getPlayersDate($date);
+                    $players_red = $game->team_red->getPlayersDate($date);
 
                 @endphp
                 @foreach ($players_blue as $player_blue)
-                    @include('modals.vote')
-                @endforeach
-                @foreach ($players_red as $player_red)
-                    @include('modals.vote2')
-                @endforeach
+                @include('modals.vote', ['reviews' => $reviews])
+            @endforeach
+            @foreach ($players_red as $player_red)
+                @include('modals.vote2', ['reviews' => $reviews])
+            @endforeach
+
             @endforeach
             @if ($serie->games->count() > 0)
                 <h1 class="titulo titulo-serie">Game Data</h1>

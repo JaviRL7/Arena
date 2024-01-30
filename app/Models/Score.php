@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Score extends Model
 {
     use HasFactory;
-    public $incrementing = false;
-    protected $primaryKey = null; // No hay una única clave primaria
 
-    // Asegúrate de que todos los campos que componen la clave primaria compuesta sean asignables
-    protected $fillable = ['game_id', 'player_id', 'user_id', 'note', 'review', 'created_at', 'updated_at'];
+    // Asegúrate de que todos los campos sean asignables
+    protected $fillable = ['id', 'game_id', 'player_id', 'user_id', 'note', 'review', 'created_at', 'updated_at'];
     public $timestamps = true;
 
     public function user()
@@ -29,3 +27,5 @@ class Score extends Model
         return $this->belongsTo(Player::class);
     }
 }
+
+

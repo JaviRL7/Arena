@@ -7,8 +7,10 @@
                 <h5 class="modal-title" id="voteModalLabel">Player Photo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('games.store') }}" method="POST" class="bg-white-800 text-black p-6 rounded-md">
+            <form action="{{ route('games.store') }}" id="formGame{{ $game->id }}Player{{ $player_red->id }}" method="POST" class="bg-white-800 text-black p-6 rounded-md">
                 @csrf
+                <input type="hidden" name="modal_id" value="game{{ $game->id }}_player{{ $player_red->id }}">
+
                 <input type="hidden" name="player_id" value="{{ $player_red->id }}">
                 <input type="hidden" name="game_id" value="{{ $game->id }}">
                 <div class="modal-body d-flex flex-column align-items-center">
@@ -34,7 +36,6 @@
                             </p>
                         </div>
                     </div>
-
 
                     <div class="player-champion-container"
                         style="display: flex; align-items: center; justify-content: space-around; gap: 20px;">
@@ -82,10 +83,26 @@
                         @endfor
                     </div>
                 </div>
-                <input type="hidden" name="nota" value="">
+                <input type="hidden" name="nota" value="0">
+                <div class="review-question">
+                    <p class="comentarios">¿Do you want to add a review?</p>
+                    <button type="button" class="btn btn-boton7 addReviewBtn" id="addReviewBtnGame{{ $game->id }}Player{{ $player_red->id }}">Add</button>
+                </div>
+
+                <!-- Sección de comentarios, inicialmente oculta -->
+                <div class="comment-section" id="commentSectionGame{{ $game->id }}Player{{ $player_red->id }}" style="display: none; margin:5%">
+                    <div class="form-group" style="margin: 10px;">
+                        <div class="d-flex flex-start w-100">
+                            <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" />
+                            <textarea class="form-control" name="review" id="review" rows="4" style="background: #fffbfb; width: 100%;" placeholder="Write a review...">{{trim($reviews[$game->id][$player_red->id][Auth::user()->id] ?? '')}}</textarea>
+                        </div>
+                        <label class="form-label" for="review"></label>
+                    </div>
+                </div>
+
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-boton7">Enviar</button>
+                    <button type="submit" class="btn btn-boton7" id="buttonGame{{ $game->id }}Player{{ $player_red->id }}">Enviar</button>
                     <button class="btn btn-boton8" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </form>
@@ -93,17 +110,4 @@
     </div>
 
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ratingInputs = document.querySelectorAll('.rating input');
-        ratingInputs.forEach(input => {
-            input.addEventListener('change', function() {
-                let rating = this.value;
-                // Encuentra el input oculto para 'nota' en el mismo formulario que el input de estrellas
-                let form = this.closest('form');
-                let notaInput = form.querySelector('input[name="nota"]');
-                notaInput.value = rating;
-            });
-        });
-    });
-</script>
+

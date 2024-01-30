@@ -88,7 +88,25 @@ Route::get('/series/{serie}/getTeamNames', [SeriesController::class, 'getTeamNam
 
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('games.result');
+
+
+
+
+
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
+
+
+
+// Nuevas rutas para manejar scores
+Route::post('/scores/store', [GamesController::class, 'storeScore'])->name('scores.store');
+Route::post('/scores/update/{id}', [GamesController::class, 'updateScore'])->name('scores.update');
+
+
+
+
+
+
+
 
 Route::post('/series/{serie}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::get('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');

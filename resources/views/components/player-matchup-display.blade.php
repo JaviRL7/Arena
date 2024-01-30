@@ -41,7 +41,7 @@
     @if ($playerRed)
         <td>
             <div class="note-red">
-                {{ number_format($playerRed->scoresGames->avg('pivot.note'), 2) ?? ' - ' }}
+                {{ number_format($playerRed->averageScoreForGame($game->id), 2, '.', '') ?? ' - ' }}
             </div>
         </td>
         <td>
@@ -73,3 +73,15 @@
         <td colspan="6">No player</td>
     @endif
 </tr>
+<script>
+window.onload = function() {
+    var nickElements = document.querySelectorAll('.player-nick');
+
+    nickElements.forEach(function(nickElement) {
+        var nick = nickElement.textContent;
+        if (/\d/.test(nick)) { // Comprueba si el apodo contiene un dígito
+            nickElement.classList.add('titular'); // Agrega la clase 'titular' al elemento
+        }
+    });
+};
+</script>

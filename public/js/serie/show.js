@@ -101,3 +101,39 @@
         });
     });
 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const ratingInputs = document.querySelectorAll('.rating input');
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                let rating = this.value;
+                let form = this.closest('form');
+                let notaInput = form.querySelector('input[name="nota"]');
+                notaInput.value = rating;
+            });
+        });
+
+        // Selecciona todos los botones de añadir reseña
+        var addReviewBtns = document.querySelectorAll('.addReviewBtn');
+
+        // Añade el listener a cada botón
+        addReviewBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Obtén los IDs específicos de esta modal
+                const gameId = this.id.match(/Game(\d+)/)[1];
+                const playerId = this.id.match(/Player(\d+)/)[1];
+
+                // Selecciona la sección de comentarios correspondiente
+                var commentSection = document.querySelector('#commentSectionGame' + gameId + 'Player' + playerId);
+
+                // Muestra u oculta la sección de comentarios
+                if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+                    commentSection.style.display = 'block';
+                    this.textContent = 'Close'; // Cambia el texto del botón a Close
+                } else {
+                    commentSection.style.display = 'none';
+                    this.textContent = 'Add'; // Cambia el texto del botón a Add
+                }
+            });
+        });
+    });

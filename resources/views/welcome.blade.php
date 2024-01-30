@@ -9,7 +9,6 @@
     <div class="container" style="">
         <br>
         <br>
-        {{ Breadcrumbs::render() }}
 
         <div class="title-line">
             <h2>Worlds</h2>

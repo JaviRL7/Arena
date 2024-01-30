@@ -5,29 +5,41 @@
         <div class="activity-container">
             <!-- Foto y nombre del usuario -->
             <div class="activity-user-info">
-                <img class="rounded-circle shadow-1-strong activity-user-photo" src="{{ asset($activity->user->user_photo) }}" alt="User" />
+                <img class="rounded-circle shadow-1-strong activity-user-photo"
+                    src="{{ asset($activity->user->user_photo) }}" alt="User" />
                 <div class="">
                     <h6 class="titular">{{ $activity->user->name }}</h6>
                     <h6 class="subtitular">&#64;{{ $activity->user->nick }}</h6>
                 </div>
             </div>
             <div class="activity-details">
-                @if($activity instanceof App\Models\Score)
+                @if ($activity instanceof App\Models\Score)
                     @php
                         $clasification = $activity->game->clasifications->where('player_id', $activity->player_id)->first();
                     @endphp
-                    @if($clasification)
+                    @if ($clasification)
                         <div class="activity-score-info">
                             <div class="activity-game-note-info">
-                                <p class="activity-game-number comentarios">Game number : {{ $activity->game->number }}</p>
+                                <p class="activity-game-number comentarios">Game number : {{ $activity->game->number }}
+                                </p>
                                 <div style="margin: 10px;"></div>
                                 <p class="activity-score-note comentarios"> Note : {{ $activity->note }}</p>
                             </div>
                             <hr class="activity-divider" />
                             <div class="activity-player-champion-info">
-                                <img class="rounded-circle shadow-1-strong activity-player-photo" src="{{ asset($activity->player->photo) }}" alt="{{ $activity->player->nick }}" />
-                                <img class="rounded-circle shadow-1-strong activity-champion-photo" src="{{ asset($clasification->champion->square) }}" alt="{{ $clasification->champion->name }}" />
-                                <p class="comentarios">KDA: {{ $clasification->kills }} / {{ $clasification->deaths }} / {{ $clasification->assists }}</p>
+                                <img class="rounded-circle shadow-1-strong activity-player-photo"
+                                    src="{{ asset($activity->player->photo) }}" alt="{{ $activity->player->nick }}" />
+                                <img class="rounded-circle shadow-1-strong activity-champion-photo"
+                                    src="{{ asset($clasification->champion->square) }}"
+                                    alt="{{ $clasification->champion->name }}" />
+                                <p class="comentarios">KDA: {{ $clasification->kills }} / {{ $clasification->deaths }}
+                                    / {{ $clasification->assists }}</p>
+                            </div>
+                            @if (!empty($activity->review))
+                                <hr class="activity-divider" />
+                            @endif
+                            <div class="activity-player-champion-info">
+                                <p class="comentarios">"{{ $activity->review }}".</p>
                             </div>
                         </div>
                     @else
@@ -43,4 +55,3 @@
         </div>
     @endforeach
 </div>
-

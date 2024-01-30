@@ -103,6 +103,13 @@ class SeriesController extends Controller
 
         return view('admin.series.show', compact('serie', 'teams', 'competitions'));
     }
+
+
+
+
+
+
+
     public function show_2(Serie $serie)
 {
     $user = Auth::user();
@@ -114,7 +121,17 @@ class SeriesController extends Controller
 
     // Asegúrate de que la relación 'comments' esté definida en el modelo Serie y de obtener los comentarios
     $comments = $serie->comments()->with('user')->latest()->get();
+    $scores_games = Score::whereHas('game', function ($query) use ($serie) {
+        $query->where('serie_id', $serie->id);
+    })->get();
 
+    // Crea un array para almacenar las revisiones
+    $reviews = [];
+
+    // Itera sobre los Scores y añade cada revisión al array
+    foreach ($scores_games as $score) {
+        $reviews[$score->game_id][$score->player_id][$score->user_id] = $score->review;
+    }
 
 
     // Fusionar las colecciones y ordenarlas por fecha de creación
@@ -145,6 +162,8 @@ class SeriesController extends Controller
         $percentageTeam1 = $percentageTeam2 = 50; // Valores por defecto si no hay predicciones
     }
 
+
+
     return view('series.show', [
         'serie' => $serie,
         'teams' => $teams,
@@ -153,6 +172,7 @@ class SeriesController extends Controller
         'votedForTeam' => $votedForTeam,
         'percentageTeam1' => $percentageTeam1,
         'percentageTeam2' => $percentageTeam2,
+        'reviews' => $reviews,
     ]);
 }
 

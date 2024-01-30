@@ -2341,7 +2341,7 @@ input:checked + .slider:before {
 }
 
 .titular{
-    font-family: 'mol';
+    font-family: 'mol' !important;
 }
 .subtitular{
     font-family: 'mol';

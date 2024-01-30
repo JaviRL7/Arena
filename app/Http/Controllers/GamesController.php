@@ -10,6 +10,7 @@ use App\Models\Player;
 use App\Models\Serie;
 use App\Models\Team;
 use App\Models\Champion;
+use Illuminate\Support\Facades\Log;
 
 class GamesController extends Controller
 {
@@ -35,53 +36,70 @@ class GamesController extends Controller
 
 
 
-
     public function store(Request $request)
     {
-        $user = auth()->user()->id;
-        $playerId = $request->player_id;
+        $gameId = $request->input('game_id');
+        $playerId = $request->input('player_id');
         $note = $request->nota;
-        $gameId = $request->game_id;
-        $review = $request->has('review') ? $request->review : null;
+        $review = $request->input('review'); // Obtiene el valor de 'review' del formulario
+        $user = auth()->user()->id;
 
-        if ($note === null) {
-            Score::where('game_id', $gameId)
-                ->where('player_id', $playerId)
-                ->where('user_id', $user)
-                ->delete();
-        } else {
-            $score = Score::where('game_id', $gameId)
-                          ->where('player_id', $playerId)
-                          ->where('user_id', $user)
-                          ->first();
-            if ($score) {
-                // Actualizar un registro existente
-                $score->note = $note;
-                $score->review = $review; // Añade esta línea
-                $score->updated_at = now();
-
-
-                $score->save();
-
-            } else {
-                // Crear un nuevo registro
-                Score::create([
-                    'game_id' => $gameId,
-                    'player_id' => $playerId,
-                    'user_id' => $user,
-                    'note' => $note,
-                    'review' => $review, // Añade esta línea
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
-            }
-        }
+        Score::updateOrCreate(
+            [
+                'game_id' => $gameId,
+                'player_id' => $playerId,
+                'user_id' => $user
+            ],
+            [
+                'note' => $note,
+                'review' => $review, // Actualiza el valor de 'review'
+                'updated_at' => now()
+            ]
+        );
 
         return redirect()->back();
     }
 
 
-    ///Los de admin
+
+
+
+
+
+
+    public function storeScore(Request $request){
+    $score = Score::create([
+        'game_id' => $request->game_id,
+        'player_id' => $request->player_id,
+        'user_id' => auth()->user()->id,
+        'note' => $request->nota,
+        'review' => $request->review,
+        'created_at' => now(),
+        'updated_at' => now()
+    ]);
+
+    return response()->json(['success' => true, 'score_id' => $score->id]);
+}
+    public function updateScore(Request $request, $id)
+    {
+        $score = Score::find($id);
+
+        if ($score) {
+            Log::info('Updating score', ['score_id' => $score->id]);
+
+            $score->note = $request->nota;
+            $score->review = $request->review;
+            $score->updated_at = now();
+            $score->save();
+
+            return response()->json(['success' => true, 'message' => 'Score updated successfully']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Score not found']);
+        }
+    }
+
+
+
 
     public function indexadmin()
     {
