@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar perfil</h5>
+                <h5 class="modal-title">Edit profile</h5>
                 <button type="button" class="btn-close btn-light" data-bs-dismiss="modal"></button>
             </div>
 
@@ -73,8 +73,9 @@
                             value="{{ Auth::user()->twitter }}">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-boton7">Save</button>
+                        <button type="button" class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
+
                     </div>
                 </form>
             </div>

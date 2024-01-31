@@ -6,8 +6,7 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/profile/followings.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/profile/showplayers.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/profile/getplayers.js') }}"></script>
+
 @endsection
 @section('content')
 
@@ -73,14 +72,15 @@
                             </p>
                         @endif
                         <div class="user-follow-stats">
-                            <p class="following">
-                                <span class="comentarios">Followers</span> <span class="titular">
+                            <a href="#" id="followers-link" class="profile-link-item">
+
+                                <span class="comentarios" style="margin: 5px">Followers</span> <span class="titular">
                                     {{ $user->followersCount() }}</span>
-                            </p>
-                            <p class="following">
-                                <span class="comentarios">Following </span> <span
+                            </a>
+                            <a href="#" id="following-link" class="profile-link-item">
+                                <span class="comentarios" style="margin: 5px">Following </span> <span
                                     class="titular">{{ $user->followingCount() }}</span>
-                            </p>
+                            </a>
                         </div>
                         <hr class="profile-divider"> <!-- Aquí agregamos el separador -->
 
@@ -105,15 +105,15 @@
                         </div>
                         <div class="comments-container" style="display: none; margin-top:5%">
 
-                            <p class="subtitular">"Comments by this users".</p>
+                            <p class="subtitular">"Comments by this user".</p>
 
 
                             @if ($user->comments->count() > 0)
-                            @foreach ($user->comments as $comment)
-                            <div class="comment-container"> <!-- Añade esta clase -->
-                                @include('comments', ['comment' => $comment])
-                            </div>
-                        @endforeach
+                                @foreach ($user->comments as $comment)
+                                    <div class="comment-container"> <!-- Añade esta clase -->
+                                        @include('comments', ['comment' => $comment])
+                                    </div>
+                                @endforeach
 
                                 @include('modals.delete_comment')
                                 @include('modals.edit_comment')
@@ -121,9 +121,22 @@
                                 <p>No comments available.</p>
                             @endif
 
-
-
                         </div>
+                        <div class="favorites-container" style="display: none; margin-top:5%">
+                            <p class="subtitular">"My favorites".</p>
+
+                            <x-favorite-players :user="$user" />
+                        </div>
+                        <div class="followers-container" style="display: none; margin-top:5%">
+                            <p class="subtitular">"My followers".</p>
+                            <x-followers :followers="$user->followers" />
+                            </div>
+
+                        <!-- Contenedor para Following -->
+                        <div class="following-container" style="display: none; margin-top:5%">
+                            <p class="subtitular">"My followings".</p>
+                            <x-following :following="$user->followings" />
+                            </div>
                     </div>
                 </div>
             </div>
@@ -164,30 +177,81 @@
 
 
 
-       $(document).ready(function() {
-    // ... tu otro código ...
+        $(document).ready(function() {
+            // ... tu otro código ...
 
-    $('.link-muted').click(function(e) {
-    e.preventDefault();
+            $('.link-muted').click(function(e) {
+                e.preventDefault();
 
-    var href = $(this).attr('href'); // Obtiene la URL del enlace
-    var likeLink = $(this); // Guarda el enlace de 'like' para usarlo en la respuesta
+                var href = $(this).attr('href'); // Obtiene la URL del enlace
+                var likeLink = $(this); // Guarda el enlace de 'like' para usarlo en la respuesta
 
-    $.ajax({
-        url: href,
-        type: 'GET',
-        success: function(response) {
-            if(response.success) {
-                // Encuentra el contador de 'likes' relacionado con este enlace y actualízalo
-                likeLink.closest('.comment-container').find('.likes-count').text(response.likesCount);
+                $.ajax({
+                    url: href,
+                    type: 'GET',
+                    success: function(response) {
+                        if (response.success) {
+                            // Encuentra el contador de 'likes' relacionado con este enlace y actualízalo
+                            likeLink.closest('.comment-container').find('.likes-count').text(
+                                response.likesCount);
+                        }
+                    },
+                    error: function(error) {
+                        // Maneja cualquier error aquí
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentsButton = document.getElementById('comments-link');
+            const favoritesButton = document.getElementById('favorites-link'); // Nuevo botón para favoritos
+            const commentsContainer = document.querySelector('.comments-container');
+            const favoritesContainer = document.querySelector(
+            '.favorites-container'); // Nuevo contenedor para favoritos
+
+            // Función para ocultar todos los contenedores
+            function hideAllContainers() {
+                commentsContainer.style.display = 'none';
+                favoritesContainer.style.display = 'none';
             }
-        },
-        error: function(error) {
-            // Maneja cualquier error aquí
-            console.log(error);
-        }
-    });
-});
-});
+
+            // Evento de clic para el botón de comentarios
+            commentsButton.addEventListener('click', function() {
+                hideAllContainers();
+                commentsContainer.style.display = 'block';
+            });
+
+            // Evento de clic para el botón de favoritos
+            favoritesButton.addEventListener('click', function() {
+                hideAllContainers();
+                favoritesContainer.style.display = 'block';
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const followersLink = document.getElementById('followers-link');
+            const followingLink = document.getElementById('following-link');
+            const followersContainer = document.querySelector('.followers-container');
+            const followingContainer = document.querySelector('.following-container');
+
+            // Función para ocultar todos los contenedores
+            function hideAllContainers() {
+                // ... otros contenedores ...
+                followersContainer.style.display = 'none';
+                followingContainer.style.display = 'none';
+            }
+
+            // Evento de clic para el enlace de Followers
+            followersLink.addEventListener('click', function() {
+                hideAllContainers();
+                followersContainer.style.display = 'block';
+            });
+
+            // Evento de clic para el enlace de Following
+            followingLink.addEventListener('click', function() {
+                hideAllContainers();
+                followingContainer.style.display = 'block';
+            });
+        });
     </script>
 @endsection

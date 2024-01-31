@@ -20,11 +20,11 @@
     margin-bottom: 30px;
 }
 .profile-picture-container {
-    width: 120px; /* Ajusta al tamaño de tu imagen de perfil */
-    height: 120px;
+    width: 160px; /* Ajusta al tamaño de tu imagen de perfil */
+    height: 160px;
     position: absolute;
     left: calc(20%); /* 10% del contenedor a la izquierda menos la mitad del ancho de la imagen */
-    transform: translateX(-70%) translateY(+160%);
+    transform: translateX(-50%) translateY(+105%);
     top: 200px; /* Ajusta según la altura de tu cabecera, debería ser menos que antes para subir la imagen */
     z-index: 2;
 }
@@ -38,7 +38,7 @@
 }
 
 .profile-info-new {
-    background: white;
+
     padding: 20px;
     border-radius: 0 0 10px 10px; /* Redondea las esquinas inferiores */
     text-align: left; /* Centra el texto */

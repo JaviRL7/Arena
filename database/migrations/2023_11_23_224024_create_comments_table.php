@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('body', 250);
-            $table->integer('likes')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('serie_id');
             $table->unsignedBigInteger('player_id')->nullable();
