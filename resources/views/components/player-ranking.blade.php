@@ -5,7 +5,7 @@
     </div>
     <ul class="divide-y divide-gray-300">
         @foreach ($players as $player)
-        <li class="flex items-center py-4 px-6 border-b border-gray-300 {{ $loop->first ? 'bg-cover bg-center relative' : '' }}" style="{{ $loop->first ? 'background-image: url('.$player->img.'); height: 300px;' : '' }}"> <!-- Aumenta la altura aquí -->
+        <li class="flex items-center py-4 px-6 border-b border-gray-300 {{ $loop->first ? 'bg-cover bg-center relative' : '' }}" style="{{ $loop->first ? 'background-image: url('.$player->img.'); height: 400px;' : '' }}"> <!-- Aumenta la altura aquí -->
             @if ($loop->first)
             <div class="flex-1 text-white" style="z-index: 10;"> <!-- Texto sobre la imagen de fondo para el primer elemento -->
                 <h1 class="titular text-2xl font-bold">{{ $player->nick }} - {{ $player->name }} {{ $player->lastname1 }}</h1>

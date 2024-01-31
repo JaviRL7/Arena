@@ -312,29 +312,84 @@ class Team extends Model
 
     return $teams;
 }
-public static function getTeamsWithHighestWinRate()
-{
-    // Subconsulta para calcular el winrate para cada equipo
-    $winRateSubquery = DB::table('matches')
-        ->select('team_id')
-        ->selectRaw('SUM(case when result = "win" then 1 else 0 end) / COUNT(*) as win_rate')
-        ->groupBy('team_id')
+
+public static function getTeamsWithMostMatches(){
+    // Contar el número total de partidos jugados por cada equipo
+    $matchesCount = DB::table('games')
+        ->select('team_blue_id as team_id')
+        ->selectRaw('count(*) as total_matches')
+        ->groupBy('team_blue_id')
+        ->union(
+            DB::table('games')
+                ->select('team_red_id as team_id')
+                ->selectRaw('count(*) as total_matches')
+                ->groupBy('team_red_id')
+        )
         ->toSql();
 
     // Obtener equipos y realizar un LEFT JOIN con la subconsulta
     $teams = DB::table('teams')
-        ->leftJoin(DB::raw("($winRateSubquery) as wr"), 'teams.id', '=', 'wr.team_id')
+        ->leftJoin(DB::raw("($matchesCount) as mc"), 'teams.id', '=', 'mc.team_id')
         ->select('teams.*')
-        ->selectRaw('COALESCE(wr.win_rate, 0) as win_rate')
+        ->selectRaw('COALESCE(SUM(mc.total_matches), 0) as total_matches')
         ->groupBy('teams.id')
-        ->orderByRaw('COALESCE(wr.win_rate, 0) DESC') // Ordena por winrate
-        ->orderBy('teams.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+        ->orderByRaw('COALESCE(SUM(mc.total_matches), 0) DESC') // Ordenar por el número total de partidos
+        ->orderBy('teams.name', 'asc')   // Ordenar alfabéticamente por el nombre en caso de empate
         ->take(10)
         ->get();
 
     return $teams;
 }
 
+public static function getTeamWins($team_id){
+    // Contar el número total de victorias del equipo
+    $winsCount = DB::table('games')
+        ->where(function ($query) use ($team_id) {
+            $query->where('team_blue_id', $team_id)
+                  ->where('team_blue_result', 'W');
+        })
+        ->orWhere(function ($query) use ($team_id) {
+            $query->where('team_red_id', $team_id)
+                  ->where('team_red_result', 'W');
+        })
+        ->count();
+
+    return $winsCount;
+}
 
 
+public static function getTotalGames($team_id){
+    // Contar el número total de partidos jugados por el equipo
+    $totalGames = DB::table('games')
+        ->where('team_blue_id', $team_id)
+        ->orWhere('team_red_id', $team_id)
+        ->count();
+
+    return $totalGames;
+}
+
+
+
+
+
+
+
+
+public static function getTeamsWithBestWinRate(){
+    // Obtener todos los equipos
+    $teams = Team::all();
+
+    // Calcular el porcentaje de victorias para cada equipo
+    foreach ($teams as $team) {
+        $team->total_matches = self::getTotalGames($team->id);;
+        $team->total_wins = self::getTeamWins($team->id);
+        $team->win_rate = $team->total_matches > 0 ? ($team->total_wins / $team->total_matches) * 100 : 0;
+    }
+
+    // Ordenar los equipos por el porcentaje de victorias
+    $teams = $teams->sortByDesc('win_rate');
+
+    return $teams->take(10);
+
+}
 }

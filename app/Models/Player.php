@@ -54,30 +54,39 @@ class Player extends Model
         return $teammates->random();
     }
     public static function getPlayersWithMostFans()
-    {
-        // Subconsulta para contar fans para cada jugador
-        $fansCountSubquery = DB::table('users')
-            ->select('favorite_player1 as player_id')
-            ->selectRaw('count(*) as total_fans')
-            ->groupBy('favorite_player1')
-            ->unionAll(
-                DB::table('users')->select('favorite_player2 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player2')
-            ) // Repite esto para favorite_player3, favorite_player4, y favorite_player5
-            ->toSql();
+{
+    // Subconsulta para contar fans para cada jugador
+    $fansCountSubquery = DB::table('users')
+        ->select('favorite_player1 as player_id')
+        ->selectRaw('count(*) as total_fans')
+        ->groupBy('favorite_player1')
+        ->unionAll(
+            DB::table('users')->select('favorite_player2 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player2')
+        )
+        ->unionAll(
+            DB::table('users')->select('favorite_player3 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player3')
+        )
+        ->unionAll(
+            DB::table('users')->select('favorite_player4 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player4')
+        )
+        ->unionAll(
+            DB::table('users')->select('favorite_player5 as player_id')->selectRaw('count(*) as total_fans')->groupBy('favorite_player5')
+        )
+        ->toSql();
 
-        // Obtener jugadores y realizar un LEFT JOIN con la subconsulta
-        $players = DB::table('players')
-            ->leftJoin(DB::raw("($fansCountSubquery) as fc"), 'players.id', '=', 'fc.player_id')
-            ->select('players.*')
-            ->selectRaw('COALESCE(SUM(fc.total_fans), 0) as total_fanbase')
-            ->groupBy('players.id')
-            ->orderByRaw('COALESCE(SUM(fc.total_fans), 0) DESC') // Primero ordena por el número total de fans
-            ->orderBy('players.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
-            ->take(10)
-            ->get();
+    // Obtener jugadores y realizar un LEFT JOIN con la subconsulta
+    $players = DB::table('players')
+        ->leftJoin(DB::raw("($fansCountSubquery) as fc"), 'players.id', '=', 'fc.player_id')
+        ->select('players.*')
+        ->selectRaw('COALESCE(SUM(fc.total_fans), 0) as total_fanbase')
+        ->groupBy('players.id')
+        ->orderByRaw('COALESCE(SUM(fc.total_fans), 0) DESC') // Primero ordena por el número total de fans
+        ->orderBy('players.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+        ->take(10)
+        ->get();
 
-        return $players;
-    }
+    return $players;
+}
 
 
 

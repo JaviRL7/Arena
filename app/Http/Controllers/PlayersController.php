@@ -5,6 +5,7 @@ use App\Models\Player;
 use App\Models\Team;
 use App\Models\Role;
 use App\Models\Champion;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -27,6 +28,11 @@ class PlayersController extends Controller
         $playersWithMostFans = Player::getPlayersWithMostFans();
         $mostPlayedChampions = Champion::getMostPlayedChampions(); // Llamada a la nueva función
         $championsWithHighestWinRate = Champion::getChampionsWithHighestWinRate();
+        $TeamsWithMostFans = Team::getTeamsWithMostFans();
+        $teamsWithMostMatches = Team::getTeamsWithMostMatches();
+        $teamsWithBestWinRate = Team::getTeamsWithBestWinRate();
+        $usersWithMostComments = User::getUsersWithMostComments();
+        $usersWithMostLikes = User::getUsersWithMostLikes();
 
         return view('players.rankings', [
             'playersByKills' => $playersByKills,
@@ -37,7 +43,11 @@ class PlayersController extends Controller
             'playersWithMostFans' => $playersWithMostFans,
             'mostPlayedChampions' => $mostPlayedChampions,
             'championsWithHighestWinRate' => $championsWithHighestWinRate,
-
+            'TeamsWithMostFans' => $TeamsWithMostFans,
+            'teamsWithMostMatches' => $teamsWithMostMatches,
+            'teamsWithBestWinRate' => $teamsWithBestWinRate,
+            'usersWithMostLikes' => $usersWithMostLikes,
+            'usersWithMostComments' => $usersWithMostComments
         ]);
     }
 

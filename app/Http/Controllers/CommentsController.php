@@ -62,12 +62,17 @@ class CommentsController extends Controller
 
 
     public function like(Comment $comment)
-    {
-        $comment->likes += 1;
-        $comment->save();
+{
+    $comment->likes += 1;
+    $comment->save();
 
-        return back();
-    }
+    // Devuelve una respuesta JSON en lugar de recargar la página
+    return response()->json([
+        'success' => true,
+        'likesCount' => $comment->likes,
+    ]);
+}
+
 
 
     public function destroy($id)

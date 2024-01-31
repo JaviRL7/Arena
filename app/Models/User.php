@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -125,5 +126,51 @@ public function favoritePlayers()
         ->union($this->hasMany(Player::class, 'id', 'favorite_player3'))
         ->union($this->hasMany(Player::class, 'id', 'favorite_player4'))
         ->union($this->hasMany(Player::class, 'id', 'favorite_player5'));
+}
+public static function getUsersWithMostComments(){
+    // Obtener todos los usuarios
+    $users = User::all();
+
+    // Calcular el número total de comentarios para cada usuario
+    foreach ($users as $user) {
+        $user->total_comments = DB::table('comments')
+            ->where('user_id', $user->id)
+            ->count();
+    }
+
+    // Ordenar los usuarios por el número total de comentarios
+    $users = $users->sortByDesc('total_comments');
+
+    return $users->take(10); // Devolver solo los 10 primeros usuarios
+}
+
+public static function getUsersWithMostLikes(){
+    // Obtener todos los usuarios
+    $users = User::all();
+
+    // Calcular el número total de "likes" en los comentarios para cada usuario
+    foreach ($users as $user) {
+        $user->total_likes = DB::table('comments')
+            ->where('user_id', $user->id)
+            ->sum('likes');
+    }
+
+    // Ordenar los usuarios por el número total de "likes"
+    $users = $users->sortByDesc('total_likes');
+
+    return $users->take(10); // Devolver solo los 10 primeros usuarios
+}
+public function followersCount()
+{
+    return DB::table('follows')
+        ->where('followed_id', $this->id)
+        ->count();
+}
+
+public function followingCount()
+{
+    return DB::table('follows')
+        ->where('follower_id', $this->id)
+        ->count();
 }
 }

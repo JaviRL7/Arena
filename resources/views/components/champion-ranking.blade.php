@@ -5,19 +5,19 @@
     </div>
     <ul class="divide-y divide-gray-300">
         @foreach ($champions as $champion)
-        <li class="flex items-center py-4 px-6 border-b border-gray-300 {{ $loop->first ? 'bg-cover bg-center relative' : '' }}" style="{{ $loop->first ? 'background-image: url('.$champion->photo.'); color: white; height: 300px;' : '' }}">            @if ($loop->first)
-            <div class="flex-1 text-white" style="z-index: 10;"> <!-- Texto sobre la imagen de fondo para el primer elemento -->
-
-                <h3 class="titular text-lg font-bold">{{ $champion->name }}</h3>
-                <p class="text-xl font-bold text-center">
-                    {{ $champion->times_played }}</p>
-            </div>
+        <li class="flex items-center py-4 px-6 border-b border-gray-300 {{ $loop->first ? 'bg-cover bg-center relative' : '' }}" style="{{ $loop->first ? 'background-image: url('.$champion->photo.'); color: white; height: 400px;' : '' }}">
+            @if ($loop->first)
+                <div class="flex-1 text-white" style="z-index: 10;"> <!-- Texto sobre la imagen de fondo para el primer elemento -->
+                    <h1 class="titular text-2xl font-bold">{{ $champion->name }}</h1>
+                    <h1 class="subtitular text-xl">
+                        Times played: {{ $champion->times_played }}</h1>
+                </div>
             @else
             <img class="w-16 h-16 rounded-full object-cover mr-4" src="{{ $champion->square }}" alt="{{ $champion->name }} photo">
             <div class="flex-1">
                 <h3 class="titular text-lg font-bold text-gray-800">{{ $champion->name }}</h3>
                 <p class="text-gray-600 text-xl font-bold text-center">
-                    {{ $champion->times_played }}</p>
+                    Times played: {{ $champion->times_played }}</p>
             </div>
             @endif
         </li>
