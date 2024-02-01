@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar controles y contenedores para la interacción de la UI
     const commentsButton = document.getElementById('comments-link');
@@ -7,13 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const forYouButton = document.getElementById('for-you-link');
     const forYouContainer = document.querySelector('.for-you-activities-container');
     const followersLink = document.getElementById('followers-link');
-    const followingLink = document.getElementById('following-link');
     const followersContainer = document.querySelector('.followers-container');
+    const followingLink = document.getElementById('following-link');
     const followingContainer = document.querySelector('.following-container');
-    const reviewsButton = document.getElementById('reviews-link'); // Añadido el botón de reviews
-    const reviewsContainer = document.querySelector('.reviews-container'); // Añadido el contenedor de reviews
+    const reviewsButton = document.getElementById('reviews-link');
+    const reviewsContainer = document.querySelector('.reviews-container');
     const deleteModal = document.getElementById('deleteCommentModal');
     const editModal = document.getElementById('editCommentModal');
+    const reviewsLink = document.getElementById('reviews-link');
+
+    followersLink.addEventListener('click', function() {
+        hideAllContainers();
+        followersContainer.style.display = 'block';
+        });
+
+        followingLink.addEventListener('click', function() {
+        hideAllContainers();
+        followingContainer.style.display = 'block';
+        });
+        reviewsLink.addEventListener('click', function() {
+            hideAllContainers();
+            reviewsContainer.style.display = 'block';
+            });
 
     // Función para ocultar todos los contenedores
     function hideAllContainers() {
@@ -22,8 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         forYouContainer.style.display = 'none';
         followersContainer.style.display = 'none';
         followingContainer.style.display = 'none';
-        reviewsContainer.style.display = 'none'; // Añadido el contenedor de reviews
+        reviewsContainer.style.display = 'none';
     }
+
 
     // Manejar clics en los botones para mostrar/ocultar contenedores
     commentsButton.addEventListener('click', function() {
@@ -51,11 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
         followingContainer.style.display = 'block';
     });
 
-    reviewsButton.addEventListener('click', function() { // Añadido el manejo del evento clic para reviews
+    reviewsButton.addEventListener('click', function() {
         hideAllContainers();
         reviewsContainer.style.display = 'block';
     });
-
     // Modal de eliminación de comentarios
     if (deleteModal) {
         deleteModal.addEventListener('show.bs.modal', function(event) {
@@ -112,9 +128,4 @@ $(document).ready(function() {
             }
         });
     });
-});
-followersLink.addEventListener('click', function() {
-    console.log("Followers link clicked");
-    hideAllContainers();
-    followersContainer.style.display = 'block';
 });

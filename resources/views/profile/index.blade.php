@@ -19,7 +19,8 @@
                     <div class="profile-header-new"
                         @if ($user->user_header_photo) style="background: url('{{ asset($user->user_header_photo) }}') no-repeat center center / cover;"
                         @else
-                            style="background-color: #333333;" @endif>
+                            style="background-color: #333333;"
+                        @endif>
 
                     </div>
 
