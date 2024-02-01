@@ -1,7 +1,7 @@
 <div>
 
     <ul>
-        @foreach ($following as $followedUser)
+        @foreach ($followings as $followedUser)
             <li class="following-item">
                 <img src="{{ asset($followedUser->user_photo) }}" alt="{{ $followedUser->name }}" class="rounded-circle shadow-1-strong user-photo">
                 <div class="following-info">

@@ -96,3 +96,112 @@
 .profile-link-item i{
     margin: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Activity*/
+
+.activity-profile-player-champion-info {
+    position: relative;
+}
+
+.activity-profile-player-kda-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-profile-player-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+.note-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+
+}
+
+
+.champion-background {
+    background-size: cover;
+    background-position: top;
+    height: 500px;
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.champion-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3); /* Ajusta la opacidad para oscurecer más o menos */
+    z-index: 1;
+}
+
+.activity-profile-player-champion-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    z-index: 2;
+}
+
+
+.activity-profile-user-review-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.activity-profile-review-info {
+    /* Tus estilos actuales para .activity-profile-review-info */
+    margin-left: 30px; /* Espacio a la izquierda de la reseña */
+    margin-top: 15px; /* Espacio a la izquierda de la reseña */
+}
+.activity-profile-player-kda-container {
+
+    z-index: 2; /* Asegúrate de que este contenido esté encima del oscurecimiento */
+    /* ... tus otros estilos ... */
+}

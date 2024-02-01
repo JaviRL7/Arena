@@ -26,7 +26,21 @@
   z-index: 1;
 }
 
+.custom-hr2 {
+    margin-left: 25%; /* Margen izquierdo */
+    margin-right: 25%; /* Margen derecho */
+    padding-bottom: 10px; /* Espacio antes del separador */
+    border-bottom: 2px solid rgb(88, 86, 86); /* Separador gris */
+    margin-bottom: 20px; /* Espacio después del separador */
+    border-top: none; /* Elimina el borde superior por defecto de <hr> */
+}
+.custom-hr {
 
+    padding-bottom: 10px; /* Espacio antes del separador */
+    border-bottom: 2px solid rgb(88, 86, 86); /* Separador gris */
+    margin-bottom: 20px; /* Espacio después del separador */
+    border-top: none; /* Elimina el borde superior por defecto de <hr> */
+}
 
 .profile-text {
   display: flex;

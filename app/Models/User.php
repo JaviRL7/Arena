@@ -173,4 +173,10 @@ public function followingCount()
         ->where('follower_id', $this->id)
         ->count();
 }
+
+
+public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

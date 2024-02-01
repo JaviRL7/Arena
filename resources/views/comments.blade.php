@@ -13,7 +13,7 @@
 
         <div class="d-flex align-items-start">
             <div class="text-muted">
-                <p class="mb-0"><span>{{ $comment->created_at->format('F d, Y') }}</span></p>
+                <p class="mb-0 subtitular" style="font-size: small; margin-top:5px"><span>{{ $comment->created_at->format('F d, Y') }}</span></p>
             </div>
 
             <div class="ms-2">
@@ -41,4 +41,4 @@
         </p>
     </div>
 </div>
-<hr class="my-0" />
+<hr class="custom-hr" />

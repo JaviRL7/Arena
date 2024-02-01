@@ -8,14 +8,14 @@ use Illuminate\Contracts\View\View;
 
 class Following extends Component
 {
-    public $following;
+    public $followings; // Cambia a followings para que coincida con el nombre de la variable
 
-    public function __construct($following)
+    public function __construct($followings) // Asegúrate de recibir $followings
     {
-        $this->following = $following;
+        $this->followings = $followings; // Asignar $followings a la propiedad followings
     }
 
-    public function render()
+    public function render(): View
     {
         return view('components.following');
     }

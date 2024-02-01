@@ -28,7 +28,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="updateForm" class="btn btn-boton7">Save changes</button>
+                <button type="submit" form="updateForm" class="btn btn-boton7">Save</button>
                 <button type="button" class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
 
             </div>

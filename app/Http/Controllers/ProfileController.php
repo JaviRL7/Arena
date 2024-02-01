@@ -19,14 +19,39 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function index(User $user): View
-{
-    $players = Player::paginate(5);
-    return view('profile.index', [
-        'user' => $user,
-        'players' => $players,
-    ]);
-}
+    {
 
+
+        $reviews = $user->scores;
+        $followings= $user->followings;
+        $followers = $user->followers;
+        // Obtiene las actividades de los usuarios seguidos
+        $activities = collect();
+
+        foreach ($followings as $followingUser) {
+            // Añade scores de los usuarios seguidos
+            // Asegúrate de tener el método scores() definido en el modelo User
+            $activities = $activities->concat($followingUser->scores()->with(['game', 'game.champion'])->latest()->get());
+
+            // Añade comentarios de los usuarios seguidos
+            // Asegúrate de tener el método comments() definido en el modelo User
+            $activities = $activities->concat($followingUser->comments()->with('user')->latest()->get());
+        }
+
+        // Ordena todas las actividades por fecha de creación
+        $activities = $activities->sortByDesc('created_at');
+
+        $players = Player::paginate(5);
+
+        return view('profile.index', [
+            'user' => $user,
+            'players' => $players,
+            'activities' => $activities,
+            'reviews' => $reviews,
+            'followings' => $followings,
+            'followers' => $followers,
+        ]);
+    }
 
 
 

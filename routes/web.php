@@ -50,7 +50,7 @@ Route::middleware('auth')->group(
         Route::get('/profile/{user}/followings', [ProfileController::class, 'followings'])->name('profile.followings');
 
 
-
+        Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
