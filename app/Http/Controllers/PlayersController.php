@@ -159,7 +159,12 @@ public function destroy(Player $player)
     return redirect()->route('admin.players.index');
 }
 
-
+public function show_players()
+{
+    $players = Player::all();
+    $roles = Role::all();
+    return view('players.show_players', ['players' => $players, 'roles' => $roles]);
+}
 
 
 public function profile($id)

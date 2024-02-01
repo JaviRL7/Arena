@@ -71,6 +71,7 @@ Route::post('/players/{player}/become-fan', [ProfileController::class, 'becomeFa
 // Ruta para actualizar los jugadores favoritos (cambiada para manejarlo desde la vista del perfil del jugador)
 Route::post('/players/update-favorite-players', [ProfileController::class, 'updateFavoritePlayers'])->name('players.update-favorite-players');
 
+Route::get('/players', [PlayersController::class, 'show_players'])->name('players.show_players');
 
 
 Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');

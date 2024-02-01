@@ -45,8 +45,12 @@
                         <a class="nav-link navbar-link mx-2 {{ Request::routeIs('teams.index') ? 'active-link' : '' }}" href="{{ route('teams.index') }}">Teams</a>
                     </li>
                     <li class="nav-item px-3">
+                        <a class="nav-link navbar-link mx-2 {{ Request::routeIs('players.show_players') ? 'active-link' : '' }}" href="{{ route('players.show_players') }}">Players</a>
+                    </li>
+                    <li class="nav-item px-3">
                         <a class="nav-link navbar-link mx-2 {{ Request::routeIs('transfers.index') ? 'active-link' : '' }}" href="{{ route('transfers.index') }}">Transfers</a>
                     </li>
+
                 </ul>
 
                 <!--Login-->

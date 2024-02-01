@@ -38,14 +38,16 @@
                                         ->user()
                                         ->isFollowing($user);
                                 @endphp
-                                <form
-                                    action="{{ $userFollowing ? route('unfollow', $user->id) : route('follow', $user->id) }}"
+                                <form action="{{ $userFollowing ? route('unfollow', $user->id) : route('follow', $user->id) }}"
                                     method="POST" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn-boton6" style="margin: 0%">
-                                        {{ $userFollowing ? 'Unfollow' : 'Follow' }}
-                                    </button>
-                                </form>
+                                  @csrf
+                                  @if($userFollowing)
+                                      @method('DELETE')
+                                  @endif
+                                  <button type="submit" class="btn-boton6" style="margin: 0%">
+                                      {{ $userFollowing ? 'Unfollow' : 'Follow' }}
+                                  </button>
+                              </form>
                             @endif
                         </span>
 
