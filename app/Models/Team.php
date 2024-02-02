@@ -30,6 +30,10 @@ class Team extends Model
     {
         return $this->belongsTo(Competition::class, 'league_id');
     }
+    public function getFansAttribute()
+{
+    return \App\Models\User::where('favorite_team', $this->id)->get();
+}
     public function getPlayers()
     {
         $today = Carbon::now()->format('Y-m-d');

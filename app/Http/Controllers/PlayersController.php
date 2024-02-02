@@ -300,7 +300,7 @@ public function removeFan(Request $request, Player $player)
     $user->save(); // guarda los cambios en la base de datos
 
     // Redirige al usuario a la página anterior sin mostrar ningún mensaje
-    return response()->json(['success' => true]);
+    return back();
 }
 
 public function getPlayer($id)

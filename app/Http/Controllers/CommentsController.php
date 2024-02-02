@@ -3,35 +3,57 @@
 namespace App\Http\Controllers;
 use App\Models\Serie;
 use App\Models\Comment;
+use App\Models\Player;
+
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
     public function store(Request $request, Serie $serie)
-    {
+{
+    $request->merge([
+        'player_id' => $request->player_id != '' ? $request->player_id : null,
+        'team_id' => $request->team_id != '' ? $request->team_id : null,
+    ]);
 
-        $request->merge([
-            'player_id' => $request->player_id != '' ? $request->player_id : null,
-            'team_id' => $request->team_id != '' ? $request->team_id : null,
-        ]);
+    $request->validate([
+        'body' => 'required|max:250',
+        'player_id' => 'nullable|exists:players,id',
+        'team_id' => 'nullable|exists:teams,id',
+    ]);
 
-        $request->validate([
-            'body' => 'required|max:250',
-            'player_id' => 'nullable|exists:players,id',
-            'team_id' => 'nullable|exists:teams,id',
-        ]);
-
-        $comment = new Comment;
-        $comment->body = $request->body;
-        $comment->user_id = $request->user_id;
-        $comment->serie_id = $serie->id;
-
-        //los nulos / repasar
-        $comment->player_id = $request->player_id;
-        $comment->team_id = $request->team_id;
-        $comment->save();
-        return back();
+    // Buscar menciones a jugadores en el body
+    if (preg_match('/@(\w+)/', $request->body, $matches)) {
+        $playerNick = $matches[1];
+        $player = Player::where('nick', $playerNick)->first();
+        if ($player) {
+            $request->player_id = $player->id;
+        }
     }
+
+    // Buscar menciones a equipos en el body
+    if (preg_match('/#(\w+)/', $request->body, $matches)) {
+        $teamName = $matches[1];
+        $team = Team::where('name', $teamName)->first();
+        if ($team) {
+            $request->team_id = $team->id;
+        }
+    }
+
+    $comment = new Comment;
+    $comment->body = $request->body;
+    $comment->user_id = $request->user_id;
+    $comment->serie_id = $serie->id;
+
+    //los nulos / repasar
+    $comment->player_id = $request->player_id;
+    $comment->team_id = $request->team_id;
+    $comment->save();
+
+    return back();
+}
+
     public function storeModalComment(Request $request, Serie $serie){
     $request->merge([
         'player_id' => $request->player_id != '' ? $request->player_id : null,

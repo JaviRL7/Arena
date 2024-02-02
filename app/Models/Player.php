@@ -89,6 +89,15 @@ class Player extends Model
 }
 
 
+public function getFansAttribute()
+{
+    return \App\Models\User::where('favorite_player1', $this->id)
+        ->orWhere('favorite_player2', $this->id)
+        ->orWhere('favorite_player3', $this->id)
+        ->orWhere('favorite_player4', $this->id)
+        ->orWhere('favorite_player5', $this->id)
+        ->get();
+}
 
 
 
@@ -100,7 +109,7 @@ class Player extends Model
     return DB::table('games')
         ->join('clasifications', 'games.id', '=', 'clasifications.game_id')
         ->join('champions', 'clasifications.champion_id', '=', 'champions.id')
-        ->select('champions.id', 'champions.name', 'champions.square', DB::raw('count(*) as total'))
+        ->select('champions.id', 'champions.name', 'champions.square','champions.photo', DB::raw('count(*) as total'))
         ->where('clasifications.player_id', $this->id)
         ->groupBy('champions.id', 'champions.name', 'champions.square')
         ->orderBy('total', 'desc')

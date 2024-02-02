@@ -25,7 +25,7 @@
                                 <div style="margin: 10px;"></div>
                                 <p class="activity-score-note comentarios"> Note : {{ $activity->note }}</p>
                             </div>
-                            <hr class="activity-divider" />
+                            <hr class="custom-hr2" />
                             <div class="activity-player-champion-info">
                                 <img class="rounded-circle shadow-1-strong activity-player-photo"
                                     src="{{ asset($activity->player->photo) }}" alt="{{ $activity->player->nick }}" />
@@ -36,7 +36,7 @@
                                     / {{ $clasification->assists }}</p>
                             </div>
                             @if (!empty($activity->review))
-                                <hr class="activity-divider" />
+                                <hr class="custom-hr2" />
                                 <div class="activity-player-champion-info">
                                     <p class="comentarios">"{{ $activity->review }}".</p>
                                 </div>
@@ -52,7 +52,7 @@
                     </div>
                 @endif
             </div>
-            <hr class="my-0" />
+            <hr class="custom-hr" />
         </div>
     @endforeach
 </div>

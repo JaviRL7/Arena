@@ -29,7 +29,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Caitlyn', 'photo' => 'photo/Caitlyn_0.jpg','square' => 'square/CaitlynSquare.png']);
     Champion::create(['name' => 'Camille', 'photo' => 'photo/Camille_0.jpg','square' => 'square/CamilleSquare.png']);
     Champion::create(['name' => 'Cassiopeia', 'photo' => 'photo/Cassiopeia_0.jpg','square' => 'square/CassiopeiaSquare.png']);
-    Champion::create(['name' => 'Cho\'Gath', 'photo' => 'photo/Cho\'Gath_0.jpg','square' => 'square/ChoGathSquare.png']);
+    Champion::create(['name' => 'Cho\'Gath', 'photo' => 'photo/ChoGath_0.jpg','square' => 'square/ChoGathSquare.png']);
     Champion::create(['name' => 'Corki', 'photo' => 'photo/Corki_0.jpg','square' => 'square/CorkiSquare.png']);
     Champion::create(['name' => 'Darius', 'photo' => 'photo/Darius_0.jpg','square' => 'square/DariusSquare.png']);
     Champion::create(['name' => 'Diana', 'photo' => 'photo/Diana_0.jpg','square' => 'square/DianaSquare.png']);
@@ -54,12 +54,12 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Irelia', 'photo' => 'photo/Irelia_0.jpg','square' => 'square/IreliaSquare.png']);
     Champion::create(['name' => 'Ivern', 'photo' => 'photo/Ivern_0.jpg','square' => 'square/IvernSquare.png']);
     Champion::create(['name' => 'Janna', 'photo' => 'photo/Janna_0.jpg','square' => 'square/JannaSquare.png']);
-    Champion::create(['name' => 'Jarvan IV', 'photo' => 'photo/Jarvan IV_0.jpg','square' => 'square/JarvanIVSquare.png']);
+    Champion::create(['name' => 'Jarvan IV', 'photo' => 'photo/JarvanIV_0.jpg','square' => 'square/JarvanIVSquare.png']);
     Champion::create(['name' => 'Jax', 'photo' => 'photo/Jax_0.jpg','square' => 'square/JaxSquare.png']);
     Champion::create(['name' => 'Jayce', 'photo' => 'photo/Jayce_0.jpg','square' => 'square/JayceSquare.png']);
     Champion::create(['name' => 'Jhin', 'photo' => 'photo/Jhin_0.jpg','square' => 'square/JhinSquare.png']);
     Champion::create(['name' => 'Jinx', 'photo' => 'photo/Jinx_0.jpg','square' => 'square/JinxSquare.png']);
-    Champion::create(['name' => 'Kai\'Sa', 'photo' => 'photo/Kai\'Sa_0.jpg','square' => 'square/KaiSaSquare.png']);
+    Champion::create(['name' => 'Kai\'Sa', 'photo' => 'photo/Kaisa_0.jpg','square' => 'square/KaiSaSquare.png']);
     Champion::create(['name' => 'Kalista', 'photo' => 'photo/Kalista_0.jpg','square' => 'square/KalistaSquare.png']);
     Champion::create(['name' => 'Karma', 'photo' => 'photo/Karma_0.jpg','square' => 'square/KarmaSquare.png']);
     Champion::create(['name' => 'Karthus', 'photo' => 'photo/Karthus_0.jpg','square' => 'square/KarthusSquare.png']);
@@ -68,12 +68,12 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Kayle', 'photo' => 'photo/Kayle_0.jpg','square' => 'square/KayleSquare.png']);
     Champion::create(['name' => 'Kayn', 'photo' => 'photo/Kayn_0.jpg','square' => 'square/KaynSquare.png']);
     Champion::create(['name' => 'Kennen', 'photo' => 'photo/Kennen_0.jpg','square' => 'square/KennenSquare.png']);
-    Champion::create(['name' => 'Kha\'Zix', 'photo' => 'photo/Kha\'Zix_0.jpg','square' => 'square/KhaZixSquare.png']);
+    Champion::create(['name' => 'Kha\'Zix', 'photo' => 'photo/KhaZix_0.jpg','square' => 'square/KhaZixSquare.png']);
     Champion::create(['name' => 'Kindred', 'photo' => 'photo/Kindred_0.jpg','square' => 'square/KindredSquare.png']);
     Champion::create(['name' => 'Kled', 'photo' => 'photo/Kled_0.jpg','square' => 'square/KledSquare.png']);
-    Champion::create(['name' => 'Kog\'Maw', 'photo' => 'photo/Kog\'Maw_0.jpg','square' => 'square/KogMawSquare.png']);
+    Champion::create(['name' => 'Kog\'Maw', 'photo' => 'photo/KogMaw_0.jpg','square' => 'square/KogMawSquare.png']);
     Champion::create(['name' => 'LeBlanc', 'photo' => 'photo/LeBlanc_0.jpg','square' => 'square/LeBlancSquare.png']);
-    Champion::create(['name' => 'Lee Sin', 'photo' => 'photo/Lee Sin_0.jpg','square' => 'square/LeeSinSquare.png']);
+    Champion::create(['name' => 'Lee Sin', 'photo' => 'photo/LeeSin_0.jpg','square' => 'square/LeeSinSquare.png']);
     Champion::create(['name' => 'Leona', 'photo' => 'photo/Leona_0.jpg','square' => 'square/LeonaSquare.png']);
     Champion::create(['name' => 'Lillia', 'photo' => 'photo/Lillia_0.jpg','square' => 'square/LilliaSquare.png']);
     Champion::create(['name' => 'Lissandra', 'photo' => 'photo/Lissandra_0.jpg','square' => 'square/LissandraSquare.png']);
@@ -83,7 +83,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Malphite', 'photo' => 'photo/Malphite_0.jpg','square' => 'square/MalphiteSquare.png']);
     Champion::create(['name' => 'Malzahar', 'photo' => 'photo/Malzahar_0.jpg','square' => 'square/MalzaharSquare.png']);
     Champion::create(['name' => 'Maokai', 'photo' => 'photo/Maokai_0.jpg','square' => 'square/MaokaiSquare.png']);
-    Champion::create(['name' => 'Master Yi', 'photo' => 'photo/Master Yi_0.jpg','square' => 'square/MasterYiSquare.png']);
+    Champion::create(['name' => 'Master Yi', 'photo' => 'photo/MasterYi_0.jpg','square' => 'square/MasterYiSquare.png']);
     Champion::create(['name' => 'Miss Fortune', 'photo' => 'photo/Miss Fortune_0.jpg','square' => 'square/MissFortuneSquare.png']);
     Champion::create(['name' => 'Mordekaiser', 'photo' => 'photo/Mordekaiser_0.jpg','square' => 'square/MordekaiserSquare.png']);
     Champion::create(['name' => 'Morgana', 'photo' => 'photo/Morgana_0.jpg','square' => 'square/MorganaSquare.png']);
@@ -93,7 +93,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Neeko', 'photo' => 'photo/Neeko_0.jpg','square' => 'square/NeekoSquare.png']);
     Champion::create(['name' => 'Nidalee', 'photo' => 'photo/Nidalee_0.jpg','square' => 'square/NidaleeSquare.png']);
     Champion::create(['name' => 'Nocturne', 'photo' => 'photo/Nocturne_0.jpg','square' => 'square/NocturneSquare.png']);
-    Champion::create(['name' => 'Nunu & Willump', 'photo' => 'photo/Nunu & Willump_0.jpg','square' => 'square/NunuWillumpSquare.png']);
+    Champion::create(['name' => 'Nunu & Willump', 'photo' => 'photo/Nunu&Willump_0.jpg','square' => 'square/NunuWillumpSquare.png']);
     Champion::create(['name' => 'Olaf', 'photo' => 'photo/Olaf_0.jpg','square' => 'square/OlafSquare.png']);
     Champion::create(['name' => 'Orianna', 'photo' => 'photo/Orianna_0.jpg','square' => 'square/OriannaSquare.png']);
     Champion::create(['name' => 'Ornn', 'photo' => 'photo/Ornn_0.jpg','square' => 'square/OrnnSquare.png']);
@@ -105,7 +105,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Rakan', 'photo' => 'photo/Rakan_0.jpg','square' => 'square/RakanSquare.png']);
     Champion::create(['name' => 'Rammus', 'photo' => 'photo/Rammus_0.jpg','square' => 'square/RammusSquare.png']);
     Champion::create(['name' => 'Rell', 'photo' => 'photo/Rell_0.jpg','square' => 'square/RellSquare.png']);
-    Champion::create(['name' => 'Rek\'Sai', 'photo' => 'photo/Rek\'Sai_0.jpg','square' => 'square/RekSaiSquare.png']);
+    Champion::create(['name' => 'Rek\'Sai', 'photo' => 'photo/RekSai_0.jpg','square' => 'square/RekSaiSquare.png']);
     Champion::create(['name' => 'Renekton', 'photo' => 'photo/Renekton_0.jpg','square' => 'square/RenektonSquare.png']);
     Champion::create(['name' => 'Rengar', 'photo' => 'photo/Rengar_0.jpg','square' => 'square/RengarSquare.png']);
     Champion::create(['name' => 'Riven', 'photo' => 'photo/Riven_0.jpg','square' => 'square/RivenSquare.png']);
@@ -127,7 +127,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Swain', 'photo' => 'photo/Swain_0.jpg','square' => 'square/SwainSquare.png']);
     Champion::create(['name' => 'Sylas', 'photo' => 'photo/Sylas_0.jpg','square' => 'square/SylasSquare.png']);
     Champion::create(['name' => 'Syndra', 'photo' => 'photo/Syndra_0.jpg','square' => 'square/SyndraSquare.png']);
-    Champion::create(['name' => 'Tahm Kench', 'photo' => 'photo/Tahm Kench_0.jpg','square' => 'square/TahmKenchSquare.png']);
+    Champion::create(['name' => 'Tahm Kench', 'photo' => 'photo/TahmKench_0.jpg','square' => 'square/TahmKenchSquare.png']);
     Champion::create(['name' => 'Taliyah', 'photo' => 'photo/Taliyah_0.jpg','square' => 'square/TaliyahSquare.png']);
     Champion::create(['name' => 'Talon', 'photo' => 'photo/Talon_0.jpg','square' => 'square/TalonSquare.png']);
     Champion::create(['name' => 'Taric', 'photo' => 'photo/Taric_0.jpg','square' => 'square/TaricSquare.png']);
@@ -143,7 +143,7 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Varus', 'photo' => 'photo/Varus_0.jpg','square' => 'square/VarusSquare.png']);
     Champion::create(['name' => 'Vayne', 'photo' => 'photo/Vayne_0.jpg','square' => 'square/VayneSquare.png']);
     Champion::create(['name' => 'Veigar', 'photo' => 'photo/Veigar_0.jpg','square' => 'square/VeigarSquare.png']);
-    Champion::create(['name' => 'Vel\'Koz', 'photo' => 'photo/Vel\'Koz_0.jpg','square' => 'square/VelKozSquare.png']);
+    Champion::create(['name' => 'Vel\'Koz', 'photo' => 'photo/VelKoz_0.jpg','square' => 'square/VelKozSquare.png']);
     Champion::create(['name' => 'Vi', 'photo' => 'photo/Vi_0.jpg','square' => 'square/ViSquare.png']);
     Champion::create(['name' => 'Viego', 'photo' => 'photo/Viego_0.jpg','square' => 'square/ViegoSquare.png']);
     Champion::create(['name' => 'Viktor', 'photo' => 'photo/Viktor_0.jpg','square' => 'square/ViktorSquare.png']);
@@ -170,13 +170,13 @@ class ChampionsSeeder extends Seeder
     Champion::create(['name' => 'Vex', 'photo' => 'photo/Vex_0.jpg','square' => 'square/VexSquare.png']);
     Champion::create(['name' => 'Zeri', 'photo' => 'photo/Zeri_0.jpg','square' => 'square/ZeriSquare.png']);
     Champion::create(['name' => 'Senna', 'photo' => 'photo/Senna_0.jpg','square' => 'square/SennaSquare.png']);
-    Champion::create(['name' => 'Bel\'Veth', 'photo' => 'photo/Bel\'Veth_0.jpg','square' => 'square/Bel\'VethSquare.png']);
+    Champion::create(['name' => 'Bel\'Veth', 'photo' => 'photo/BelVeth_0.jpg','square' => 'square/Bel\'VethSquare.png']);
     Champion::create(['name' => 'Nilah', 'photo' => 'photo/Nilah_0.jpg','square' => 'square/NilahSquare.png']);
-    Champion::create(['name' => 'K\'Sante', 'photo' => 'photo/K\'Sante_0.jpg','square' => 'square/K\'SanteSquare.png']);
+    Champion::create(['name' => 'K\'Sante', 'photo' => 'photo/KSante_0.jpg','square' => 'square/K\'SanteSquare.png']);
     Champion::create(['name' => 'Milio', 'photo' => 'photo/Milio_0.jpg','square' => 'square/MilioSquare.png']);
     Champion::create(['name' => 'Naafiri', 'photo' => 'photo/Naafiri_0.jpg','square' => 'square/NaafiriSquare.png']);
     Champion::create(['name' => 'Briar', 'photo' => 'photo/Briar_0.jpg','square' => 'square/BriarSquare.png']);
     Champion::create(['name' => 'Hwei', 'photo' => 'photo/Hwei_0.jpg','square' => 'square/HweiSquare.png']);
-    Champion::create(['name' => 'Renata Glasc', 'photo' => 'photo/Renata Glasc_0.jpg','square' => 'square/RenataGlascSquare.png']);
+    Champion::create(['name' => 'Renata Glasc', 'photo' => 'photo/Renata_0.jpg','square' => 'square/RenataGlascSquare.png']);
     }
 }

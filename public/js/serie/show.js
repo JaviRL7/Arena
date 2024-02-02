@@ -34,7 +34,7 @@
         var players = data.map(function(player) {
             return {
                 key: player,
-                value: player
+                value: player,
             };
         });
 

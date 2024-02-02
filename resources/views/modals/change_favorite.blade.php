@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="chooseFavoritesModalLabel">Elige tus 5 jugadores favoritos</h5>
+                <h5 class="modal-title" id="chooseFavoritesModalLabel">Pick only 5 players</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="save-favorites-button">Guardar cambios</button>
+                <button type="button" class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-boton7" id="save-favorites-button">Save</button>
             </div>
         </div>
     </div>

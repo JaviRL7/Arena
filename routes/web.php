@@ -223,7 +223,7 @@ Route::get('/players/{id}/profile', [PlayersController::class, 'profile'])->name
 Route::post('/players/{player}/addFan', [PlayersController::class, 'addFan'])->name('players.addFan');
 
 Route::get('/players/{id}/getFavorites', [PlayersController::class, 'getFavorites'])->name('players.getFavorites');
-Route::post('/players/{player}/removeFan', [PlayersController::class, 'removeFan'])->name('players.removeFan');
+Route::delete('/players/{player}/removeFan', [PlayersController::class, 'removeFan'])->name('players.removeFan');
 Route::get('/players/{id}', [PlayersController::class, 'getPlayer'])->name('players.getPlayer');
 Route::post('/players/{player}/updateFavorites', [PlayersController::class, 'updateFavorites'])->name('players.updateFavorites');
 

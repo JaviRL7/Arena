@@ -19,6 +19,8 @@
                     </div>
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <input type="hidden" name="serie_id" value="{{ $serie->id }}">
+                    <input type="hidden" name="player_id" id="player_id" value="">
+
                     <div class="float-end mt-2 pt-1">
                         <button type="submit" class="btn-boton7">Enviar</button>
                         <input type="hidden" id="serie" value="{{ $serie->id }}">
