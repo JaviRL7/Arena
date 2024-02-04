@@ -83,7 +83,7 @@ Route::post('/series/{serie}/modal-comments', [CommentsController::class, 'store
 Route::get('/players/show/{id}', [PlayersController::class, 'show'])->name('player.show');
 
 Route::get('/series', [SeriesController::class, 'index'])->name('series.index');
-Route::get('/series/{serie}', [SeriesController::class, 'show_2'])->name('series.show');
+Route::get('/series/{serie}', [SeriesController::class, 'show_2'])->name('series.show')->middleware('auth');
 Route::get('/series/{serie}/getPlayerNames', [SeriesController::class, 'getPlayerNames'])->name('series.getPlayerNames');
 Route::get('/series/{serie}/getTeamNames', [SeriesController::class, 'getTeamNames'])->name('series.getTeamNames');
 
@@ -143,7 +143,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/games/{game}/edit', [GamesController::class, 'edit'])->name('admin.games.edit');
     Route::put('/games/{game}/edit', [GamesController::class, 'update'])->name('admin.games.update');
     Route::delete('/admin/games/{game}', [GamesController::class, 'destroy'])->name('admin.games.delete');
-
 
 
 

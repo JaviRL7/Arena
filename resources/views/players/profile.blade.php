@@ -148,54 +148,42 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <hr class="custom-hr">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h2 class="titular subrayado">Fans</h2>
+                                <div class="row" style="margin-top: 40px">
+                                    <div class="col-md-12" style="margin-bottom: 50px">
+                                        <div style="height: 5px; background-color: #e44445;"></div>
+                                        <h1 class="titular subrayado">Fans</h1>
 
-                                        @auth
-                                            @php
-                                                $isFan = in_array($player->id, [Auth::user()->favorite_player1, Auth::user()->favorite_player2, Auth::user()->favorite_player3, Auth::user()->favorite_player4, Auth::user()->favorite_player5]);
-                                            @endphp
+                                        @php
+                                            $fans = \App\Models\User::where('favorite_team', $team->id)->get();
+                                            $user = Auth::user();
+                                        @endphp
 
-                                            @if (!$isFan)
-                                                <form action="{{ route('players.addFan', ['player' => $player->id]) }}"
-                                                    method="POST">
+                                        @if ($user)
+                                            @if ($user->favorite_team == $team->id)
+                                                <form method="POST" action="{{ route('teams.unfan', $team) }}" style="margin-bottom: 20px;">
                                                     @csrf
-                                                    <button type="submit" id="fan-button" class="btn btn-boton7"
-                                                        data-player-id="{{ $player->id }}">Become a Fan</button>
+                                                    <button type="submit" class="btn btn-boton8">Stop Being a Fan</button>
                                                 </form>
                                             @else
-                                                <form action="{{ route('players.removeFan', ['player' => $player->id]) }}"
-                                                    method="POST">
+                                                <form method="POST" action="{{ route('teams.becomeFan', $team) }}" style="margin-bottom: 20px;">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" id="unfan-button"
-                                                        class="btn btn-boton8"data-player-id="{{ $player->id }}">Stop Being a
-                                                        Fan</button>
+                                                    <button type="submit" class="btn btn-boton7">Become a fan</button>
                                                 </form>
                                             @endif
-                                        @endauth
-
-                                        <div>
-                                            <x-fans-section :fans="$player->getFansAttribute()" />
-                                        </div>
-                                        <div class="player-comments-section">
-                                            <h2 class="titular subrayado">Comments</h2>
-
-                                            <h5 class="subtitular">All in game comments for this players</h5>
-                                            <div>
-                                                @if ($player->comments && $player->comments->count() > 0)
-                                                    @foreach ($player->comments as $comment)
-                                                        @include('comments', ['comment' => $comment])
-                                                    @endforeach
-                                                @else
-                                                    <p class="comentarios">There are no comments yet</p>
-                                                @endif
+                                        @else
+                                            <div style="margin-bottom: 20px;">
+                                                Para hacerse fan, por favor <button onclick="location.href='/login'" class="btn btn-boton6">Login</button>
                                             </div>
-                                        </div>
+                                        @endif
+
+                                        @if ($fans->isEmpty())
+                                            <h5>This team doesn't have any fans yet.</h5>
+                                        @else
+                                            <x-fans-section :fans="$fans" />
+                                        @endif
                                     </div>
                                 </div>
+                            </div>
 
                             </div>
                         </div>

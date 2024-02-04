@@ -1,86 +1,95 @@
 @extends('layouts.plantilla_admin')
-@section('title', 'Users index')
+@section('title', 'Users Index')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="table-responsive">
-            <table class="table_crud_admin">
-                <thead>
-                    <th>Photo</th>
-                    <th>Name</th>
-                    <th>Nick</th>
-                    <th>Email</th>
-                    <th>Admin</th>
-                    <th>Validated</th>
-                    <th>Actions</th>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                    <tr class="row-color">
-                        <td>
-                            <img src="{{ asset($user->user_photo) }}" alt="{{ $user->nick }}"
-                                class="w-36 h-36 object-cover rounded-full">
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->name }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->nick }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->email }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->admin ? 'Yes' : 'No' }}
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $user->validated ? 'Yes' : 'No' }}
-                            </h5>
-                        </td>
-                        <td>
-                            <div>
-                                <form method="GET" action="{{ route('profile.index', $user) }}">
-                                    @csrf
-                                    <button type="submit" class="boton1">Show</button>
-                                </form>
-                            </div>
-                            <div>
-                                <form method="POST" action="{{ route('admin.user.validate', $user->id) }}">
-                                    @csrf
-                                    <button type="submit" class="boton3">Validate</button>
-                                </form>
-                            </div>
-                            <div>
-                                <form method="POST" action="{{ route('admin.user.invalidate', $user->id) }}">
-                                    @csrf
-                                    <button type="submit" class="boton2">Invalidate</button>
-                                </form>
-                            </div>
-                            <div>
-                                <form method="POST" action="{{ route('admin.user.destroy', $user->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="boton4">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <div style="display: flex; justify-content: left;">
-                {{ $users->links() }}
+
+    <div class="container my-4">
+        <div class="row justify-content-end">
+            <div class="col-auto d-flex align-items-center">
+                <h6 class="comentarios mr-3">Manage Users</h6>
             </div>
         </div>
     </div>
+
+    <div class="col-md-12">
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Nick</th>
+                            <th>Email</th>
+                            <th>Admin</th>
+                            <th>Validated</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="separator-custom"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($users as $user)
+                            <tr class="row-color">
+                                <td class="user-photo-cell">
+                                    <div class="d-flex justify-content-center">
+
+                                        <img src="{{ asset($user->user_photo) }}" alt="{{ $user->nick }}"
+                                            class="user-photo">
+                                    </div>
+                                </td>
+                                <td class="comentarios">
+                                    {{ $user->name }}
+                                </td>
+                                <td class="comentarios">
+                                    {{ $user->nick }}
+                                </td>
+                                <td class="comentarios">
+                                    {{ $user->email }}
+                                </td>
+                                <td class="comentarios">
+                                    {{ $user->admin ? 'Yes' : 'No' }}
+                                </td>
+                                <td class="comentarios">
+                                    {{ $user->validated ? 'Yes' : 'No' }}
+                                </td>
+                                <td class="action-buttons">
+                                    <a href="{{ route('profile.index', $user) }}" class="btn btn-boton7">Show</a>
+                                    <form method="POST" action="{{ route('admin.user.validate', $user->id) }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-boton9">Validate</button>
+                                    </form>
+                                    <form method="POST" action="{{ route('admin.user.invalidate', $user->id) }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-boton8">Invalidate</button>
+                                    </form>
+                                    <form method="POST" action="{{ route('admin.user.destroy', $user->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-boton10">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7">No users found.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                <div class="pagination-custom">
+                    {{ $users->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
 @endsection

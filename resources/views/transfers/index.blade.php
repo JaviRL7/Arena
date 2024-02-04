@@ -35,7 +35,10 @@
 
                 @foreach ($teams as $team)
                     <div class="team-container" data-league="{{ $team->league_id }}" style="display: none;">
-                        <h3 class="titulo-tabla-transfer">{{ $team->name }}</h3>
+                        <div class="logo-container2">
+                            <img src="{{ asset($team->logo) }}" alt="{{ $team->name }}" class="team-logo-small"> <!-- Logo del equipo en pequeño -->
+                        </div>                        <h3 class="titular team-name">{{ $team->name }}</h3>
+                        <hr class="team-separator"> <!-- Separador rojo -->
                         <table class="my-custom-table">
                             @php
                                 $date = \Carbon\Carbon::now()
@@ -46,13 +49,12 @@
                             @endphp
                             @foreach ($team->getPlayersDate($date) as $player)
                                 <tr>
-                                    <td><img src="{{ $player->role->icono_w }}"></td>
-                                    <td>{{ $player->nick }}</td>
-                                    <td><img src="{{ asset('material/flecha_derecha.png') }}" alt=""
-                                            class="arrow inverted"></td>
+                                    <td><img src="{{ $player->role->icono }}" class="role-icon"></td>
+                                    <td class="titular player-nick">{{ $player->nick }}</td>
+                                    <td><i class="fas fa-arrow-right fa-sm"></i></td> <!-- Icono Font Awesome con tamaño pequeño -->
                                     @foreach ($team->getPlayersDate(\Carbon\Carbon::now()->toDateString()) as $oldPlayer)
                                         @if ($oldPlayer->role->id == $player->role->id)
-                                            <td>{{ $oldPlayer->nick }}</td>
+                                            <td class="titular player-nick">{{ $oldPlayer->nick }}</td>
                                         @endif
                                     @endforeach
                                 </tr>
@@ -71,7 +73,7 @@
                         <div>
                             @if ($transfer->team_from->id == $transfer->team_to->id)
                                 <div class="mb-2">
-                                    <p class="transfer-label">Renew</p>
+                                    <p class="comentarios">Renew</p>
                                     <div class="team-info">
                                         <img src="{{ asset($transfer->team_from->logo) }}" alt="">
                                         <p>{{ $transfer->team_from->name }}</p>
@@ -79,6 +81,8 @@
                                 </div>
                             @else
                                 <div class="mb-2">
+                                    <p class="comentarios">Transfer</p>
+
                                     <p class="transfer-label">Leaves</p>
                                     <div class="team-info">
                                         <div class="status-circle bg-red-500">
@@ -102,9 +106,10 @@
                         </div>
                         <div class="player-info" @if ($transfer->team_from->id == $transfer->team_to->id) style="margin-top: 40px;" @endif>
                             <h3>{{ $transfer->player->nick }}</h3>
-                            <img src="{{ asset($transfer->player->role->icono_w) }}" alt="">
+                            <img src="{{ asset($transfer->player->role->icono) }}" alt="">
                         </div>
                     </div>
+                    <hr class="custom-hr2">
                 @endforeach
             </div>
         </div>

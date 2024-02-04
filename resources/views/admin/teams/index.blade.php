@@ -1,82 +1,94 @@
-
 @extends('layouts.plantilla_admin')
-@section('title', 'Players index')
-
+@section('title', 'Teams Index')
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection
 @section('content')
+<style>
+    /* Añade tus estilos personalizados aquí */
+</style>
 
-    <div class="container-fluid">
-        <div class="col-md-12 create-game">
-            <div style="display: flex; justify-content: space-between;">
-                <h2>Do you want to create a new team?</h2>
-                <a href="{{ route('admin.teams.create') }}" class="btn btn-primary">Create</a>
-            </div>
+<div class="container my-4">
+    <div class="row justify-content-end">
+        <div class="col-auto d-flex align-items-center">
+            <h6 class="comentarios mr-3">Do you want to create a new team?</h6>
+            <a href="{{ route('admin.teams.create') }}" class="btn btn-boton7" style="margin:0%">Create</a>
         </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="container-fluid">
         <div class="table-responsive">
-            <table class="table_crud_admin">
+            <table class="table-custom">
                 <thead>
-                    <th>Logo</th>
-                    <th>Name</th>
-                    <th>League</th>
-                    <th>Jugadores por año</th>
-                    <th>Current players</th>
-                    <th>Actions</th>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>League</th>
+                        <th>Last season roster</th>
+                        <th>Current Players</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="separator-custom"></td>
+                    </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teams as $team)
-                    <tr class="row-color">
-                        <td>
-                            <img src="{{ asset($team->logo) }}" alt="{{ $team->logo }}"
-                                class="w-36 h-auto">
-                        </td>
-                        <td>
-                            <h5>
-                                {{ $team->name }}
-                            </h5>
-                        </td>
-
-                            <td>
-                                <h5>
-                                    {{ $team->competition->name ?? '' }}
-                                </h5>
+                    @forelse ($teams as $team)
+                        <tr class="row-color">
+                            <td class="team-logo-cell">
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset($team->logo) }}" alt="{{ $team->name }}" class="team-logo">
+                                </div>
                             </td>
 
-                        <td>
-                            <h5>
-                                @foreach ($team->getPlayersByYear(2022) as $player)
-                                    {{ $player->nick }}
+                            <td class="titular">
+                                {{ $team->name }}
+                            </td>
+                            <td class="comentarios">
+                                {{ $team->competition->name ?? 'N/A' }}
+                            </td>
+                            <td class="comentarios">
+                                @foreach ($team->getPlayersByYear(2023) as $player)
+                                    {{ $player->nick }} <br>
                                 @endforeach
-                            </h5>
-                        </td>
-                        <td>
-                            <h5>
+                            </td>
+                            <td class="comentarios">
                                 @foreach ($team->getPlayersDate(\Carbon\Carbon::now())->where('pivot.substitute', false) as $player)
-                                    {{ $player->role->name }} : {{ $player->nick }} <br>
+                                    {{ $player->role->name }}: {{ $player->nick }} <br>
                                 @endforeach
-                            </h5>
-
-                            <h5>
-                                @foreach ($team->getPlayersSubstitute() as $player)
-                                Substitutes : {{ $player->nick }} <br>
-                                @endforeach
-                                <a href="{{ route('admin.teams.substitute', ['team' => $team]) }}" class="text-blue">Modificate Sustitute</a>
-                            </h5>
-                        </td>
-                        <td>
-                            <button onclick="location.href='{{ route('admin.teams.edit', ['team' => $team]) }}'" class="boton1">Modificate</button><br>
-                            <button type="button" class="boton2" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $team->id }}">
-                                Delete
-                            </button>
-                        </td>
-
-                    </tr>
-                    @include('modals.delete_team')
-
-                @endforeach
+                                @php
+                                    $substitutes = $team->getPlayersSubstitute();
+                                @endphp
+                                @if(count($substitutes) > 0)
+                                    Substitutes:
+                                    @foreach ($substitutes as $player)
+                                        {{ $player->nick }} <br>
+                                    @endforeach
+                                    <a href="{{ route('admin.teams.substitute', ['team' => $team]) }}" class="text-blue">Modificate Substitute</a>
+                                @endif
+                            </td>
+                            <td class="action-buttons">
+                                <a href="{{ route('admin.teams.edit', ['team' => $team]) }}" class="btn btn-boton7">Edit</a>
+                                <button type="button" class="btn btn-boton8" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $team->id }}">Delete</button>
+                            </td>
+                        </tr>
+                        @include('modals.delete_team')
+                    @empty
+                        <tr>
+                            <td colspan="6">No teams found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-            <div style="display: flex; justify-content: left;">
+            <div class="pagination-custom">
                 {{ $teams->links() }}
             </div>
         </div>
     </div>
+</div>
+
+<br><br>
 @endsection

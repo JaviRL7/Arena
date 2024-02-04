@@ -44,7 +44,12 @@ class SeriesController extends Controller
     }
 
 
+    public function destroy(Serie $serie)
+    {
+        $serie->delete();
 
+        return back()->with('success', 'Series deleted successfully');
+    }
 
 
 

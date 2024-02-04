@@ -29,9 +29,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Redirige al usuario a la URL previamente almacenada en la sesión, o a la ruta por defecto si no hay ninguna URL almacenada
         return redirect()->intended(RouteServiceProvider::HOME);
     }
-
+    protected function redirectTo(Request $request)
+    {
+        return session('url.intended') ?: config('fortify.home');
+    }
     /**
      * Destroy an authenticated session.
      */

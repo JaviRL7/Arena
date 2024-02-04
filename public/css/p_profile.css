@@ -211,3 +211,93 @@
     display: flex;
     flex-direction: column;
 }
+.team-profile-card-custom {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    /* Añadido para alinear imagen e información */
+    padding: 10px;
+    align-items: center;
+    /* Alinea verticalmente */
+}
+
+.team-profile-img-custom {
+    width: auto;
+    /* Ajuste para controlar el tamaño de la imagen */
+    height: 120px;
+    /* Altura fija para la imagen */
+    object-fit: cover;
+    /* Asegúrate de que la imagen cubra el área sin estirarse */
+    margin-right: 10px;
+    /* Espacio a la derecha de la imagen */
+    border-radius: 50%;
+    /* Hace que la imagen sea redonda */
+}
+
+.team-profile-body-custom {
+    text-align: left;
+    /* Texto alineado a la izquierda */
+}
+
+.team-profile-title-custom {
+    font-size: 1.2rem;
+    /* Ajusta el tamaño del título */
+    color: #333;
+    /* Color del título */
+}
+
+.team-profile-text-custom {
+    font-size: 1rem;
+    /* Ajusta el tamaño del subtítulo */
+    color: #666;
+    /* Color del subtítulo */
+}
+
+.team-profile-role-icon-custom {
+    width: 40px;
+    /* Ajusta al tamaño deseado */
+    height: 40px;
+    object-fit: contain;
+    /* Mantiene las proporciones sin recortar la imagen */
+    margin-left: 10px;
+    /* Espacio a la izquierda del icono */
+}
+
+
+
+/* Nuevo estilo para la sección de roster */
+.roster-section {
+    padding: 20px;
+}
+
+.player-item-year {
+    display: flex;
+    /* Alinea los elementos en una fila */
+    align-items: center;
+    /* Alinea verticalmente */
+    margin-bottom: 15px;
+    /* Espacio entre cada jugador */
+    padding: 10px;
+    /* Espacio dentro de cada elemento de jugador */
+    background-color: #f9f9f9;
+    /* Fondo claro para cada jugador */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+.player-info {
+    flex-grow: 1;
+    /* Permite que el contenedor de información ocupe todo el espacio disponible */
+    margin-right: 10px;
+    /* Espacio a la derecha de la información */
+}
+.serie {
+    transition: transform 0.3s ease;
+}
+
+.serie:hover {
+    transform: scale(1.01); /* Cambia esto al color que prefieras */
+}

@@ -1,0 +1,51 @@
+.table-custom {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.table-custom th {
+    background-color: #f2f2f2;
+    padding: 15px;
+    text-align: center;
+}
+
+.table-custom th, .table-custom td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+
+
+.separator-custom {
+    height: 4px;
+    background: linear-gradient(to right, #e44445, #2196f3);
+    margin-bottom: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-custom {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+.team-logo {
+    width: auto;
+    max-width: 100px; /* Máximo ancho */
+    max-height: 50px; /* Máximo alto */
+    margin-bottom: 10px; /* Espacio entre logo y nombre del equipo */
+}
+

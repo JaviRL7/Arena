@@ -11,6 +11,11 @@ class Serie extends Model
 
     public function getResultSerie()
 {
+    // Si la serie aún no se ha jugado
+    if ($this->date > now()) {
+        return "Not played yet";
+    }
+
     $games = $this->games;
 
     if ($games->isEmpty()) {
