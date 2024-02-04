@@ -1,129 +1,235 @@
 @extends('layouts.plantilla')
 
 @section('title', 'Players admin create')
+@section('scripts')
 
+@endsection
 @section('content')
-<div class="container edit-player-container">
-    <div x-data="{
-        name: '',
-        lastname1: '',
-        lastname2: '',
-        nick: '',
-        country: '',
-        birth_date: '',
-        role_id: '',
-        role_name: '',
-        photoData: '',
-        imgData: '',
-        photoPreview() {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                this.photoData = e.target.result;
-            };
-            reader.readAsDataURL(this.$refs.photo.files[0]);
-        },
-        imgPreview() {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                this.imgData = e.target.result;
-            };
-            reader.readAsDataURL(this.$refs.img.files[0]);
-        },
-        updateRoleName() {
-            const selectedRole = this.$refs.roleSelect.options[this.$refs.roleSelect.selectedIndex];
-            this.role_name = selectedRole.text;
-        }
-    }">
-        <!-- Preview -->
-        <div>
-            <h2>Preview:</h2>
-            <p>Name: <span x-text="name"></span></p>
-            <p>First Lastname: <span x-text="lastname1"></span></p>
-            <p>Second Lastname: <span x-text="lastname2"></span></p>
-            <p>Nick: <span x-text="nick"></span></p>
-            <p>Country: <span x-text="country"></span></p>
-            <p>Birth Date: <span x-text="birth_date"></span></p>
-            <p>Role: <span x-text="role_name"></span></p>
-            <img x-show="photoData" :src="photoData" style="width: 100px;">
-            <img x-show="imgData" :src="imgData" style="width: 100px;">
-        </div>
-        <!-- Form -->
-        <form action="{{ route('admin.players.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-crud" style="background-color: white; border: 2px solid #e44445; border-radius: 15px; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                <!-- Left Column -->
-                <div class="separador" style="flex: 1 0 45%; margin: 20px; padding-right: 10px; border-right: 1px solid #000;">
-                    <div class="form-group row">
-                        <label for="name" class="label-crud">Name</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="name" class="input-crud" x-model="name">
+    <div class="container mt-5" style="min-height: 80vh">
+        <div x-data="playerData()" class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="p-4 shadow-sm">
+                    <div class="mb-4">
+                        <h1 class="titular subrayado">Create Player</h1>
+                        <!-- Imagen de cabecera (fondo) -->
+                        <div class="player-header mb-4"
+                            style="background-image: url('{{ asset('default-background.jpg') }}');" x-show="imgData">
+                            <img :src="imgData" alt="Player Background" class="img-fluid w-100"
+                                style="height: 200px; object-fit: cover;">
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="lastname1" class="label-crud">First Lastname</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="lastname1" class="input-crud" x-model="lastname1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Foto del jugador y detalles -->
+                            <div class="d-flex align-items-center">
+                                <div class="player-photo mr-3" x-show="photoData"
+                                    style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%; background: #fff;">
+                                    <img :src="photoData" alt="Player Photo" class="img-fluid"
+                                        style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h2 x-text="nick" class="titular"></h2>
+                                    <p x-text="name" class="subtitular"></p>
+                                    <p x-text="lastname1" class="comentarios"></p>
+                                    <p x-text="lastname2" class="comentarios"></p>
+                                    <p x-text="country" class="comentarios"></p>
+                                    <p x-text="birth_date" class="comentarios"></p>
+                                    <p x-text="role_name" class="comentarios"></p>
+                                </div>
+                            </div>
                         </div>
+                        <hr class="custom-hr">
                     </div>
-                    <div class="form-group row">
-                        <label for="lastname2" class="label-crud">Second Lastname</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="lastname2" class="input-crud" x-model="lastname2">
+
+
+
+                    <form id="playerForm" action="{{ route('admin.players.store') }}" method="POST"
+                        enctype="multipart/form-data" class="mt-4">
+                        @csrf
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6 pr-md-2">
+                                <div class="form-group mb-3">
+                                    <label for="name" class="form-label titular">Name</label>
+                                    <input type="text" id="name" name="name" class="form-control rounded-lg"
+                                        x-model="name">
+                                    <span id="nameError" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="lastname1" class="form-label titular">First Lastname</label>
+                                    <input type="text" id="lastname1" name="lastname1" class="form-control rounded-lg" x-model="lastname1">
+                                    <span id="lastname1Error" class="text-danger"></span> <!-- Cambiado a lastname1Error -->
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="lastname2" class="form-label titular">Second Lastname</label>
+                                    <input type="text" id="lastname2" name="lastname2" class="form-control rounded-lg" x-model="lastname2">
+                                    <span id="lastname2Error" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="nick" class="form-label titular">Nick</label>
+                                    <input type="text" id="nick" name="nick" class="form-control rounded-lg"
+                                        x-model="nick">
+                                    <span id="nickError" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="photo" class="form-label titular">Photo</label>
+                                    <input type="file" id="photo" name="photo" accept="image/*" class="form-control rounded-lg" x-ref="photo" @change="photoPreview">
+                                    <span id="photoError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <!-- Right Column -->
+                            <div class="col-md-6 pl-md-2">
+                                <div class="form-group mb-3">
+                                    <label for="country" class="form-label titular">Country</label>
+                                    <input type="text" id="country" name="country" class="form-control rounded-lg" x-model="country">
+                                    <span id="countryError" class="text-danger"></span> <!-- Agregado para mostrar errores del campo country -->
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="birth_date" class="form-label titular">Birth Date</label>
+                                    <input type="date" id="birth_date" name="birth_date" class="form-control rounded-lg" x-model="birth_date">
+                                    <span id="birthDateError" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="role_id" class="form-label titular">Role</label>
+                                    <select id="role_id" name="role_id" class="form-control rounded-lg"
+                                        x-model="role_id" @change="updateRoleName" x-ref="roleSelect">
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="img" class="form-label titular">Header photo</label>
+                                    <input type="file" id="img" name="img" accept="image/*" class="form-control rounded-lg" x-ref="img" @change="imgPreview">
+                                    <span id="imgError" class="text-danger"></span>
+                                </div>
+                                <div class="d-grid gap-2 mt-4">
+                                    <button id="submitBtn" type="submit" class="btn btn-boton7">Crear Jugador</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nick" class="label-crud">Nick</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="nick" class="input-crud" x-model="nick">
-                        </div>
-                    </div>
+                    </form>
                 </div>
-                <!-- Right Column -->
-                <div class="separador" style="flex: 1 0 45%; margin: 20px; padding-left: 10px;">
-                    <div class="form-group row">
-                        <label for="country" class="label-crud">Country</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="country" class="input-crud" x-model="country">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="birth_date" class="label-crud">Birth Date</label>
-                        <div class="col-sm-10">
-                            <input type="date" name="birth_date" class="input-crud rounded-lg" x-model="birth_date">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="role_id" class="label-crud">Role</label>
-                        <div class="col-sm-10">
-                            <select name="role_id" class="input-crud rounded-lg" x-model="role_id" @change="updateRoleName" x-ref="roleSelect">
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">
-                                        {{ $role->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="photo" class="label-crud">Photo</label>
-                        <div class="col-sm-10 archivo mi-div-unico">
-                            <input type="file" name="photo" accept="image/*" class="input-crud rounded-lg" x-ref="photo" @change="photoPreview" id="file-input" style="display: none;">
-                            <label for="file-input" style="color: #e44445; cursor: pointer;">Select a file</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="img" class="label-crud">Img</label>
-                        <div class="col-sm-10 archivo mi-div-unico">
-                            <input type="file" name="img" accept="image/*" class="input-crud rounded-lg" x-ref="img" @change="imgPreview" id="file-input-img" style="display: none;">
-                            <label for="file-input-img" style="color: #e44445; cursor: pointer;">Select a file</label>
-                        </div>
-                    </div>
-                </div>
-                <div style="width: 100%; text-align: center; margin-top: 20px;">
-                    <button type="submit" class="btn" style="background-color: white; color: #e44445; border: 2px solid #e44445; margin-left: 165px;">Create</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
     <br>
-    @endsection
+    <script>
+        function playerData() {
+            return {
+                name: '',
+                lastname1: '',
+                lastname2: '',
+                nick: '',
+                country: '',
+                birth_date: '',
+                role_id: '',
+                role_name: '',
+                photoData: '',
+                imgData: '',
+                photoPreview(event) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.photoData = e.target.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                },
+                imgPreview(event) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.imgData = e.target.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                },
+                updateRoleName(event) {
+                    const selectedRole = this.$refs.roleSelect.options[this.$refs.roleSelect.selectedIndex];
+                    this.role_name = selectedRole.text;
+                }
+            }
+        }
+    </script>
+<script>
+document.getElementById('playerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const lastname1 = document.getElementById('lastname1').value;
+
+    const lastname2 = document.getElementById('lastname2').value;
+
+    const nick = document.getElementById('nick').value;
+    const country = document.getElementById('country').value;
+
+
+    const birth_date = document.getElementById('birth_date').value;
+    const photo = document.getElementById('photo').files.length;
+    const img = document.getElementById('img').files.length;
+
+    const digitPattern = /\d/;
+    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/g;
+    const spacePattern = /\s/;
+
+    let isValid = true;
+
+    if (digitPattern.test(name) || specialCharPattern.test(name) || spacePattern.test(name)) {
+        document.getElementById('nameError').textContent = 'Name cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('nameError').textContent = '';
+    }
+
+    if (digitPattern.test(lastname1) || specialCharPattern.test(lastname1) || spacePattern.test(lastname1)) {
+        document.getElementById('lastname1Error').textContent = 'First Lastname cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('lastname1Error').textContent = '';
+    }
+
+
+    if (nick.length < 3 || nick.length > 15) {
+        document.getElementById('nickError').textContent = 'Nick must be between 3 and 15 characters.';
+        isValid = false;
+    } else {
+        document.getElementById('nickError').textContent = '';
+    }
+
+    if (digitPattern.test(country)) {
+        document.getElementById('countryError').textContent = 'Country cannot contain digits.';
+        isValid = false;
+    } else {
+        document.getElementById('countryError').textContent = '';
+    }
+
+
+    if (lastname2 && (digitPattern.test(lastname2) || specialCharPattern.test(lastname2) || spacePattern.test(lastname2))) {
+        document.getElementById('lastname2Error').textContent = 'Second Lastname cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('lastname2Error').textContent = '';
+    }
+    if (!birth_date) {
+        document.getElementById('birthDateError').textContent = 'Birth Date must be selected.';
+        isValid = false;
+    } else {
+        document.getElementById('birthDateError').textContent = '';
+    }
+
+    if (photo === 0) {
+        document.getElementById('photoError').textContent = 'A photo must be selected.';
+        isValid = false;
+    } else {
+        document.getElementById('photoError').textContent = '';
+    }
+
+    if (img === 0) {
+        document.getElementById('imgError').textContent = 'An image must be selected.';
+        isValid = false;
+    } else {
+        document.getElementById('imgError').textContent = '';
+    }
+    if (isValid) {
+        event.target.submit();
+    }
+});
+
+</script>
+@endsection

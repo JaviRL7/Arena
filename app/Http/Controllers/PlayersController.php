@@ -239,7 +239,6 @@ public function store(Request $request)
     return redirect()->route('admin.players.index')->with('success', 'Se ha creado el player con éxito.');
 }
 
-
 public function updateFavorites(Request $request, Player $player)
 {
     $user = Auth::user(); // obtén el usuario actualmente autenticado
