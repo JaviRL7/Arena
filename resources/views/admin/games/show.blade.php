@@ -33,9 +33,10 @@
         @csrf
         @method('PUT')
         <h1 class="titulos">Winner of the game</h1>
+        <hr class="custom-hr2">
         <div class="custom-div">
-            <div>
-                <label for="team_blue_id">Blue side team:</label>
+            <div class="titular">
+                <label for="team_blue_id" class="titular">Blue side team:</label>
                 <select name="team_blue_id" id="team_blue_id">
                     @php
                         $team1 = $game->serie->team_1;
@@ -49,17 +50,17 @@
                     </option>
                 </select>
             </div>
-            <div class="selector">
+            <div class="selector titular">
 
                 <div class="switch">
-                    <label>
+                    <label >
                         <input type="checkbox" id="resultToggle">
                         <span class="slider round"></span>
                     </label>
                 </div>
             </div>
-            <div>
-                <label for="team_red_id">red side team:</label>
+            <div class="titular">
+                <label for="team_red_id" class="titular">red side team:</label>
                 <select name="team_red_id" id="team_red_id">
                     @php
                         $team1 = $game->serie->team_1;
@@ -73,8 +74,8 @@
                     </option>
                 </select>
             </div>
-            <div>
-                <label for="number">Map number:</label>
+            <div class="titular">
+                <label for="number" class="titular">Map number:</label>
                 <input type="number" id="number" name="number" value="{{ $game->number }}">
             </div>
 
@@ -83,8 +84,9 @@
 
         </div>
         <h1 class="titulos">Ban phase</h1>
+        <hr class="custom-hr2">
 
-        <div class="ban_phase_container">
+        <div class="ban_phase_container titular">
             <div class="ban_phase_blue">
                 @for ($i = 1; $i <= 5; $i++)
                     <div>
@@ -123,9 +125,10 @@
 
 
         <h1 class="titulos">Game data</h1>
+        <hr class="custom-hr2">
 
-        <div class="my-table-container">
-            <table class="my-table">
+        <div class="table-responsive" style="margin-left: 15%; margin-right: 15%;">
+            <table class="table">
                 <tbody>
                     @foreach ($players_blue as $player_blue)
                         <tr class="align-middle">
@@ -134,8 +137,8 @@
                                     class="w-36 h-36 object-cover rounded-full">
                             </td>
                             <td>
-                                <div class="">{{ $player_blue->nick }}<br>
-                                    <span class="text-gray-500">{{ $player_blue->name }}
+                                <div class="titular">{{ $player_blue->nick }}<br>
+                                    <span class="comentarios">{{ $player_blue->name }}
                                         {{ $player_blue->lastname1 }}
                                     </span>
                                 </div>
@@ -147,14 +150,13 @@
                                         class="w-14 h-14 object-cover rounded-full">
                                 </div>
                             </td>
-
                             <td>
-                                <label for="champion">Champion:</label>
+                                <label for="champion" class="subtitular">Champion:</label>
                             </td>
                             <td>
-                                <select name="players[{{ $player_blue->id }}][champion]" id="champion">
+                                <select class="comentarios" name="players[{{ $player_blue->id }}][champion]" id="champion">
                                     @foreach ($champions as $champion)
-                                        <option value="{{ $champion->id }}"
+                                        <option class="comentarios" value="{{ $champion->id }}"
                                             {{ $champion->id == $player_blue->games->where('id', $game->id)->first()->pivot->champion->id ? 'selected' : '' }}>
                                             {{ $champion->name }}
                                         </option>
@@ -162,24 +164,24 @@
                                 </select>
                             </td>
                             <td>
-                                <label for="kills">Kills:</label>
+                                <label class="comentarios" for="kills">Kills:</label>
                             </td>
                             <td>
-                                <input type="number" id="kills" name="players[{{ $player_blue->id }}][kills]"
+                                <input class="comentarios" type="number" id="kills" name="players[{{ $player_blue->id }}][kills]"
                                     value="{{ $player_blue->games->where('id', $game->id)->first()->pivot->kills }}">
                             </td>
                             <td>
-                                <label for="assists">Assists:</label>
+                                <label class="comentarios" for="assists">Assists:</label>
                             </td>
                             <td>
-                                <input type="number" id="assists" name="players[{{ $player_blue->id }}][assists]"
+                                <input class="comentarios" type="number" id="assists" name="players[{{ $player_blue->id }}][assists]"
                                     value="{{ $player_blue->games->where('id', $game->id)->first()->pivot->deaths }}">
                             </td>
                             <td>
-                                <label for="deaths">Deaths:</label>
+                                <label class="comentarios"  for="deaths">Deaths:</label>
                             </td>
                             <td>
-                                <input type="number" id="deaths" name="players[{{ $player_blue->id }}][deaths]"
+                                <input class="comentarios" type="number" id="deaths" name="players[{{ $player_blue->id }}][deaths]"
                                     value="{{ $player_blue->games->where('id', $game->id)->first()->pivot->assists }}">
                             </td>
                         </tr>
@@ -190,8 +192,8 @@
 
         <br>
         <br>
-        <div class="my-table-container">
-            <table class="my-table">
+        <div class="table-responsive" style="margin-left: 15%; margin-right: 15%;">
+            <table class="table">
                 <tbody>
                     @foreach ($players_red as $player_red)
                         <tr class="align-middle">
@@ -200,8 +202,8 @@
                                     class="w-36 h-36 object-cover rounded-full">
                             </td>
                             <td>
-                                <div class="">{{ $player_red->nick }}<br>
-                                    <span class="text-gray-500">{{ $player_red->name }}
+                                <div class="titular">{{ $player_red->nick }}<br>
+                                    <span class="comentarios">{{ $player_red->name }}
                                         {{ $player_red->lastname1 }}
                                     </span>
                                 </div>
@@ -209,18 +211,17 @@
                             <td>
                                 <div class="">
                                     <img src="{{ asset($player_red->games->where('id', $game->id)->first()->pivot->champion->square) }}"
-                                        alt="{{ $player_red->games->where('id', $game->id)->first()->pivot->champion->name  }}"
+                                        alt="{{ $player_red->games->where('id', $game->id)->first()->pivot->champion->name }}"
                                         class="w-14 h-14 object-cover rounded-full">
                                 </div>
                             </td>
-
                             <td>
-                                <label for="champion">Champion:</label>
+                                <label for="champion" class="subtitular">Champion:</label>
                             </td>
                             <td>
-                                <select name="players[{{ $player_red->id }}][champion]" id="champion">
+                                <select class="comentarios" name="players[{{ $player_red->id }}][champion]" id="champion">
                                     @foreach ($champions as $champion)
-                                        <option value="{{ $champion->id }}"
+                                        <option class="comentarios" value="{{ $champion->id }}"
                                             {{ $champion->id == $player_red->games->where('id', $game->id)->first()->pivot->champion->id ? 'selected' : '' }}>
                                             {{ $champion->name }}
                                         </option>
@@ -228,24 +229,24 @@
                                 </select>
                             </td>
                             <td>
-                                <label for="kills">Kills:</label>
+                                <label class="comentarios" for="kills">Kills:</label>
                             </td>
                             <td>
-                                <input type="number" id="kills" name="players[{{ $player_red->id }}][kills]"
+                                <input class="comentarios" type="number" id="kills" name="players[{{ $player_red->id }}][kills]"
                                     value="{{ $player_red->games->where('id', $game->id)->first()->pivot->kills }}">
                             </td>
                             <td>
-                                <label for="assists">Assists:</label>
+                                <label class="comentarios" for="assists">Assists:</label>
                             </td>
                             <td>
-                                <input type="number" id="assists" name="players[{{ $player_red->id }}][assists]"
+                                <input class="comentarios" type="number" id="assists" name="players[{{ $player_red->id }}][assists]"
                                     value="{{ $player_red->games->where('id', $game->id)->first()->pivot->deaths }}">
                             </td>
                             <td>
-                                <label for="deaths">Deaths:</label>
+                                <label class="comentarios"  for="deaths">Deaths:</label>
                             </td>
                             <td>
-                                <input type="number" id="deaths" name="players[{{ $player_red->id }}][deaths]"
+                                <input class="comentarios" type="number" id="deaths" name="players[{{ $player_red->id }}][deaths]"
                                     value="{{ $player_red->games->where('id', $game->id)->first()->pivot->assists }}">
                             </td>
                         </tr>
@@ -255,11 +256,11 @@
         </div>
         <br>
         <br>
-        <div class="custom-div">
-            <h1>
+        <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 50px">
+            <h1 class="comentarios mr-3">
                 Update game data
             </h1>
-            <input type="submit" value="Update">
+            <input type="submit" value="Update" class="btn btn-boton7" style="margin: 0%; margin-left:10px">
         </div>
     </form>
     </div>

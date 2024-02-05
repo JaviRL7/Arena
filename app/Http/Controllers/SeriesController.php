@@ -52,9 +52,26 @@ class SeriesController extends Controller
     }
 
 
+    public function getAvailableMapNumbers($serieId) {
+        $serie = Serie::with('games')->find($serieId);  // Asegúrate de tener una relación games en el modelo Serie
+        $existingNumbers = $serie->games->pluck('number')->all(); // Obtén los números de mapa existentes
 
+        $maxMaps = 1; // Por defecto para bo1
+        if ($serie->type == 'bo3') {
+            $maxMaps = 3;
+        } elseif ($serie->type == 'bo5') {
+            $maxMaps = 5;
+        }
 
+        $availableNumbers = [];
+        for ($i = 1; $i <= $maxMaps; $i++) {
+            if (!in_array($i, $existingNumbers)) {
+                $availableNumbers[] = $i;  // Agrega el número si no está en la lista de existentes
+            }
+        }
 
+        return $availableNumbers;
+    }
 
 
     public function getPlayerNames(Serie $serie, Request $request)

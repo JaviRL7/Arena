@@ -74,14 +74,20 @@
                                 <p class="comentarios">{{ $game->number }}</p>
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('admin.games.show', ['game' => $game]) }}" class="btn btn-boton7 mb-2 d-block">Edit</a>
-                                <a href="{{ route('admin.series.edit', ['serie' => $serie]) }}" class="btn btn-boton8 d-block">Delete</a>
+                                <a href="{{ route('admin.games.show', ['game' => $game]) }}" class="btn btn-boton7 btn-block">Edit</a>
+                                <button type="button" class="btn btn-boton8 btn-block" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                             </td>
                         </tr>
+                        @include('modals.delete_game')
                     @endforeach
                 </tbody>
             </table>
         </div>
+
+
+@if($serie->canAddGame())
+<a href="{{ route('admin.games.create', ['serie' => $serie->id]) }}" class="btn btn-boton7">Add Game</a>
+    @endif
     </div>
     </div>
     </div>

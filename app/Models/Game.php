@@ -11,11 +11,24 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ban1_blue_id', 'ban2_blue_id', 'ban3_blue_id', 'ban4_blue_id', 'ban5_blue_id',
-        'ban1_red_id', 'ban2_red_id', 'ban3_red_id', 'ban4_red_id', 'ban5_red_id',
-
+        'team_blue_id',
+        'team_red_id',
+        'serie_id',
+        'number',
+        'team_blue_result',
+        'team_red_result',
+        'ban1_blue',
+        'ban2_blue',
+        'ban3_blue',
+        'ban4_blue',
+        'ban5_blue',
+        'ban1_red',
+        'ban2_red',
+        'ban3_red',
+        'ban4_red',
+        'ban5_red',
+        // otros campos que necesites...
     ];
-
     public function serie() {
         return $this->belongsTo(Serie::class, 'serie_id');
     }
@@ -63,6 +76,28 @@ class Game extends Model
     {
         return $this->belongsTo(Champion::class, 'ban5_red');
     }
+
+    public function getAvailableMapNumbers($serieId) {
+        $serie = Serie::with('games')->find($serieId);  // Asegúrate de tener una relación games en el modelo Serie
+        $existingNumbers = $serie->games->pluck('number')->all(); // Obtén los números de mapa existentes
+
+        $maxMaps = 1; // Por defecto para bo1
+        if ($serie->type == 'bo3') {
+            $maxMaps = 3;
+        } elseif ($serie->type == 'bo5') {
+            $maxMaps = 5;
+        }
+
+        $availableNumbers = [];
+        for ($i = 1; $i <= $maxMaps; $i++) {
+            if (!in_array($i, $existingNumbers)) {
+                $availableNumbers[] = $i;  // Agrega el número si no está en la lista de existentes
+            }
+        }
+
+        return $availableNumbers;
+    }
+
 
 
     public function players()

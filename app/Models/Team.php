@@ -34,6 +34,26 @@ class Team extends Model
 {
     return \App\Models\User::where('favorite_team', $this->id)->get();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getPlayers()
     {
         $today = Carbon::now()->format('Y-m-d');

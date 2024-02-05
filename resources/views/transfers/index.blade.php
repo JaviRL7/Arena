@@ -36,8 +36,10 @@
                 @foreach ($teams as $team)
                     <div class="team-container" data-league="{{ $team->league_id }}" style="display: none;">
                         <div class="logo-container2">
-                            <img src="{{ asset($team->logo) }}" alt="{{ $team->name }}" class="team-logo-small"> <!-- Logo del equipo en pequeño -->
-                        </div>                        <h3 class="titular team-name">{{ $team->name }}</h3>
+                            <img src="{{ asset($team->logo) }}" alt="{{ $team->name }}" class="team-logo-small">
+                            <!-- Logo del equipo en pequeño -->
+                        </div>
+                        <h3 class="titular team-name">{{ $team->name }}</h3>
                         <hr class="team-separator"> <!-- Separador rojo -->
                         <table class="my-custom-table">
                             @php
@@ -51,9 +53,10 @@
                                 <tr>
                                     <td><img src="{{ $player->role->icono }}" class="role-icon"></td>
                                     <td class="titular player-nick">{{ $player->nick }}</td>
-                                    <td><i class="fas fa-arrow-right fa-sm"></i></td> <!-- Icono Font Awesome con tamaño pequeño -->
+                                    <td><i class="fas fa-arrow-right fa-sm"></i></td>
+                                    <!-- Icono Font Awesome con tamaño pequeño -->
                                     @foreach ($team->getPlayersDate(\Carbon\Carbon::now()->toDateString()) as $oldPlayer)
-                                        @if ($oldPlayer->role->id == $player->role->id)
+                                        @if ($oldPlayer->role->id == $player->role->id && $oldPlayer->pivot->substitute == false)
                                             <td class="titular player-nick">{{ $oldPlayer->nick }}</td>
                                         @endif
                                     @endforeach

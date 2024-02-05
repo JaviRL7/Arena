@@ -138,7 +138,14 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/games/{game}/show', [GamesController::class, 'show'])->name('admin.games.show');
     //hacer con modal
     Route::get('/games/{game}/edit_result', [GamesController::class, 'edit_result'])->name('admin.games.edit_result');
-    Route::get('/games/create', [GamesController::class, 'create'])->name('admin.games.create');
+
+
+
+    Route::get('/games/create/{serie}', [GamesController::class, 'create'])->name('admin.games.create');
+
+
+    Route::post('/games', [GamesController::class, 'create_game'])->name('admin.games.create_game');
+
 
     Route::get('/games/{game}/edit', [GamesController::class, 'edit'])->name('admin.games.edit');
     Route::put('/games/{game}/edit', [GamesController::class, 'update'])->name('admin.games.update');

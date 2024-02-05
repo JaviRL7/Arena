@@ -43,8 +43,8 @@
                         <hr class="custom-hr">
 
                         <!-- Formulario de edición -->
-                        <form action="{{ route('admin.players.update', $player) }}" method="POST"
-                            enctype="multipart/form-data" class="mt-4">
+                        <form id="playerForm" action="{{ route('admin.players.update', $player) }}" method="POST" enctype="multipart/form-data" class="mt-4">
+
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -55,21 +55,28 @@
                                         <label for="name" class="form-label titular">Name</label>
                                         <input type="text" id="name" name="name" class="form-control rounded-lg"
                                             x-model="name">
+                                            <div id="nameError" class="text-danger"></div>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="lastname1" class="form-label titular">First Lastname</label>
                                         <input type="text" id="lastname1" name="lastname1"
                                             class="form-control rounded-lg" x-model="lastname1">
+                                            <div id="lastname1Error" class="text-danger"></div>
+
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="lastname2" class="form-label titular">Second Lastname</label>
                                         <input type="text" id="lastname2" name="lastname2"
                                             class="form-control rounded-lg" x-model="lastname2">
+                                            <div id="lastname2Error" class="text-danger"></div>
+
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="nick" class="form-label titular">Nick</label>
                                         <input type="text" id="nick" name="nick" class="form-control rounded-lg"
                                             x-model="nick">
+                                            <div id="nickError" class="text-danger"></div>
+
                                     </div>
                                 </div>
                                 <!-- Right Column -->
@@ -78,6 +85,9 @@
                                         <label for="country" class="form-label titular">Country</label>
                                         <input type="text" id="country" name="country" class="form-control rounded-lg"
                                             x-model="country">
+                                            <div id="countryError" class="text-danger"></div>
+
+
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="birth_date" class="form-label titular">Birth Date</label>
@@ -101,6 +111,7 @@
                                         <input type="file" id="photo" name="photo" accept="image/*"
                                             class="form-control rounded-lg" x-ref="photo" x-on:change="photoPreview">
                                     </div>
+
                                     <div class="form-group mb-3">
                                         <label for="img" class="form-label titular">Background photo</label>
                                         <input type="file" id="img" name="img" accept="image/*"
@@ -118,6 +129,65 @@
         </div>
     </div>
     <br>
+    <script>
+        document.getElementById('playerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const lastname1 = document.getElementById('lastname1').value;
+    const lastname2 = document.getElementById('lastname2').value;
+    const nick = document.getElementById('nick').value;
+    const country = document.getElementById('country').value;
+
+
+    const digitPattern = /\d/;
+    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/g;
+    const spacePattern = /\s/;
+
+    let isValid = true;
+
+    if (digitPattern.test(name) || specialCharPattern.test(name) || spacePattern.test(name)) {
+        document.getElementById('nameError').textContent = 'Name cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('nameError').textContent = '';
+    }
+
+    if (digitPattern.test(lastname1) || specialCharPattern.test(lastname1) || spacePattern.test(lastname1)) {
+        document.getElementById('lastname1Error').textContent = 'First Lastname cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('lastname1Error').textContent = '';
+    }
+
+    if (nick.length < 3 || nick.length > 15) {
+        document.getElementById('nickError').textContent = 'Nick must be between 3 and 15 characters.';
+        isValid = false;
+    } else {
+        document.getElementById('nickError').textContent = '';
+    }
+
+    if (digitPattern.test(country)) {
+        document.getElementById('countryError').textContent = 'Country cannot contain digits.';
+        isValid = false;
+    } else {
+        document.getElementById('countryError').textContent = '';
+    }
+
+    if (lastname2 && (digitPattern.test(lastname2) || specialCharPattern.test(lastname2) || spacePattern.test(lastname2))) {
+        document.getElementById('lastname2Error').textContent = 'Second Lastname cannot contain digits, special characters or spaces.';
+        isValid = false;
+    } else {
+        document.getElementById('lastname2Error').textContent = '';
+    }
+
+
+    // If all validations pass, submit the form
+    if (isValid) {
+        event.target.submit();
+    }
+});
+    </script>
     <script>
         function playerData() {
             return {

@@ -70,13 +70,12 @@
                                         @csrf
                                         <button type="submit" class="btn btn-boton8">Invalidate</button>
                                     </form>
-                                    <form method="POST" action="{{ route('admin.user.destroy', $user->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-boton10">Delete</button>
-                                    </form>
+                                    <button type="button" class="btn btn-boton10" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
+                            @include('modals.delete_user')
                         @empty
                             <tr>
                                 <td colspan="7">No users found.</td>

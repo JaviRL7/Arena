@@ -2402,7 +2402,7 @@ input:checked + .slider:before {
     padding-right: 7px;
 }
 .btn-boton10 {
-    background-color: #181414 !important; /* Color gris oscuro */
+    background-color: #383535 !important; /* Color gris oscuro */
     color: white !important; /* Letras en blanco */
     font-family: 'mol' !important; /* Fuente Mol */
     border-color: whitesmoke !important; /* Color de borde para botón tipo outline */
