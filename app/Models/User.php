@@ -36,7 +36,8 @@ class User extends Authenticatable
         'favorite_player3',
         'favorite_player4',
         'favorite_player5',
-        'favorite_team'
+        'favorite_team',
+        'bio'
     ];
 
     /**
@@ -99,14 +100,25 @@ class User extends Authenticatable
      * Obtiene el equipo favorito del usuario.
      */
     public function getFavoriteTeam()
-    {
-        return $this->favorite_team;
-    }
+{
+    return Team::find($this->favorite_team);
+}
+
 
     public function hasMaxFavoritePlayers()
 {
     // Verifica si todos los campos de jugadores favoritos están llenos
     return $this->favorite_player1 && $this->favorite_player2 && $this->favorite_player3 && $this->favorite_player4 && $this->favorite_player5;
+}
+public function hasFavoriteTeamWithLogo()
+{
+    $favoriteTeam = $this->getFavoriteTeam();
+
+    if ($favoriteTeam && $favoriteTeam->logo) {
+        return true;
+    }
+
+    return false;
 }
 
 public function setFavoritePlayers($playerIds)

@@ -107,3 +107,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+$('#correctGuessModal').on('shown.bs.modal', function () {
+    confetti.render();
+
+    // Calcula los puntos ganados basándote en el número de pistas utilizadas
+    var pointsEarned = 0;
+    switch (clueIndex - 1) {
+        case 0:
+            pointsEarned = 100;
+            break;
+        case 1:
+            pointsEarned = 10;
+            break;
+        case 2:
+            pointsEarned = 9;
+            break;
+        case 3:
+            pointsEarned = 8;
+            break;
+        case 4:
+            pointsEarned = 5;
+            break;
+        case 5:
+            pointsEarned = 1;
+            break;
+    }
+
+    // Actualiza el elemento con los puntos ganados
+    $('#pointsEarned').text('You win ' + pointsEarned + ' Gumlin points!');
+})

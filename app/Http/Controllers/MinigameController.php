@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class MinigameController extends Controller
 {
     public function index() {
@@ -70,8 +71,11 @@ class MinigameController extends Controller
 
 
 
-    public function updatePoints(Request $request, User $user)
+    public function updatePoints(Request $request)
 {
+    // Obtén el usuario actualmente autenticado
+    $user = Auth::user();
+
     // Obtén el número de pistas utilizadas desde la solicitud
     $cluesUsed = $request->input('cluesUsed');
 

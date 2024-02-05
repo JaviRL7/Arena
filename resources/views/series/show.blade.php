@@ -13,11 +13,11 @@
     <div class="row">
         <div class="col-md-12">
             @if (session('alert'))
-            <script>
-                // Muestra el mensaje de alerta
-                alert('{{ session('alert') }}');
-            </script>
-        @endif
+                <script>
+                    // Muestra el mensaje de alerta
+                    alert('{{ session('alert') }}');
+                </script>
+            @endif
 
 
             <div class="serie-info">
@@ -67,12 +67,11 @@
 
                 @endphp
                 @foreach ($players_blue as $player_blue)
-                @include('modals.vote', ['reviews' => $reviews])
-            @endforeach
-            @foreach ($players_red as $player_red)
-                @include('modals.vote2', ['reviews' => $reviews])
-            @endforeach
-
+                    @include('modals.vote', ['reviews' => $reviews])
+                @endforeach
+                @foreach ($players_red as $player_red)
+                    @include('modals.vote2', ['reviews' => $reviews])
+                @endforeach
             @endforeach
             @if ($serie->games->count() > 0)
                 <h1 class="titulo titulo-serie">Game Data</h1>
@@ -122,14 +121,18 @@
     </div>
 
     <div class="row">
-        <x-comment-form :serie="$serie" />
+        @if (Auth::user()->validated)
+            <x-comment-form :serie="$serie" />
+        @else
+            <p class="comentarios text-center">You are temporarily banned from participating in the chat.</p>
+        @endif
         <x-comment-display :comments="$serie->comments" />
     </div>
 </div>
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/serie/show.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/profile/general.js') }}"></script>
+
 
     <script src="/js/profile/validation/review.js"></script>
 

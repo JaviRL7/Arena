@@ -10,7 +10,7 @@
 @endsection
 @section('content')
 
-    <div class="container-fluid ">
+    <div class="container-fluid " style="min-height: 100vh">
         <div class="row">
             <div class="col-12">
 
@@ -19,8 +19,7 @@
                     <div class="profile-header-new"
                         @if ($user->user_header_photo) style="background: url('{{ asset($user->user_header_photo) }}') no-repeat center center / cover;"
                         @else
-                            style="background-color: #333333;"
-                        @endif>
+                            style="background-color: #333333;" @endif>
 
                     </div>
 
@@ -38,16 +37,17 @@
                                         ->user()
                                         ->isFollowing($user);
                                 @endphp
-                                <form action="{{ $userFollowing ? route('unfollow', $user->id) : route('follow', $user->id) }}"
+                                <form
+                                    action="{{ $userFollowing ? route('unfollow', $user->id) : route('follow', $user->id) }}"
                                     method="POST" class="d-inline">
-                                  @csrf
-                                  @if($userFollowing)
-                                      @method('DELETE')
-                                  @endif
-                                  <button type="submit" class="btn-boton6" style="margin: 0%">
-                                      {{ $userFollowing ? 'Unfollow' : 'Follow' }}
-                                  </button>
-                              </form>
+                                    @csrf
+                                    @if ($userFollowing)
+                                        @method('DELETE')
+                                    @endif
+                                    <button type="submit" class="btn-boton6" style="margin: 0%">
+                                        {{ $userFollowing ? 'Unfollow' : 'Follow' }}
+                                    </button>
+                                </form>
                             @endif
                         </span>
 
@@ -67,11 +67,18 @@
                                     <i class="fas fa-birthday-cake"></i> {{ date('F jS', strtotime($user->birth_date)) }}
                                 </p>
                             @endif
+                            <p class="user-points">
+                                <i class="fas fa-star"></i> {{ $user->points }}
+                            </p>
+                            @if (Auth::user()->validated)
+                                <p class="text-success"><i class="fas fa-check-circle"></i> Validated</p>
+                            @else
+                                <p class="text-danger"><i class="fas fa-exclamation-triangle"></i> Banned account.</p>
+                            @endif
                         </div>
                         @if ($user->bio)
                             <p class="user-bio comentarios">
-                                {{ Str::limit($user->bio, 200) }} <
-                            </p>
+                                {{ Str::limit($user->bio, 200) }}</p>
                         @endif
                         <div class="user-follow-stats">
                             <a href="#" id="followers-link" class="profile-link-item">
@@ -83,6 +90,14 @@
                                 <span class="comentarios" style="margin: 5px">Following </span> <span
                                     class="titular">{{ $user->followingCount() }}</span>
                             </a>
+                            @if ($user->hasFavoriteTeamWithLogo())
+                            <div class="favorite-team-logo" style="display: flex; align-items: center; margin-left: 10px;">
+                                <img src="{{ asset($user->getFavoriteTeam()->logo) }}" alt="Favorite Team Logo" style="height: 30px;">
+                                <span class="titular">{{ '#' . $user->getFavoriteTeam()->name . '_WIN' }}</span>
+                            </div>
+                            @endif
+
+
                         </div>
                         <hr class="custom-hr">
 
@@ -97,14 +112,16 @@
                                 <i class="fas fa-star"></i> Favorites
                             </a>
                             {{-- Mostrar solo si el usuario logueado está viendo su propio perfil --}}
-                            @if(auth()->user() && auth()->user()->id == $user->id)
+                            @if (auth()->user() && auth()->user()->id == $user->id)
                                 <a href="#" id="for-you-link" class="profile-link-item">
                                     <i class="fas fa-heart"></i> For you
                                 </a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal" class="profile-link-item">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal"
+                                    class="profile-link-item">
                                     <i class="fas fa-edit"></i> Edit Profile
                                 </a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#updateModal" class="profile-link-item">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                    class="profile-link-item">
                                     <i class="fas fa-cog"></i> Settings
                                 </a>
                             @endif
@@ -160,9 +177,9 @@
     @include('modals.favorite_players')
     @include('modals.configure')
     @include('modals.delete_comment')
-    @if($user->comments->isNotEmpty())
-    @include('modals.edit_comment')
-    @include('modals.admin-comments')
-@endif
+    @if ($user->comments->isNotEmpty())
+        @include('modals.edit_comment')
+        @include('modals.admin-comments')
+    @endif
 
 @endsection

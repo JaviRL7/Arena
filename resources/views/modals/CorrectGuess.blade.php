@@ -9,7 +9,9 @@
         <div class="modal-body d-flex align-items-center justify-content-center">
           <h3 class="titulo">You've guessed the player correctly!</h3>
           <img id="randomEmote" src="" alt="Emote" style="max-width: 140px; height: auto;">
+
         </div>
+        <h4 class="titular text-center" id="pointsEarned"></h4>
         <div class="player-photo-container d-flex flex-column align-items-center">
             <img id="guessedPlayerPhoto" src="" alt="Player Photo" style="max-width: 100%; height: 200px; border-radius: 50%;">
             <h4 id="playerNick" class="text-center titulo3"></h4>
