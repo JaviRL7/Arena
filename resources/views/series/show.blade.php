@@ -118,6 +118,7 @@
 
         </div>
         @include('includes.community-feedback', ['activities' => $activities])
+
     </div>
 
     <div class="row">
@@ -125,8 +126,11 @@
         <x-comment-display :comments="$serie->comments" />
     </div>
 </div>
+
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/serie/show.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/profile/general.js') }}"></script>
+
     <script src="/js/profile/validation/review.js"></script>
 
 @endsection

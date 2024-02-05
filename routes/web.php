@@ -92,6 +92,7 @@ Route::get('/games/result/{game}', [GamesController::class, 'result'])->name('ga
 
 
 
+Route::post('/minigame/update-points', [MinigameController::class, 'updatePoints'])->name('minigame.points');
 
 
 Route::post('/games/result/store', [GamesController::class, 'store'])->name('games.store');
@@ -110,7 +111,7 @@ Route::post('/scores/update/{id}', [GamesController::class, 'updateScore'])->nam
 
 
 Route::post('/series/{serie}/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth');
-Route::get('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
+Route::post('/comments/{comment}/like', [CommentsController::class, 'like'])->name('comments.like');
 
 
 Route::get('/rankings', [PlayersController::class, 'rankings'])->name('players.rankings');

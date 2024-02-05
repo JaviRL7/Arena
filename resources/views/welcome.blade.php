@@ -290,6 +290,8 @@
                 </div>
             </div>
         </div>
+        <x-cookie-notice />
+
         <br>
         </div>
         <br><br>

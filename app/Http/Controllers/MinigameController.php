@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Player;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MinigameController extends Controller
 {
@@ -65,4 +67,42 @@ class MinigameController extends Controller
             return response()->json(['result' => 'incorrect']);
         }
     }
+
+
+
+    public function updatePoints(Request $request, User $user)
+{
+    // Obtén el número de pistas utilizadas desde la solicitud
+    $cluesUsed = $request->input('cluesUsed');
+
+    // Determina los puntos a añadir basándote en el número de pistas utilizadas
+    $pointsToAdd = 0;
+    switch ($cluesUsed) {
+        case 0:
+            $pointsToAdd = 100;
+            break;
+        case 1:
+            $pointsToAdd = 10;
+            break;
+        case 2:
+            $pointsToAdd = 9;
+            break;
+        case 3:
+            $pointsToAdd = 8;
+            break;
+        case 4:
+            $pointsToAdd = 5;
+            break;
+        case 5:
+            $pointsToAdd = 1;
+            break;
+    }
+
+    // Añade los puntos al usuario y guarda los cambios
+    $user->points += $pointsToAdd;
+    $user->save();
+
+    // Devuelve una respuesta
+    return response()->json(['message' => 'Puntos actualizados correctamente']);
+}
 }

@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 let clueIndex = 1;
 $('.card').on('click', function() {
     $(this).toggleClass('flipped');
@@ -34,6 +40,8 @@ $('#get-clue').on('click', function() {
 $('#form-suposicion').on('submit', function(e) {
     e.preventDefault();
     var formData = $(this).serialize();
+    var dataToSend = { cluesUsed: clueIndex - 1 }; // Asume que clueIndex es el número de pistas utilizadas
+    console.log(dataToSend); // Imprime los datos que se enviarán al servidor
     $.ajax({
         url: '/minigame/check-response',
         method: 'POST',
@@ -43,6 +51,19 @@ $('#form-suposicion').on('submit', function(e) {
                 $('#guessedPlayerPhoto').attr('src', response.photo);
                 $('#playerNick').text(response.nick);
                 $('#correctGuessModal').modal('show');
+
+                // Aquí es donde envías los puntos al servidor
+                $.ajax({
+                    url: '/minigame/update-points',
+                    method: 'POST',
+                    data: dataToSend,
+                    success: function(response) {
+                        console.log(response.message); // Imprime el mensaje de éxito en la consola
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
             } else {
                 var randomNumS = Math.floor(Math.random() * 10) + 1; // generates a random number between 1 and 10
                 document.getElementById('randomEmoteS').src = '/emotes/s' + randomNumS + '.png';

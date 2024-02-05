@@ -83,15 +83,20 @@ class CommentsController extends Controller
 
 
 
-    public function like(Comment $comment)
+public function like(Comment $comment)
 {
-    $comment->likes += 1;
-    $comment->save();
+    $like = $comment->likes()->where('user_id', auth()->id())->first();
 
-    // Devuelve una respuesta JSON en lugar de recargar la página
+    if (!$like) {
+        $comment->likes()->attach(auth()->id());
+    }
+
+    // Recarga la relación para obtener el conteo actualizado
+    $comment->load('likes');
+
     return response()->json([
         'success' => true,
-        'likesCount' => $comment->likes,
+        'likesCount' => $comment->getLikesCountAttribute(),
     ]);
 }
 

@@ -111,16 +111,19 @@ function editComment(commentId, commentBody) {
 
 // Manejar clics en los enlaces de 'like'
 $(document).ready(function() {
-    $('.link-muted').click(function(e) {
+    $('.like-button').click(function(e) {
         e.preventDefault();
-        var href = $(this).attr('href');
-        var likeLink = $(this);
+        var href = $(this).data('url');
+        var likeButton = $(this);
         $.ajax({
             url: href,
-            type: 'GET',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(response) {
                 if (response.success) {
-                    likeLink.closest('.comment-container').find('.likes-count').text(response.likesCount);
+                    likeButton.closest('.comment-container').find('.likes-count').text(response.likesCount);
                 }
             },
             error: function(error) {

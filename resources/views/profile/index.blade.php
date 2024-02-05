@@ -162,6 +162,7 @@
     @include('modals.delete_comment')
     @if($user->comments->isNotEmpty())
     @include('modals.edit_comment')
+    @include('modals.admin-comments')
 @endif
 
 @endsection
