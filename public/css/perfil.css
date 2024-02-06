@@ -2440,7 +2440,18 @@ input:checked + .slider:before {
     color: #CCCCCC; /* Gris muy claro */
     font-family: 'mol';
 }
-
+.dark-mode .enlace-w{
+    color: #15202b;
+}
+.dark-mode .activity-profile-player-kda-container{
+    background-color: #15202b; /* Fondo para el modo oscuro */
+}
+body.dark-mode .admin-contenido{
+    background-color: #15202b; /* Fondo para el modo oscuro */
+}
+body.dark-mode .side-bar{
+    background-color: #15202b; /* Fondo para el modo oscuro */
+}
 
 body.dark-mode {
     background-color: #15202b; /* Fondo para el modo oscuro */

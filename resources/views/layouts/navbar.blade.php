@@ -85,14 +85,14 @@
                     @if (auth()->check())
                         <div class="d-flex align-items-center gap-3 flex-column flex-lg-row">
                             <div class="dropdown">
-                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                                <a class="nav-link dropdown-toggle d-flex align-items-center enlace-w" href="#"
                                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span style="margin-top: 5px;">{{ auth()->user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('profile.index', auth()->user()) }}">Profile</a></li>
+                                    <li><a class="dropdown-item enlace-w" href="{{ route('profile.index', auth()->user()) }}">Profile</a></li>
                                     @if (auth()->user()->admin)
-                                        <li><a class="dropdown-item" href="{{ route('admin.players.index') }}">Admin panel</a></li>
+                                        <li><a class="dropdown-item enlace-w" href="{{ route('admin.players.index') }}">Admin panel</a></li>
                                     @endif
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
