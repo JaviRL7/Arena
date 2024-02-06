@@ -127,6 +127,7 @@
             <p class="comentarios text-center">You are temporarily banned from participating in the chat.</p>
         @endif
         <x-comment-display :comments="$serie->comments" />
+
     </div>
 </div>
 

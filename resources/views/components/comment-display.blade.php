@@ -7,11 +7,13 @@
         <div class="comment-container"> <!-- Añade esta clase -->
 
             @include('comments', ['comment' => $comment])
+            @include('modals.admin-comments', ['comment' => $comment])
+
         </div>
         @endforeach
         @include('modals.delete_comment')
         @include('modals.edit_comment')
-        @include('modals.admin-comments')
+
 
     @else
         <p>No comments available.</p>
