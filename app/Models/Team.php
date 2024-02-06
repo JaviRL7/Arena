@@ -12,14 +12,14 @@ class Team extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'league',
+        'league_id',
         'country',
         'logo',
         // cualquier otro campo que quieras que sea asignable en masa
     ];
     public function players()
     {
-        return $this->belongsToMany(Player::class);
+        return $this->belongsToMany(Player::class)->withPivot('start_date', 'contract_expiration_date', 'end_date', 'substitute');
     }
 
     public function histories()
@@ -30,6 +30,33 @@ class Team extends Model
     {
         return $this->belongsTo(Competition::class, 'league_id');
     }
+    public function getFansAttribute()
+{
+    return \App\Models\User::where('favorite_team', $this->id)->get();
+}
+
+
+public function comments()
+{
+    return $this->hasMany('App\Models\Comment', 'team_id');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getPlayers()
     {
         $today = Carbon::now()->format('Y-m-d');
@@ -40,27 +67,142 @@ class Team extends Model
             ->orderBy('role_id', 'asc')
             ->get();
     }
+
     public function getPlayersDate($date)
-{
-    return $this->players()
-        ->where('start_date', '<=', $date)
-        ->where(function ($query) use ($date) {
-            $query->where('end_date', '>=', $date)
-                ->orWhereNull('end_date');
-        })
-        ->orderBy('role_id', 'asc')
-        ->get();
-}
+    {
+        return $this->players()
+            ->where('start_date', '<=', $date)
+            ->where('contract_expiration_date', '>=', $date)
+            ->where(function ($query) use ($date) {
+                $query->where('end_date', '>=', $date)
+                    ->orWhereNull('end_date');
+            })
+            ->orderBy('role_id', 'asc')
+            ->get();
+    }
+    public function getPlayersFromLastYear()
+    {
+        $date = \Carbon\Carbon::now()
+            ->subYear()
+            ->setMonth(12)
+            ->setDay(30)
+            ->toDateString();
+        return $this->getPlayersDate($date);
+    }
+
+
+
+
+    public function getChampionWinLoss($championId) {
+        // Obtén los ID de los jugadores del equipo
+        $playerIds = $this->players()->pluck('id');
+
+        // Obtén todas las clasificaciones donde se jugó el campeón por uno de los jugadores del equipo
+        $clasifications = DB::table('clasifications')
+                    ->whereIn('player_id', $playerIds)
+                    ->where('champion_id', $championId)
+                    ->join('games', 'clasifications.game_id', '=', 'games.id')
+                    ->join('series', 'games.serie_id', '=', 'series.id')
+                    ->select('clasifications.*', 'games.team_blue_id', 'games.team_red_id', 'games.team_blue_result', 'games.team_red_result', 'series.date as date')
+                    ->get();
+
+        $winCount = 0;
+        $lossCount = 0;
+
+        // Recorre cada clasification y determina si fue una victoria o una derrota
+        foreach ($clasifications as $clasification) {
+            // Obtén los jugadores del equipo en la fecha del juego
+            $players = $this->getPlayersDate($clasification->date)->pluck('id');
+
+            // Verifica si el jugador que jugó el campeón es parte del equipo
+            if ($players->contains($clasification->player_id)) {
+                if (($clasification->team_blue_id == $this->id && $clasification->team_blue_result == 'W') ||
+                    ($clasification->team_red_id == $this->id && $clasification->team_red_result == 'W')) {
+                    $winCount++;
+                } else {
+                    $lossCount++;
+                }
+            }
+        }
+
+        // Calcula los porcentajes de victoria y derrota
+        $totalGames = $winCount + $lossCount;
+        $winPercentage = $totalGames > 0 ? ($winCount / $totalGames) * 100 : 0;
+        $lossPercentage = $totalGames > 0 ? ($lossCount / $totalGames) * 100 : 0;
+
+        // Devuelve los porcentajes
+        return [
+            'win_percentage' => $winPercentage,
+            'loss_percentage' => $lossPercentage,
+        ];
+    }
+
+
+
+
+
+
+    public function getPlayersByYear($year)
+    {
+        $startDate = \Carbon\Carbon::create($year, 1, 1);
+        $endDate = \Carbon\Carbon::create($year, 12, 31);
+
+        return $this->players()
+            ->where('start_date', '<=', $endDate)
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->where(function ($query) use ($startDate, $endDate) {
+                    $query->whereBetween('end_date', [$startDate, $endDate]);
+                })->orWhere(function ($query) use ($endDate) {
+                    $query->whereNull('end_date')
+                          ->where('contract_expiration_date', '>=', $endDate);
+                });
+            })
+            ->orderBy('role_id', 'asc')
+            ->get();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getPlayersSubstitute()
     {
         $today = Carbon::now()->format('Y-m-d');
         return $this->players()
             ->where(function ($query) use ($today) {
-                $query->where('end_date', '>=', $today)
-                    ->orWhereNull('end_date');
+                $query->where('player_team.end_date', '>=', $today)
+                    ->orWhereNull('player_team.end_date');
             })
-            ->where('substitute', true)
+            ->where('player_team.substitute', true)
             ->orderBy('role_id', 'asc')
+            ->get();
+    }
+    public function getPastPlayers()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        return $this->players()
+            ->where(function ($query) use ($today) {
+                $query->where('player_team.end_date', '<', $today)
+                    ->orWhere(function ($query) use ($today) {
+                        $query->whereNull('player_team.end_date')
+                            ->where('player_team.contract_expiration_date', '<', $today);
+                    });
+            })
+            ->orderBy('player_team.end_date', 'desc')
             ->get();
     }
     public function getPlayersWithSameRole()
@@ -79,8 +221,6 @@ class Team extends Model
             ->orderBy('role_id', 'asc')
             ->get();
     }
-
-    //HAY FALLOS CON EL START DATE REPASAR
     public function getToplaner()
     {
         $today = Carbon::now()->format('Y-m-d');
@@ -132,9 +272,13 @@ class Team extends Model
             ->where('end_date', '>=', $today)
             ->orderBy('start_date', 'desc');
     }
+    public function games()
+    {
+        return $this->hasMany(Game::class, 'team_blue_id')->orWhere('team_red_id', $this->id);
+    }
+
     public function checksubstitute($date)
     {
-
         $date = Carbon::parse($date);
 
         $players = $this->players()->wherePivot('start_date', '<=', $date)
@@ -143,11 +287,10 @@ class Team extends Model
                     ->orWhereNull('end_date');
             })->get();
 
-
         $grouped = $players->groupBy('role_id');
         foreach ($grouped as $roleId => $players) {
 
-            $notSubstitutes = $players->where('substitute', false);
+            $notSubstitutes = $players->where('pivot.substitute', false);
 
             if ($notSubstitutes->count() > 1) {
 
@@ -157,12 +300,123 @@ class Team extends Model
 
                 $latest = $sorted->shift();
 
-
-                DB::table('player_team')
-                    ->where('team_id', $this->id)
-                    ->whereIn('player_id', $sorted->pluck('id')->toArray())
-                    ->update(['substitute' => true]);
+                foreach ($sorted as $player) {
+                    $player->pivot->substitute = true;
+                    $player->pivot->save();
+                }
             }
         }
     }
+    public function hadFiveRolesLastYear()
+    {
+        $lastYearPlayers = $this->getPlayersFromLastYear();
+        $roles = $lastYearPlayers->pluck('role_id')->unique();
+
+        return count($roles) == 5;
+    }
+
+
+
+    public static function getTeamsWithMostFans()
+{
+    // Subconsulta para contar fans para cada equipo
+    $fansCountSubquery = DB::table('users')
+        ->select('favorite_team as team_id')
+        ->selectRaw('count(*) as total_fans')
+        ->groupBy('favorite_team')
+        ->toSql();
+
+    // Obtener equipos y realizar un LEFT JOIN con la subconsulta
+    $teams = DB::table('teams')
+        ->leftJoin(DB::raw("($fansCountSubquery) as fc"), 'teams.id', '=', 'fc.team_id')
+        ->select('teams.*')
+        ->selectRaw('COALESCE(SUM(fc.total_fans), 0) as total_fanbase')
+        ->groupBy('teams.id')
+        ->orderByRaw('COALESCE(SUM(fc.total_fans), 0) DESC') // Primero ordena por el número total de fans
+        ->orderBy('teams.name', 'asc')   // Luego ordena alfabéticamente por el nombre en caso de empate
+        ->take(10)
+        ->get();
+
+    return $teams;
+}
+
+public static function getTeamsWithMostMatches(){
+    // Contar el número total de partidos jugados por cada equipo
+    $matchesCount = DB::table('games')
+        ->select('team_blue_id as team_id')
+        ->selectRaw('count(*) as total_matches')
+        ->groupBy('team_blue_id')
+        ->union(
+            DB::table('games')
+                ->select('team_red_id as team_id')
+                ->selectRaw('count(*) as total_matches')
+                ->groupBy('team_red_id')
+        )
+        ->toSql();
+
+    // Obtener equipos y realizar un LEFT JOIN con la subconsulta
+    $teams = DB::table('teams')
+        ->leftJoin(DB::raw("($matchesCount) as mc"), 'teams.id', '=', 'mc.team_id')
+        ->select('teams.*')
+        ->selectRaw('COALESCE(SUM(mc.total_matches), 0) as total_matches')
+        ->groupBy('teams.id')
+        ->orderByRaw('COALESCE(SUM(mc.total_matches), 0) DESC') // Ordenar por el número total de partidos
+        ->orderBy('teams.name', 'asc')   // Ordenar alfabéticamente por el nombre en caso de empate
+        ->take(10)
+        ->get();
+
+    return $teams;
+}
+
+public static function getTeamWins($team_id){
+    // Contar el número total de victorias del equipo
+    $winsCount = DB::table('games')
+        ->where(function ($query) use ($team_id) {
+            $query->where('team_blue_id', $team_id)
+                  ->where('team_blue_result', 'W');
+        })
+        ->orWhere(function ($query) use ($team_id) {
+            $query->where('team_red_id', $team_id)
+                  ->where('team_red_result', 'W');
+        })
+        ->count();
+
+    return $winsCount;
+}
+
+
+public static function getTotalGames($team_id){
+    // Contar el número total de partidos jugados por el equipo
+    $totalGames = DB::table('games')
+        ->where('team_blue_id', $team_id)
+        ->orWhere('team_red_id', $team_id)
+        ->count();
+
+    return $totalGames;
+}
+
+
+
+
+
+
+
+
+public static function getTeamsWithBestWinRate(){
+    // Obtener todos los equipos
+    $teams = Team::all();
+
+    // Calcular el porcentaje de victorias para cada equipo
+    foreach ($teams as $team) {
+        $team->total_matches = self::getTotalGames($team->id);;
+        $team->total_wins = self::getTeamWins($team->id);
+        $team->win_rate = $team->total_matches > 0 ? ($team->total_wins / $team->total_matches) * 100 : 0;
+    }
+
+    // Ordenar los equipos por el porcentaje de victorias
+    $teams = $teams->sortByDesc('win_rate');
+
+    return $teams->take(10);
+
+}
 }

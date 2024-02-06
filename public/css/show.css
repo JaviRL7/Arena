@@ -1,0 +1,355 @@
+.link-muted {
+    color: #aaa;
+}
+
+.link-muted:hover {
+    color: #1266f1;
+}
+
+.tabla {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 1.6em;
+}
+
+.tabla-contenedor {
+    margin: 20px;
+}
+
+.tabla-responsive div {
+    margin: 10%;
+}
+
+.tabla-responsive {
+    width: 100%;
+}
+
+.tabla tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabla td {
+    margin: 30px 0;
+}
+
+.tabla td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.owl-carousel img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info h5 {
+    margin-left: 10px;
+    /* Ajusta el margen según tus necesidades */
+}
+
+.conte {
+    display: flex;
+    justify-content: space-between;
+}
+
+.serie-show-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+.team-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.team-img {
+    width: 900px;
+    /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    /* Ajusta el tamaño según tus necesidades */
+}
+
+.team-img:first-child {
+    width: 900px;
+    /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    /* Ajusta el tamaño según tus necesidades */
+    border-top-left-radius: 15px;
+    /* Ajusta el radio del borde según tus necesidades */
+    border-bottom-left-radius: 15px;
+    /* Ajusta el radio del borde según tus necesidades */
+}
+
+.team-img:last-child {
+    width: 900px;
+    /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    /* Ajusta el tamaño según tus necesidades */
+    border-top-right-radius: 15px;
+    /* Ajusta el radio del borde según tus necesidades */
+    border-bottom-right-radius: 15px;
+    /* Ajusta el radio del borde según tus necesidades */
+}
+
+.vs-img {
+    position: absolute;
+    width: 180px;
+    /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    /* Ajusta el tamaño según tus necesidades */
+}
+
+.comments-container {
+    width: 50%;
+    /* Ocupa la mitad de la pantalla */
+    margin: 0 auto;
+    /* Centra el div en la pantalla */
+    font-size: 1.2em;
+}
+
+.serie-info {
+    margin-left: 430px;
+}
+
+.header {
+    width: 1800px;
+    display: block;
+    margin: auto;
+}
+
+.header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'mol';
+}
+
+.player-photo {
+    width: 100px;
+    height: 100px;
+}
+
+.btn.boton5, .btn.boton6 {
+    margin-top: 5px;
+}
+
+.player-details {
+    text-align: center;
+    font-family: 'mol';
+}
+
+
+
+.player-name {
+    color: gray;
+    font-size: smaller; /* Ajusta según sea necesario */
+}
+
+
+.serie-show-result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%; /* 25% de margen en cada lado */
+}
+
+.vertical-separator {
+    height: 100px; /* Ajusta la altura según sea necesario */
+    width: 2px; /* Grosor del separador */
+    background-color: lightgray; /* Color del separador */
+    margin: 0 15px; /* Espacio a los lados del separador */
+}
+
+.space {
+    width: 30px; /* Ajusta el ancho para el espacio más grande */
+}
+
+.serie-show-result img.img-fluid {
+    max-height: 90px; /* Altura máxima para los logos */
+}
+
+.serie-show-result .titles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.serie-show-result .result {
+    margin: 0 20px; /* Espacio a los lados del resultado */
+}
+.img-fluid-logos {
+    max-height: 90px;
+    max-width: 150px; /* Ajusta este valor según sea necesario */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.wide-logo {
+    max-height: 75px; /* Altura reducida para logos anchos */
+    /* Resto de propiedades son heredadas de .img-fluid */
+}
+.serie-show-result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%; /* 25% de margen en cada lado */
+    margin-top: 50px; /* Ajusta este valor según la cantidad de espacio que quieras */
+}
+.titulo-serie{
+    margin-left: 15%; /* Margen izquierdo */
+    margin-right: 15%; /* Margen derecho */
+    padding-bottom: 10px; /* Espacio antes del separador */
+    border-bottom: 2px solid lightgray; /* Separador gris */
+    margin-bottom: 20px; /* Espacio después del separador */
+}
+
+
+.titulo-serie2{
+
+    padding-bottom: 10px; /* Espacio antes del separador */
+    border-bottom: 2px solid lightgray; /* Separador gris */
+    margin-bottom: 20px; /* Espacio después del separador */
+}
+.tabla-margin {
+    margin: 0 13%; /* 15% de margen a cada lado (izquierdo y derecho) */
+}
+/* Estilos para pantallas con ancho menor a 768px */
+@media (max-width: 768px) {
+    .player-name-column {
+        display: none; /* Oculta la columna 'name' */
+    }
+}
+
+/* Estilos para pantallas con ancho menor a 576px */
+@media (max-width: 576px) {
+    .player-name-column {
+        display: none; /* Oculta la columna 'name' */
+    }
+
+    .kda-column {
+        display: none; /* Oculta la columna 'K/D/A' */
+    }
+}
+
+.note-blue, .note-red {
+    display: inline-block; /* Hace que el div se comporte como un inline-element */
+    padding: 10px 15px; /* Espacio interno para que se vea como un botón */
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Texto en blanco para mejor contraste */
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente un poco */
+    text-align: center; /* Alinea el texto al centro */
+    min-width: 60px; /* Ancho mínimo para asegurar consistencia visual */
+    font-family: 'mol';
+}
+
+.note-blue {
+    background-color: #2196f3; /* Color de fondo azul para jugadores blue */
+}
+
+.note-red {
+    background-color: #e44445; /* Color de fondo rojo para jugadores red */
+}
+
+
+
+
+
+
+
+/*barra de votacion*/
+.prediction-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 100px 15% 20px;
+}
+
+.team-section {
+    text-align: center;
+}
+
+.team-logo {
+    width: 80px; /* Ajusta según sea necesario */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.prediction-form {
+    margin-top: 10px; /* Espacio entre el logo y el botón */
+}
+
+.progress-bar-container {
+    flex-grow: 1;
+    margin: 0 20px; /* Espacio entre la barra y los logos */
+}
+
+.progress {
+    height: 30px; /* Aumenta la altura de la barra */
+    background-color: #ccc; /* Color de fondo de la barra de progreso */
+    border-radius: 10px; /* Bordes redondeados para la barra de progreso */
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.5s; /* Transición suave para el cambio de ancho */
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente */
+    justify-content: center; /* Centra el texto horizontalmente */
+}
+
+.bg-primary {
+    background-color: #2196f3; /* Color de fondo para el equipo 1 */
+    border-radius: 10px 0 0 10px; /* Bordes redondeados solo en el lado izquierdo */
+    color: white; /* Texto en blanco */
+}
+
+.bg-danger {
+    background-color: #e44445; /* Color de fondo para el equipo 2 */
+    border-radius: 0 10px 10px 0; /* Bordes redondeados solo en el lado derecho */
+    color: white; /* Texto en blanco */
+}
+
+
+.vote-change-message {
+    text-align: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+}

@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('scores', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('player_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('game_id');
             $table->integer('note');
+            $table->string('review', 150)->nullable();
             $table->foreign('player_id')->references('id')->on('players');
             $table->foreign('game_id')->references('id')->on('games');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->primary(['player_id', 'game_id', 'user_id']);
+            $table->unique(['player_id', 'game_id', 'user_id']);
             $table->timestamps();
         });
     }

@@ -1,0 +1,207 @@
+.container-new {
+    position: relative; /* Contenedor relativo para la imagen del perfil */
+    max-width: 1300px; /* O el ancho que prefieras */
+    margin: auto;
+}
+
+.profile-header-new {
+    background-size: cover;
+    background-position: center;
+    height: 450px; /* Ajusta la altura según tus necesidades */
+    border-top-left-radius: 10px; /* Redondea las esquinas superiores */
+    border-top-right-radius: 10px;
+    width: 100%;
+}
+.boton-follow{
+    display: flex; /* Usa flexbox para alinear elementos en línea */
+    align-items: center; /* Centra los elementos verticalmente */
+    gap: 10px; /* Añade espacio entre el nick y el botón */
+    margin: 20px, 20px, 20px, 0px;
+    margin-bottom: 30px;
+}
+.profile-picture-container {
+    width: 160px; /* Ajusta al tamaño de tu imagen de perfil */
+    height: 160px;
+    position: absolute;
+    left: calc(20%); /* 10% del contenedor a la izquierda menos la mitad del ancho de la imagen */
+    transform: translateX(-50%) translateY(+105%);
+    top: 200px; /* Ajusta según la altura de tu cabecera, debería ser menos que antes para subir la imagen */
+    z-index: 2;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid white; /* Borde para separar la foto del fondo */
+    object-fit: cover;
+}
+
+.profile-info-new {
+
+    padding: 20px;
+    border-radius: 0 0 10px 10px; /* Redondea las esquinas inferiores */
+    text-align: left; /* Centra el texto */
+    position: relative; /* Para posicionar correctamente con respecto al contenedor */
+     /* Empuja hacia arriba la parte inferior del div de información */
+    z-index: 1;
+    margin-bottom: 120px; /* Espacio para la imagen del perfil */
+    margin-top: 50px;
+}
+
+/* Estilos adicionales para la información del usuario y los iconos sociales */
+.username, .user-handle, .user-socials {
+    font-family: 'mol';
+}
+
+.user-socials p {
+    /* Tus estilos aquí */
+    display: inline-block; /* Para que aparezcan en línea */
+    margin-right: 10px; /* Espaciado entre iconos sociales */
+}
+
+/* Estilos para los iconos de Font Awesome */
+.fa-discord, .fa-twitter, .fa-birthday-cake {
+    margin-right: 5px;
+}
+
+
+.user-follow-stats {
+    text-align: center; /* Centra el texto */
+    margin-top: 10px; /* Añade un poco de espacio encima */
+    display: flex;
+    gap: 10px;
+}
+.profile-links{
+    font-family: mol;
+    gap: 30px;
+    display: flex;
+}
+.profile-links {
+    display: flex; /* Dispone los elementos en línea */
+    justify-content: space-around; /* Espacio entre los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Centra el texto de cada enlace */
+    margin-bottom: 20px; /* Espacio debajo de los enlaces */
+}
+
+.profile-link-item {
+    display: inline-flex; /* Dispone el ícono y el texto en línea */
+    align-items: center; /* Centra los elementos verticalmente */
+
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: inherit; /* Hereda el color de texto del padre */
+    font-size: 20px; /* Tamaño de fuente para los enlaces */
+}
+.profile-link-item i{
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Activity*/
+
+.activity-profile-player-champion-info {
+    position: relative;
+}
+
+.activity-profile-player-kda-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-profile-player-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+.note-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+
+}
+
+
+.champion-background {
+    background-size: cover;
+    background-position: top;
+    height: 500px;
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.champion-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3); /* Ajusta la opacidad para oscurecer más o menos */
+    z-index: 1;
+}
+
+.activity-profile-player-champion-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    z-index: 2;
+}
+
+
+.activity-profile-user-review-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.activity-profile-review-info {
+    /* Tus estilos actuales para .activity-profile-review-info */
+    margin-left: 30px; /* Espacio a la izquierda de la reseña */
+    margin-top: 15px; /* Espacio a la izquierda de la reseña */
+}
+.activity-profile-player-kda-container {
+
+    z-index: 2; /* Asegúrate de que este contenido esté encima del oscurecimiento */
+    /* ... tus otros estilos ... */
+}

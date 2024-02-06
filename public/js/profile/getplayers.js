@@ -4,7 +4,7 @@ $(document).ready(function() {
     var table = $('#playersTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '/profile/getplayers',
+        ajax: '/profile/' + userId + '/getPlayers',
         pageLength: 5,
         searching: false,
         lengthChange: false,
@@ -59,7 +59,7 @@ $(document).ready(function() {
         console.log(csrfToken);  // Imprime el valor del token CSRF
 
         $.ajax({
-            url: '/profile/favorite',
+            url: '/profile/' + userId + '/favorite',
             method: 'POST',
             data: {
                 favorite_player1: selectedPlayers[0],
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 favorite_player3: selectedPlayers[2],
                 favorite_player4: selectedPlayers[3],
                 favorite_player5: selectedPlayers[4],
-                _token: csrfToken  // Usa la variable csrfToken
+                _token: csrfToken
             },
             success: function() {
                 alert('Jugadores favoritos actualizados con éxito!');

@@ -1,0 +1,56 @@
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.rating>input {
+    display: none;
+}
+
+.rating>label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 2em;
+    /* Tamaño de las estrellas */
+    color: #ccc;
+    /* Color de las estrellas vacías */
+}
+
+.rating>input:checked~label,
+.rating>input:checked+label,
+.rating>label:hover,
+.rating>label:hover~label {
+    color: #f90;
+    /* Color de las estrellas seleccionadas */
+}
+
+.rating>input:checked+label {
+    color: #f90;
+    /* Color de las estrellas seleccionadas */
+}
+
+.player-champion-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* Espaciado entre elementos */
+    margin-bottom: 20px;
+    /* Espacio debajo del contenedor */
+}
+
+
+
+.series-result {
+    font-size: 1.5em;
+    margin: 0 20px;
+    /* Espacio a los lados del resultado de la serie */
+}
+.custom-comment-form {
+    width: 100%;        /* Ocupa todo el ancho disponible */
+    max-width: 600px;   /* Pero no más de 600px */
+    margin: 0 auto;     /* Centra el componente si es más pequeño que el espacio disponible */
+    padding: 20px;      /* Espacio dentro del componente */
+}

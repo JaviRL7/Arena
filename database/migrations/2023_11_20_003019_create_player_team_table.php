@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('player_team', function (Blueprint $table) {
             $table->unsignedBigInteger('player_id');
             $table->unsignedBigInteger('team_id');
+            $table->boolean('substitute')->default(false);
             $table->date('start_date');
             $table->date('contract_expiration_date');
             $table->date('end_date')->nullable();
