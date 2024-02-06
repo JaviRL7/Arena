@@ -1,5 +1,5 @@
-<div class="bg-white shadow-md rounded-md overflow-hidden mx-auto mt-16" style="width: 90%;">
-    <div class="bg-gray-100 py-2 px-4 relative">
+<div class=" shadow-md rounded-md overflow-hidden mx-auto mt-16" style="width: 90%;">
+    <div class=" py-2 px-4 relative">
         <h2 class="text-xl font-semibold titular text-gray-800">{{ $title }}</h2>
         <div style="height: 2px; background-color: #e44445; width: 100%;"></div> <!-- Línea roja debajo del título -->
     </div>

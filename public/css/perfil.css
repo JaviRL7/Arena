@@ -2465,6 +2465,19 @@ body.dark-mode a {
 body.dark-mode .text-muted {
     color: gray;
 }
+body.dark-mode h2{
+    color: whitesmoke
+}
+body.dark-mode .titular{
+    color: whitesmoke !important
+}
+body.dark-mode .player-nick{
+    color: whitesmoke !important
+}
+body.dark-mode input[type="text"] {
+    background-color: #434c5e; /* Fondo oscuro para el input */
+    color: whitesmoke; /* Color del texto del input */
+}
 .delete-comment-modal .modal-dialog {
     height: 30vh; /* 30% de la altura de la pantalla */
     display: flex;

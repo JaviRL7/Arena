@@ -22,12 +22,12 @@
                         <div id="emailError" class="text-danger"></div> <!-- Mensaje de error para el correo electrónico -->
                     </div>
                     <div class="form-group mb-3">
-                        <label for="current_password" class="comentarios">Actual password</label>
+                        <label for="current_password" class="comentarios">Current password</label>
                         <input type="password" class="form-control" id="current_password" name="current_password"
                             autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="password" class="comentarios">New password</label>
+                        <label for="password" class="comentarios">Current password</label>
                         <input type="password" class="form-control" id="password" name="password"
                             autocomplete="new-password">
                         <div id="passwordError" class="text-danger"></div> <!-- Mensaje de error para la contraseña -->

@@ -4,10 +4,7 @@
             <div class="col-md-4">
                 <h1 class="footer-title" style="font-family: mol;">Gunlim ©</h1>
             </div>
-            <div class="col-md-4 legal-links" style="font-family: mol; margin-left: 30%">
-                Aviso Legal<br/>
-                Política de cookies<br/>
-            </div>
+
         </div>
     </div>
 </div>

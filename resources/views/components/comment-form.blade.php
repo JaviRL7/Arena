@@ -3,7 +3,7 @@
     <div style="height: 2px; background-color: lightgrey; width: 60%; margin: 200px auto 0 auto;"></div>
 
     <div class="card-footer py-3 border-0"
-        style="background-color: #ffffff; margin: 0 auto; width: 50%; border: 2px solid #000;">
+        style="margin: 0 auto; width: 50%; border: 2px solid #000;">
         <div class="d-flex flex-start w-100">
             <img class="user-photo" src="{{ asset(Auth::user()->user_photo) }}" alt="avatar" />
             <div class="form-outline w-100">

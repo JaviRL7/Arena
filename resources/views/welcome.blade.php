@@ -194,7 +194,7 @@
             <div class="col-6" style="height: 300px;">
                 <div class="informacion">
                     <a href="{{ route('transfers.index', ['view' => 1]) }}">
-                        <h1>The children of misfortune</h1>
+                        <h1>Descendants of the ruins</h1>
                         <h4 style="color: red; font-size: small;">Offseason 2024 Winter Split</h4>
                         <p style="margin-top: 5%; color: darkgray;">
                             After the tough reality check of last year's Worlds, the LEC is entering a new season with many changes in hopes of improving its international results. <br><br>
