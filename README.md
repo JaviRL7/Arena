@@ -5,32 +5,35 @@
 
 # Proyecto de Esports de League of Legends
 
-## 1. Descripción general del proyecto
+## 1. Descripción General del Proyecto
 
-El proyecto consiste en una web dedicada a la escena de esports competitiva del videojuego online League of Legends. El objetivo es que los usuarios puedan consultar información básica sobre los jugadores y evaluar su rendimiento mediante un sistema de puntuación durante el transcurso de las competiciones locales e internacionales.
+El proyecto consiste en una web dedicada a la escena de esports competitiva del videojuego en línea League of Legends. El objetivo es ofrecer a los usuarios la posibilidad de consultar información básica sobre los jugadores y evaluar su rendimiento a través de un sistema de puntuación durante el transcurso de las competiciones locales e internacionales.
 
-La web está pensada para la comunidad de espectadores de la escena de esports. Los usuarios podrán tener una cuenta con la que poder debatir con otros usuarios y dar su opinión sobre el rendimiento de un jugador o de un equipo en un pequeño foro junto al sistema de puntuación de los jugadores.
+La web está diseñada para la comunidad de espectadores de la escena de esports. Los usuarios podrán crear una cuenta para debatir con otros usuarios y compartir su opinión sobre el rendimiento de un jugador o de un equipo en un pequeño foro, además del sistema de puntuación de los jugadores.
 
-### 1.1. Funcionalidad principal de la aplicación
+### 1.1. Funcionalidad Principal de la Aplicación
 
-La funcionalidad principal consistirá en la creación de un sitio web que permitirá a los espectadores de la competición de League of Legends acceder a información básica sobre jugadores, equipos y el calendario de las competiciones.
+La funcionalidad principal consistirá en la creación de un sitio web que permita a los espectadores de la competición de League of Legends acceder a información básica sobre jugadores, equipos y el calendario de las competiciones.
 
 Los usuarios registrados podrán valorar a los jugadores después de finalizar una partida, escribir en el foro una reseña sobre el desempeño de un jugador y debatir con otros usuarios. Además, podrán consultar las alineaciones de los diferentes equipos que participen en una competición en particular, así como sus estadísticas e historial competitivo.
 
-### 1.2. Objetivos generales
+### 1.2. Objetivos Generales
 
-- Objetivo: Acceso a información de la escena competitiva e interacción entre la comunidad de espectadores.
+- Objetivo: Proporcionar acceso a información de la escena competitiva e interacción entre la comunidad de espectadores.
 - Casos de uso:
   - Usuarios: "Valorar a un jugador", "Ver perfil del jugador", "Escribir en el foro de la partida".
   - Administradores: "Moderar el foro", "Crear publicación de las partidas", "Validar/bloquear usuarios".
 
-## 2. Elemento de innovación
+## 2. Elemento de Innovación
 
-Se incluirá un minijuego al estilo de Wordle en el que se trata de adivinar un jugador a través de su nacionalidad, excompañeros y antiguos equipos.
+Se incluirá un minijuego al estilo de Wordle en el que los jugadores intentarán adivinar a un jugador a través de pistas como su nacionalidad, excompañeros y equipos anteriores.
 
-## Vistas del proyecto
+## Vistas del Proyecto
 
-### Página de inicio
+### Página de Inicio
+
+Video
+[Enlace a video de YouTube](https://youtu.be/74dDPK-pt-I?si=MtY2lVLt2M9zxkBx)
 
 ![Vista 2](public/vistas/c2.jpeg)
 En la página de inicio se mostrará información general sobre la página, tales como:
@@ -41,38 +44,40 @@ En la página de inicio se mostrará información general sobre la página, tale
 
 ![Vista 3](public/vistas/c3.jpeg)
 
-
 Vista de la página de inicio con el modo noche activado.
 
 ---
 
-### Página de series
+### Página de Series
 
 En la vista de series, los usuarios podrán:
 
-- Hacer reviews y comentar sobre las partidas de sus jugadores y equipos favoritos.
+- Hacer reseñas y comentar sobre las partidas de sus jugadores y equipos favoritos.
 - Tener acceso a las estadísticas de los jugadores en las partidas, ya sea el KDA (Kills / Deaths / Assists).
 - Ver el personaje que han jugado en cada partida de una serie, ya sea al mejor de 1, 3 o 5 (bo1, bo3 y bo5).
 
 ![Vista 6](public/vistas/c6.jpeg)
 
-
 ![Vista 7](public/vistas/c7.jpeg)
-
 
 ![Vista 8](public/vistas/c8.jpeg)
 
+### Retroalimentación de la Comunidad
 
-### Community Feedback
-
-En Community Feedback, los usuarios podrán ver las últimas interacciones de los usuarios para esa serie.
+En Retroalimentación de la Comunidad, los usuarios podrán ver las últimas interacciones de los usuarios para esa serie.
 
 ### Comentarios
 
 En la sección de comentarios, los usuarios podrán debatir y comentar sobre las partidas, jugadores o equipos.
 
 ![Vista 9](public/vistas/c9.jpeg)
+Funcionalidades del chat:
+- Autocompletado de los apodos de los jugadores usando '@'.
+- Autocompletado de los nombres de los equipos usando '#'.
+- Los comentarios sobre un jugador o un equipo se reflejarán en el perfil de ambos.
 
+![Vista 30](public/vistas/c30.JPG)
+![Vista 31](public/vistas/c31.JPG)
 
 ### Predicciones
 
@@ -80,12 +85,11 @@ Los usuarios podrán participar en una encuesta para predecir el resultado de la
 
 ![Vista 20](public/vistas/c20.jpeg)
 
-
 ---
 
 ### Rankings
 
-En rankings, los usuarios podrán:
+En Rankings, los usuarios podrán:
 
 - Consultar estadísticas.
 - Ver los rankings de jugadores, equipos y de los propios usuarios.
@@ -93,12 +97,11 @@ En rankings, los usuarios podrán:
 
 ![Vista 4](public/vistas/c4.jpeg)
 
-
 ---
 
 ### Esportle
 
-Esportle es un minijuego basado en el popular juego Wordle. Consiste en adivinar a un jugador por su nickname mediante 5 pistas, las cuales serán:
+Esportle es un minijuego basado en el popular juego Wordle. Consiste en adivinar a un jugador por su apodo mediante 5 pistas, las cuales serán:
 
 1. Rol que ocupan en el equipo.
 2. Personaje más jugado.
@@ -107,7 +110,6 @@ Esportle es un minijuego basado en el popular juego Wordle. Consiste en adivinar
 5. Un compañero de equipo.
    
 ![Vista 5](public/vistas/c5.jpeg)
-
 
 ---
 
@@ -119,10 +121,9 @@ Los usuarios podrán:
 - Consultar sus horarios y plataforma de emisión.
 - Acceder a la partida para participar en la predicción.
 
-![Vista 10](public/vistas/10.jpeg)
+![Vista 10](public/vistas/c10.jpeg)
 
-
-### Perfiles de equipo
+### Perfiles de Equipo
 
 Los usuarios podrán:
 
@@ -132,15 +133,13 @@ Los usuarios podrán:
 
 ![Vista 11](public/vistas/c11.jpeg)
 
-
 Los usuarios podrán hacerse fan de los equipos y consultar los comentarios sobre ese equipo por parte de los usuarios.
 
 ![Vista 12](public/vistas/c12.jpeg)
 
-
 ---
 
-### Perfiles de jugadores
+### Perfiles de Jugadores
 
 Los usuarios podrán:
 
@@ -153,26 +152,23 @@ Los usuarios podrán:
 
 ![Vista 18](public/vistas/c18.jpeg)
 
-
 ![Vista 21](public/vistas/c21.jpeg)
-
 
 ---
 
-### Transfers
+### Traspasos
 
 Los usuarios podrán:
 
 - Consultar el mercado de fichajes y renovaciones de los distintos equipos.
 - Filtrarlos por ligas.
-- Comparar los rosters (plantillas) de la actualidad respecto a la del año pasado.
-
+- Comparar los rosters (plantillas) actuales con los del año pasado.
 
 ![Vista 13](public/vistas/c13.jpeg)
 
 ---
 
-### Profile
+### Perfil
 
 Los usuarios podrán:
 
@@ -183,31 +179,62 @@ Los usuarios podrán:
 
 ![Vista 19](public/vistas/c19.jpeg)
 
-!Vista 19
-
-En el perfil se tendrá acceso a una sección de "Para ti", donde se mostrarán las últimas aportaciones de los usuarios a los que sigues. También se podrá acceder a todos los comentarios y reviews realizados por el usuario, así como a las cuentas a las que sigues y te sigue.
+En el perfil se tendrá acceso a una sección de "Para ti", donde se mostrarán las últimas aportaciones de los usuarios a los que sigues. También se podrá acceder a todos los comentarios y reseñas realizados por el usuario, así como a las cuentas a las que sigues y te siguen.
 
 ![Vista 14](public/vistas/c14.jpeg)
 
-!Vista 14
+El perfil incluye: 
+- Personalización de apariencia.
+- Seguidores y seguidos.
+- Un apartado "Para ti" al estilo Instagram con las aportaciones de tus seguidos.
+- Los comentarios y reseñas de cada usuario.
+- Configuración de los datos personales de cuenta (correo electrónico y contraseña).
+- Una biografía de 150 caracteres.
+- El logo de tu equipo favorito para que todos tus seguidores lo puedan ver.
+
+  ![Vista 28](public/vistas/c28.jpeg)
+  ![Vista 27](public/vistas/c27.jpeg)
+  Formato de reseña de un usuario hacia un jugador con sus estadísticas (K/D/A, campeón jugado de fondo y nota asignada).
+  ![Vista 29](public/vistas/c29.jpeg)
+
 ---
 
-
-
-### Panel de administracion
-
-El usuario admin dispondra de herramientas par editar losdatos de los equipos partidas y jugadores. Podra crear nuevos equipos partidos y usuarios. tendr herramientas par contorllar los contratos de los jugadores en los equipos ya sea para renovar jugadores, finalizar su contrato, editar el contrato y terminar con toda relacion con el contrato del juegador.
-
+### Panel de Administración
 ![Vista 15](public/vistas/c15.jpeg)
 
-En el perfil se tendra acceso a una seccion de para ti donde se mostraran las ultimas aportaciones de los usuarios a los que sigues. Tambien se podra acceder a todos los comentarios y reviews realizados por el ususario. tambien de las cuentas a las que sigues y te sigue.
+El usuario administrador dispondrá de herramientas para editar los datos de los equipos, partidas y jugadores. Podrá crear nuevos equipos, partidos y usuarios. Tendrá herramientas para controlar los contratos de los jugadores con los equipos, ya sea para renovar jugadores, finalizar su contrato, editar el contrato y terminar con toda relación con el contrato del jugador.
+
+El panel de administración incluye: 
+- Edición de jugadores.
+- Edición de equipos.
+- Edición de partidos.
+- Control de usuarios.
+- Un menú para editar los contratos de los jugadores con los equipos de una forma precisa y sencilla.
+- Un menú para añadir partidas a una serie de forma sencilla y dinámica.
+
+![Vista 25](public/vistas/c25.jpeg)
+
+Menú de edición y creación de partidos: 
+- Los equipos de League of Legends juegan cada uno en un lado (Red side / Blue side) (campo visitante o local, por hacer un símil con el deporte).
+- Botón para cambiar de lado a los equipos.
+- Botón estilo on/off para elegir qué equipo es el ganador.
+
+## Fase de Baneo
+Es simplemente una fase de la partida donde los equipos banean ciertos campeones de los muchos elegibles para que no los juegue el equipo enemigo.
+![Vista 24](public/vistas/c24.jpeg)
 
 ![Vista 16](public/vistas/c16.jpeg)
 
+![Vista 17](public/vistas/c17.jpeg)
+Edición de equipos.
 
+![Vista 23](public/vistas/c23.jpeg)
+Creación de nuevas series.
 
+## Función de Administrador para Eliminar Comentarios Inapropiados y Banear Cuentas
+Las cuentas baneadas no podrán participar de la comunidad ni hacer reseñas.
 
+![Vista 26](public/vistas/c26.jpeg)
 
-
-
-
+## Vista de Registro de la Página
+![Vista 22](public/vistas/c22.jpeg)
