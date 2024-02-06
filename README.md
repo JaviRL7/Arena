@@ -1,67 +1,213 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/icons/logofinal.png" alt="Logo" width="80">
+  <h1>Gumlin</h1>
 </p>
 
-## About Laravel
+# Proyecto de Esports de League of Legends
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 1. Descripción general del proyecto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El proyecto consiste en una web dedicada a la escena de esports competitiva del videojuego online League of Legends. El objetivo es que los usuarios puedan consultar información básica sobre los jugadores y evaluar su rendimiento mediante un sistema de puntuación durante el transcurso de las competiciones locales e internacionales.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+La web está pensada para la comunidad de espectadores de la escena de esports. Los usuarios podrán tener una cuenta con la que poder debatir con otros usuarios y dar su opinión sobre el rendimiento de un jugador o de un equipo en un pequeño foro junto al sistema de puntuación de los jugadores.
 
-## Learning Laravel
+### 1.1. Funcionalidad principal de la aplicación
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+La funcionalidad principal consistirá en la creación de un sitio web que permitirá a los espectadores de la competición de League of Legends acceder a información básica sobre jugadores, equipos y el calendario de las competiciones.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Los usuarios registrados podrán valorar a los jugadores después de finalizar una partida, escribir en el foro una reseña sobre el desempeño de un jugador y debatir con otros usuarios. Además, podrán consultar las alineaciones de los diferentes equipos que participen en una competición en particular, así como sus estadísticas e historial competitivo.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1.2. Objetivos generales
 
-## Laravel Sponsors
+- Objetivo: Acceso a información de la escena competitiva e interacción entre la comunidad de espectadores.
+- Casos de uso:
+  - Usuarios: "Valorar a un jugador", "Ver perfil del jugador", "Escribir en el foro de la partida".
+  - Administradores: "Moderar el foro", "Crear publicación de las partidas", "Validar/bloquear usuarios".
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 2. Elemento de innovación
 
-### Premium Partners
+Se incluirá un minijuego al estilo de Wordle en el que se trata de adivinar un jugador a través de su nacionalidad, excompañeros y antiguos equipos.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Vistas del proyecto
 
-## Contributing
+### Página de inicio
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![Vista 2](public/vistas/c2.jpeg)
+En la página de inicio se mostrará información general sobre la página, tales como:
 
-## Code of Conduct
+- Partidos destacados.
+- Mercado de fichajes.
+- Rankings de los jugadores.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Vista 3](public/vistas/c3.jpeg)
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Vista de la página de inicio con el modo noche activado.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Gunlim
+### Página de series
+
+En la vista de series, los usuarios podrán:
+
+- Hacer reviews y comentar sobre las partidas de sus jugadores y equipos favoritos.
+- Tener acceso a las estadísticas de los jugadores en las partidas, ya sea el KDA (Kills / Deaths / Assists).
+- Ver el personaje que han jugado en cada partida de una serie, ya sea al mejor de 1, 3 o 5 (bo1, bo3 y bo5).
+
+![Vista 6](public/vistas/c6.jpeg)
+
+
+![Vista 7](public/vistas/c7.jpeg)
+
+
+![Vista 8](public/vistas/c8.jpeg)
+
+
+### Community Feedback
+
+En Community Feedback, los usuarios podrán ver las últimas interacciones de los usuarios para esa serie.
+
+### Comentarios
+
+En la sección de comentarios, los usuarios podrán debatir y comentar sobre las partidas, jugadores o equipos.
+
+![Vista 9](public/vistas/c9.jpeg)
+
+
+### Predicciones
+
+Los usuarios podrán participar en una encuesta para predecir el resultado de la serie antes de que se juegue.
+
+![Vista 20](public/vistas/c20.jpeg)
+
+
+---
+
+### Rankings
+
+En rankings, los usuarios podrán:
+
+- Consultar estadísticas.
+- Ver los rankings de jugadores, equipos y de los propios usuarios.
+- Ver qué usuario es más participativo o cuál es más popular.
+
+![Vista 4](public/vistas/c4.jpeg)
+
+
+---
+
+### Esportle
+
+Esportle es un minijuego basado en el popular juego Wordle. Consiste en adivinar a un jugador por su nickname mediante 5 pistas, las cuales serán:
+
+1. Rol que ocupan en el equipo.
+2. Personaje más jugado.
+3. Nacionalidad.
+4. Equipo actual.
+5. Un compañero de equipo.
+   
+![Vista 5](public/vistas/c5.jpeg)
+
+
+---
+
+### Calendarios
+
+Los usuarios podrán:
+
+- Consultar las partidas programadas para cada mes.
+- Consultar sus horarios y plataforma de emisión.
+- Acceder a la partida para participar en la predicción.
+
+![Vista 10](public/vistas/10.jpeg)
+
+
+### Perfiles de equipo
+
+Los usuarios podrán:
+
+- Consultar los distintos perfiles de los equipos.
+- Consultar su historial de jugadores.
+- Ver los personajes que juegan (champion pool) junto a los porcentajes de victoria de cada uno.
+
+![Vista 11](public/vistas/c11.jpeg)
+
+
+Los usuarios podrán hacerse fan de los equipos y consultar los comentarios sobre ese equipo por parte de los usuarios.
+
+![Vista 12](public/vistas/c12.jpeg)
+
+
+---
+
+### Perfiles de jugadores
+
+Los usuarios podrán:
+
+- Consultar los distintos perfiles de los jugadores.
+- Consultar su historial de equipos.
+- Ver sus personajes más jugados y su personaje favorito.
+- Hacerse fans.
+- Consultar sus estadísticas.
+- Ver los comentarios.
+
+![Vista 18](public/vistas/c18.jpeg)
+
+
+![Vista 21](public/vistas/c21.jpeg)
+
+
+---
+
+### Transfers
+
+Los usuarios podrán:
+
+- Consultar el mercado de fichajes y renovaciones de los distintos equipos.
+- Filtrarlos por ligas.
+- Comparar los rosters (plantillas) de la actualidad respecto a la del año pasado.
+
+
+![Vista 13](public/vistas/c13.jpeg)
+
+---
+
+### Profile
+
+Los usuarios podrán:
+
+- Personalizar las fotos de usuario.
+- Personalizar la foto de cabecera de su perfil.
+- Personalizar sus datos de redes sociales como Twitter y Discord.
+- Indicar de qué equipo son fans.
+
+![Vista 19](public/vistas/c19.jpeg)
+
+!Vista 19
+
+En el perfil se tendrá acceso a una sección de "Para ti", donde se mostrarán las últimas aportaciones de los usuarios a los que sigues. También se podrá acceder a todos los comentarios y reviews realizados por el usuario, así como a las cuentas a las que sigues y te sigue.
+
+![Vista 14](public/vistas/c14.jpeg)
+
+!Vista 14
+---
+
+
+
+### Panel de administracion
+
+El usuario admin dispondra de herramientas par editar losdatos de los equipos partidas y jugadores. Podra crear nuevos equipos partidos y usuarios. tendr herramientas par contorllar los contratos de los jugadores en los equipos ya sea para renovar jugadores, finalizar su contrato, editar el contrato y terminar con toda relacion con el contrato del juegador.
+
+![Vista 15](public/vistas/c15.jpeg)
+
+En el perfil se tendra acceso a una seccion de para ti donde se mostraran las ultimas aportaciones de los usuarios a los que sigues. Tambien se podra acceder a todos los comentarios y reviews realizados por el ususario. tambien de las cuentas a las que sigues y te sigue.
+
+![Vista 16](public/vistas/c16.jpeg)
+
+
+
+
+
+
+
+
