@@ -32,6 +32,9 @@ Se incluirá un minijuego al estilo de Wordle en el que los jugadores intentará
 
 ### Página de Inicio
 
+Video
+[Enlace a video de YouTube](https://youtu.be/74dDPK-pt-I?si=MtY2lVLt2M9zxkBx)
+
 ![Vista 2](public/vistas/c2.jpeg)
 En la página de inicio se mostrará información general sobre la página, tales como:
 
