@@ -72,6 +72,13 @@ En Community Feedback, los usuarios podrán ver las últimas interacciones de lo
 En la sección de comentarios, los usuarios podrán debatir y comentar sobre las partidas, jugadores o equipos.
 
 ![Vista 9](public/vistas/c9.jpeg)
+Funcionalidad del chat:
+- Autocompletado de los nicknames de los jugadores usando '@'
+- Autocompletado de los nombres de los equipos usando '#'
+- Cuando un usuario comenta sobre un jugador o un equipo este comentario estara reflejado en el perfil de ambos
+
+![Vista 30](public/vistas/c30.jpeg)
+![Vista 31](public/vistas/c31.jpeg)
 
 
 ### Predicciones
@@ -119,7 +126,7 @@ Los usuarios podrán:
 - Consultar sus horarios y plataforma de emisión.
 - Acceder a la partida para participar en la predicción.
 
-![Vista 10](public/vistas/10.jpeg)
+![Vista 10](public/vistas/c10.jpeg)
 
 
 ### Perfiles de equipo
@@ -183,31 +190,74 @@ Los usuarios podrán:
 
 ![Vista 19](public/vistas/c19.jpeg)
 
-!Vista 19
+
 
 En el perfil se tendrá acceso a una sección de "Para ti", donde se mostrarán las últimas aportaciones de los usuarios a los que sigues. También se podrá acceder a todos los comentarios y reviews realizados por el usuario, así como a las cuentas a las que sigues y te sigue.
 
 ![Vista 14](public/vistas/c14.jpeg)
 
-!Vista 14
+
+
+En el perfil se tendra acceso a una seccion de para ti donde se mostraran las ultimas aportaciones de los usuarios a los que sigues. Tambien se podra acceder a todos los comentarios y reviews realizados por el ususario. tambien de las cuentas a las que sigues y te sigue.
+
+El perfil contiene: 
+- Personalizar apariencia.
+- Seguidores y seguidos
+- Un para ti (estilo instagram) con las aportaciones de tus seguidos.
+- Los comentarios y reviews de cada usuario.
+- Configuracion de los datos personales de cuanta (Correo electronico y contraseña)
+- Una biografia de 150 caracteres
+- El logo de tu equipo favorito para que todos tus seguidores lo puedan ver
+
+  ![Vista 28](public/vistas/c28.jpeg)
+  ![Vista 27](public/vistas/c27.jpeg)
+  Formato de review de n usuario hacia un jugador con sus estadisiticas (K/D/A, campeon jugado de fondo y nota asignada)
+  ![Vista 29](public/vistas/c29.jpeg)
+
+
 ---
 
 
 
 ### Panel de administracion
+![Vista 15](public/vistas/c15.jpeg)
 
 El usuario admin dispondra de herramientas par editar losdatos de los equipos partidas y jugadores. Podra crear nuevos equipos partidos y usuarios. tendr herramientas par contorllar los contratos de los jugadores en los equipos ya sea para renovar jugadores, finalizar su contrato, editar el contrato y terminar con toda relacion con el contrato del juegador.
 
-![Vista 15](public/vistas/c15.jpeg)
+El panel admin contiene: 
+- Edicion de jugadores
+- Edicion de equipos
+- Edicion de partidos
+- Control de usuarios
+- Un menu para editar los contratos de los jugadores con los equipos de una forma precisa y sencilla.
+- Un menu para añadir partidas a una serie de forma sencilla y dinamica.
 
-En el perfil se tendra acceso a una seccion de para ti donde se mostraran las ultimas aportaciones de los usuarios a los que sigues. Tambien se podra acceder a todos los comentarios y reviews realizados por el ususario. tambien de las cuentas a las que sigues y te sigue.
+![Vista 25](public/vistas/c25.jpeg)
+
+Menu de edicion y creacion de partidos: 
+- Los equipos de league of legends jugan cada uno en un lado (Red side / blue side) (Campo visitante o local, por hacer un simil con el deporte)
+- Boton para cambiar de lado a los equipos
+- Boton estilo on/off para elegir que equipo es el ganador
+
+ ## Ban phase 
+ Es simplemente una fase de la partida donde los equipos banean ciertos campeones de los muchos elegibles para que no los juegue el equipo enemigo
+ ![Vista 24](public/vistas/c24.jpeg)
 
 ![Vista 16](public/vistas/c16.jpeg)
 
 
+![Vista 17](public/vistas/c17.jpeg)
+Edicion de equipos
+
+![Vista 23](public/vistas/c23.jpeg)
+Creados de nuevas series 
+
+## Funcion de admin para eliminar comentarios inapropiados y banear cuentas.
+Las cuentas baneadas no podran participar de la comunidad ni hacer reviews.
+
+![Vista 26](public/vistas/c26.jpeg)
 
 
-
-
-
+## Vista de registro de la pagina
+![Vista 22](public/vistas/c17.jpeg)
 
