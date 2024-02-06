@@ -162,9 +162,9 @@ public static function getUsersWithMostLikes(){
 
     // Calcular el número total de "likes" en los comentarios para cada usuario
     foreach ($users as $user) {
-        $user->total_likes = DB::table('comments')
+        $user->total_likes = DB::table('comment_user')
             ->where('user_id', $user->id)
-            ->sum('likes');
+            ->count();
     }
 
     // Ordenar los usuarios por el número total de "likes"
@@ -172,6 +172,12 @@ public static function getUsersWithMostLikes(){
 
     return $users->take(10); // Devolver solo los 10 primeros usuarios
 }
+
+
+
+
+
+
 public function followersCount()
 {
     return DB::table('follows')

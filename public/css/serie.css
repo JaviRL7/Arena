@@ -3,7 +3,19 @@
     justify-content: center;
     width: 100%;
 }
+.offcanvas {
+    background-color: #000; /* Negro */
+}
 
+/* Si quieres también cambiar el color del texto dentro del sidebar */
+.offcanvas .navbar-nav .nav-link {
+    color: #fff; /* Blanco */
+}
+
+/* Opcional: Si quieres cambiar el color del fondo de los elementos al pasar el mouse */
+.offcanvas .navbar-nav .nav-link:hover {
+    background-color: #60df0b; /* Un gris oscuro para el efecto hover */
+}
 .inner {
     display: flex;
     justify-content: space-between;

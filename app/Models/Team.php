@@ -36,7 +36,10 @@ class Team extends Model
 }
 
 
-
+public function comments()
+{
+    return $this->hasMany('App\Models\Comment', 'team_id');
+}
 
 
 

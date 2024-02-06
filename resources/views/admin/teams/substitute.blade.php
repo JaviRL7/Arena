@@ -2,7 +2,7 @@
 @section('title', 'Teams index')
 @section('content')
 
-<div class="container my-4">
+<div class="container my-4" style="min-height: 80vh">
     <div class="table-responsive">
         <form action="{{ route('teams.updateTitular', ['team' => $team->id]) }}" method="POST" class="mt-4">
             @csrf

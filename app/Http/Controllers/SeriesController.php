@@ -157,7 +157,7 @@ class SeriesController extends Controller
 
 
     // Fusionar las colecciones y ordenarlas por fecha de creación
-    $activities = $scores->concat($comments)->sortByDesc('created_at')->take(7);
+    $activities = $scores->concat($comments)->sortByDesc('created_at')->take(5);
     // Fusionar las colecciones y ordenarlas por fecha de creación
 
     $teams = Team::all();

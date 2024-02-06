@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <div class="container-fluid" style="min-height: 80vh">
-        <div class="row">
+<div class="container-fluid" style="padding: 0 7%; min-height: 80vh"> <!-- Ajusta el padding para crear un margen del 5% -->
+    <div class="row">
 
         </div>
         <div class="row">
             <div class="col-md-9 team-grid">
                 <div class="col-md-12 selecor-league">
 
-                    <h1 class="titulo">
+                    <h1 class="titular subrayado">
                         Leagues
                     </h1>
                     <br>
@@ -52,12 +52,12 @@
                             @foreach ($team->getPlayersDate($date) as $player)
                                 <tr>
                                     <td><img src="{{ $player->role->icono }}" class="role-icon"></td>
-                                    <td class="titular player-nick">{{ $player->nick }}</td>
+                                    <td class="titular" style="font-size: 25px">{{ $player->nick }}</td>
                                     <td><i class="fas fa-arrow-right fa-sm"></i></td>
                                     <!-- Icono Font Awesome con tamaño pequeño -->
                                     @foreach ($team->getPlayersDate(\Carbon\Carbon::now()->toDateString()) as $oldPlayer)
                                         @if ($oldPlayer->role->id == $player->role->id && $oldPlayer->pivot->substitute == false)
-                                            <td class="titular player-nick">{{ $oldPlayer->nick }}</td>
+                                            <td class="titular" style="font-size: 25px">{{ $oldPlayer->nick }}</td>
                                         @endif
                                     @endforeach
                                 </tr>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-md-3">
-                <h1 class="titulo" style="margin-top: 65px">
+                <h1 class="titular subrayado" style="margin-top: 65px">
                     Transfers
                 </h1>
                 @foreach ($transfers as $transfer)
@@ -86,22 +86,18 @@
                                 <div class="mb-2">
                                     <p class="comentarios">Transfer</p>
 
-                                    <p class="transfer-label">Leaves</p>
+                                    <p class="transfer-label subtitular">Leaves</p>
                                     <div class="team-info">
-                                        <div class="status-circle bg-red-500">
-                                            <img src="{{ asset('material/flecha2.png') }}" alt="">
-                                        </div>
-                                        <img src="{{ asset($transfer->team_from->logo) }}" alt="">
+
+                                        <img src="{{ asset($transfer->team_from->logo) }}" class="" alt="">
                                         <p>{{ $transfer->team_from->name }}</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <p class="transfer-label">Joins</p>
+                                    <p class="transfer-label subtitular">Joins</p>
                                     <div class="team-info">
-                                        <div class="status-circle bg-green-500">
-                                            <img src="{{ asset('material/flecha1.png') }}" alt="">
-                                        </div>
-                                        <img src="{{ asset($transfer->team_to->logo) }}" alt="">
+
+                                        <img src="{{ asset($transfer->team_to->logo) }}" class="team-logo-small" alt="">
                                         <p>{{ $transfer->team_to->name }}</p>
                                     </div>
                                 </div>

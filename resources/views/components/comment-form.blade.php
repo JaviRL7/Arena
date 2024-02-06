@@ -22,7 +22,7 @@
                     <input type="hidden" name="player_id" id="player_id" value="">
 
                     <div class="float-end mt-2 pt-1">
-                        <button type="submit" class="btn-boton7">Enviar</button>
+                        <button type="submit" class="btn-boton7">Send</button>
                         <input type="hidden" id="serie" value="{{ $serie->id }}">
                     </div>
                 </form>

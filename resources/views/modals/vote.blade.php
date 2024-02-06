@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="voteModalLabel">Player Photo</h5>
+                <h5 class="modal-title" id="voteModalLabel">Review</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('games.store') }}" class="review-form" data-form-id="formGame{{ $game->id }}Player{{ $player_blue->id }}" method="POST" class="bg-white-800 text-black p-6 rounded-md">
@@ -107,8 +107,8 @@
 
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-boton7" id="buttonGame{{ $game->id }}Player{{ $player_blue->id }}">Enviar</button>
-                    <button class="btn btn-boton8" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-boton7" id="buttonGame{{ $game->id }}Player{{ $player_blue->id }}">Send</button>
+                    <button class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

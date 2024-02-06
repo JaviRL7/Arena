@@ -29,33 +29,33 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'twitter' => ['nullable', 'string', 'max:255'],
-            'discord' => ['nullable', 'string', 'max:255'],
-            'birth_date' => ['nullable', 'date'],
-            // Removí 'nullable' ya que la foto de perfil tendrá un valor predeterminado
-            'user_photo' => ['string', 'max:255'],
-        ]);
+{
+    $request->validate([
+        'nick' => ['required', 'string', 'max:15', 'unique:' . User::class], // Añadido el campo 'nick'
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'twitter' => ['nullable', 'string', 'max:255'],
+        'discord' => ['nullable', 'string', 'max:255'],
+        'birth_date' => ['nullable', 'date'],
+        'user_photo' => ['string', 'max:255'],
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'twitter' => $request->twitter,
-            'discord' => $request->discord,
-            'birth_date' => $request->birth_date,
-            // Asignación de la foto de perfil con valor predeterminado si no se proporciona una
-            'user_photo' => $request->user_photo ?? 'Profile_photos/Default_profile.jpg',
-        ]);
+    $user = User::create([
+        'nick' => $request->nick, // Añadido el campo 'nick'
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'twitter' => $request->twitter,
+        'discord' => $request->discord,
+        'birth_date' => $request->birth_date,
+        'user_photo' => $request->user_photo ?? 'Profile_photos/Default_profile.jpg',
+    ]);
 
-        event(new Registered($user));
+    event(new Registered($user));
 
-        Auth::login($user);
+    Auth::login($user);
 
-        return back()->withInput();
-    }
+    return back()->withInput();
+}
 }

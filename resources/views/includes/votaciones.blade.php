@@ -9,7 +9,7 @@
                 <input type="hidden" name="serie_id" value="{{ $serie->id }}">
                 <button type="submit" name="team_1_win" value="1" class="btn btn-boton7 vote-button"
                     data-team-name="{{ $serie->team_1->name }}">
-                    Win {{ $serie->team_1->name }}
+                    {{ $serie->team_1->name }} Win
                 </button>
             </form>
         @endif
@@ -38,7 +38,7 @@
                 <input type="hidden" name="serie_id" value="{{ $serie->id }}">
                 <button type="submit" name="team_1_win" value="0" class="btn btn-boton8 vote-button"
                     data-team-name="{{ $serie->team_2->name }}">
-                    Win {{ $serie->team_2->name }}
+                    {{ $serie->team_2->name }} Win
                 </button>
             </form>
         @endif

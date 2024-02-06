@@ -9,7 +9,7 @@
 
 
 @endsection
-<div class="container-fluid">
+<div class="container-fluid" style="padding: 0 7%; min-height: 80vh">
     <div class="row">
         <div class="col-md-12">
             @if (session('alert'))

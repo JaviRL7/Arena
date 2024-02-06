@@ -9,20 +9,20 @@
                 </button>
             </div>
         </td>
-        <td class="player-name-column">
+        <td class="player-name-column d-none d-md-table-cell">
             <div class="player-details">
                 <div class="player-nick">{{ $playerBlue->nick }}</div>
                 <div class="player-name">{{ $playerBlue->name }} {{ $playerBlue->lastname1 }}{{ $playerBlue->lastname2 ? ' ' . $playerBlue->lastname2 : '' }}</div>
             </div>
         </td>
-        <td class="kda-column titular">
+        <td class="kda-column titular d-none d-md-table-cell">
             {{ $playerBlue->games->where('id', $game->id)->first()->pivot->kills }}
             /
             {{ $playerBlue->games->where('id', $game->id)->first()->pivot->deaths }}
             /
             {{ $playerBlue->games->where('id', $game->id)->first()->pivot->assists }}
         </td>
-        <td>
+        <td class="d-none d-md-table-cell">
             <img src="{{ asset($playerBlue->games->where('id', $game->id)->first()->pivot->champion->square) }}" alt="{{ $playerBlue->games->where('id', $game->id)->first()->pivot->champion->name }}" class="img-fluid" style="max-width: 50px !important; max-height: 50px !important;">
         </td>
         <td>
@@ -44,24 +44,24 @@
                 {{ number_format($playerRed->averageScoreForGame($game->id), 2, '.', '') ?? ' - ' }}
             </div>
         </td>
-        <td>
+        <td class="d-none d-md-table-cell">
             <img src="{{ asset($playerRed->games->where('id', $game->id)->first()->pivot->champion->square) }}" alt="{{ $playerRed->games->where('id', $game->id)->first()->pivot->champion->name }}" class="img-fluid" style="max-width: 50px !important; max-height: 50px !important;">
         </td>
-        <td class="kda-column titular">
+        <td class="kda-column titular d-none d-md-table-cell">
             {{ $playerRed->games->where('id', $game->id)->first()->pivot->kills }}
             /
             {{ $playerRed->games->where('id', $game->id)->first()->pivot->deaths }}
             /
             {{ $playerRed->games->where('id', $game->id)->first()->pivot->assists }}
         </td>
-        <td class="player-name-column">
+        <td class="player-name-column d-none d-md-table-cell">
             <div class="player-details">
                 <div class="player-nick">{{ $playerRed->nick }}</div>
                 <div class="player-name">{{ $playerRed->name }} {{ $playerRed->lastname1 }}{{ $playerRed->lastname2 ? ' ' . $playerRed->lastname2 : '' }}</div>
             </div>
         </td>
         <td>
-            <div class="player-info">
+            <div class="player-info ">
                 <img src="{{ asset($playerRed->photo) }}" alt="{{ $playerRed->nick }}" class="img-fluid"style="max-width: 100px !important; max-height: 100px !important;">
                 <button type="button" class="btn-boton8" data-bs-toggle="modal" data-bs-target="#voteModalGame{{ $game->id }}Player{{ $playerRed->id }}">
                     Vote

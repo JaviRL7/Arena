@@ -93,7 +93,7 @@
         <div class="row">
             <div class="col-lg-6 col-12" style="height: 600px;">
                 <div class="image-container">
-                    <a href="ruta-de-la-imagen-1">
+                    <a href="{{ route('profile.index', ['user' => Auth::user() ?? 'login']) }}">
                         <img src="material/deft.jpg" class="img-fluid h-100 w-100 object-fit-cover" alt="Imagen 1">
                     </a>
                     <div style="position: absolute; top: 20px; background-color: #e44445; color: white; padding: 7px; font-family: mol; font-size:x-large;">
@@ -108,7 +108,7 @@
                 <div class="row h-50">
                     <div class="col-lg-12 col-12" style="height: 300px;">
                         <div class="image-container">
-                            <a href="ruta-de-la-imagen-2">
+                            <a href="{{ route('teams.index')}}">
                                 <img src="material/T1skins.jpg" class="img-fluid h-100 w-100 object-fit-cover"
                                     alt="Imagen 2">
                             </a>
@@ -126,7 +126,7 @@
                 <div class="row h-50">
                     <div class="col-lg-12 col-12" style="height: 300px;">
                         <div class="image-container">
-                            <a href="ruta-de-la-imagen-3">
+                            <a href="{{ route('players.show_players')}}">
                                 <img src="material/Fnatic1.jpg" class="img-fluid h-100 w-100 object-fit-cover"
                                     alt="Imagen 3">
                             </a>
@@ -150,7 +150,7 @@
         <div class="row">
             <div class="col-12" style="height: 600px;">
                 <div class="image-container">
-                    <a href="ruta-de-la-imagen-3">
+                    <a href="{{ route('calendar')}}">
                         <img src="material/calendar1.jpg" class="img-fluid h-100 w-100 object-fit-cover" alt="Imagen 3">
                     </a>
                     <div style="position: absolute; top: 20px; background-color: #e44445; color: white; padding: 7px; font-family: mol; font-size:x-large;">

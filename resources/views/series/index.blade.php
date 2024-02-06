@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-{{ Breadcrumbs::render() }}
+
 
 <div class="container-fluid" style="min-height: 80vh; margin-top:5%">
     @foreach (array_keys($competitionsByYear) as $year)

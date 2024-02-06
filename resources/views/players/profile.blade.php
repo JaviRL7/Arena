@@ -20,7 +20,9 @@
             <div class="col-12">
                 <div class="container-new">
                     {{-- Encabezado del perfil con la imagen de fondo del jugador --}}
-                    <div class="profile-header-new" style="background: url('{{ asset($player->img) }}') no-repeat center calc(20%); background-size: cover;"></div>
+                    <div class="profile-header-new"
+                        style="background: url('{{ asset($player->img) }}') no-repeat center calc(20%); background-size: cover;">
+                    </div>
 
 
                     {{-- Foto principal del jugador --}}
@@ -109,8 +111,11 @@
                                     <div class="champion-container">
                                         @if ($player->mostPlayedChampion())
                                             <div class="champion-photo-container">
-                                                <img src="{{ asset($player->mostPlayedChampion()->photo) }}" alt="{{ $player->mostPlayedChampion()->name }}" class="champion-photo">
-                                                <div class="champion-name"><h1 class="titular">{{ $player->mostPlayedChampion()->name }}</h1></div>
+                                                <img src="{{ asset($player->mostPlayedChampion()->photo) }}"
+                                                    alt="{{ $player->mostPlayedChampion()->name }}" class="champion-photo">
+                                                <div class="champion-name">
+                                                    <h1 class="titular">{{ $player->mostPlayedChampion()->name }}</h1>
+                                                </div>
                                             </div>
                                         @else
                                             <h5 class="subtitular">This player has not played any matches yet.</h5>
@@ -160,19 +165,22 @@
 
                                         @if ($user)
                                             @if ($user->favorite_team == $team->id)
-                                                <form method="POST" action="{{ route('teams.unfan', $team) }}" style="margin-bottom: 20px;">
+                                                <form method="POST" action="{{ route('teams.unfan', $team) }}"
+                                                    style="margin-bottom: 20px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-boton8">Stop Being a Fan</button>
                                                 </form>
                                             @else
-                                                <form method="POST" action="{{ route('teams.becomeFan', $team) }}" style="margin-bottom: 20px;">
+                                                <form method="POST" action="{{ route('teams.becomeFan', $team) }}"
+                                                    style="margin-bottom: 20px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-boton7">Become a fan</button>
                                                 </form>
                                             @endif
                                         @else
                                             <div style="margin-bottom: 20px;">
-                                                Para hacerse fan, por favor <button onclick="location.href='/login'" class="btn btn-boton6">Login</button>
+                                                Para hacerse fan, por favor <button onclick="location.href='/login'"
+                                                    class="btn btn-boton6">Login</button>
                                             </div>
                                         @endif
 
@@ -181,16 +189,25 @@
                                         @else
                                             <x-fans-section :fans="$fans" />
                                         @endif
+                                        @if ($player->comments->count() > 0)
+                                        <h1 class="titular subrayado" style="margin-top: 5%">Comments</h1>
+                                            @foreach ($player->comments as $comment)
+                                                <div class="comment-container"> <!-- Añade esta clase -->
+                                                    @include('comments', ['comment' => $comment])
+
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @include('modals.change_favorite')
 @endsection

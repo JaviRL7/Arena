@@ -9,7 +9,7 @@
     <div class="container2">
 
         <div x-data="{ search: '' }">
-            <input type="text" x-model="search" placeholder="Search by player's nick..." class="form-control rounded-pill">
+            <input type="text" x-model="search" placeholder="Search by player's nickname..." class="form-control rounded-pill">
 
             @foreach ($roles as $role)
                 <h1 class="titulo">{{ $role->name }}</h1>

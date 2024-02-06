@@ -220,6 +220,15 @@
             @else
                 <x-fans-section :fans="$team->getFansAttribute()" />
             @endif
+            @if ($team->comments->count() > 0)
+                                        <h1 class="titular subrayado" style="margin-top: 5%">Comments</h1>
+                                            @foreach ($team->comments as $comment)
+                                                <div class="comment-container"> <!-- Añade esta clase -->
+                                                    @include('comments', ['comment' => $comment])
+
+                                                </div>
+                                            @endforeach
+                                        @endif
         </div>
     </div>
     <script>

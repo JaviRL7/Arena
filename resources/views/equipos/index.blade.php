@@ -3,6 +3,28 @@
 @section('title', 'Teams index')
 
 @section('content')
+<style>
+.teams-show-team-logo {
+    padding: 10px; /* Ajusta este valor a tu gusto */
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.teams-show-team-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.teams-show-competition-logo {
+    padding: 10px; /* Ajusta este valor a tu gusto */
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.teams-show-competition-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+</style>
     <div class="competitions-container">
         <div id="teams-show-competition-buttons" class="d-flex flex-wrap justify-content-center mb-3">
             @foreach ($competitions as $competition)

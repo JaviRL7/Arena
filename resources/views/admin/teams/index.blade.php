@@ -60,7 +60,7 @@
                                     {{ $player->role->name }}: {{ $player->nick }} <br>
                                 @endforeach
                                 @php
-                                    $substitutes = $team->getPlayersSubstitute();
+                                    $substitutes = $team->getPlayersDate(\Carbon\Carbon::now())->where('pivot.substitute', true);
                                 @endphp
                                 @if(count($substitutes) > 0)
                                     Substitutes:
