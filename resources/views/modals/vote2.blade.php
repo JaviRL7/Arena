@@ -110,6 +110,7 @@
                     <button type="submit" class="btn btn-boton7" id="buttonGame{{ $game->id }}Player{{ $player_red->id }}">Send</button>
                     <button class="btn btn-boton8" data-bs-dismiss="modal">Close</button>
                 </div>
+
             </form>
         </div>
     </div>
