@@ -238,3 +238,26 @@ Las cuentas baneadas no podrán participar de la comunidad ni hacer reseñas.
 
 ## Vista de Registro de la Página
 ![Vista 22](public/vistas/c22.jpeg)
+
+## Instalacion
+
+git clone https://github.com/titicuevas/SportBuddy
+
+sudo -u postgres createuser -P usuario
+
+sudo -u postgres createdb -O usuaio gumlin 
+
+sudo apt install composer
+
+sudo apt install npm
+
+php artisan key:generate
+
+php artisan migrate
+php artisan db:seed
+Configuracion del fichero .env con los datos de la base de datos
+
+Puede ser necesario si no esta instalado previamente: 
+sudo apt-get install php-gd
+
+
