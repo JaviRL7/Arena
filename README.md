@@ -240,8 +240,7 @@ Las cuentas baneadas no podrán participar de la comunidad ni hacer reseñas.
 ![Vista 22](public/vistas/c22.jpeg)
 
 ## Instalacion
-
-git clone https://github.com/titicuevas/SportBuddy
+git clone 
 
 sudo -u postgres createuser -P usuario
 
